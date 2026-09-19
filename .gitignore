@@ -1,0 +1,11 @@
+# Source PDF and raw extracts
+*.pdf
+*.raw.md
+
+# English transcript of the book (excluded due to license/copyright)
+ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translation.md
+
+# Python cache & OS artifacts
+__pycache__/
+*.pyc
+.DS_Store
