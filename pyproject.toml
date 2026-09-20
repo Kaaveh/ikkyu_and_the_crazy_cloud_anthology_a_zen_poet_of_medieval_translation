@@ -1,0 +1,97 @@
+# Configuration for the bargardan-tools checkers. This file is config only --
+# the checkers are installed from tools/requirements.txt and this project
+# carries no copy of them.
+#
+# Everything below is what makes general checkers run on *this* book. The
+# checkers themselves must work with none of it present.
+
+# ---------------------------------------------------------------------------
+# [tool.book] is this project's own data, shared by whichever checkers need it.
+# ---------------------------------------------------------------------------
+
+[tool.book]
+
+# Files in source/ that are not part of the book. README.md is the generated
+# index of the split. make_stubs writes no stub for it, and check_parity and
+# the adapter do not look for a translation of it.
+exclude = ["README.md"]
+
+# Persian headings for the files that are not numbered poems. Book data, so it
+# lives here rather than inside a checker: make_stubs puts these in a new stub
+# and the adapter renders the source heading into this form, and neither module
+# has to carry the book's vocabulary to do it.
+#
+# Terms follow the other books in this corpus where one already exists --
+# "کوته‌نوشت‌ها" and "کتاب‌شناسی" are Record_of_Linji's.
+[tool.book.titles]
+"plates.md" = "تصاویر"
+"foreword.md" = "پیش‌گفتار"
+"preface.md" = "دیباچه"
+"introduction-1.md" = "ایک‌کیو (۱۳۹۴–۱۴۸۱): مرد و روزگارش"
+"introduction-2.md" = "دیالکتیکِ نادوگانگی"
+"introduction-3.md" = "تلمیح"
+"introduction-4.md" = "نکته‌ای دربارهٔ متن و سامان‌دهی آن"
+"abbreviations.md" = "کوته‌نوشت‌ها"
+"notes.md" = "یادداشت‌ها"
+"bibliography.md" = "کتاب‌شناسی"
+"index-of-poems.md" = "نمایهٔ شعرها"
+"glossary-index.md" = "واژه‌نامه و نمایه"
+
+# Every normalization rule is individually toggleable. Turning one off here
+# disables it for both --check and --fix, repo-wide. To exempt a region of a
+# single file instead, wrap it in:
+#   <!-- normalize: off -->
+#   ...
+#   <!-- normalize: on -->
+#
+# These are the keys normalize.py actually reads. There is no umbrella "zwnj"
+# key -- writing one has no effect, because each ZWNJ rule is read by its own
+# name and an unrecognised key is merged in and then never consulted.
+[tool.normalize]
+
+# Arabic Yeh U+064A -> Farsi Yeh U+06CC
+arabic_yeh = true
+
+# Arabic Kaf U+0643 -> Keheh U+06A9
+arabic_kaf = true
+
+# Arabic-Indic digits U+0660-U+0669 -> Extended Arabic-Indic U+06F0-U+06F9
+arabic_digits = true
+
+# Latin digits 0-9 -> Persian U+06F0-U+06F9.
+# Off: the poem numbers, the dates in the Introduction and the page references
+# throughout the Notes are Latin-digit and should stay that way.
+latin_digits = false
+
+# Strip Tatweel / Kashida U+0640
+tatweel = true
+
+# ASCII , ; ? adjacent to Persian text -> U+060C U+061B U+061F
+punctuation = true
+
+# ZWNJ (U+200C) discipline
+zwnj_mi = true          # mi/nemi verbal prefix + space + verb -> ZWNJ
+zwnj_bi = true          # bi- privative prefix -> ZWNJ
+zwnj_plural = true      # plural haa written as a separate word -> ZWNJ
+zwnj_comparative = true # comparative tar / superlative tarin -> ZWNJ
+zwnj_collapse = true    # collapse repeated ZWNJ
+zwnj_trim = true        # drop ZWNJ next to a space or at a word boundary
+
+# Straight and curly ASCII quotes -> Persian guillemets
+quotes = true
+
+# Diacritics / harakat U+064B-U+0652. "preserve" leaves them alone; they carry
+# meaning in verse, and this book is mostly verse.
+harakat = "preserve"
+
+# Bidi overrides U+202A-U+202E and U+2066-U+2069 are always an error and are
+# never auto-fixed, because they can make a diff display in a different order
+# than it is stored. Not toggleable by design.
+
+# ---------------------------------------------------------------------------
+# No [tool.linebreaks] section, and check_linebreaks is not in `just check`.
+# That checker enforces one sentence per line, which is the right discipline
+# for prose and meaningless for verse: a poem's line breaks are the poem. The
+# prose files here (the Introduction, the Notes) would benefit, but splitting
+# the tree by genre is not worth a second recipe for four files.
+# ---------------------------------------------------------------------------

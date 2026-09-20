@@ -1,0 +1,33 @@
+/* EPUB styling. The fonts listed under epub-fonts are packaged into the
+   container but nothing references them without these rules, so on a device
+   with no Persian font the book would fall back to a default that may not
+   shape Arabic script correctly. */
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-Regular.ttf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-Bold.ttf");
+  font-weight: bold;
+}
+
+body {
+  font-family: "Vazirmatn", serif;
+  direction: rtl;
+  text-align: justify;
+  line-height: 1.9;
+}
+
+h1, h2, h3, h4 {
+  text-align: right;
+  line-height: 1.5;
+}
+
+blockquote {
+  border-inline-start: 3px solid #ccc;
+  padding-inline-start: 1em;
+  margin-inline-start: 0;
+}

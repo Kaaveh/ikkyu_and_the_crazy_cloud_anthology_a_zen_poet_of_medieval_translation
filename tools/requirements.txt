@@ -1,0 +1,9 @@
+# The checkers. Shared with the other books in this corpus and installed from
+# their own repository, so this project carries no copy of them.
+#
+# Pinned to a tag on purpose. Tracking @main would mean one bad commit there
+# breaks this book's CI with nothing in this history to show what changed.
+bargardan-tools @ git+https://github.com/Kaaveh/bargardan-tools@v0.1.0
+
+regex>=2024.1.0
+PyYAML>=6.0.0
