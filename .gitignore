@@ -5,7 +5,20 @@
 # English transcript of the book (excluded due to license/copyright)
 ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translation.md
 
+# The English text split into sections. Derived from the transcript above and
+# excluded for the same reason. Regenerate with `just split`. fa/ is the work
+# and IS committed.
+source/
+
+# Build output
+_book/
+.quarto/
+
 # Python cache & OS artifacts
+.venv/
 __pycache__/
 *.pyc
 .DS_Store
+
+/.quarto/
+**/*.quarto_ipynb

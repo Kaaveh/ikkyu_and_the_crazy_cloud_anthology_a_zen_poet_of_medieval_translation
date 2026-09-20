@@ -1,0 +1,246 @@
+# Book build. One source tree, three outputs.
+#
+# TBD markers are the maintainer's calls, not defaults to keep: the title, the
+# author credit and the part titles are translation decisions and should be
+# settled the same way any other term is.
+#
+# fa/ is generated -- `just stubs` creates it from source/, and the chapter
+# list below mirrors source/README.md. Regenerate both together if the split
+# changes, or Quarto will list a chapter that no longer exists.
+
+book-version: "نسخهٔ ۰.۰.۱"
+
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "ایک‌کیو و گلچین ابر دیوانه"   # TBD
+  subtitle: "شاعری ذن از ژاپن سدهٔ میانه"   # TBD
+  author: "کاوه"   # TBD: how you want to be credited
+
+  repo-actions: [edit, issue]
+  downloads: [pdf, epub]
+  search: true
+
+  sidebar:
+    style: docked
+    # 135 poems make an unusably long nav if every part is open.
+    collapse-level: 1
+
+  chapters:
+    - index.md
+    - fa/plates.md
+    - fa/foreword.md
+    - fa/preface.md
+    - part: "درآمد"
+      chapters:
+        - fa/introduction-1.md
+        - fa/introduction-2.md
+        - fa/introduction-3.md
+        - fa/introduction-4.md
+    - part: "برگردان‌هایی از گلچین ابر دیوانه"
+      chapters:
+        - fa/001.md
+        - fa/002.md
+        - fa/003.md
+        - fa/004.md
+        - fa/005.md
+        - fa/006.md
+        - fa/007.md
+        - fa/008.md
+        - fa/009.md
+        - fa/010.md
+        - fa/011.md
+        - fa/012.md
+        - fa/013.md
+        - fa/014.md
+        - fa/015.md
+        - fa/016.md
+        - fa/017.md
+        - fa/018.md
+        - fa/019.md
+        - fa/020.md
+        - fa/021.md
+        - fa/022.md
+        - fa/023.md
+        - fa/024.md
+        - fa/025.md
+        - fa/026.md
+        - fa/027.md
+        - fa/028.md
+        - fa/029.md
+        - fa/030.md
+        - fa/031.md
+        - fa/032.md
+        - fa/033.md
+        - fa/034.md
+        - fa/035.md
+        - fa/036.md
+        - fa/037.md
+        - fa/038.md
+        - fa/039.md
+        - fa/040.md
+        - fa/041.md
+        - fa/042.md
+        - fa/043.md
+        - fa/044.md
+        - fa/045.md
+        - fa/046.md
+        - fa/047.md
+        - fa/048.md
+        - fa/049.md
+        - fa/050.md
+        - fa/051.md
+        - fa/052.md
+        - fa/053.md
+        - fa/054.md
+        - fa/055.md
+        - fa/056.md
+        - fa/057.md
+        - fa/058.md
+        - fa/059.md
+        - fa/060.md
+        - fa/061.md
+        - fa/062.md
+        - fa/063.md
+        - fa/064.md
+        - fa/065.md
+        - fa/066.md
+        - fa/067.md
+        - fa/068.md
+        - fa/069.md
+        - fa/070.md
+        - fa/071.md
+        - fa/072.md
+        - fa/073.md
+        - fa/074.md
+        - fa/075.md
+        - fa/076.md
+        - fa/077.md
+        - fa/078.md
+        - fa/079.md
+        - fa/080.md
+        - fa/081.md
+        - fa/082.md
+        - fa/083.md
+        - fa/084.md
+        - fa/085.md
+        - fa/086.md
+        - fa/087.md
+        - fa/088.md
+        - fa/089.md
+        - fa/090.md
+        - fa/091.md
+        - fa/092.md
+        - fa/093.md
+        - fa/094.md
+        - fa/095.md
+        - fa/096.md
+        - fa/097.md
+        - fa/098.md
+        - fa/099.md
+        - fa/100.md
+        - fa/101.md
+        - fa/102.md
+        - fa/103.md
+        - fa/104.md
+        - fa/105.md
+        - fa/106.md
+        - fa/107.md
+        - fa/108.md
+        - fa/109.md
+        - fa/110.md
+        - fa/111.md
+        - fa/112.md
+        - fa/113.md
+        - fa/114.md
+        - fa/115.md
+        - fa/116.md
+        - fa/117.md
+        - fa/118.md
+        - fa/119.md
+        - fa/120.md
+        - fa/121.md
+        - fa/122.md
+        - fa/123.md
+        - fa/124.md
+        - fa/125.md
+        - fa/126.md
+        - fa/127.md
+        - fa/128.md
+        - fa/129.md
+        - fa/130.md
+        - fa/131.md
+        - fa/132.md
+        - fa/133.md
+        - fa/134.md
+        - fa/135.md
+
+  appendices:
+    - fa/abbreviations.md
+    - fa/notes.md
+    - fa/bibliography.md
+    - fa/index-of-poems.md
+    - fa/glossary-index.md
+
+# fa-IR, not fa. Quarto's relative-path rewriter treats a bare `fa` as a path
+# because a directory of that name exists, and emits lang="../fa" on every page
+# under fa/. A region subtag sidesteps it, and pandoc still maps fa-IR to
+# babel's `persian` for the PDF.
+lang: fa-IR
+dir: rtl
+
+# Quarto has no built-in fa locale. Without this every piece of chrome renders
+# in English inside a Persian book.
+language: _language.yml
+
+# Off deliberately. The poem number is already in the heading text -- fa/002.md
+# opens with "# شعر ۷: ..." -- so Quarto's numbering would render it twice.
+number-sections: false
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    respect-user-color-scheme: true
+    css: assets/rtl.css
+    toc: true
+    toc-depth: 2
+    toc-title: "در این بخش"
+    link-external-newwindow: true
+
+  pdf:
+    # LuaLaTeX, not XeLaTeX. See tex/preamble.tex -- under XeLaTeX pandoc picks
+    # babel with bidi=default, which reverses Latin-script runs embedded in
+    # Persian text, and this book's notes are full of them.
+    pdf-engine: lualatex
+    documentclass: book
+    toc-depth: 1
+    # openany: most poems are under a page, so openright would leave an empty
+    # verso after each of 135 chapters.
+    classoption: [openany]
+    mainfont: "Vazirmatn-Regular.ttf"
+    mainfontoptions:
+      - Path=fonts/
+      - BoldFont=Vazirmatn-Bold.ttf
+      - Renderer=Harfbuzz
+    fontsize: 12pt
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - inner=28mm
+      - outer=22mm
+    include-in-header: tex/preamble.tex
+    colorlinks: true
+
+  epub:
+    # Pandoc supports this but does not derive it from `dir`, so an RTL book
+    # otherwise ships with a left-to-right spine.
+    page-progression-direction: rtl
+    epub-fonts:
+      - fonts/Vazirmatn-Regular.ttf
+      - fonts/Vazirmatn-Bold.ttf
+    css: assets/epub.css
+    toc-depth: 1

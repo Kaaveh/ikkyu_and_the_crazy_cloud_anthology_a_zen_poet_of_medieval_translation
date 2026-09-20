@@ -1,0 +1,94 @@
+# Persian UI strings for Quarto.
+#
+# Quarto ships locales for about thirty languages; Persian is not one of them
+# (there is _language-he.yml for Hebrew, but no fa). Without this file every
+# piece of chrome falls back to English -- "Table of contents", "Chapter 2",
+# "Edit this page" -- inside an otherwise Persian right-to-left book.
+#
+# Only the keys this book can actually render are translated. Quarto falls
+# back to English for anything omitted, which is harmless for strings that
+# never appear: theorem environments, listing pages, notebook links.
+#
+# If Quarto ever ships a real fa locale, delete this file and set `lang: fa`
+# alone.
+
+toc-title-document: "فهرست مطالب"
+toc-title-website: "در این صفحه"
+related-formats-title: "قالب‌های دیگر"
+other-links-title: "پیوندهای دیگر"
+
+section-title-abstract: "چکیده"
+section-title-appendices: "پیوست‌ها"
+section-title-footnotes: "یادداشت‌ها"
+section-title-references: "منابع"
+section-title-reuse: "بازنشر"
+section-title-copyright: "حق نشر"
+section-title-citation: "ارجاع"
+
+appendix-attribution-cite-as: "برای ارجاع، این اثر را چنین بیاورید:"
+appendix-attribution-bibtex: "ارجاع BibTeX:"
+appendix-view-license: "مشاهدهٔ پروانه"
+
+title-block-author-single: "پدیدآور"
+title-block-author-plural: "پدیدآوران"
+title-block-affiliation-single: "وابستگی"
+title-block-affiliation-plural: "وابستگی‌ها"
+title-block-published: "تاریخ انتشار"
+title-block-modified: "آخرین ویرایش"
+title-block-keywords: "کلیدواژه‌ها"
+
+callout-tip-title: "نکته"
+callout-note-title: "یادداشت"
+callout-warning-title: "هشدار"
+callout-important-title: "مهم"
+callout-caution-title: "احتیاط"
+
+code-summary: "کد"
+code-tools-menu-caption: "کد"
+code-tools-show-all-code: "نمایش همهٔ کدها"
+code-tools-hide-all-code: "پنهان‌کردن همهٔ کدها"
+code-tools-view-source: "مشاهدهٔ منبع"
+code-tools-source-code: "کد منبع"
+code-line: "سطر"
+code-lines: "سطرها"
+copy-button-tooltip: "رونوشت در حافظه"
+copy-button-tooltip-success: "رونوشت شد!"
+
+tools-share: "هم‌رسانی"
+tools-download: "دریافت"
+
+# The single highest-value string in this file. It turns a typo into a
+# web-editor commit with no clone.
+repo-action-links-edit: "ویرایش این صفحه در گیت‌هاب"
+repo-action-links-source: "مشاهدهٔ متن منبع"
+repo-action-links-issue: "گزارش اشکال"
+back-to-top: "بازگشت به بالا"
+
+search-no-results-text: "نتیجه‌ای یافت نشد"
+search-matching-documents-text: "سند مرتبط"
+search-copy-link-title: "رونوشت پیوند جست‌وجو"
+search-hide-matches-text: "پنهان‌کردن نتایج بیشتر"
+search-more-match-text: "نتیجهٔ دیگر در این سند"
+search-more-matches-text: "نتیجهٔ دیگر در این سند"
+search-clear-button-title: "پاک‌کردن"
+search-detached-cancel-button-title: "انصراف"
+search-submit-button-title: "جست‌وجو"
+search-label: "جست‌وجو"
+
+toggle-section: "بازکردن یا بستن بخش"
+toggle-sidebar: "بازکردن یا بستن نوار کناری"
+toggle-dark-mode: "حالت تاریک"
+toggle-reader-mode: "حالت خواندن"
+toggle-navigation: "بازکردن یا بستن فهرست"
+
+crossref-fig-title: "تصویر"
+crossref-tbl-title: "جدول"
+crossref-lst-title: "فهرست کد"
+crossref-ch-prefix: "بخش"
+crossref-apx-prefix: "پیوست"
+crossref-sec-prefix: "زیربخش"
+crossref-eq-prefix: "رابطهٔ"
+crossref-lof-title: "فهرست تصویرها"
+crossref-lot-title: "فهرست جدول‌ها"
+
+draft: "پیش‌نویس"

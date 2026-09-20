@@ -1,0 +1,40 @@
+% Persian print preamble. Loaded via `include-in-header` from _quarto.yml.
+%
+% ENGINE: LuaLaTeX, not XeLaTeX.
+%
+% This was settled empirically (see the Phase 0 spike). Under XeLaTeX, pandoc's
+% template selects `\usepackage[bidi=default]{babel}`, which delegates to the
+% `bidi` package. Its bidirectional handling is heuristic rather than a real
+% implementation of the Unicode Bidirectional Algorithm, and it reverses the
+% word order of Latin-script runs embedded in Persian text: "semantic line
+% breaks" typeset as "breaks line semantic". For a book carrying transliterated
+% Chinese and Sanskrit in most paragraphs that is disqualifying.
+%
+% Under LuaLaTeX the same template selects `bidi=basic`, which is a real UBA
+% implementation, and the problem disappears. xepersian was also tried and
+% rejected: it collides with babel's `persian` (already active via the
+% `persian` documentclass option pandoc emits from `lang: fa`) and with
+% pandoc's `longtable,booktabs,array` load order, and it rides the same `bidi`
+% package anyway.
+%
+% Cost of the choice: LuaLaTeX is roughly 2-3x slower per pass than XeLaTeX,
+% and Quarto runs two passes.
+
+% Persian digits for every LaTeX counter: chapter, section, page, footnote.
+% `maparabic` redefines \arabic only, so digits the translator actually typed
+% are left exactly as written -- a Latin-digit year stays Latin.
+\babelprovide[import, main, maparabic]{persian}
+
+% Pandoc loads selnolig unconditionally under LuaTeX. It is an English/German
+% ligature-suppression package; its Lua callback dies on Persian glyphs with
+% "bad argument #1 to 'char'" and aborts the run with no `!` line in the log,
+% which makes it painful to diagnose. Turn it off. The \providecommand guard
+% keeps this file harmless if the engine ever changes back.
+\providecommand{\selnoligoff}{}
+\selnoligoff
+
+% Footnote rule on the right. LaTeX's \footnoterule is a raw \hrule pinned to
+% the left of the column and babel does not mirror it. This box inherits
+% \bodydir TRT, so its *first* item lands at the right edge: rule, then \hfill.
+\renewcommand{\footnoterule}{%
+  \kern-3pt\hbox to \columnwidth{\vrule width .4\columnwidth height .4pt\hfill}\kern2.6pt}

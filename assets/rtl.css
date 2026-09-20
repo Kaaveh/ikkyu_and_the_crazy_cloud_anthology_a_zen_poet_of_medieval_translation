@@ -1,0 +1,135 @@
+/* Right-to-left corrections for the Quarto HTML book.
+   Quarto sets dir="rtl" on <html>, which flips text and Bootstrap's logical
+   properties, but a few places still assume left-to-right. */
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+body {
+  font-family: "Vazirmatn", system-ui, sans-serif;
+  line-height: 1.9;               /* Persian needs more leading than Latin */
+}
+
+/* Justify body prose. Ragged-left is the RTL equivalent of ragged-right and
+   reads poorly in Persian at this measure. */
+main p, main li, main blockquote {
+  text-align: justify;
+}
+
+/* Latin runs inside Persian prose: keep them left-to-right without letting
+   them break the surrounding paragraph direction. */
+main :is(code, kbd, samp) {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* Note back-links sit tight against the note text in the source. */
+main a[href^="#m"] {
+  margin-inline-start: 0.35em;
+  text-decoration: none;
+}
+
+/* ---- Sidebar collapse toggle -------------------------------------------
+   Quarto's own rules are written for left-to-right and none of the three
+   survive the flip. Selectors below match Quarto's specificity exactly
+   (`.sidebar-item .sidebar-item-...`); this file is the last stylesheet in
+   <head>, so equal specificity is enough and !important is only needed
+   against Bootstrap's spacing utilities, which carry it themselves. */
+
+/* `justify-content: space-between` throws the toggle to the edge opposite the
+   title, and the title -- which Quarto gives `width: 100%` -- is squeezed past
+   it, so "دفتر یکم: برآمدن به تالار" breaks after "به". Pack the row from the
+   start instead and let the title have what is left. */
+.sidebar-item .sidebar-item-container {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* The toggle comes after the title in the DOM, which under dir="rtl" lands it
+   at the far left. Kaaveh's call is for it to lead the title, at the right. */
+.sidebar-item .sidebar-item-container > .sidebar-item-toggle {
+  order: -1;
+  flex: 0 0 auto;
+}
+
+.sidebar-item .sidebar-item-container > .sidebar-item-text {
+  min-width: 0;                     /* so it can shrink rather than overflow */
+}
+
+/* Same defect as `ms-2` below, and the one that actually shows: Bootstrap's
+   logical `text-start` compiles to a physical `text-align: left` in the LTR
+   bundle. Quarto puts it on every part-section title, so those sit flush left
+   while the chapter titles around them sit flush right -- obvious the moment a
+   long title wraps and its second line lands on the wrong edge. */
+[dir="rtl"] .text-start {
+  text-align: right !important;
+}
+
+/* Quarto ships the LTR Bootstrap bundle, where `ms-2` is `margin-left: .5rem`
+   -- physical, so in RTL it pads the wrong side of the chevron. Replace it
+   with the logical equivalent, which puts the gap between the toggle and the
+   title it now leads. */
+.sidebar-item .sidebar-item-toggle .bi.ms-2 {
+  margin-left: 0 !important;
+  margin-inline-end: 0.5rem;
+}
+
+/* The glyph is `bi-chevron-right`, and Quarto leaves it unrotated when
+   collapsed -- so a collapsed section points away from the text direction.
+   Point it left. Expanded still rotates to point down, and both still ride
+   Quarto's `transition: transform 200ms ease`. */
+.sidebar-item .sidebar-item-toggle[aria-expanded="false"] .bi-chevron-right::before {
+  transform: rotate(180deg);
+}
+
+/* ---- Page TOC ("در این بخش") and the repo-action links -------------------
+   Same root cause as the chevron: Quarto's geometry here is physical, not
+   logical, so it does not follow dir="rtl". Sides only -- no colors, per the
+   note in _quarto.yml. `currentColor` keeps that true and is right in both
+   modes by construction, and Quarto already paints the active item green, so
+   its rule turns green with it. */
+
+/* The rule running down the list was on the physical left, which under RTL
+   detaches it from the right-aligned text and strands it on the far side. */
+.sidebar nav[role="doc-toc"] > ul a {
+  border-left: 0;
+  border-inline-start: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  padding-left: 0;
+  padding-inline-start: 0.6rem;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  border-left: 0;
+  border-inline-start: 1px solid currentColor;
+}
+
+.sidebar nav[role="doc-toc"] > ul {
+  margin-left: 0;
+  margin-inline-start: 0.45em;
+}
+
+/* toc-depth is 2, so this is the only nesting level the book can produce. */
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a {
+  padding-left: 0.6rem;
+  padding-inline-start: 1.2em;
+}
+
+/* The icon comes before its label, so under RTL it sits on the right and the
+   gap belongs on its inner edge. Quarto's `margin-right` put it on the outer
+   one, leaving "ویرایش این صفحه در گیت‌هاب" jammed against its icon. */
+.sidebar :is(.toc-actions, .quarto-alternate-formats, .quarto-other-links, .quarto-code-links) i.bi {
+  margin-right: 0;
+  margin-inline-end: 0.4em;
+}
