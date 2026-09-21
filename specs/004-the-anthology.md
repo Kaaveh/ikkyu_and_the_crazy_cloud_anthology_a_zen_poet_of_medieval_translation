@@ -75,7 +75,7 @@ repair after every file.
 ## Checklist
 
 - [x] `011`–`020` · 16,866 chars · prose intros `013`, `017`
-- [ ] `021`–`030` · 17,699 chars · set header `029`
+- [x] `021`–`030` · 17,699 chars · set header `029`
 - [ ] `031`–`040` · 12,173 chars · prose intros `033`, `035`, `039`
 - [ ] `041`–`050` · 8,464 chars · prose intro `042`; set header `048`
 - [ ] `051`–`060` · 9,850 chars
