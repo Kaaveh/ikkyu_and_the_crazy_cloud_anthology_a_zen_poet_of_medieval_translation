@@ -6,51 +6,108 @@ with open('ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translatio
     pages = f.read().split('\x0c')
 
 # 1. Comprehensive Typo and OCR normalization dictionary
+#
+# Macrons are what the OCR loses first, so every romanized proper noun in this
+# book has one correct spelling and a long tail of wrong ones. Enumerating the
+# tail does not converge -- match the shape instead. O is the OCR's repertoire
+# for a long o; the correct forms use ō and ū, which are in none of the classes
+# below, so a fixed spelling is never matched a second time.
+O = '[oO06QGd]'
+OE = '[oO06QGde]'   # kōan also OCRs as "Kean"
+
 TYPO_FIXES = [
-    (r'\bTIkkyu\b', 'Ikkyū'),
-    (r'\b1kkya\b', 'Ikkyū'),
-    (r'\bIkkyws\b', "Ikkyū's"),
-    (r'\bIkkya\b', 'Ikkyū'),
-    (r'\bIkkyt\b', 'Ikkyū'),
-    (r'\bIkkyti\b', 'Ikkyū'),
-    (r'\bIkkyn\b', 'Ikkyū'),
-    (r'\bIkkyd\b', 'Ikkyū'),
-    (r'\bIkkyii\b', 'Ikkyū'),
-    (r'\bIkky@\b', 'Ikkyū'),
-    (r'\bSdjun\b', 'Sōjun'),
-    (r'\bS6jun\b', 'Sōjun'),
-    (r'\bKyounshii\b', 'Kyōunshū'),
-    (r'\bKydunshii\b', 'Kyōunshū'),
-    (r'\bKyounsha\b', 'Kyōunshū'),
-    (r'\bKyounshn\b', 'Kyōunshū'),
-    (r'\bKyounshi\b', 'Kyōunshū'),
-    (r'\bkQan\b', 'kōan'),
-    (r'\bkGan\b', 'kōan'),
-    (r'\bk6an\b', 'kōan'),
-    (r'\bkdan\b', 'kōan'),
-    (r'\bKean\b', 'Kōan'),
-    (r'\bY6so\b', 'Yōsō'),
-    (r'\bYos6\b', 'Yōsō'),
-    (r'\bY6sd\b', 'Yōsō'),
-    (r'\bY6s6\b', 'Yōsō'),
-    (r'\bYoQsos\b', "Yōsō's"),
-    (r'\bYoQso\b', 'Yōsō'),
-    (r'\bDaitd\b', 'Daitō'),
-    (r'\bKasd\b', 'Kasō'),
-    (r'\bKas6\b', 'Kasō'),
-    (r'\bGoj6\b', 'Gojō'),
-    (r'\bGojd\b', 'Gojō'),
+    # The subject's own name. The OCR produces some twenty spellings of it and
+    # the tail is long, so match the stem rather than enumerate: anything that
+    # reads "Ikky" plus ASCII junk is the name. "Ikkyū" itself is safe from
+    # these -- the ū is not in any of the junk classes.
+    # 一休 in a Japanese book title, read as kana plus noise.
+    (r'(?:\d\s*)?た\s*k?y[gz]\b', 'Ikkyū'),
+    (r'\bTokushi\b', 'Tokushū'),
+    (r'\bOsho\b', 'Oshō'),
+    (r'\bKenkyu\b', 'Kenkyū'),
+    (r'\bTkita\b', 'Ikita'),
+    (r'\bHirano Sojo\b', 'Hirano Sōjō'),
+    # "ofthe", "ofhistorians", "ofJapan": the space after "of" is the one the
+    # OCR drops most. Every English word that really begins "of" is off-, oft
+    # or often. The three-word runs it leaves behind are named.
+    (r'\bofiryi\b', 'of fūryū'),      # note 77, "explanation of fūryū"
+    (r'\bof(?!f|ten\b|t\b)(?=[A-Za-z])', 'of '),
+    (r'\btheFounder\b', 'the Founder'),
+    (r'\bherselfto\b', 'herself to'),
+    (r'\bweforget\b', 'we forget'),
+    (r'\ba(?=simple\b|snail\b|peach\b|country\b|monastic\b|flick\b|hundred\b|moment\b)', 'a '),
+    # Hyphens the print carries and dehyphenate() drops, since neither half is
+    # in its keep-list. Checked against the raw: each breaks across a line.
+    (r'\bandsand\b', 'and-sand'),
+    (r'\bbrokenfooted\b', 'broken-footed'),
+    (r'\bcloudrain\b', 'cloud-rain'),
+    (r'\blongstanding\b', 'long-standing'),
+    (r'\bpleasureloving\b', 'pleasure-loving'),
+    (r'\bsimpleminded\b', 'simple-minded'),
+    (r'\bslopwater\b', 'slop-water'),
+    (r'\btwentyseventh\b', 'twenty-seventh'),
+    (r'\bdrunkeness\b', 'drunkenness'),
+    (r'\bcommited\b', 'committed'),
+    (r'\bT?[I1]kky[a-zA-Z@#]*[\'’]s\b', 'Ikkyū’s'),
+    (r'\bT?[I1]kky[a-zA-Z@#]*s\b', 'Ikkyū’s'),
+    (r'\bT?[I1]kky[a-zA-Z@#]+', 'Ikkyū'),
+    (r'\bT?[I1]kky\b', 'Ikkyū'),
+    (r'\bIkkyū[\'’]s(?=enlightenment)', 'Ikkyū’s '),
+    (r'\bIkkyū\'s\b', 'Ikkyū’s'),
+    (rf'\bS{O}jun\b', 'Sōjun'),
+    (rf'\bKy{O}unsh[a-z]*\b', 'Kyōunshū'),
+    (rf'\bk{OE}an\b', 'kōan'),
+    (rf'\bk{OE}ans\b', 'kōans'),
+    (rf'\bK{OE}an\b', 'Kōan'),
+    (rf'\bY{O}Q?s{O}[\'’]s\b', 'Yōsō’s'),
+    (rf'\bY{O}Q?s{O}s\b', 'Yōsō’s'),
+    (rf'\bY{O}Q?s{O}\b', 'Yōsō'),
+    (rf'\bDait{O}[\'’]s\b', 'Daitō’s'),
+    (rf'\bDait{O}\b', 'Daitō'),
+    (rf'\bDaid{O}?\b', 'Daitō'),
+    (r'\bDaitokwji\b', 'Daitokuji'),
+    (rf'\bKas{O}[\'’]s\b', 'Kasō’s'),
+    (rf'\bKas{O}\b', 'Kasō'),
+    (rf'\bGoj{O}\b', 'Gojō'),
     (r'\bSoj687\b', 'Sōjō [87]'),
     (r'\bSeizan88\b', 'Seizan [88]'),
-    (r'\bShiichi Kato\b', 'Shūichi Katō'),
-    (r'\bKato Shiichi\b', 'Shūichi Katō'),
-    (r'fryu、', 'fūryū, '),
-    (r'Faryu、', 'Fūryū, '),
-    (r'\bfnryu\b', 'fūryū'),
-    (r'\bfiryii\b', 'fūryū'),
-    (r'\bfrya\b', 'fūryū'),
-    (r'\bfiryu\b', 'fūryū'),
-    (r'\bfuryi\b', 'fūryū'),
+    (r'\bSh[t]?iichi Kat[oō]\b', 'Shūichi Katō'),
+    (r'\bKat[oō] Sh[t]?iichi\b', 'Shūichi Katō'),
+    # fūryū: "fury", "faryu", "fnryu", "firyii", "frya", ... Spelled out rather
+    # than f[aiun]*ry[aiun]* so that "fairy" is not swept up with it. Before the
+    # ii sweep, which would otherwise claim "firyii" for Wade-Giles.
+    (r'\b([fF])(?:u|a|i|n|ur|an)?ry(?:u|a|i|d|ii)?\b、', r'\1ūryū, '),
+    (r'\b([fF])(?:u|a|i|n|ur|an)?ry(?:u|a|i|d|ii)?\b', r'\1ūryū'),
+    # Both Wade-Giles ü and Japanese ū come out of the OCR as "ii". Which one
+    # a word wants is not recoverable from the shape, so the handful of
+    # Japanese and Sanskrit ones are named and the rest -- all Wade-Giles --
+    # fall to the sweep below.
+    (r'\bexhibiion\b', 'exhibition'),
+    (r'\bAsii-t’ang\b', 'Hsü-t’ang'),
+    (r'\b([Ss])iitra\b', r'\1ūtra'),
+    (r'\bSiirangama\b', 'Sūrangama'),
+    (r'\bChiisei\b', 'Chūsei'),
+    (r'\bShunjiisha\b', 'Shunjūsha'),
+    (r'\bSh[t]?iichi\b', 'Shūichi'),
+    (r'\bKenkyii\b', 'Kenkyū'),
+    (r'\bTokushii\b', 'Tokushū'),
+    (r'\bShiion\b', 'Shūon'),
+    (r'\bKokyiian\b', 'Kokyūan'),
+    (r'\bChiigoku\b', 'Chūgoku'),
+    (r'\bDa[it]y[aiu]+n\b', 'Daiyūan'),
+    (r'\bDa[it]y[aiu]*\b', 'Daiyū'),
+    (r'(?<![aeiouAEIOUvVxX])ii', 'ü'),
+    # Dehyphenation fuses the Chinese names that break across a line.
+    (r'\bHs[tuü]+[ec]?h?-?tou\b', 'Hsüeh-tou'),
+    (r'\bHsüch\b', 'Hsüeh'),
+    (r'\bHsütang\b', 'Hsü-t’ang'),
+    (r'\bYünmen\b', 'Yün-men'),
+    (r'\bYüanming\b', 'Yüan-ming'),
+    (r'\bSungyüan\b', 'Sung-yüan'),
+    (r'\bNan-?c[hl]’üan\b', 'Nan-ch’üan'),
+    (r'\bWenchün\b', 'Wen-chün'),
+    (r'\bKüang\b', 'Kuang'),
+    (r'\bChü-’i\b', 'Chü-i'),
     (r'\bboftheFounder\'s\b', "of the Founder's"),
     (r'\bofthe\b', 'of the'),
     (r'\bpurein\b', 'pure in'),
@@ -86,19 +143,40 @@ def apply_typos(text):
         text = re.sub(pat, rep, text)
     return text
 
+HYPHEN_PAT = re.compile(r'([a-zA-Z]+)-\n\s*([a-zA-Z]+)')
+
+def join_hyphen(m):
+    w1, w2 = m.group(1), m.group(2)
+    if w1.lower() in ('non', 'self', 'well', 'all', 'cross'):
+        return f'{w1}-{w2}'
+    return f'{w1}{w2}'
+
 def dehyphenate(text):
-    def replace_hyphen(m):
-        w1, w2 = m.group(1), m.group(2)
-        if w1.lower() in ('non', 'self', 'well', 'all', 'cross'):
-            return f'{w1}-{w2}'
-        return f'{w1}{w2}'
-    return re.sub(r'([a-zA-Z]+)-\n\s*([a-zA-Z]+)', replace_hyphen, text)
+    return HYPHEN_PAT.sub(join_hyphen, text)
 
 def strip_page_footer(page_text):
     pat = r'\n\s*\S+\s+(?:FOREWORD|PREFACE|INTRODUCTION|POEM\s+NUMBER\s+\d+|I?NOTES\s+TO\s+PAGES.*|BIBLIOGRAPHY|INDEX\s+TO\s+POEMS|GLOSSARY-INDEX|ABBREVIATIONS)\s*$'
     return re.sub(pat, '', page_text.rstrip(), flags=re.IGNORECASE)
 
 cjk_pat = re.compile(r'[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff\uff00-\uffef]')
+
+word_pat = re.compile(r'\b[A-Za-z][a-z]{2,}\b')
+shout_pat = re.compile(r'\b[A-Z][A-Za-z]*[A-Z][A-Za-z0-9]*\b')
+
+def is_column_junk(tail):
+    """Is this the Chinese column, read by the OCR as Latin?
+
+    The print edition sets the original in a right-hand column. Where the OCR
+    read it as CJK the character range finds it; where it failed it produced
+    things like "TEL ek RE 9S", which only a shape test can tell from the
+    continuation of an English sentence across the same gutter. English prose
+    is made of ordinary words; the column has none, or one flanked by capital
+    salad.
+    """
+    if re.fullmatch(r"[a-z’'\-.,;:!?]+", tail.strip()):
+        return False          # "up", "ado." -- a short word the line broke before
+    words = word_pat.findall(tail)
+    return not words or (len(words) <= 1 and len(shout_pat.findall(tail)) >= 2)
 
 def clean_translation_line(line):
     if len(line) - len(line.lstrip()) >= 45:
@@ -110,9 +188,14 @@ def clean_translation_line(line):
             pass
         elif cjk_pos >= 35:
             return line[:cjk_pos].rstrip()
-    for m in re.finditer(r'\s{4,}\S', line):
+    # Three spaces, not four: on the tightest lines the gutter comes through as
+    # only three. A wide gap that far into a line is as often prose the OCR
+    # spaced badly, so cut only where what follows is the column.
+    for m in re.finditer(r'\s{3,}\S', line):
         col = m.end() - 1
-        if col >= 45:
+        if col < 45:
+            continue
+        if col - m.start() >= 4 or is_column_junk(line[col:]):
             return line[:m.start()].rstrip()
     return line.rstrip()
 
@@ -169,9 +252,9 @@ def build_frontmatter():
         "",
         "Portrait of Ikkyū by Bokusai. The poem, in Ikkyū’s hand, accompanying the portrait is \"Self-Appraisal\" (poem no. 130). Courtesy of Tokyo National Museum.",
         "",
-        "### Plate 3: Ikkyū's Death Poem",
+        "### Plate 3: Ikkyū’s Death Poem",
         "",
-        "![Plate 3: Ikkyū's Death Poem](images/plate_3_death_poem.png)",
+        "![Plate 3: Ikkyū’s Death Poem](images/plate_3_death_poem.png)",
         "",
         "Ikkyū’s death poem, in his own hand. The poem is translated on page 32. Courtesy of Shinjuan, Daitokuji, Kyoto.",
         "",
@@ -472,17 +555,46 @@ KNOWN_SETS = [
     "Picture of an Arhat Reveling in a Brothel",
 ]
 
+# The running foot of every translation page reads "<page>  POEM NUMBER  <n>",
+# where <n> is the first or last poem opening on that page. It is the only
+# independent witness to a poem's number, and the OCR of the big display number
+# at the head of a poem is not reliable -- on p. 101 it reads "8" where the poem
+# is no. 93. Keep the foot to arbitrate.
+FOOT_NUM = re.compile(r'POEM\s+NUMBER\s+(\d+)\s*$', re.IGNORECASE)
+
 def get_trans_lines():
+    """The translation pages as lines, plus each line's page-foot poem number.
+
+    Dehyphenation joins lines across the whole run, so page starts are tracked
+    by raw line number and shifted by however many lines each join swallowed.
+    A marker line in the text would be simpler but would also block the joins
+    that straddle a page break.
+    """
     all_lines = []
+    page_starts = []
     for p_idx in range(88, 201):
-        p = strip_page_footer(pages[p_idx])
-        for l in p.splitlines():
+        m = FOOT_NUM.search(pages[p_idx].rstrip())
+        page_starts.append((len(all_lines), m.group(1) if m else None))
+        for l in strip_page_footer(pages[p_idx]).splitlines():
             all_lines.append(clean_translation_line(l))
-    return dehyphenate('\n'.join(all_lines)).splitlines()
+
+    text = '\n'.join(all_lines)
+    joins = []
+    def log_join(m):
+        joins.append((text.count('\n', 0, m.start()), m.group(0).count('\n')))
+        return join_hyphen(m)
+    lines = HYPHEN_PAT.sub(log_join, text).splitlines()
+
+    foots = [None] * len(lines)
+    for raw, foot in page_starts:
+        i = raw - sum(n for at, n in joins if at < raw)
+        for j in range(min(i, len(lines)), len(lines)):
+            foots[j] = foot
+    return lines, foots
 
 def build_translations():
-    lines = get_trans_lines()
-    
+    lines, foots = get_trans_lines()
+
     def get_num(idx, s):
         if idx == 1714 or s == '2':
             return '121'
@@ -513,15 +625,28 @@ def build_translations():
             return True
         return False
 
+    # Poem numbers run monotonically through the anthology. Where the display
+    # number OCRs to something that would run backwards, believe the page foot
+    # instead -- p. 101 reads "8" for poem no. 93, and nothing downstream can
+    # tell a wrong poem number from a right one.
     item_starts = []
+    last_num = 0
     for i, l in enumerate(lines):
-        if is_item_start(i, l):
-            item_starts.append((i, l.strip()))
+        if not is_item_start(i, l):
+            continue
+        s = l.strip()
+        num = None if is_set_header(i, l) else get_num(i, s)
+        if num:
+            if int(num) <= last_num and foots[i] and int(foots[i]) > last_num:
+                num = foots[i]
+            assert int(num) > last_num, f'poem {num} after {last_num} at line {i}: {s!r}'
+            last_num = int(num)
+        item_starts.append((i, s, num))
 
     out = ["## Translations from the Crazy Cloud Anthology", ""]
     
     for k in range(len(item_starts)):
-        pos, s = item_starts[k]
+        pos, s, num = item_starts[k]
         next_pos = item_starts[k+1][0] if k+1 < len(item_starts) else len(lines)
         chunk = [lines[j] for j in range(pos+1, next_pos) if lines[j].strip()]
         
@@ -574,15 +699,20 @@ def build_translations():
             
         # 2. Set Header
         if is_set_header(pos, lines[pos]):
-            set_title = s
-            # check if continued (e.g. two poems, three poems)
-            if chunk and chunk[0].strip() in ('two poems', 'three poems', 'two      poems', 'My Circle'):
-                set_title += f": {chunk[0].strip()}"
+            # The column gutter survives inside these headings as a run of
+            # spaces, and the count ("two poems") sits on either the heading
+            # line or the one below it.
+            set_title = re.sub(r'\s+', ' ', s)
+            cont = re.sub(r'\s+', ' ', chunk[0].strip()) if chunk else ''
+            if cont in ('two poems', 'three poems'):
+                set_title += f': {cont}'
+            elif cont == 'My Circle':
+                set_title += f' {cont}'
+            set_title = re.sub(r'(?<!:) (two|three) poems$', r': \1 poems', set_title)
             out.append(f"### {apply_typos(set_title)}\n")
             continue
             
         # 3. Poem Number
-        num = get_num(pos, s)
         if num:
             title = POEM_TITLES.get(num, f"Poem {num}")
             out.append(f"### Poem {num}: {title}\n")
@@ -709,15 +839,33 @@ def build_abbreviations():
     ]
     return '\n'.join(out)
 
-def build_notes():
-    PAGE_GUTTERS = {
-        203: 50,
-        204: 60,
-        205: 53,
-        206: 57,
-        207: 53,
-    }
+def find_gutter(lines):
+    """The column at which the right-hand column of a two-column page starts.
 
+    Measured rather than tabulated. The gap between the columns is the one run
+    of columns blank on every line of the page, so the right column starts just
+    after it. A tabulated gutter set one column too wide shaves the first
+    letter off every line of the right column and leaves it at the end of the
+    left one -- which is what "the Onin N War" and "the Muromachi t period"
+    are: a whole page of notes with a column of stray letters combed into it.
+    """
+    width = max(map(len, lines))
+    blank = [c for c in range(width)
+             if all(len(l) <= c or l[c] == ' ' for l in lines)]
+    runs = []
+    for c in blank:
+        if runs and runs[-1][1] == c - 1:
+            runs[-1][1] = c
+        else:
+            runs.append([c, c])
+    wide = [r for r in runs if r[1] - r[0] >= 2]
+    if not wide:
+        raise ValueError('no column gutter found')
+    start, end = min(wide, key=lambda r: (r[0] - r[1],
+                                          abs((r[0] + r[1]) / 2 - width / 2)))
+    return end + 1
+
+def build_notes():
     NOTE_FIXES = [
         (r'SOM Chivane\s+MO\s+6\s+2\s+Sleep:\s*230b\.', '59. Ch’uan Teng Lu, roll 6, T 51, p. 230b.'),
         (r'60\)\s*CZSsnow\s*177\.\s*Not translated here:', '60. CZS, no. 177. Not translated here.'),
@@ -741,7 +889,7 @@ def build_notes():
     for p in range(203, 208):
         res = subprocess.run(['pdftotext', '-layout', '-f', str(p), '-l', str(p), 'ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translation.pdf', '-'], capture_output=True, text=True)
         lines = res.stdout.splitlines()[:-2]
-        gutter = PAGE_GUTTERS[p]
+        gutter = find_gutter(lines)
         left = [l[:gutter].rstrip() for l in lines]
         right = [l[gutter:].rstrip() for l in lines]
         all_notes_text.append('\n'.join(left))
