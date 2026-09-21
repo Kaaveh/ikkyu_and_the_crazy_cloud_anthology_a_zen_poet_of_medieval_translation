@@ -90,14 +90,19 @@ def merge_bodyless(blocks):
         body = [l for l in lines[1:] if l.strip()]
         if not body:
             # As a heading it would be a second level-1 in the file and so a
-            # duplicate chapter in Quarto's table of contents. As a bold lead-in
-            # it reads the way the page does and leaves the poem as the title.
-            pending += [f"**{lines[0].lstrip('# ').strip()}**\n", "\n"]
+            # duplicate chapter in Quarto's table of contents. As a bold line it
+            # keeps what the page says and leaves the poem as the title. It goes
+            # *under* that title, not above it: every file in source/ opens with
+            # its level-1 heading, an invariant apparatus.py relies on, and a
+            # bold paragraph above the chapter title renders as a stray.
+            pending.append(f"**{lines[0].lstrip('# ').strip()}**\n")
             continue
-        out.append((heading, pending + lines) if pending else (heading, lines))
+        if pending:
+            lines = lines[:1] + ["\n"] + pending + lines[1:]
+        out.append((heading, lines))
         pending = []
     if pending:                       # a trailing group heading, nothing to join
-        out.append((pending[0].strip("*\n"), pending))
+        out.append((pending[0].strip("*\n"), pending + ["\n"]))
     return out
 
 

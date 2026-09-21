@@ -235,19 +235,20 @@ Audited against the PDF, and `just split` re-run after each batch of generator f
 
 ## Acceptance criteria
 
-- [ ] `just split` reports `Wrote 147 files to source/` and the tree is byte-stable
+- [x] `just split` reports `Wrote 147 files to source/` and the tree is byte-stable
       across two consecutive runs.
-- [ ] No two files in `source/` share a level-1 heading.
-- [ ] The monotonic-poem-number scan in requirement 2 prints nothing.
-- [ ] `source/032.md` is headed `# Poem 93: From the Mountains, Returning to the City`.
-- [ ] `source/notes.md` reads as English prose end to end.
-- [ ] `grep -roh 'Ikky[a-z]*' source/*.md | sort -u` returns nothing — every
+- [x] No two files in `source/` share a level-1 heading.
+- [x] The monotonic-poem-number scan in requirement 2 prints nothing.
+- [x] `source/032.md` is headed `# Poem 93: From the Mountains, Returning to the City`.
+- [x] `source/notes.md` reads as English prose end to end.
+- [x] `grep -roh 'Ikky[a-z]*' source/*.md | sort -u` returns nothing — every
       occurrence is `Ikkyū`.
 - [ ] The gibberish scan in requirement 4 returns only lines a human has looked at
-      and accepted.
-- [ ] Every file in `source/` opens with a level-1 heading, or the four exceptions
+      and accepted. **Poem files pass. `introduction-1/2/3`, `bibliography.md` and
+      `glossary-index.md` do not — see the implementation notes.**
+- [x] Every file in `source/` opens with a level-1 heading, or the four exceptions
       are a recorded decision rather than an oversight.
-- [ ] `just check` passes.
+- [x] `just check` passes.
 
 ## Out of scope
 
@@ -257,4 +258,106 @@ already exists.
 
 ## Implementation notes
 
-_(filled in during implementation)_
+### Session 1 — the defect classes
+
+Worked by defect class, driven by scans over the whole tree, rather than
+file-by-file down the checklist. The checklist is a read of 147 files against
+the PDF and is still to do; what is done is every named requirement except the
+two called out below. The boxes in the checklist above are therefore all still
+empty — a file whose class defect is repaired has still not been *read*.
+
+**Requirement 2 — `032`. Fixed, and the class with it.** The bare `8` above
+poem 93 was never going to be recognised as page furniture by looking at it.
+But every translation page carries a running foot, `<page>  POEM NUMBER  <n>`,
+where `n` is the first poem on a verso and the last on a recto — the only
+independent witness to a poem's number in the book. `get_trans_lines()` now
+keeps it and returns a per-line map of it alongside the lines, and the scan in
+`build_translations()` asserts that poem numbers run monotonically, falling
+back to the page foot where they do not. It fires exactly once, on `032`, and
+the assertion afterwards is what makes the acceptance scan redundant.
+
+Mapping a line back to its page is the only fiddly part: `dehyphenate()` joins
+lines across the whole run, so raw line numbers do not survive it. A marker
+line in the text would be simpler but would block the joins that straddle a
+page break, so the joins are logged and the page offsets shifted by them
+instead. `dehyphenate()` was split into `HYPHEN_PAT` / `join_hyphen()` for
+that; the output is byte-identical.
+
+**Requirement 3 — `notes.md`. Fixed.** Not a typo-dictionary problem at all.
+The notes come from `pdftotext -layout` on pp. 203-207, cut into two columns at
+a tabulated `PAGE_GUTTERS` column. The tabulated gutter was one or two columns
+too wide on pp. 203 and 204, which shaves the first letter off every line of
+the right column and leaves it at the end of the left one — the whole "Onin i
+War", "Muromachi t period" effect. `find_gutter()` now measures it: the gap
+between the columns is the one run of columns blank on every line of the page.
+`PAGE_GUTTERS` is gone. The `NOTE_FIXES` list was re-checked afterwards and all
+sixteen entries still match.
+
+**Requirement 4 — partly.** In the poem files the Chinese column is gone: the
+cut in `clean_translation_line()` now takes a three-space gutter as well as a
+four-space one, but for three it first asks `is_column_junk()` whether what
+follows is the column or the continuation of an English sentence, because three
+spaces that far into a line are as often prose the OCR spaced badly. Twelve
+tails removed, nothing else changed, diff reviewed word by word.
+
+*Not* fixed: `introduction-1/2/3` interleave the Chinese column into the quoted
+poems, and `bibliography.md` / `glossary-index.md` are still half CJK.
+`build_introduction()` does not run lines through `clean_translation_line()` at
+all — that is the next piece of work here, and it is not a one-liner, because
+in the Introduction the English wraps *around* the column rather than stopping
+at it. The bibliography and glossary stay low priority, per requirement 7.
+
+**Requirement 5 — decided.** The set header moves *below* the poem's level-1
+heading instead of above it, still as a bold line. All 147 files now open with
+their level-1 heading, so `apparatus.py`'s documented invariant is true, and
+nothing floats above the chapter title. The headers themselves are OCR-repaired
+on the way out (`Hsii-t’ang` → `Hsü-t’ang`, the gutter's space run collapsed,
+`Three Poems to Show the Monks of: My Circle` → `... of My Circle`).
+
+**Requirement 6 — fixed, and generalised.** Enumerating OCR spellings does not
+converge; each of these names has one correct form and a long tail. The
+dictionary now matches the *shape*: `O = [oO06QGd]` for a lost macron on o, and
+one sweep for `ii`, which is how both Wade-Giles ü and Japanese ū come out.
+Which of the two a word wants is not recoverable from the shape, so the handful
+of Japanese and Sanskrit words (`Sūtra`, `Chūsei`, `Shūon’an`, `Kenkyū`,
+`Daiyū` ...) are named and the rest — all Wade-Giles — fall to the sweep. The
+correct forms use ū and ō, which are in none of the character classes, so a
+fixed spelling is never matched twice.
+
+Counts before → after, across `source/`:
+
+| | before | after |
+|---|---|---|
+| `Ikkyū` and variants | 218 correct, 212 wrong, 16 spellings | 433, one spelling |
+| `Yōsō` | 22 correct, 26 wrong | 54 |
+| `Kasō` | 4 correct, 31 wrong | 42 |
+| `Daitō` | 11 correct, 29 wrong | 50 |
+| `kōan` | 13 correct, 105 wrong | 115 |
+| `fūryū` | 11 correct, 11 wrong | 26 |
+| words containing `ii` | 39 | 1 (`xxvii`, correct) |
+
+**Requirement 7 — partly.** Done: the lost space after `of` (one rule — every
+English word that really begins "of" is off-, oft or often), the fused words
+the dehyphenator ate (`cloud-rain`, `broken-footed`, `simple-minded`,
+`twenty-seventh`, `long-standing`, `pleasure-loving`, `and-sand`, `slop-water`,
+each checked against the raw for a line break), and `herselfto` / `weforget` /
+`ahundred` and friends.
+
+*Not* done: **endnote digits fused to the preceding word** — 155 of them
+(`Onin War.1`, `dung ?42`). Left alone deliberately: the fix needs a decision
+about how an endnote marker is rendered, which belongs with spec 001 and with
+whatever `006` does to `notes.md`'s numbering, and a blind regex here would eat
+`p.117` and `no. 999`. Two entries in the typo dictionary already do it by hand
+(`impoverishcd.4` → `impoverished [4]`), which is the shape to generalise.
+
+**`fa/002.md` re-translated**, as the out-of-scope note requires: its source
+changed (`Hsii-t’ang` → `Hsü-t’ang`, `Ikkyu` → `Ikkyū`, `Shiion’an` →
+`Shūon’an`), and the Persian transliteration is generated from whatever the
+English says. Still `status: draft`.
+
+### Still to do
+
+1. The checklist above: 147 files read against the PDF.
+2. The Chinese column in `introduction-1/2/3`.
+3. Endnote digits, once 001 says how a marker is rendered.
+4. `bibliography.md` and `glossary-index.md`, at whatever priority 006 wants.
