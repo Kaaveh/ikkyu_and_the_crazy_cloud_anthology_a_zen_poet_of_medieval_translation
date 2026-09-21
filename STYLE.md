@@ -289,6 +289,25 @@ form the translator produced by ear:
 across the book. §2 is not a formality: it is the largest single hand-edit this
 translation makes, and it is the reason `CLAUDE.md` sanctions the edit at all.
 
+Spec 004 adds to the same record as it works through the Anthology. Same
+principle: each is one of §2.1–§2.5 applied to a form the model produced by
+ear, and none is a judgement call.
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| Nan-ch’üan | نان-چ’یوآن | نان-چوآن — §2.2 **and** §2.3, both dropped |
+| Yen-t’ou | ین-ت’و | یِن-تو — §2.2 |
+| Ts’ao-shan | تس’او-شان | تساو-شان — §2.2 |
+| Ch’ing-yüan | چ’ینگ-یوآن | چینگ‌یوان — §2.2 and §2.3; the source hyphenates |
+| Ch’an-lin | چ’ان-لین | چان‌لین — §2.2; a ZWNJ is not a hyphen |
+| Yüan-wu | یوآن-وو | یوان-وو — §2.3 |
+| Huang-po | هوانگ-پو | correct as given |
+| Pai-chang | پای-چانگ | correct as given here, unlike in the pilot |
+| Ta-sui | تا-سوئی | correct as given |
+| Fo-yen | فو-ین | correct as given |
+| Wu-tsu | وو-تسو | correct as given |
+| Rinzai | رینزای | correct as given |
+
 ---
 
 ### §2.9 The translator's parenthetical romanisations are kept
