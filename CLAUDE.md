@@ -50,6 +50,14 @@ instead of the pinned tag, `pip install -e ../bargardan-tools`.
   silent: the model picker claims "Advanced" while Classic is served, so judge
   the output text, never the picker. Advanced gives ezafe diacritics
   (`چشمِ حقیقی`) and restructures sentences; Classic does neither.
+  `grep -c ِ` on the draft separates them in one command — 0 is Classic.
+
+- **When a file comes back Classic, halve `--chunk` and re-run.** Re-running
+  unchanged does nothing: the fallback is per-input and deterministic, and the
+  same text at the same chunk size gives the same model every time. It is not
+  the user agent, not a timing race and not quota — spec 003 ruled out all
+  three. `009.md` needed `--chunk 300`; nothing else in the first ten needed the
+  flag at all.
 
 - **`--raw` is mandatory too, and matters more here than in the prose books.**
   It stops the translator's line-unwrapping, which would run a stanza together

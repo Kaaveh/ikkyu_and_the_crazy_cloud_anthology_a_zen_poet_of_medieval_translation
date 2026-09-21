@@ -96,7 +96,18 @@ sees a headless UA again.
 
 **Judge the output text, never the picker.** Advanced gives ezafe diacritics
 (`چشمِ حقیقی`, `استادِ یی-وانگ`) and restructures sentences. Classic gives neither.
-`fa/002.md` is the reference for what a good run looks like.
+`fa/002.md` is the reference for what a good run looks like. `grep -c ِ` on the
+draft is the cheap version of that judgement: 0 is Classic, and spec 003 measured
+11–36 on comparable Advanced files.
+
+**The UA is not the only way to lose Advanced, and re-running does not recover
+it.** Spec 003 found a file that came back Classic three times, byte-identical,
+with no UA warning and the picker reporting success, and ruled out the UA, a
+`_settle` race and quota in turn. The fallback is per-input and deterministic:
+the same text at the same chunk size gives the same model every time. **The fix
+is `--chunk` — halve it and run again.** `009.md` came back Advanced at
+`--chunk 300` and Classic at every larger size. Nine of the first ten files never
+needed the flag.
 
 ### `--raw` is mandatory, and matters more here than in the prose books
 

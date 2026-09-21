@@ -14,7 +14,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 000 | [Overview & shared context](./000-overview.md)             | —          | 📖 Reference   |
 | 001 | [Conventions & style](./001-conventions-and-style.md)      | —          | ✅ Done        |
 | 002 | [Source repair](./002-source-repair.md)                    | —          | ✅ Done        |
-| 003 | [Pilot — the first ten poems](./003-pilot-poems.md)        | 001, 002   | ⬜ Not started |
+| 003 | [Pilot — the first ten poems](./003-pilot-poems.md)        | 001, 002   | ✅ Done        |
 | 004 | [The Anthology — 011–135](./004-the-anthology.md)          | 003        | ⬜ Not started |
 | 005 | [Introduction & front matter](./005-introduction.md)       | 003        | ⬜ Not started |
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ⬜ Not started |

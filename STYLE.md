@@ -17,6 +17,13 @@ already configured and why. Where a question has not actually come up yet, it is
 left as `<<<TBD>>>` rather than guessed — a guess written now is worse than a
 gap, because it looks settled.
 
+**Spec 003 ran the first ten poems against this guide and changed three things
+in it.** §4.2 and §5 were reversed outright — both asked the pipeline for
+something it does not produce — and §2.9 was added for something it produces
+that no section had anticipated. Each revision says where it came from. **After
+spec 003 the guide is binding**; a decision that survives ten real files is not
+re-opened per poem.
+
 ---
 
 ## §1 Register
@@ -108,6 +115,12 @@ directly under its heading:
 Roughly 30 of the 135 Anthology files are candidates — every file matching
 brothel / Mori / lust / thigh and their neighbours. The exact set is decided
 file by file as each is translated, not listed here in advance.
+
+**Spec 003 marked none of the first ten.** Poem 6 is the near miss and it
+settles where the line is: its subject is unmistakably erotic and its *language*
+is not — "Cloud-rain, fūryū" is allusion, and the note explaining it runs to a
+page. §1.4 marks the poem's language, never its subject, or the marker ends up
+on every poem in the book and stops meaning anything.
 
 **This is the expensive decision in this file, and the cost is accepted
 knowingly:**
@@ -224,6 +237,11 @@ The four suggestions are first readings and are cheap to overrule until they are
 in many files. Spec 003's ten-poem pilot is where they meet real verse; if one
 does not survive, it is changed here and in the ten files, not defended.
 
+**Spec 003: none of the four came up.** Bodhisattva, Arhat, Maitreya and
+Vimalakīrti do not occur in poems 6–35. The five argued terms all did, and all
+came back in the argued form unprompted — دارما, بودا, نیروانا, سوترا, ذن. The
+four stay (suggested) and meet verse later.
+
 ### §2.8 The recurring renderings
 
 Not a gate. Nothing checks this table. It is the record, and it is where a
@@ -238,18 +256,76 @@ translator looks before inventing a form.
 | Daitokuji | دایتوکوجی | **argued** — `fa/002.md`. |
 | Shūon'an | شو-اون-آن | **argued** — `fa/002.md`, and §2.5. |
 | Sōjun | سوجون | (suggested) |
-| Yōsō | یوسو | (suggested) |
-| Kasō | کاسو | (suggested) |
-| Gojō | گوجو | (suggested) |
+| Yōsō | یوسو | **argued** — spec 003, `fa/009.md`. |
+| Kasō | کاسو | **argued** — spec 003, `fa/009.md`. |
+| Gojō | گوجو | **argued** — spec 003, `fa/003.md`. |
 | Mori | موری | (suggested) |
-| kōan | کوآن | (suggested) |
-| fūryū | فوریو | (suggested) |
+| kōan | کوآن | **argued** — spec 003; the model's own form in `fa/009.md` and `fa/010.md`. |
+| fūryū | فوریو | **argued** — spec 003, `fa/001.md`. |
 | Kyōunshū | کیوئونشو | (suggested) |
 
 Everything marked (suggested) is a first reading, not a decision. Overruling one
 costs nothing until it is in many files; after that, say so here.
 
+The names spec 003 settled, all by §2.1–§2.5 against a model that had them
+wrong. None was a judgement call; each is one of the rules above applied to a
+form the translator produced by ear:
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| Tz'u-ming | تز’و-مینگ | تزو-مینگ / تسو-مینگ — §2.2, and two spellings of one man |
+| Yang-ch'i | یانگ-چ’ی | یانگ-چی — §2.2 |
+| Ch'ü Yüan | چ’یو یوآن | چو یوآن — §2.2 **and** §2.3, both dropped |
+| Ch'en | چ’ن | چِن — §2.2 |
+| T'ien-che | ت’ین-چه | تی‌ین-چِه — §2.2 |
+| Yün-men | یون-من | یون‌من / یون‌مِن — the source hyphenates; a ZWNJ is not a hyphen |
+| Pai-chang | پای-چانگ | پای‌چانگ — same |
+| Yüeh Kuang | یوئه کوانگ | یوئه گوانگ — §2.1: `Kuang` is Wade-Giles, `Guang` is the Pinyin reading |
+| Tetto Ryōzen | تتو ریوزن | تِتّو / تِتو / تِتّد, three forms in one file — §2.4 |
+| Chao-chou | چائو-چو | correct as given |
+| Lan-tsan | لان-تسان | correct as given. `source/001.md` also spells it `Lan-t’san`; that is OCR damage, not a second name, and the Persian does not follow it |
+
+**89 corrections in ten files** — about nine per file, so of the order of 1,200
+across the book. §2 is not a formality: it is the largest single hand-edit this
+translation makes, and it is the reason `CLAUDE.md` sanctions the edit at all.
+
 ---
+
+### §2.9 The translator's parenthetical romanisations are kept
+
+**Added in spec 003.** The Advanced model volunteers a Latin-script gloss after
+a name or a term the first time it meets it, and sometimes after that:
+
+```
+«ایک‌کیو» (Ikkyū) پیوندی عمیق با شیو-ت’انگ احساس می‌کرد
+معادل اصطلاح «کوآن» (kōan) است
+نسخه‌های خطیِ متعددِ «مجموعهٔ ابر دیوانه» (Crazy Cloud Anthology)
+```
+
+None of these is in `source/`. They are additions, and they are kept.
+
+29 of them in the ten pilot files, so of the order of 350 across the book.
+Stripping them would be 350 hand-edits of a kind `CLAUDE.md` does not sanction,
+for something that is not wrong. And they earn their place: §2.1's whole
+argument is that the reader must be able to find a name again in Arntzen's
+index, and a romanisation in the margin of the sentence does that better than a
+transliteration the reader has to reverse-engineer.
+
+Two things are knowingly accepted with them:
+
+- **They are not consistent.** The same name is glossed in one file and bare in
+  the next, and the gloss appears on ordinary English headwords too —
+  `(Situation)`, `(The Beautiful One)`, `(Patriarchs)` — not only on names.
+  That is the same variation §2.6 already accepts, for the same reason.
+- **The gloss may not spell the name the way `source/` does.** `Shūon’an`
+  comes back as `(Shūon-an)`. It is the model's gloss, not a quotation, and it
+  is not corrected; the Persian form beside it is the one §2.5 governs.
+
+**A gloss is Latin script inside a Persian paragraph, so it is a bidi
+hazard.** This is the specific thing spec 003 requirement 7 sends you to the
+PDF for. It renders correctly under LuaLaTeX — checked on all ten — and would
+not under XeLaTeX. `tex/preamble.tex` has the reasoning; §2.9 is now a second
+reason not to switch engines.
 
 ## §3 Verse layout
 
@@ -327,18 +403,30 @@ is already the shape two entries in spec 002's typo dictionary use by hand
 safely mechanical — a bare digit cannot be told from `p.117` or `no. 999`, but
 nothing else in this book writes `[4]`.
 
-**In `fa/` the digits are Persian: `[۴]`.** §5's rule decides it — an endnote
-marker is a reference into *this book's own* back matter, not into Arntzen's
-pagination, so it takes the book's own digit script.
+**In `fa/` the digits stay Latin: `[4]`. Revised in spec 003** — this section
+used to require `[۴]`, on the reasoning that an endnote marker points into this
+book's own back matter and so takes the book's own digit script. The reasoning
+was sound and the pilot overruled it anyway, because the bracket is what makes
+the marker survive the round-trip at all. The Advanced model persianises every
+numeral it meets in running prose and leaves every bracketed one untouched —
+5 occurrences out of 5 across the ten pilot files, with no exception either
+way. `[۴]` could only be produced by hand, in roughly 70 files, on every
+re-run.
+
+The bracket also does the job the old rule wanted from the digit script. `[4]`
+in a Persian paragraph is visibly not prose, which is what an anchor should be.
 
 Two consequences, both binding on other specs:
 
 - Spec 002 does the un-fusing in `generate_final_markdown.py`. It is a one-rule
-  change now that the target form is fixed.
-- Spec 006 must render `notes.md`'s own entry numbers in Persian digits to
-  match. **The marker and the entry it points at change together or not at
-  all** — a `[۴]` that leads to an entry numbered `4` is worse than leaving
-  both Latin.
+  change now that the target form is fixed, and **it is not finished**: spec
+  003 found `’’8` in `source/009.md` and `s210` in `source/010.md` still fused.
+  An unbracketed digit is prose to the model, so both reach `fa/` persianised
+  and unmarked, which is precisely the failure the bracket exists to prevent.
+  Spec 008's to fix.
+- Spec 006 renders `notes.md`'s own entry numbers in **Latin** digits to match.
+  **The marker and the entry it points at change together or not at all** — a
+  `[4]` that leads to an entry numbered `۴` is as wrong as the reverse.
 
 `<<<TBD>>>` — whether the marker becomes a live cross-reference link in the
 HTML build. That is spec 006's to answer; this book's endnotes are referenced
@@ -348,19 +436,44 @@ by page number and may not want one.
 
 ## §5 Digits
 
-Recorded so nobody "fixes" it. Both halves are deliberate and they disagree on
-purpose.
+**Revised in spec 003.** The first bullet used to say the opposite of what it
+says now; the pilot contradicted it on every occurrence in ten files, and the
+rule is now what the pipeline actually produces. §5.1 is why.
 
-- **`latin_digits = false` in `pyproject.toml`.** Poem numbers, the dates in the
-  Introduction and the page references throughout the Notes stay Latin-digit.
-  They are references into Arntzen's edition, and a reader checking `pp. 16-17`
-  against the printed book needs to find `pp. 16-17`.
+- **A numeral in running prose is Persian.** Dates, page references into
+  Arntzen's edition, poem and kōan cross-references, scroll and roll numbers:
+  ۰–۹ throughout. `latin_digits = false` stays set, but it is not what makes
+  this true — it means *do not rewrite digits in either direction*, and it
+  never produced a Latin digit in the first place.
+- **A bracketed numeral stays Latin: `[4]`.** That is the endnote marker, and
+  §4.2 is where it is argued.
 - **Persian digits in the book's own structure.** `[tool.book.titles]` headings
   and the `شعر N:` / `تصویر N:` labels `apparatus.py` emits use ۰–۹, because
   that is the book's own furniture rather than a reference into someone else's.
 
-This is the one piece of terminology in the whole project that *is* enforced,
-and only because `apparatus.py` generates it rather than a human typing it.
+The third bullet is the one piece of terminology in the whole project that *is*
+enforced, and only because `apparatus.py` generates it rather than a human
+typing it.
+
+### §5.1 Why the old rule lost
+
+It asked for something no part of the toolchain can deliver. The old first
+bullet kept poem numbers, dates and page references Latin, so that "a reader
+checking `pp. 16-17` against the printed book needs to find `pp. 16-17`".
+
+Measured across the ten pilot files: the Advanced model persianised *every*
+numeral in prose — `(1185-1269)` → `(۱۱۸۵-۱۲۶۹)`, `pp. 16-17` → `صفحات ۱۶-۱۷`,
+`roll 43` → `طومار ۴۳`, `kōan no. 60` → `کوآن شماره ۶۰` — without exception,
+and identically on every re-run. `normalize` does not convert in the
+Persian→Latin direction and no checker would catch a drift, so the old rule
+could only have been kept by hand, in about 130 files, against a translator
+that undoes it on every re-run. That is not a discipline anyone keeps; it is a
+rule that would have been quietly false within a month.
+
+What is actually lost is small. `صفحات ۱۶-۱۷` is not an obstacle to a Persian
+reader, who reads ۱۶ as sixteen without effort. The one numeral that really
+must match a Latin string verbatim is the endnote marker — and that is exactly
+the one the model already leaves alone.
 
 ---
 
