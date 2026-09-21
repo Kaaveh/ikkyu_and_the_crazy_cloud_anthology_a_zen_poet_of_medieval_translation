@@ -85,7 +85,7 @@ repair after every file.
 - [x] `091`–`100` · 5,855 chars
 - [x] `101`–`110` · 7,579 chars · prose intros `103`, `109` · the Lady Mori sequence
       begins at `104`
-- [ ] `111`–`120` · 7,631 chars · prose intro `111`
+- [x] `111`–`120` · 7,631 chars · prose intro `111`
 - [ ] `121`–`130` · 9,060 chars · prose intros `125`, `129`
 - [ ] `131`–`135` · 5,471 chars · prose intro `134`; `135` is the last poem
 
