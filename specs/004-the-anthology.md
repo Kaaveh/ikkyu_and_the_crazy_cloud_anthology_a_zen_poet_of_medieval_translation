@@ -81,7 +81,7 @@ repair after every file.
 - [x] `051`–`060` · 9,850 chars
 - [x] `061`–`070` · 11,189 chars · prose intros `063`, `066`
 - [x] `071`–`080` · 9,117 chars · set header `076`
-- [ ] `081`–`090` · 10,986 chars
+- [x] `081`–`090` · 10,986 chars
 - [ ] `091`–`100` · 5,855 chars
 - [ ] `101`–`110` · 7,579 chars · prose intros `103`, `109` · the Lady Mori sequence
       begins at `104`
