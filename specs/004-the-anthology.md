@@ -79,7 +79,7 @@ repair after every file.
 - [x] `031`–`040` · 12,173 chars · prose intros `033`, `035`, `039`
 - [x] `041`–`050` · 8,464 chars · prose intro `042`; set header `048`
 - [x] `051`–`060` · 9,850 chars
-- [ ] `061`–`070` · 11,189 chars · prose intros `063`, `066`
+- [x] `061`–`070` · 11,189 chars · prose intros `063`, `066`
 - [ ] `071`–`080` · 9,117 chars · set header `076`
 - [ ] `081`–`090` · 10,986 chars
 - [ ] `091`–`100` · 5,855 chars
