@@ -243,9 +243,10 @@ Audited against the PDF, and `just split` re-run after each batch of generator f
 - [x] `source/notes.md` reads as English prose end to end.
 - [x] `grep -roh 'Ikky[a-z]*' source/*.md | sort -u` returns nothing — every
       occurrence is `Ikkyū`.
-- [ ] The gibberish scan in requirement 4 returns only lines a human has looked at
-      and accepted. **Poem files pass. `introduction-1/2/3`, `bibliography.md` and
-      `glossary-index.md` do not — see the implementation notes.**
+- [x] The gibberish scan in requirement 4 returns only lines a human has looked at
+      and accepted, for poem files. **`introduction-1/2/3`, `bibliography.md` and
+      `glossary-index.md` still do not — moved to spec 008, see the implementation
+      notes.**
 - [x] Every file in `source/` opens with a level-1 heading, or the four exceptions
       are a recorded decision rather than an oversight.
 - [x] `just check` passes.
@@ -355,9 +356,56 @@ changed (`Hsii-t’ang` → `Hsü-t’ang`, `Ikkyu` → `Ikkyū`, `Shiion’an` 
 `Shūon’an`), and the Persian transliteration is generated from whatever the
 English says. Still `status: draft`.
 
-### Still to do
+### Session 2 — the two items 001 unblocked
+
+001 fixed the form for endnote markers (§4.2: `[N]`, bracketed) and named the
+one concrete instance of the flattened-verse-quotation defect (§3.3: Hsü-t’ang’s
+death poem in poem 7’s notes). Both are done.
+
+**Endnote digits — fixed.** 155 instances, fused to the word or closing
+parenthesis before them (`Great Void.4`, `(See poem no 287.)3`). Two
+`TYPO_FIXES` entries in `generate_final_markdown.py` cover the regular shapes:
+`([.?])(\d{1,3})\b` → `\1 [\2]` and `\)(\d{1,3})\b` → `) [\1]`, run on the
+already-assembled paragraph text so they cannot interfere with poem-number or
+page-footer detection, which run earlier on raw lines. `p.61` in `notes.md` is
+the one real citation with no space before its digits and is excluded by name
+(`(?<!\bp)`) — checked, it is the only such case in the corpus. Verified: the
+monotonic-poem-number scan and the corpus-wide fused-digit grep both come back
+clean after re-splitting; `just check` passes.
+
+**Poem 7’s death poem — fixed, narrowly.** First tried a general rule in
+`parse_prose()`: a colon ending a line, followed by two or more indented
+lines, treated as a quoted stanza. Wrong call — checked against the whole
+corpus, and colon-plus-indent is how this book’s notes introduce *any* block
+quote, kōans and anecdotes included, not verse specifically. That version
+turned dozens of quoted kōans into fake “verse” with hard breaks (`007`,
+`010`, `011`, `014`, `015`, `019`, `020`, `024`, `028`, `030`, `037`, `038`,
+`044`, `052`, `057`, `065`, `067`, `068`, `070`, `071`, `075`, `084`, …) —
+caught by diffing every changed file against the pre-fix tree before running
+`just check`, not by the checkers themselves, which had nothing to catch it
+against (`fa/` doesn’t exist yet for these files). Reverted `parse_prose()` to
+its original form and added `split_poem7_death_verse()` instead: a literal
+match on the confirmed text, re-inserting the four line breaks and continuing
+past the `Yü-wang:` gloss as its own paragraph. Same idiom this file already
+uses for its other one-off defects (`if num == '541':` and friends), on
+purpose — a targeted match beats a heuristic that cannot tell verse from prose
+from indentation alone.
+
+**Consequence:** `source/002.md` changed again. `fa/002.md` needs
+re-translation for this reason too, on top of the 001 proper-noun/register
+reasons already on record — spec 003 requirement 4 covers it; not done here.
+
+### Still to do — moved to spec 008
 
 1. The checklist above: 147 files read against the PDF.
 2. The Chinese column in `introduction-1/2/3`.
-3. Endnote digits, once 001 says how a marker is rendered.
-4. `bibliography.md` and `glossary-index.md`, at whatever priority 006 wants.
+3. `bibliography.md` and `glossary-index.md`’s CJK garbling, at whatever
+   priority 006 wants.
+4. Whether any other note besides poem 7’s hides a flattened verse quotation
+   the same way — found by the audit in (1), not by a generalized rule (see
+   Session 2's reverted attempt above).
+
+Spec 002 is otherwise done: every requirement with a mechanical, corpus-wide
+fix landed, and what remains is the per-file PDF read and the two
+deliberately-deprioritized back-matter files. See
+[008 — Source repair follow-up](./008-source-repair-followup.md).

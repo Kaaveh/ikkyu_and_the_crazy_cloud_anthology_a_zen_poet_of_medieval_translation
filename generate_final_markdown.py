@@ -124,6 +124,13 @@ TYPO_FIXES = [
     (r'\bdrunknneess\b', 'drunkenness'),
     (r'\befHorescence\b', 'efflorescence'),
     (r'\bimpoverishcd\.4\b', 'impoverished [4]'),
+    # Endnote digits fused to the word before them (STYLE.md §4.2): the print
+    # sets a bare superscript digit and OCR welds it onto the preceding word
+    # or its closing parenthesis. Bracket it -- nothing else in the book
+    # writes a bracketed digit, so the form is unambiguous downstream.
+    # Excludes "p.61", the one real citation with no space before its digits.
+    (r'(?<!\bp)([.?])(\d{1,3})\b', r'\1 [\2]'),
+    (r'\)(\d{1,3})\b', r') [\1]'),
     (r'\bsufh-\s*cient\b', 'sufficient'),
     (r'\bSelfAppraisal\b', 'Self-Appraisal'),
     (r'\bSelf-A ppraisal\b', 'Self-Appraisal'),
@@ -225,6 +232,34 @@ def parse_prose(text):
         if p_clean:
             cleaned.append(apply_typos(p_clean))
     return cleaned
+
+POEM7_DEATH_VERSE = re.compile(
+    r'(?P<pre>.*admired:) '
+    r'Eighty-five years Knowing nothing even about the Patriarchs, '
+    r'Rowing with my elbow, serving, going, '
+    r'Erasing my tracks in the Great Void\. \[4\] '
+    r'(?P<post>Yü-wang:.*)'
+)
+
+def split_poem7_death_verse(paras):
+    """Re-break Hsü-t'ang's death poem out of poem 7's flattened note.
+
+    See STYLE.md §3.3. The raw OCR still shows the print's own line breaks
+    (checked against the PDF), which parse_prose has no way to keep.
+    """
+    out = []
+    for p in paras:
+        m = POEM7_DEATH_VERSE.match(p)
+        if not m:
+            out.append(p)
+            continue
+        out.append(m.group('pre'))
+        out.append('Eighty-five years\n'
+                    'Knowing nothing even about the Patriarchs,\n'
+                    'Rowing with my elbow, serving, going,\n'
+                    'Erasing my tracks in the Great Void. [4]')
+        out.append(m.group('post'))
+    return out
 
 print("Preprocessing modules ready.")
 
@@ -818,7 +853,16 @@ def build_translations():
             after_colon = re.sub(r'^(?:Notes:|Note:)\s*', '', s).strip()
             if after_colon:
                 n_lines = [after_colon] + n_lines
-            for p in parse_prose('\n'.join(n_lines)):
+            note_paras = parse_prose('\n'.join(n_lines))
+            if num == '7':
+                # STYLE.md §3.3: Hsü-t'ang's death poem, quoted inline in the
+                # note, is a stanza in the print edition but parse_prose has
+                # no way to tell a quoted verse from a quoted anecdote and
+                # flattens both alike (checked: doing this generally turns
+                # dozens of quoted kōans in other notes into fake "verse").
+                # This is the one case confirmed against the raw OCR.
+                note_paras = split_poem7_death_verse(note_paras)
+            for p in note_paras:
                 out.append(p + "\n")
             continue
             

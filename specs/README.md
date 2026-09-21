@@ -13,12 +13,13 @@ start (🟨 In progress) and when you finish (✅ Done).
 |-----|------------------------------------------------------------|------------|----------------|
 | 000 | [Overview & shared context](./000-overview.md)             | —          | 📖 Reference   |
 | 001 | [Conventions & style](./001-conventions-and-style.md)      | —          | ✅ Done        |
-| 002 | [Source repair](./002-source-repair.md)                    | —          | 🟨 In progress |
+| 002 | [Source repair](./002-source-repair.md)                    | —          | ✅ Done        |
 | 003 | [Pilot — the first ten poems](./003-pilot-poems.md)        | 001, 002   | ⬜ Not started |
 | 004 | [The Anthology — 011–135](./004-the-anthology.md)          | 003        | ⬜ Not started |
 | 005 | [Introduction & front matter](./005-introduction.md)       | 003        | ⬜ Not started |
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ⬜ Not started |
 | 007 | [Release & publication](./007-release.md)                  | 004–006    | ⬜ Not started |
+| 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | ⬜ Not started |
 
 ## Recommended order
 
@@ -48,6 +49,10 @@ repair  style   pilot   bulk    back   intro   ship
   scholarly English, different from the verse, so it wants a settled voice to
   push against rather than to define.
 - **007 (release) last.** Nothing reaches a reader until the book builds.
+- **008 (source repair follow-up) whenever there's room.** 002's leftover
+  checklist — the 147-file PDF read, the Introduction's CJK bleed, and the two
+  low-priority back-matter files. Not on the critical path to 003 or 004;
+  fold it in alongside 005/006 rather than blocking on it.
 
 ## Scale
 
