@@ -70,12 +70,12 @@ LABELS = (
     r"|(?P<prose>Prose[ ]+Introduction[ ]+to[ ]+(?:Nos?\.[ ]*)?(?P<prose_n>[^\n]+?))[ \t]*$"
 )
 
-# What restore writes into the front matter. "draft", not Lin-chi's "reviewed":
-# what comes out of this pipeline is a machine draft that no one has read yet,
-# and the status is the only record of that. A human promotes it to "reviewed"
-# after reading. make_stubs writes "untranslated", which compare() skips, so
-# the three states are: not started, machine draft, read by a human.
-DRAFT_STATUS = "draft"
+# What restore writes into the front matter. Two states, not Lin-chi's three:
+# the machine draft *is* the edition here. There is no hand-revision stage after
+# the pipeline, so there is no later step to promote a "draft" into place and a
+# third state would only ever record work that never happens. make_stubs writes
+# "untranslated", which compare() skips; everything else is checked.
+DRAFT_STATUS = "reviewed"
 
 FA_NOTES = "یادداشت‌ها"
 FA_POEM = "شعر"

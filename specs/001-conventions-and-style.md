@@ -107,18 +107,25 @@ repair is cheapest before anything is translated.
 
 ## Acceptance criteria
 
-- [ ] `STYLE.md` exists; §1–§6 written, each decision carrying a sentence of reasoning.
-- [ ] The §1 decision was tested against at least one deliberately obscene poem and
-      survives it.
-- [ ] §2 either ratifies `fa/002.md`'s renderings or changes them, and `fa/002.md`
-      matches whichever was chosen.
-- [ ] §4 records whether note blocks stay run-on, and if not, that the parity-offset
-      cost was accepted knowingly.
-- [ ] `pyproject.toml` matches the §6 decision on quotes.
-- [ ] `tools/apparatus.py` writes `status: reviewed`; `CLAUDE.md` says so; `fa/002.md`
+- [x] `STYLE.md` exists; §1–§6 written, each decision carrying a sentence of reasoning.
+- [x] The §1 decision was tested against at least one deliberately obscene poem and
+      survives it. Both `107.md` (Poem 535) and `080.md` (Poem 284), in §1.3.
+- [x] §2 either ratifies `fa/002.md`'s renderings or changes them, and `fa/002.md`
+      matches whichever was chosen. Guillemets ratified (§2.6); the aspiration mark
+      and `ایک‌کیو` changed, and the file conformed.
+- [x] §4 records whether note blocks stay run-on, and if not, that the parity-offset
+      cost was accepted knowingly. Run-on kept. The offsets are spent on §1.4
+      instead, ~30 of them, knowingly.
+- [x] `pyproject.toml` matches the §6 decision on quotes. `quotes = true` stays;
+      no change needed.
+- [x] `tools/apparatus.py` writes `status: reviewed`; `CLAUDE.md` says so; `fa/002.md`
       says so.
-- [ ] No `<<<TBD>>>` remains in §1–§3. Any left in §4–§6 is deliberate.
-- [ ] `just check` passes.
+- [x] No `<<<TBD>>>` remains in §1–§3. Three left in §4–§6, each deliberate:
+      headword emphasis (§4.1), endnote cross-reference links (§4.2 — spec 006's),
+      and nested quotation (§6). The Sanskrit vocabulary is in §2, so it could not
+      be a TBD: it is given as renderings, four of them labelled (suggested) under
+      requirement 8 rather than left as a gap.
+- [x] `just check` passes.
 
 ## Out of scope
 
@@ -126,4 +133,78 @@ Translating anything. Repairing `source/` — that is 002.
 
 ## Implementation notes
 
-_(filled in during implementation)_
+Done in one session, as the spec expected. `STYLE.md` is the deliverable;
+`tools/apparatus.py`, `CLAUDE.md` and `fa/002.md` are the three small edits
+requirement 7 asks for. Nothing new under `fa/` — `002.md` was edited, not
+translated.
+
+**Decisions that were the maintainer's, not mine.** §1.2 (classical lexicon),
+§1.4 (marked at each poem), §2.2 (carry the aspiration mark into the Persian
+word) and §2.6 (ratify `fa/002.md`'s guillemets) were put to the maintainer with
+the trade-offs. §1.4 and §2.2 were chosen *against* the recommendation, and the
+arguments against are recorded in `STYLE.md` next to each so they are not
+re-litigated.
+
+**Three things were measured rather than asserted**, because each would have
+been wrong in the file otherwise:
+
+1. **`normalize`'s `quotes` rule pairs double quotes only.** Singles and a
+   word-internal `’` pass through untouched, even inside a span the rule
+   rewrites. This is what makes §2.2's aspiration mark viable at all. `ʼ`
+   (U+02BC) was rejected on the way: it is Unicode bidi class L and would break
+   the RTL run; `’` (U+2019) is class ON and takes the surrounding direction.
+2. **The §1.4 marker costs exactly one parity offset per marked file.** A block
+   that is nothing but HTML comments does not count toward parity
+   (`_md.COMMENT_ONLY`), so `<!-- parity: offset +1 -->` is free and only the
+   blockquote is charged. Verified end to end with `107.md`:
+   `check_parity`, `normalize` and `apparatus --check` all pass.
+3. **The marker has to be added *after* `restore`.** It changes the run
+   structure, so `align_hard_breaks_by_block` stops matching and
+   `engine.restore` refuses the draft. This breaks `CLAUDE.md`'s "restore is the
+   only thing that writes `fa/`", so `CLAUDE.md` now names the two sanctioned
+   hand-edits instead.
+
+**The PDF was rendered and read**, per the roadmap's definition of done, and it
+earned its keep twice:
+
+- `شیو-ت’انگ` typesets correctly under LuaLaTeX — the mark holds its position
+  inside the word and the run does not reverse. §2.2 is safe on the page, not
+  just in the file.
+- It caught §3.3, which I had written from the Markdown and had backwards. The
+  model's re-break of Hsü-t'ang's death poem produces *soft* newlines, so the
+  PDF reflows it into one prose paragraph; the re-break is invisible on the
+  page. It cannot be fixed in `fa/` either — `apparatus --check` requires
+  `hard_breaks(fa) == hard_breaks(source)`. §3.3 now says the defect is in
+  `source/` and hands it back to 002.
+
+**Scope taken on deliberately.** §4.2 (endnote markers) is not in this spec's
+requirement list, but spec 002's implementation notes deferred the decision here
+by name and left 155 fused digits waiting on it. The form is now fixed —
+`[N]`, Persian digits in `fa/` — which unblocks 002 and constrains 006.
+
+**§2.7 is renderings, not a gap.** Requirement 9 argues for deferring the
+Sanskrit vocabulary to the 003 pilot, but the acceptance criteria forbid a
+`<<<TBD>>>` anywhere in §2. Requirement 8 is the way out and is what §2.7 uses:
+the five words with settled Persian forms are given as **argued**, and Arhat,
+Maitreya, Bodhisattva and Vimalakīrti as **(suggested)** — a first reading,
+explicitly not binding, cheap to overrule until it is in many files.
+
+**`fa/002.md` changed in three ways**, all by hand, all conformance rather than
+translation: `status: draft` → `reviewed`; `شو-تانگ` → `شیو-ت’انگ` (×7, §2.2 and
+§2.3); `ایکیو` → `ایک‌کیو` (×4, §2.8 — the ZWNJ form is what
+`[tool.book.titles]` already commits to, so the body now matches the book's own
+table of contents). Its guillemets were ratified and left alone.
+
+No test asserts on the literal `"draft"` — confirmed, not assumed; the
+occurrences in `tools/tests/` are local variable names. The suite stayed green
+without changes.
+
+### Still to do
+
+Nothing in this spec. Two obligations were handed to others:
+
+1. **Spec 002** — un-fuse the 155 endnote digits to `[N]` (§4.2), and repair the
+   flattened verse quotations in `notes.md` (§3.3).
+2. **Spec 007** — a hanging indent for verse in `tex/preamble.tex` (§3.2). The
+   preamble has no verse handling at all today, so a Persian line that overruns
+   the measure wraps and reads as a new line.

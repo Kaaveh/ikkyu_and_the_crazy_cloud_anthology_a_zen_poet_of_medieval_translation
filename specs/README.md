@@ -12,7 +12,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | #   | Spec                                                       | Depends on | Status         |
 |-----|------------------------------------------------------------|------------|----------------|
 | 000 | [Overview & shared context](./000-overview.md)             | —          | 📖 Reference   |
-| 001 | [Conventions & style](./001-conventions-and-style.md)      | —          | ⬜ Not started |
+| 001 | [Conventions & style](./001-conventions-and-style.md)      | —          | ✅ Done        |
 | 002 | [Source repair](./002-source-repair.md)                    | —          | 🟨 In progress |
 | 003 | [Pilot — the first ten poems](./003-pilot-poems.md)        | 001, 002   | ⬜ Not started |
 | 004 | [The Anthology — 011–135](./004-the-anthology.md)          | 003        | ⬜ Not started |

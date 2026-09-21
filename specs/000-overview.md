@@ -153,9 +153,12 @@ stage after the pipeline, so there is no later step to promote a `draft` into pl
 `check_parity` and `apparatus --check` skip only `untranslated` and check everything
 else.
 
-> Spec 001 changes `DRAFT_STATUS` in `tools/apparatus.py` from `"draft"` to
-> `"reviewed"` and updates `CLAUDE.md` to match. Until it does, `restore` writes
-> `draft` and this paragraph describes the intent, not the code.
+Spec 001 made this true in the code: `DRAFT_STATUS` in `tools/apparatus.py` is
+`"reviewed"`, and `CLAUDE.md` matches.
+
+It also opened the only two exceptions to "`restore` is the only thing that
+writes `fa/`" — the obscene-poem marker and conforming a proper noun to
+`STYLE.md` §2, both hand-edits made after `restore`. `CLAUDE.md` names them.
 
 ## Toolchain
 

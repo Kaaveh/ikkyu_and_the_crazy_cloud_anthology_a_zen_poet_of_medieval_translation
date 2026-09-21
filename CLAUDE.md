@@ -12,6 +12,8 @@ A Persian translation of *Ikkyū and the Crazy Cloud Anthology* (Sonja Arntzen).
   generated**; fix the script, never the files.
 - `source/` — English, one file per poem or section. Gitignored, same reason.
 - `fa/` — the Persian translation. This is the work, and it is committed.
+- `STYLE.md` — the translation decisions: register, proper nouns, verse layout.
+  Almost none of it is enforced by anything; read it before translating.
 - `tools/apparatus.py` — this book's adapter over the shared checkers.
 - `pyproject.toml` — config only. What makes general checkers run on this book.
 
@@ -88,9 +90,27 @@ validates first.
 
 ## Status values in `fa/` front matter
 
-`untranslated` (what `make_stubs` writes) → `draft` (what `restore` writes, a
-machine draft nobody has read) → `reviewed` (set by hand after reading).
-`check_parity` and `apparatus --check` skip `untranslated` and check the rest.
+Two states. `untranslated` (what `make_stubs` writes) → `reviewed` (what
+`restore` writes). **The machine draft is the edition**: there is no
+hand-revision stage after the pipeline, so there is no later step to promote a
+`draft` into place. `check_parity` and `apparatus --check` skip `untranslated`
+and check the rest.
+
+## The two sanctioned hand-edits to `fa/`
+
+`restore` is the only thing that *creates* a file in `fa/`. Two edits are made
+by hand afterwards, and only these two:
+
+1. **The obscene-poem marker** (`STYLE.md` §1.4) — a `> [زبانِ این شعر عامدانه
+   رکیک است.]` block under the heading, plus `<!-- parity: offset +1 -->`. It
+   cannot be added before `restore`: it changes the run structure, so
+   `align_hard_breaks_by_block` stops matching and `engine.restore` refuses the
+   draft.
+2. **Conforming a proper noun to `STYLE.md` §2** — the model transliterates by
+   ear and nothing checks it.
+
+Anything else that is wrong in `fa/` is re-translated, not patched. `just check`
+must pass after either edit.
 
 ## `just check` has no `check_linebreaks`
 
