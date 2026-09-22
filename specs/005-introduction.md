@@ -93,11 +93,11 @@ Introduction quotes are already rendered.
 
 - [x] `plates.md`
 - [x] `foreword.md`
-- [ ] `preface.md`
-- [ ] `introduction-2.md`
-- [ ] `introduction-4.md`
-- [ ] `introduction-3.md`
-- [ ] `introduction-1.md`
+- [x] `preface.md`
+- [ ] `introduction-2.md` — **blocked on 008 requirement 2**
+- [x] `introduction-4.md`
+- [ ] `introduction-3.md` — **blocked on 008 requirement 2**
+- [ ] `introduction-1.md` — **blocked on 008 requirement 2**
 
 Ordered small to large on purpose: the two long files are last, so the short ones
 have already shaken out any problem with prose under `--raw` before fifteen chunks
@@ -122,4 +122,152 @@ The Anthology. Back matter. Release.
 
 ## Implementation notes
 
-_(filled in during implementation)_
+### Four of seven done. The three Introduction files are blocked on 008.
+
+`plates.md`, `foreword.md`, `preface.md` and `introduction-4.md` are at
+`status: reviewed` and `just check` is green. `introduction-1/2/3` are not
+translatable yet, and the reason is already written down in
+**008 requirement 2** — the Chinese column bled into them, because
+`build_introduction()` never runs lines through `clean_translation_line()`.
+This spec does not list 002/008 as a dependency, and it should.
+
+What the bleed looks like in `source/introduction-2.md`:
+
+```
+Po Chü-i asked Master Bird Nest, ““What is the broad FaJee5 it)BSBEAO
+meaning of Buddhism?” Bird Nest answered, “Do ROP EEK. no evil, do much
+good.”>8 Po Chü-i said, “But a Ay mE, RES three-year-old child could
+understand a teaching like J AAL Smale that.””
+```
+
+The Chinese is interleaved *word by word* into the English sentence, together
+with the OCR's failed attempts at it. Measured over the front matter:
+
+| file | blocks | damaged | CJK chars | garbage runs |
+|---|---:|---:|---:|---:|
+| `plates.md` | 24 | 0 | 0 | 0 |
+| `preface.md` | 9 | 0 | 0 | 0 |
+| `introduction-4.md` | 7 | 0 | 0 | 0 |
+| `foreword.md` | 10 | 1 | 1 | 0 |
+| `introduction-2.md` | 16 | **2** | 43 | 4 |
+| `introduction-1.md` | 104 | **13** | 161 | 9 |
+| `introduction-3.md` | 61 | **9** | 141 | 8 |
+
+12–14% of blocks in the three files. That is low enough to look survivable and
+is not: the damage is *upstream of the translator*, and it produced three
+distinct failures on `introduction-2.md` alone — a Classic fallback on the
+damaged block, a dropped block, and dropped characters. Chasing them down the
+chunk ladder trades one for another (see below). The four clean files went
+through first time.
+
+**`source/introduction-2.md` also carries a running page header**, `35
+INTRODUCTION`, welded into the middle of a sentence that a page break split.
+It is the only one in the book — worth a scan in 008 rather than a rule.
+
+### The adapter was changed to protect the CJK, and the change was reverted
+
+Reverted, not kept, for two reasons. The sentinel does not survive: 34 in, 20
+out, and `restore` rightly refuses such a draft — the heading sentinels work
+because a heading is its own line, and these sit inline in dense prose. And
+the premise was wrong anyway. This CJK is not content to protect; it is
+debris, and §2.8's Lan-t'san precedent — *the Persian does not follow OCR
+damage* — says the model deleting it is the better outcome. Protecting it
+would have laundered the bleed into the edition. The fix belongs in the
+generator, which is exactly what 008 requirement 2 says.
+
+### The Classic fallback happens **per chunk**, not per file
+
+This contradicts `CLAUDE.md` ("the two do not mix inside a file") and it is
+the spec-004 detectors' blind spot. `preface.md` at the default 4500:
+
+| chunk | source paragraphs | ezafe per 1k chars |
+|---|---|---|
+| 1 (3,932 ch) | 1–2 | 6.3, 7.9 |
+| 2 (2,111 ch) | 3–8 | **0.0, 0.0, 0.0, 0.0, 0.0, 0.0** |
+
+Both of 004's tests pass this file. Whole-file `grep -c ِ` is 25; the verb
+prefix test is 25 ZWNJ against 0 spaced. The prose is where it shows — "Good
+fortune has blessed me with many fine teachers" came back as
+«خوشبختانه در این مسیر معلمان خوب زیادی را به من عطا کرده است», subject
+dropped. **Measure ezafe per paragraph, not per file**: a run of paragraphs at
+exactly 0 over more than ~1,500 characters is the signal. A single 0 paragraph
+between healthy ones is not — `foreword.md` has one and is fine, which is
+004's `099.md` finding again.
+
+`preface.md` at `--chunk 900` came back Advanced throughout, and that also
+dissolved a merged block the 4500 run had produced.
+
+**On damaged input the ladder stops helping.** `introduction-2.md`: 900 gives
+good Persian but drops a block; 400 keeps all 16 blocks and turns seven
+paragraphs Classic. There is no chunk size that fixes damaged source.
+
+### Requirement 4 is half-met, and the half that fails is not the normalizer
+
+The normalizer is innocent: `latin_digits = false` works and `normalize
+--check` is clean on all 147 files. **The model converts the digits itself,
+before any checker sees them** — `1960s` → «دههٔ ۱۹۶۰», `page 18` →
+«صفحه ۱۸», `(Bellingham, 1973)` → «(بلینگهام، ۱۹۷۳)». So the acceptance
+criterion "dates and page references are still Latin-digit" is **not met**,
+and no config change would have met it.
+
+Left as translated rather than patched, because the book is already mixed and
+deliberately so: `apparatus.py` itself renders poem numbers through
+`to_persian_digits`, so every Anthology heading is `# شعر ۱۳۰`, and
+`fa/notes.md` carries 705 Latin digits beside 505 Persian. Reversing it in
+`fa/preface.md` alone would be 126 hand-edits toward a consistency the rest of
+the book does not have. **A decision is owed here** — either requirement 4 is
+narrowed to say the normalizer must not convert, which is what it actually
+tests, or the book picks one script for digits and that belongs in `STYLE.md`
+and in a checker, not in one spec's acceptance list.
+
+### Requirement 3: the cross-reference list
+
+The citations read "poems nos. 639, 640, 641", not "poem 639", so a naive
+scan under-reports them. Resolved against the numbered files:
+
+- `introduction-1.md` cites **17**: 8, 33, 89, 90, 91, 93, 180, 210, 293, 531,
+  532, 541, 542, 639, 640, 641, 647 → `003, 009, 029, 030, 031, 032, 061, 068,
+  084, 104, 105, 112, 113, 122, 123, 124, 126`.
+- `introduction-3.md` cites **3**: 639, 640, 641. It also cites 206 and 493,
+  which are not in Arntzen's selection — expected, not a defect.
+- `plates.md` cites poem 130, and its caption's «خودارزیابی» already matches
+  `fa/047.md`'s heading. Checked and consistent.
+
+Neither long file contains a single hard line break, so the quoted poems are
+welded into the surrounding prose paragraph. Requirement 2's machinery is
+therefore not load-bearing here, and requirement 3 is harder than it reads:
+there is no line structure in the Introduction's copy of a poem to compare
+against the Anthology's.
+
+### §2
+
+The pass was mechanical enough to script. `tools/`-external, in the session
+scratchpad: reduce both the draft and STYLE.md's 98 canonical forms to a
+skeleton — drop the §2.2 apostrophe, the separators and the harakat, fold
+§2.3's `یو` onto `و`, `آ` onto `ا`, `ئ` onto `ی` — and anything matching a
+canonical skeleton but not its text is a near-miss. It does not catch a
+dropped letter, so `ایکیو` for `ایک‌کیو` is still handled by name; that one is
+also the single commonest correction in this spec, 41 occurrences in the
+foreword alone.
+
+Applied: `Ikkyū`, `Hsü-t'ang`, `Po Chü-i`, `Niao K'o` (new, §2.2 →
+`نیائو ک’و`), `Hōnen`, `Kyōunshū` (§2.8's `کیوئونشو`, first appearance in
+`fa/`; the model spelled it two ways in one file), `Ichijoji`, `Jōdo Shinshū`,
+and two stray U+200B.
+
+**One whole-book sweep**, on 004's own precedent that the table has to be
+swept over everything: `fa/085.md` had `تائو یوآن-مینگ`, and §2.2 cites that
+exact `Tao`/`T'ao` collision as its worked example. Now `ت’ائو یوآن-مینگ`.
+
+**The same sweep reports 53 more near-misses in 004's committed files** —
+`کوان` for `کوآن` (12), `ویمالاکی‌رتی` (8), `مایتریا` (6), `چ’ینگ-سو` (5).
+Left alone: they are a closed spec's files and the call is the book's owner's,
+not this spec's.
+
+### Requirement 5 — verified, not assumed
+
+All four image paths in `fa/plates.md` are byte-identical to `source/` and all
+four PNGs exist in `images/`. `CLAUDE.md`'s measurement holds and the adapter
+still needs no image machinery. `restore` took `plates.md` first try, verse
+under Plate 4 included — the one hand repair it needed was `*شعر موری:*` glued
+to the end of the last verse line, which is 004's category-2 repair.
