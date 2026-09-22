@@ -91,8 +91,8 @@ Introduction quotes are already rendered.
 | `introduction-3.md` | 39,712 | ~9 | "Allusion". Quotes many poems; see requirement 3 |
 | `introduction-4.md` | 5,672 | 2 | "A Note on the Text and Its Organization" |
 
-- [ ] `plates.md`
-- [ ] `foreword.md`
+- [x] `plates.md`
+- [x] `foreword.md`
 - [ ] `preface.md`
 - [ ] `introduction-2.md`
 - [ ] `introduction-4.md`
