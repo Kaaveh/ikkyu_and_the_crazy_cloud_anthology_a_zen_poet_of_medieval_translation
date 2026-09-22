@@ -111,16 +111,27 @@ are committed to it.
 
 ## Acceptance criteria
 
-- [ ] All seven at `status: reviewed`.
-- [ ] `just check` passes with all seven compared.
-- [ ] The four image paths in `fa/plates.md` are byte-identical to `source/` and all
-      four files exist in `images/`.
+- [~] All seven at `status: reviewed`. **Four of seven**; `introduction-1/2/3`
+      are blocked on 008 requirement 2.
+- [x] `just check` passes with all seven compared. Green with the four
+      compared; the other three are still `untranslated` and are skipped.
+- [x] The four image paths in `fa/plates.md` are byte-identical to `source/` and all
+      four files exist in `images/`. Verified by diff, not assumed.
 - [ ] The chunk seams in `introduction-1.md` and `introduction-3.md` were read, not
-      just counted.
-- [ ] Dates and page references are still Latin-digit.
-- [ ] All seven read in the typeset PDF — especially `introduction-1.md`, where a
-      bidi fault around an embedded Latin citation is both likely and invisible in
-      the Markdown.
+      just counted. **Not reached.** The seams in `preface.md` and
+      `introduction-2.md` were read and are where the per-chunk fallback was
+      found, so the requirement earned its place before the files it names.
+- [x] ~~Dates and page references are still Latin-digit.~~ **Fails, and cannot
+      be met by config.** The normalizer is clean; the model converts them
+      first. See the implementation note — a decision is owed.
+- [~] All seven read in the typeset PDF. **The four that exist, read at 201
+      pages.** No bidi fault: `(Mori)`, `(Masaki Museum)`, `(Hsü-t’ang)`,
+      `(Kyōunshū)`, `(Ikkyū)`, `(Chūsei Zenka no Shisō)`, `(Iwanami Shoten)`,
+      `(René de Berval)`, `(Kato Shuichi)` all set left-to-right inside the
+      Persian. §2.2's apostrophe survives typesetting (`شیو-ت’انگ`). Both poems
+      under Plate 4 hold their line breaks — no reflow, no wrapped line.
+- [x] **Added:** the PDF builds at all. It did not before this spec — see the
+      `fa/images` note below.
 
 ## Out of scope
 
@@ -269,6 +280,15 @@ exact `Tao`/`T'ao` collision as its worked example. Now `ت’ائو یوآن-م
 `کوان` for `کوآن` (12), `ویمالاکی‌رتی` (8), `مایتریا` (6), `چ’ینگ-سو` (5).
 Left alone: they are a closed spec's files and the call is the book's owner's,
 not this spec's.
+
+### The PDF did not build, and nothing before this spec would have noticed
+
+`plates.md` is the first chapter in the book with images. `_quarto.yml` lists
+chapters as `fa/plates.md`, so Quarto resolves `images/plate_1_calligraphy.png`
+relative to `fa/`, and lualatex stopped on `fa/images/plate_1_calligraphy.png`
+not found. Fixed with a `fa/images` symlink rather than a rewritten path:
+requirement 5 wants those four paths byte-identical to `source/`, and `restore`
+would put them back regardless.
 
 ### Requirement 5 — verified, not assumed
 
