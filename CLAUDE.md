@@ -52,12 +52,34 @@ instead of the pinned tag, `pip install -e ../bargardan-tools`.
   (`چشمِ حقیقی`) and restructures sentences; Classic does neither.
   `grep -c ِ` on the draft separates them in one command — 0 is Classic.
 
-- **When a file comes back Classic, halve `--chunk` and re-run.** Re-running
+- **The fallback is per *chunk*, so measure ezafe per paragraph, not per
+  file.** Spec 005 found `preface.md` Advanced for its first two paragraphs and
+  Classic for the remaining six, split exactly at the chunk boundary. A
+  whole-file count cannot see that: this file scores 25, and the verb-prefix
+  test below passes it clean. The signal is **a run of paragraphs at exactly 0
+  ezafe totalling more than ~1,500 characters**; one 0 paragraph between
+  healthy ones is normal (spec 004's `099.md`, spec 005's `foreword.md`).
+
+  ```bash
+  awk 'length>120' fa/preface.md | while IFS= read -r l; do
+    printf '%5d %s\n' "$(printf '%s' "$l" | grep -o 'ِ' | wc -l)" "${l:0:40}"
+  done
+  ```
+
+- **When a file comes back Classic, go down the ladder and re-run.** Re-running
   unchanged does nothing: the fallback is per-input and deterministic, and the
   same text at the same chunk size gives the same model every time. It is not
   the user agent, not a timing race and not quota — spec 003 ruled out all
-  three. `009.md` needed `--chunk 300`; nothing else in the first ten needed the
-  flag at all.
+  three. **Halving is the wrong ladder** (spec 004: `098.md` came back Classic
+  at 4500, 2250, 1125, 562 *and* 281, and Advanced at 400). Use **4500, 900,
+  400, 300**. `009.md` needed 300; `preface.md` needed 900.
+
+- **A ladder step trades one failure for another once `source/` is damaged.**
+  Spec 005: `introduction-2.md` at 900 gives good Persian and drops a block; at
+  400 it keeps every block and turns seven paragraphs Classic. If no chunk size
+  is clean, stop — the input is the problem, not the chunk. Check the file
+  against the damage table in `specs/005-introduction.md` before spending
+  another run on it.
 
 - **`--raw` is mandatory too, and matters more here than in the prose books.**
   It stops the translator's line-unwrapping, which would run a stanza together

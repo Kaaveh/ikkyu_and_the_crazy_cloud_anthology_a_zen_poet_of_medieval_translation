@@ -29,6 +29,12 @@ Seven files at `status: reviewed`, `just check` green, the PDF read.
 003 at minimum, so `STYLE.md` is settled. Best after 004, so the poems the
 Introduction quotes are already rendered.
 
+**And 008 requirement 2, for `introduction-1/2/3` — added during
+implementation, where it blocked those three files.** The Chinese column bled
+into them and the English wraps around it, so the text the translator is handed
+is not yet the book. The other four files in this spec have none of it and did
+not need to wait.
+
 ## Requirements
 
 1. **Budget `introduction-1.md` as a single long run** — about fifteen chunks, six to
