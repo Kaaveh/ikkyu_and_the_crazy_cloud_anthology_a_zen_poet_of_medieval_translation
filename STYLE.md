@@ -122,6 +122,27 @@ is not — "Cloud-rain, fūryū" is allusion, and the note explaining it runs to
 page. §1.4 marks the poem's language, never its subject, or the marker ends up
 on every poem in the book and stops meaning anything.
 
+**Spec 004 read all 28 candidates and marked two: `107.md` and `108.md`.**
+That is the whole set for the Anthology, and it is a tenth of what this
+section budgeted for.
+
+- **`107.md`** — poem 535, the poem §1.4 is written around:
+  `و گل نرگس، ظریف و آرام، میان ران‌ها می‌چرخد.`
+- **`108.md`** — poem 536: the lady as `استادِ بازیِ عشق‌ورزی`, curing
+  `ساقه‌ی جواهرنشان`.
+
+The other 26 are all the poem 6 case, and the run of them is what shows the
+line is in the right place. `053.md` is titled "On a Brothel" and its four
+lines are cloud-rain and love's deep river; `076.md` is an arhat revelling in
+one; `119.md` is titled "Cause and Effect for a Lustful Monk" and is four
+lines of doctrine. The title names the subject, the verse is allusion, and
+neither is what §1.4 marks. **Arntzen is frank far more often than she is
+crude, and the marker is for the crude.**
+
+The practical consequence: `check_parity` needs the `<!-- parity: offset +1 -->`
+companion in two files, not thirty, so the cost §1.4 accepted knowingly turned
+out to be small. Both were verified with all three checkers green.
+
 **This is the expensive decision in this file, and the cost is accepted
 knowingly:**
 
@@ -307,6 +328,67 @@ ear, and none is a judgement call.
 | Fo-yen | فو-ین | correct as given |
 | Wu-tsu | وو-تسو | correct as given |
 | Rinzai | رینزای | correct as given |
+| Hsüeh-tou | شیوئه-تو | شوئه-تو — §2.3, as `Yüeh` → یوئه |
+| Kung-sun | کونگ-سون | کونگ‌سون — a ZWNJ is not a hyphen |
+| Shao-lin | شائو-لین | شائولین — the source hyphenates |
+| Shih-shih Chi-ku Lüeh | شی-شی چی-کو لیوئه | شی‌شی چی‌کو لیوِه — §2.3, and two ZWNJs for two hyphens |
+| T’ien-pao | ت’ین-پائو | تی‌ین‌بائو — §2.2, and §2.1: `p` is پ, as in Pai-chang |
+| Shen I-ch’i | شن ای-چ’ی | شن یی‌چی — §2.2 |
+| Kuei-fei | کوئی-فی | یانگ گوئی‌فی — §2.1: `Kuei` is Wade-Giles, `Gui` is Pinyin |
+| Pi-yang | پی-یانگ | پی‌یانگ — a ZWNJ is not a hyphen |
+| Crazy Cloud | ابر دیوانه | «کریزی کلاود» — **not a transliteration.** Ikkyū's sobriquet, and the book's own title already renders it |
+| Kuei-tsung | کوئی-تسونگ | کوی-تسونگ — §2.1, as Kuei-fei |
+| Te-shan | ته-شان | تِه‌شان / تِ-شان / ته‌شان, three spellings — the kasre goes, and the source hyphenates |
+| Ch’u Ssu-tsung | چ’و سو-تسونگ | چو سو-تسونگ — §2.2 |
+| P’u-hua | پ’و-هوا | پو-هوآ / پو-هوا in one file — §2.2, the form §2.2 itself cites |
+| Hui-neng | هویی-ننگ | هویی-نِنگ — the kasre goes |
+| Hsü Chung-ya | شیو چونگ-یا | شو چونگ-یا — §2.3 |
+| Ch’uan Teng Lu | چ’وآن تنگ لو | چوآن‌تِنگ‌لو — §2.2; the source spaces the three words |
+| Wen-chün | ون-چیون | وِن-چون — §2.3 |
+| Wen Hsüan | ون شیوآن | وِن شوئن — §2.3 |
+| Tzu-hsü | تزو-شیو | تزو-شو / تزو-هسو — §2.3 |
+| Te-tsung | ته-تسونگ | تِه-تسونگ — the kasre goes |
+| Sung-yüan | سونگ-یوآن | سونگ-یوان / سونگ‌یوان — §2.3 |
+| Yüan-t’ung | یوآن-ت’ونگ | یوان-تونگ — §2.2 and §2.3 |
+| Wu-k’u | وو-ک’و | وو-کو — §2.2 |
+| Fa-hsiang | فا-شیانگ | فا-هسیانگ — `hs` is ش everywhere else in this table |
+| Hsüan-tsang | شیوآن-تسانگ | هسوآن-تسانگ — §2.3 |
+| K’uei-chi | ک’وئی-چی | کویی-چی, nine times in one poem — §2.2 and §2.1 |
+| Tz’u-en | تز’و-ان | تزو-اِن / تزو-ان — §2.2, as Tz'u-ming |
+| Ts’ung-lin | تس’ونگ-لین | تسونگ-لین — §2.2 |
+| Sheng-shih | شنگ-شی | شِنگ-شی — the kasre goes |
+| P’u-chou | پ’و-چو | پو-چو / پو-جو — §2.2 |
+| Ch’ing-su | چ’ینگ-سو | چینگ‌سو — §2.2; the source hyphenates |
+| Hsü Ch’uan Teng Lu | شیو چ’وآن تنگ لو | شو چوان تنگ لو — §2.2 and §2.3 |
+| Wu Teng Hui Yüan | وو تنگ هوی یوآن | وو تِنگ هوی یوآن — the kasre goes |
+| Ch’ang-hsin | چ’انگ-شین | چانگ‌شین — §2.2; the source hyphenates |
+| Chuang Chou, Chuang Tzu | چوانگ چو, چوانگ تزو | چوانگ‌چو / چوانگ‌تزو — the source spaces them |
+| Hsü-t’ang Lu | شیو-ت’انگ لو | شیو-ت’انگ‌لو — the source spaces the title off the name |
+| Yüan-ming | یوآن-مینگ | یوان‌مینگ — §2.3; the source hyphenates |
+| Yang-shan, Wei-shan | یانگ-شان, وی-شان | یانگ‌شان / وی‌شان — a ZWNJ is not a hyphen |
+| Hōnen | هونن | هونِن — §2.4, and the kasre goes |
+| Shih-huang | شی-هوانگ | شی‌هوانگ — a ZWNJ is not a hyphen |
+| Ch’u | چ’و | «چو», of Ch'u's Pavilion — §2.2, the form §2.2 itself cites |
+| Po Chü-i | پو چیو-ای | پو چو-یی / بو چویی — §2.3, and §2.1: `P` is پ |
+| Hsüan-tsung | شیوآن-تسونگ | شوان-تسونگ — §2.3. A different man from Hsüan-tsang above; §2.3 is what keeps them apart |
+| Yüan-che | یوآن-چه | یوان-چِه / یوان-چه — §2.3 |
+| Li-yüan | لی-یوآن | لی-یوان — §2.3 |
+| Lo-t’ien | لو-ت’ین | لو-تین — §2.2 |
+| Sen’yūji | سن-یو-جی | سن‌یو-جی — §2.5: the hyphen already marks the mora boundary |
+| Ch’ang-an, Ch’ang-lo | چ’انگ-آن, چ’انگ-لو | چانگ‌آن / چانگ‌لو — §2.2; the source hyphenates |
+| Fu-chou | فو-چو | فو-جو — Wade-Giles `ch` is چ, as in Chao-chou |
+| Tien-tai | تین-تای | تیِن-تای — the kasre goes. The source spells it without the apostrophe and the Persian does not invent one |
+| Feng-yüeh | فنگ-یوئه | فِنگ-یوئه — the kasre goes |
+| Maitreya | مایتریا | مایتریه — §2.7's recorded form, promoted here because `110.md` is where it finally met verse |
+| Jui-yen, Wu-men, Tung-po, Shan-ku, Tu-ling, Tou-shuai, Ta-kuan, Ku-yin, Chiang-hu, Po-yün, Yao-shan, Ku-tsun-su Yü-lu | — | correct as given |
+
+**Three things this table is evidence for.** The model's commonest error is not
+a spelling but a *separator*: a ZWNJ where the source has a hyphen, or a hyphen
+where it has a space. It is inconsistent within one file — P'u-hua twice in
+`038.md`, Te-shan in four spellings across the book, K'uei-chi nine times wrong
+in a five-line poem. And §2.3 is doing real work: `Hsüan-tsang` and
+`Hsüan-tsung` are two different men, and without the ü rule the model's forms
+for them collide.
 
 ---
 
