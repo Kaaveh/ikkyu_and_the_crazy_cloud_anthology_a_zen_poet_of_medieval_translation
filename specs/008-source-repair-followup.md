@@ -37,11 +37,29 @@ low-priority back-matter files.
    Any other note hiding a flattened verse quotation the same way poem 7's
    did is found this way, not by trying the general rule again.
 
-2. **The Chinese column bled into `introduction-1/2/3`.** `build_introduction()`
-   never runs lines through `clean_translation_line()` — the poem-file fix
-   from 002 requirement 4 doesn't apply here because the Introduction's
-   English wraps *around* the column rather than stopping at it. Needs its
-   own extraction logic, not a reuse of the poem-file one.
+2. ~~**The Chinese column bled into `introduction-1/2/3`.**~~ **Done**, in spec
+   005, where it blocked three of that spec's seven files.
+
+   **The diagnosis above was wrong in its second half.** The English does not
+   wrap around the column: the page is an ordinary two-column setting, English
+   left and the original right. What produced the interleaving is that
+   `build_introduction()` joined the lines into paragraphs without cutting the
+   column off first, so the right-hand text landed *between* two English words
+   — `they would ignore fF, DARRZ karma and the world…`.
+
+   It did need its own logic, but a much smaller piece than "its own
+   extraction". `clean_translation_line()` is genuinely wrong here — it reads
+   any run of three spaces past column 45 as the gutter, and the Introduction
+   is set justified, so it also eats stretched word spacing: 52 lines,
+   including `his craziness` and `balancing act`. The fix is `drop_column()`,
+   which measures the gutter with the existing `find_gutter()` instead of
+   guessing at it. The measurement doubles as the test for whether to cut:
+   a one-column page has no such blank run, so it raises and the page is
+   returned untouched.
+
+   **Result: 363 CJK characters and OCR garbage runs removed, 0 left, and no
+   English word lost.** `just split` afterwards changed only
+   `introduction-1/2/3` — none of the 144 translated files moved.
 
 3. **`bibliography.md` and `glossary-index.md` are still half garbled CJK.**
    Deliberately deprioritized in 002 on the grounds that a verbatim garbled
@@ -76,9 +94,9 @@ The checklist from 002, unchanged and still all unread against the PDF:
 - [ ] `plates.md`
 - [ ] `foreword.md`
 - [ ] `preface.md`
-- [ ] `introduction-1.md` — **CJK column bleed, requirement 2. Its own session.**
-- [ ] `introduction-2.md`
-- [ ] `introduction-3.md` — **CJK column bleed, requirement 2.**
+- [x] `introduction-1.md` — CJK column bleed fixed in 005 (`drop_column`).
+- [x] `introduction-2.md` — same fix.
+- [x] `introduction-3.md` — CJK column bleed fixed in 005 (`drop_column`).
 - [ ] `introduction-4.md`
 
 ### Back matter

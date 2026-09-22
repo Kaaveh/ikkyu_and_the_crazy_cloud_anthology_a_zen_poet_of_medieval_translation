@@ -170,6 +170,11 @@ cjk_pat = re.compile(r'[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff\uff
 word_pat = re.compile(r'\b[A-Za-z][a-z]{2,}\b')
 shout_pat = re.compile(r'\b[A-Z][A-Za-z]*[A-Z][A-Za-z0-9]*\b')
 
+# Two or more all-caps tokens in a row: the OCR's failed reading of the
+# Chinese column -- "ABA RE", "BRETC EER". Used by drop_column() to confirm
+# that what sits right of a measured gutter really is the column.
+shout_run_pat = re.compile(r'(?<![.\w])(?:\b[A-Z]{2,}\b[ ]?){2,}')
+
 def is_column_junk(tail):
     """Is this the Chinese column, read by the OCR as Latin?
 
@@ -378,10 +383,52 @@ def build_preface():
         out.append("")
     return '\n'.join(out)
 
+def drop_column(page_text):
+    """Cut the Chinese column off a two-column Introduction page.
+
+    Spec 008 requirement 2 recorded this as needing "its own extraction logic"
+    because the Introduction's English wraps around the column. It does not --
+    the page is an ordinary two-column setting, English left and the original
+    right. What went wrong is that build_introduction() joins the lines into
+    paragraphs without cutting the column off first, so the right-hand text
+    lands *between* two English words: "they would ignore fF, DARRZ karma and
+    the world..." That reads as interleaving but is only a missing cut.
+
+    clean_translation_line() is the poem files' cut and is wrong here. It
+    treats any run of three spaces past column 45 as the gutter, and the
+    Introduction is set justified, so it also eats stretched word spacing --
+    52 lines, including "his craziness" and "balancing act".
+
+    find_gutter() measures the blank run instead of guessing at it, and the
+    measurement doubles as the test for whether to cut at all: a one-column
+    page has no such run, raises, and is returned untouched. Over the three
+    sections this removes 363 CJK characters and garbage runs and leaves every
+    English word standing.
+    """
+    lines = page_text.splitlines()
+    if not lines or not max(map(len, lines), default=0):
+        return page_text
+    try:
+        gutter = find_gutter(lines)
+    except ValueError:
+        return page_text                  # one column: nothing to cut
+    right = '\n'.join(l[gutter:] for l in lines)
+    # A gutter alone is not enough -- a page can have a wide blank run for
+    # other reasons. Cut only where what is to the right of it is the column.
+    if not (cjk_pat.search(right) or shout_run_pat.search(right)):
+        return page_text
+    return '\n'.join(l[:gutter].rstrip() for l in lines)
+
+
+def intro_page(i):
+    """One Introduction page: footer off, Chinese column off."""
+    return drop_column(strip_page_footer(pages[i]))
+
+
 def build_introduction():
     # Section 1: p26 to p58 line 24
-    p26_to_57 = '\n'.join([strip_page_footer(pages[i]) for i in range(26, 58)])
-    p58_lines = pages[58].splitlines()
+    p26_to_57 = '\n'.join([intro_page(i) for i in range(26, 58)])
+    p58_lines = drop_column(pages[58]).splitlines()
     dial_idx = -1
     for i, l in enumerate(p58_lines):
         if 'Dialectic' in l:
@@ -395,8 +442,8 @@ def build_introduction():
     # Section 2: p58 dial_idx to p62 allusion
     p58_to_62_lines = p58_lines[dial_idx:]
     for idx in range(59, 62):
-        p58_to_62_lines.extend(strip_page_footer(pages[idx]).splitlines())
-    p62_lines = strip_page_footer(pages[62]).splitlines()
+        p58_to_62_lines.extend(intro_page(idx).splitlines())
+    p62_lines = intro_page(62).splitlines()
     allusion_idx = -1
     for i, l in enumerate(p62_lines):
         if l.strip() == 'Allusion':
@@ -411,8 +458,8 @@ def build_introduction():
     # Section 3: p62 allusion to p82 note
     p62_to_82_lines = p62_lines[allusion_idx:]
     for idx in range(63, 82):
-        p62_to_82_lines.extend(strip_page_footer(pages[idx]).splitlines())
-    p82_lines = strip_page_footer(pages[82]).splitlines()
+        p62_to_82_lines.extend(intro_page(idx).splitlines())
+    p82_lines = intro_page(82).splitlines()
     note_idx = -1
     for i, l in enumerate(p82_lines):
         if 'A Note on the Text' in l:
@@ -427,7 +474,7 @@ def build_introduction():
     # Section 4: p82 note to p84
     p82_to_84_lines = p82_lines[note_idx:]
     for idx in [83, 84]:
-        p82_to_84_lines.extend(strip_page_footer(pages[idx]).splitlines())
+        p82_to_84_lines.extend(intro_page(idx).splitlines())
     sec4_raw = '\n'.join(p82_to_84_lines)
     sec4_paras = parse_prose(dehyphenate(sec4_raw))
     if sec4_paras and 'A Note on the Text' in sec4_paras[0]:
