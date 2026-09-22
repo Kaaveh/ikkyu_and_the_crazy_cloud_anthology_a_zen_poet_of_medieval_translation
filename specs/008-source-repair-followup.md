@@ -24,7 +24,17 @@ low-priority back-matter files.
 
 ## Requirements
 
-1. **The checklist: 147 files read against the PDF.** 002's own checklist
+1. ~~**The checklist: 147 files read against the PDF.**~~ **Moved to
+   [010](./010-source-audit.md)**, which owns the read now. It was started
+   here — `001`–`010` are done, and what they turned up (the justified-spacing
+   deletions across the whole Anthology, the `Daid` → `Daitō` rule that erased
+   Daiō, and `split_poem7_death_verse` having been dead code) is recorded
+   there, along with the 22 files it repaired. At 147 files this is weeks of
+   work and a spec of its own, not a fold-in item on this one.
+
+   The original text of the requirement follows, since 010 inherits it.
+
+   002's own checklist
    (reproduced below) was never worked — 002's two sessions were driven by
    defect-class scans over the whole tree, not a file-by-file read. Reading
    the poem files first is the highest-value use of this: it's how the
@@ -70,7 +80,8 @@ low-priority back-matter files.
 
 ## Files
 
-The checklist from 002, unchanged and still all unread against the PDF:
+**This checklist lives in [010](./010-source-audit.md) now** — work it there,
+where it is kept up to date. Left here so 008 still reads as a whole.
 
 ### Anthology
 

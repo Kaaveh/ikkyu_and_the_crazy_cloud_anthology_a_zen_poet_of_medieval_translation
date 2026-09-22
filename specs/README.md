@@ -20,6 +20,8 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ✅ Done        |
 | 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
+| 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ⬜ Not started |
+| 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
 
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
 skipped`, and the book typesets at 230 pages.
@@ -27,8 +29,24 @@ skipped`, and the book typesets at 230 pages.
 **007 is part-done and tagged `v0.1.0`.** Every `TBD`/`TODO` is settled,
 `README.md` and the two licence files exist, and `just build` produces all three
 formats clean. What is left in it is one criterion: **the end-to-end read of the
-typeset PDF**, which is also 008's requirement 1 — the same read from the other
-side, and the reason the tag is `v0.1.0` and not `v1.0.0`. Do them as one pass.
+typeset Persian PDF**, and that is what keeps the tag at `v0.1.0`.
+
+**It is not the same read as 010.** 010 reads `source/` against the 228-page
+English scan and asks whether the English says what the book says; 007 reads
+the Persian output and asks whether it typesets. Different document, different
+question, different eyes. An earlier version of this page implied they were one
+pass; they are not.
+
+### `just check` is red, by design, until 009 runs
+
+010's first session fixed three generator faults and re-split, which changed 22
+files in `source/`. Their Persian was translated from the damaged text and is
+now stale: `check_parity` reports `fa/002.md: 5 blocks, source has 6`.
+
+This does **not** affect a fresh clone — `source/` is gitignored, and the
+checkers report "skipped" without it. It affects the maintainer, after
+`just split`, and it clears when [009](./009-retranslate-repaired-files.md)
+re-translates the 22.
 
 008 is part-done: **requirement 2 (the Introduction's CJK bleed) was completed
 inside 005**, which it was blocking. Its requirement 1 (the 147-file PDF read)
@@ -39,9 +57,14 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007
-repair  style   pilot   bulk    back   bleed     intro   ship
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo
 ```
+
+**010 and 009 alternate rather than run in sequence.** Each decade of the audit
+that repairs a file makes that file's Persian stale, so the tail of the roadmap
+is a loop: read a chunk, fix the generator, list what broke, re-translate it,
+green the checkers, read the next chunk.
 
 **This is the order the work actually ran in, with one correction.** `008§2` is
 not where the roadmap put it — see the 008 note below.
@@ -107,8 +130,14 @@ not where the roadmap put it — see the 008 note below.
   the column bleed — leftovers for requirement 1's file-by-file read, not
   evidence the bleed is back.
 
-  The remaining requirement 1 (the 147-file PDF read) and requirement 3 are
-  genuinely fold-in work, and nothing is waiting on them.
+  **Requirement 1 was not fold-in work either, and has moved to
+  [010](./010-source-audit.md).** Ten files into it, it had found the same
+  justified-spacing deletion running on every poem page, a typo rule that
+  replaced Daiō with his own student throughout, and a verse-restoring fix that
+  two specs recorded as done while it was dead code. 22 files repaired, and a
+  re-translation spec ([009](./009-retranslate-repaired-files.md)) behind them.
+  That is not something to fold into a follow-up. Requirement 3 genuinely is,
+  and nothing is waiting on it.
 
 ## Scale
 

@@ -64,7 +64,25 @@ TYPO_FIXES = [
     (rf'\bY{O}Q?s{O}\b', 'Yōsō'),
     (rf'\bDait{O}[\'’]s\b', 'Daitō’s'),
     (rf'\bDait{O}\b', 'Daitō'),
-    (rf'\bDaid{O}?\b', 'Daitō'),
+    # "Daid" is not always a mangled "Daitō". Three of its four occurrences in
+    # the OCR are Daiō Kokushi -- Hsü-t'ang's student and Daitō's own master --
+    # and mapping them all to Daitō erased him from the book and made poem 7's
+    # note say Hsü-t'ang instructed Daitō, which he did not. Checked against
+    # pp. 93, 94 and 105 of the scan. Only the Daitokuji founder is Daitō.
+    (rf'\bDaid{O}?\b(?=,\s*founder)', 'Daitō'),
+    (rf'\bDaid{O}?\b', 'Daiō'),
+    # An ideographic comma the OCR left in English prose, in text the gutter
+    # fix above restores. Targeted, not a general 、 -> , rule: four more sit
+    # in preface.md and introduction-1/3, whose Persian is already translated,
+    # and re-running 67 K characters of Introduction for a comma is not a
+    # trade worth making. Those four are recorded in spec 008 instead.
+    (r'kōan、 no\.', 'kōan, no.'),
+    # p. 132 reads "as warm as a cave in winter". The capital is the OCR's,
+    # and left standing it reads as a proper noun in a poem line. Matched
+    # without "winter": typos are applied per line and the verse breaks
+    # between "in" and "winter". \s+ because this is a verse line and the
+    # justified spacing has not been collapsed yet at this point.
+    (r'as warm\s+as a Cave\b', 'as warm as a cave'),
     (r'\bDaitokwji\b', 'Daitokuji'),
     (rf'\bKas{O}[\'’]s\b', 'Kasō’s'),
     (rf'\bKas{O}\b', 'Kasō'),
@@ -239,7 +257,12 @@ def parse_prose(text):
     return cleaned
 
 POEM7_DEATH_VERSE = re.compile(
-    r'(?P<pre>.*admired:) '
+    # No `(?P<pre>.*admired:) ` prefix. parse_prose() breaks a paragraph after
+    # a line ending in ':', so "...the personality Ikkyū admired:" is already a
+    # paragraph of its own and the verse starts the next one. Requiring the
+    # prefix meant this never matched and the fix was dead code for two specs:
+    # source/002.md still carried the death poem flattened into its note.
+    # Confirmed against p. 93 of the scan, where it is four indented lines.
     r'Eighty-five years Knowing nothing even about the Patriarchs, '
     r'Rowing with my elbow, serving, going, '
     r'Erasing my tracks in the Great Void\. \[4\] '
@@ -258,7 +281,6 @@ def split_poem7_death_verse(paras):
         if not m:
             out.append(p)
             continue
-        out.append(m.group('pre'))
         out.append('Eighty-five years\n'
                     'Knowing nothing even about the Patriarchs,\n'
                     'Rowing with my elbow, serving, going,\n'
@@ -661,8 +683,20 @@ def get_trans_lines():
     for p_idx in range(88, 201):
         m = FOOT_NUM.search(pages[p_idx].rstrip())
         page_starts.append((len(all_lines), m.group(1) if m else None))
-        for l in strip_page_footer(pages[p_idx]).splitlines():
-            all_lines.append(clean_translation_line(l))
+        # Measure the gutter before guessing at it. Spec 008 requirement 2
+        # found that clean_translation_line()'s "three spaces past column 45"
+        # rule eats justified word spacing, and fixed the Introduction with
+        # drop_column(). These pages are set justified too, and the same rule
+        # was deleting English here -- "Chamber" off a poem title on p.187,
+        # "Daiō told" out of poem 8's note, "phrase de-" out of the line above
+        # it. Where a gutter is measurable the column is already gone, so the
+        # guess must not run as well; where it is not (21 one-column pages),
+        # clean_translation_line() stays the fallback. Spec 008 requirement 1.
+        page = strip_page_footer(pages[p_idx])
+        cut = drop_column(page)
+        lines = cut.splitlines() if cut != page else [
+            clean_translation_line(l) for l in page.splitlines()]
+        all_lines.extend(lines)
 
     text = '\n'.join(all_lines)
     joins = []
@@ -682,7 +716,13 @@ def build_translations():
     lines, foots = get_trans_lines()
 
     def get_num(idx, s):
-        if idx == 1714 or s == '2':
+        # Poem 121's display number OCRs to a bare "2" (p. 134 of the scan).
+        # This used to read `idx == 1714 or s == '2'`, and the index arm was a
+        # landmine: any change upstream that shifts the line numbering makes
+        # 1714 the poem's first line instead, which then takes 121 a second
+        # time and trips the monotonic assertion below. Matching the text is
+        # enough -- the stray "2" is the only one in the anthology run.
+        if s == '2':
             return '121'
         if s in OCR_MAP:
             return OCR_MAP[s]
@@ -905,14 +945,19 @@ def build_translations():
             if after_colon:
                 n_lines = [after_colon] + n_lines
             note_paras = parse_prose('\n'.join(n_lines))
-            if num == '7':
-                # STYLE.md §3.3: Hsü-t'ang's death poem, quoted inline in the
-                # note, is a stanza in the print edition but parse_prose has
-                # no way to tell a quoted verse from a quoted anecdote and
-                # flattens both alike (checked: doing this generally turns
-                # dozens of quoted kōans in other notes into fake "verse").
-                # This is the one case confirmed against the raw OCR.
-                note_paras = split_poem7_death_verse(note_paras)
+            # STYLE.md §3.3: Hsü-t'ang's death poem, quoted inline in poem 7's
+            # note, is a stanza in the print edition but parse_prose has no way
+            # to tell a quoted verse from a quoted anecdote and flattens both
+            # alike (checked: doing this generally turns dozens of quoted kōans
+            # in other notes into fake "verse"). This is the one case confirmed
+            # against the scan, p. 93.
+            #
+            # Unguarded. This used to read `if num == '7'`, and num is None on
+            # a Notes chunk -- the number belongs to the poem item, not to its
+            # notes -- so the call never fired and source/002.md carried the
+            # poem flattened through two specs that each recorded it as fixed.
+            # No guard is needed: the pattern is the poem's whole text.
+            note_paras = split_poem7_death_verse(note_paras)
             for p in note_paras:
                 out.append(p + "\n")
             continue
