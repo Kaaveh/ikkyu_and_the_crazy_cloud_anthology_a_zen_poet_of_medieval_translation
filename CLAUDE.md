@@ -56,9 +56,15 @@ instead of the pinned tag, `pip install -e ../bargardan-tools`.
   file.** Spec 005 found `preface.md` Advanced for its first two paragraphs and
   Classic for the remaining six, split exactly at the chunk boundary. A
   whole-file count cannot see that: this file scores 25, and the verb-prefix
-  test below passes it clean. The signal is **a run of paragraphs at exactly 0
-  ezafe totalling more than ~1,500 characters**; one 0 paragraph between
-  healthy ones is normal (spec 004's `099.md`, spec 005's `foreword.md`).
+  test below passes it clean.
+
+  **A run of 0-ezafe paragraphs is a prompt to read them, not a verdict.** It
+  over-flags: it called 23 paragraphs of `introduction-1.md` suspect and all 23
+  were fine — ordinary declarative Persian with no ezafe construction to make,
+  spec 004's `099.md` at scale. What Classic actually looks like, once you are
+  reading, is dropped subjects, a doubled word («ابهامات و ابهامات»), Latin
+  names left standing inside the Persian, and the wrong term for the thing the
+  chapter is about. **The verb-prefix test below is what settles it.**
 
   ```bash
   awk 'length>120' fa/preface.md | while IFS= read -r l; do
@@ -75,11 +81,22 @@ instead of the pinned tag, `pip install -e ../bargardan-tools`.
   400, 300**. `009.md` needed 300; `preface.md` needed 900.
 
 - **A ladder step trades one failure for another once `source/` is damaged.**
-  Spec 005: `introduction-2.md` at 900 gives good Persian and drops a block; at
-  400 it keeps every block and turns seven paragraphs Classic. If no chunk size
-  is clean, stop — the input is the problem, not the chunk. Check the file
-  against the damage table in `specs/005-introduction.md` before spending
-  another run on it.
+  Spec 005: `introduction-2.md` at 900 gave good Persian and dropped a block; at
+  400 it kept every block and turned seven paragraphs Classic. If no chunk size
+  is clean, stop — the input is the problem, not the chunk. That run is what
+  sent 005 to 008 requirement 2.
+
+- **Choose the chunk size on block parity, and prefer a split to a drop.**
+  Even on clean source each long file wanted a different size, for a different
+  reason: `introduction-2.md` 4500, `introduction-3.md` 2250,
+  `introduction-1.md` 900. A block the model **split** is merged by hand in one
+  edit; a block it **dropped** would have to be written by hand, which nothing
+  here sanctions. So where no size is perfect, take the one that splits.
+
+- **Count blocks, then read them.** Counting alone would have passed
+  `introduction-3.md` at 900 and at 400; reading is what showed both rendering
+  *allusion* as `کنایه` rather than `تلمیح` — the chapter's own title — 15 and
+  29 times.
 
 - **`--raw` is mandatory too, and matters more here than in the prose books.**
   It stops the translator's line-unwrapping, which would run a stanza together
