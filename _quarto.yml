@@ -1,24 +1,30 @@
 # Book build. One source tree, three outputs.
 #
-# TBD markers are the maintainer's calls, not defaults to keep: the title, the
-# author credit and the part titles are translation decisions and should be
-# settled the same way any other term is.
+# The title, the author credit and the part titles were settled in spec 007.
+# «گلچین ابر دیوانه» is not a fresh choice here: it is the rendering the
+# translation itself uses 165 times, so the cover agrees with the text.
 #
 # fa/ is generated -- `just stubs` creates it from source/, and the chapter
 # list below mirrors source/README.md. Regenerate both together if the split
 # changes, or Quarto will list a chapter that no longer exists.
 
-book-version: "نسخهٔ ۰.۰.۱"
+book-version: "نسخهٔ ۰.۱.۰"
 
 project:
   type: book
   output-dir: _book
 
 book:
-  title: "ایک‌کیو و گلچین ابر دیوانه"   # TBD
-  subtitle: "شاعری ذن از ژاپن سدهٔ میانه"   # TBD
-  author: "کاوه"   # TBD: how you want to be credited
+  title: "ایک‌کیو و گلچین ابر دیوانه"
+  subtitle: "شاعری ذن از ژاپن سدهٔ میانه"
+  # The English book is Arntzen's; only the Persian is the maintainer's.
+  author:
+    - "سونیا آرنتزن"
+    - "برگردان: کاوه"
 
+  # repo-actions without repo-url is a build warning and a dead «ویرایش این
+  # صفحه» link.
+  repo-url: https://github.com/Kaaveh/ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translation
   repo-actions: [edit, issue]
   downloads: [pdf, epub]
   search: true

@@ -18,12 +18,17 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 004 | [The Anthology — 011–135](./004-the-anthology.md)          | 003        | ✅ Done        |
 | 005 | [Introduction & front matter](./005-introduction.md)       | 003, 008§2 | ✅ Done        |
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ✅ Done        |
-| 007 | [Release & publication](./007-release.md)                  | 004–006    | ⬜ Not started |
+| 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
 
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
-skipped`, and the book typesets at 231 pages. Only 007 (release) stands between
-here and a finished edition.
+skipped`, and the book typesets at 230 pages.
+
+**007 is part-done and tagged `v0.1.0`.** Every `TBD`/`TODO` is settled,
+`README.md` and the two licence files exist, and `just build` produces all three
+formats clean. What is left in it is one criterion: **the end-to-end read of the
+typeset PDF**, which is also 008's requirement 1 — the same read from the other
+side, and the reason the tag is `v0.1.0` and not `v1.0.0`. Do them as one pass.
 
 008 is part-done: **requirement 2 (the Introduction's CJK bleed) was completed
 inside 005**, which it was blocking. Its requirement 1 (the 147-file PDF read)

@@ -1,0 +1,47 @@
+This licence covers the code and build configuration in this repository:
+
+    tools/          the apparatus adapter and its tests
+    tex/            the LaTeX preamble
+    assets/         the RTL and EPUB stylesheets
+    split_book.py, generate_final_markdown.py
+    justfile, _quarto.yml, _language.yml, pyproject.toml
+
+It does not cover the two things in this repository that are not code:
+
+  * The Persian translation under fa/, and the prose in README.md, STYLE.md,
+    index.md and specs/, are CC BY-SA 4.0 — see LICENSE-TEXT.
+  * The English source text is © Sonja Arntzen / Shambhala Publications, 1986.
+    It is licensed to the maintainer for the purpose of producing this
+    translation and is not redistributed here. source/, the monolith and the
+    raw OCR are gitignored.
+
+The plate images under images/ are photographs of works held by Shinjuan
+(Daitokuji), reproduced from the English edition; they are not covered by
+either licence.
+
+The fonts under fonts/ are Vazirmatn, under the SIL Open Font License; see
+fonts/OFL.txt.
+
+---
+
+MIT License
+
+Copyright (c) 2026 Kaaveh Mohamedi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
