@@ -428,7 +428,11 @@ def intro_page(i):
 def build_introduction():
     # Section 1: p26 to p58 line 24
     p26_to_57 = '\n'.join([intro_page(i) for i in range(26, 58)])
-    p58_lines = drop_column(pages[58]).splitlines()
+    # intro_page, not drop_column alone: this page was the one fetched without
+    # strip_page_footer, so its running header "35    INTRODUCTION" survived
+    # into the text and landed mid-sentence, the sentence having been split
+    # across the page break. It is the only running header left in the book.
+    p58_lines = intro_page(58).splitlines()
     dial_idx = -1
     for i, l in enumerate(p58_lines):
         if 'Dialectic' in l:
