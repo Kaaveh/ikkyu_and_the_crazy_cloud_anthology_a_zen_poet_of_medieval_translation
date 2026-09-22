@@ -113,25 +113,26 @@ it is repaired. The other four depend on nothing.
 
 ## Files
 
-- [ ] `abbreviations.md` — 432 chars
-- [ ] `bibliography.md` — 8,046 chars
-- [ ] `index-of-poems.md` — 5,071 chars
-- [ ] `glossary-index.md` — 4,598 chars
-- [ ] `notes.md` — 17,518 chars, ~4 chunks · **depends on 002**
+- [x] `abbreviations.md` — 432 chars
+- [x] `bibliography.md` — 8,046 chars
+- [x] `index-of-poems.md` — 5,071 chars
+- [x] `glossary-index.md` — 4,598 chars
+- [x] `notes.md` — 17,518 chars, ~4 chunks · **depends on 002**
 
 ## Acceptance criteria
 
-- [ ] All five at `status: reviewed`.
-- [ ] `just check` passes with all five compared, and **no file declares a
+- [x] All five at `status: reviewed`.
+- [x] `just check` passes with all five compared, and **no file declares a
       `parity: offset` or `parity: skip`**. If one turns out to need it, that is a
       sign the draft gained or lost a blank line — fix that instead.
-- [ ] `just fix` followed by `just check` leaves every verbatim entry byte-identical
+- [x] `just fix` followed by `just check` leaves every verbatim entry byte-identical
       to `source/`. This is the real test of requirement 4, and the only way to know
       the `normalize: off` regions are placed correctly.
-- [ ] The four verbatim files' entry lists diff clean against `source/`.
-- [ ] Something in the book tells the reader what the page numbers refer to.
+- [x] The four verbatim files' entry lists diff clean against `source/`.
+- [x] Something in the book tells the reader what the page numbers refer to.
 - [ ] All five read in the typeset PDF — the mixed Persian/Latin/CJK lines in the
       index files are where bidi faults are most likely in the whole book.
+      **Not met, and not fixable inside this spec** — see "The PDF" below.
 
 ## Out of scope
 
@@ -139,4 +140,99 @@ The Anthology, the Introduction, release. Repairing OCR — that is 002.
 
 ## Implementation notes
 
-_(filled in during implementation)_
+### The four verbatim files went exactly as written
+
+`strip`, wrap each `- ` list in `<!-- normalize: off -->`, translate the heading
+and the one prose paragraph by hand, `restore`. Requirement 4's claim about
+parity holds: `iter_blocks` skips the comment-only blocks, no file needed an
+offset, and `just fix && just check` leaves all 302 entry lines byte-identical
+to `source/`.
+
+The `## Primary Sources` / `## Secondary Sources` headings are
+`منابع دست‌اول` / `منابع دست‌دوم`. Requirement 5 is answered in the translated
+preamble of both index files: "شماره‌ها به صفحه‌های چاپ اصلی انگلیسی (۱۹۸۶)
+ارجاع می‌دهند، نه به صفحه‌شمار این ترجمه." — one added sentence, no renumbering.
+
+### `notes.md` needed a harness, and the reason is worth recording
+
+The spec calls it "17.5 K of real prose". It is not: **154 of its 204 notes are
+under 60 characters** and are bare citations — `27. Ibid., T 47, p. 497a.` The
+plain pipeline fails on those three ways, and each failure is silent:
+
+1. **The model merges adjacent one-line citations**, losing a block. Two
+   whole-file runs at `--chunk 4500` and `--chunk 2200` each lost one or two.
+2. **A chunk that is nothing but citations is served Classic, every time.**
+   Measured at four chunk sizes and at every split point tried, down to a single
+   note. Classic produces exactly the damage requirement 6 forbids: `T 47` →
+   `ت 47`, `KZ` → `کز`, `SP` → `اس پی`, `roll` → `رول`, and `p. 12bc` →
+   `ص. ۱۲ قبل از میلاد`.
+3. **Advanced sometimes hands a citation-only note straight back in English**,
+   which leaves the file carrying two conventions for identical content.
+
+**The fix for (2) is a prose primer.** Prepend one prose note to the same
+citations and Advanced is served instead, keeping `T 47`/`ZZ`/`KZ` intact and
+rendering `roll`/`v.` as `طومار`/`جلد`. So the file was translated in ~1,800
+character pieces, each with note 3 prepended as a primer whose own translation
+is thrown away, and each piece gated on three objective checks — block count,
+every `CZS|KZ|SP|ZZ|T N` still present, and at least one Arabic-script *letter*
+in the output. A piece that fails is split and retried; the fallback is
+per-input and deterministic, so a different input is the only thing that can
+change it. Then a mop-up pass re-translates whatever blocks still came back in
+English, in batches behind the same primer. Two mop passes cleared all 23.
+
+Two traps in the gates, both of which cost a run:
+
+- `\bT\b` also matches **T.S. Eliot** and the T of **T'ao Yüan-ming**, so the
+  abbreviation gate must be `\bT\s+\d+`.
+- `\p{Arabic}` matches **Persian digits**, so an untouched citation whose only
+  change was `62.` → `۶۲.` passes a "did it get translated" test. The gate needs
+  a letter: `[\p{Arabic}&&\p{L}]` with `regex.V1`.
+
+The harness is throwaway and lives in the scratchpad, not the repo: it exists
+because `notes.md` is the one file in the book made of citations, and nothing
+else here will need it. If the Introduction turns out to need the primer trick
+too, that is the point to move it into `tools/`.
+
+### `notes.md` hand-steps, both applied to the draft in `/tmp`, never to `fa/`
+
+- **Entry numbers to Latin digits**, per STYLE §4.2 — the marker and the entry
+  it points at change together. The model persianises them; 191 were converted
+  back. Page references *inside* a note stay Persian, per §5.
+- **One `<!-- normalize: off -->` region**, around note 71, whose English
+  article title is in ASCII quotes that the script-blind `quotes` rule would
+  turn into `«A Biographical Study of Tz'u-en»`.
+
+### Source defects found, not repaired (requirement 7)
+
+- `notes.md` note 99 is `roll 7, ZZ, v. roll 7, ZZ, v. 138` in `source/` — an
+  OCR doubling. The model dropped the repeat and the Persian reads correctly;
+  the abbreviation gate reports it as its one remaining mismatch. **The `fa/`
+  file is right and `source/` is wrong.** Spec 008's.
+- `glossary-index.md` is worse than "some garbled CJK": `Gozan frill, 7,8, 9,
+  17422531`, `Muso Soseki 278684`, `Katada #16 katsu "%, 101`. Left verbatim,
+  visibly broken, as requirement 7 asks.
+
+### The PDF — the one criterion not met
+
+`quarto render --to pdf` completes clean and all five files typeset. The Notes
+and the Index of Poems read correctly: Latin runs inside Persian paragraphs are
+not reversed, which is what LuaLaTeX + `bidi=basic` was chosen for.
+
+**But every CJK character is invisible in the PDF.** The codepoints are in the
+file — `pdftotext` on the bibliography page returns `Jikaisha 自戒 集,in Nakamoto
+Tamaki 中 本 環` — and the rendered page has a blank gap where each one should
+be. Vazirmatn has no CJK glyphs and no fallback font is declared, so LuaLaTeX
+drops them without a "Missing character" warning. A second fault follows from
+the first: the neutral comma between a CJK run and a page number then lands on
+the wrong side, so a glossary entry reads `Gio ␣␣␣ ,13, 14`.
+
+This is a build defect, not a translation one, and it is **book-wide, not back
+matter's**: `introduction-1.md` carries 111 CJK characters and `introduction-3.md`
+107. Fixing it means vendoring a CJK font into `fonts/` beside the Vazirmatn
+pair — a licensing and repo-size decision for the maintainer, and one that
+should not be smuggled in under a translation spec. Declaring a *system* font
+instead would work on one machine and silently produce the same blank gaps
+everywhere else, which is worse than the current state.
+
+**Left for spec 007 (release), where the font stack belongs.** The HTML and
+EPUB builds are unaffected: browsers and readers fall back on their own.

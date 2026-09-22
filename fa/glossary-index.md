@@ -1,7 +1,104 @@
 ---
-status: untranslated
+status: reviewed
 ---
 
 # واژه‌نامه و نمایه
 
-<!-- TODO: translate -->
+اصطلاح‌ها و نام‌های خاصی که در کتاب آمده‌اند، همراه با کانجی / نویسه‌های چینی اصلی و ارجاع‌های صفحه‌ای. شماره‌ها به صفحه‌های چاپ اصلی انگلیسی (۱۹۸۶) ارجاع می‌دهند، نه به صفحه‌شمار این ترجمه.
+
+<!-- normalize: off -->
+
+- Ankokuji 安国 寺,15
+- Arhat (rakan) #278, 18, 19, 20, 48, 49, 50, 1357136
+- Ashikaga 足利 ,3, 11, 12
+- biwa hoshi FEET, 13
+- Bodhidharma, 96
+- Bokkei 3, 29
+- Bokusai #7, 10, 29
+- Ch’ang-an 長安 ,174, 175
+- Chao Chao-i 趙 昭 儀 ,19
+- Chao-chou #4), 66, 84, 149
+- Chien-ho 監 河 ,141
+- Chih-y #98, 55
+- Ch’ing-su 清 素 ,129-30
+- Chuang Chou #£/AJ, 141, 162, 174
+- Ch’u Ssu-tsung fisimae, 104
+- Cht Yüan 屈原 ,46-48, 131
+- cloud-rain. See un’u.
+- Daie 大 応 ,16, 69, 70, 80
+- Daitō Ake, 16-17, 44, 56, 65, 68, 70, 75, 99,
+- 109, 123, 147
+- Daitokuji (ep oy LO Gy Linon 24a.
+- TS NOS NA 23 lio?
+- Eguchi 江口 ,29
+- Fo-yen Ch’ing-yüan 仏 眼 清 遠 ,80, 127-28
+- Fu (Master) 学 上 座 , 50-51
+- Fujiwara 藤原 ,11
+- Fujiwara no Teika 藤原定 家, 31
+- fūryū 風流 ,52, 65, 66-67, 84,116, 117, 130, 133, 134, 143, 144, 159, 163, 164, 174, 175, 176
+- ge {f, 59-60
+- gekokujo 下 史上 , 4, 5
+- Gio 祇 王,13, 14
+- go 号 ,59
+- Go Daigo 後 醒 醐 ,11. 17
+- Go Komatsu 後 小松 ,11, 12
+- Gozan frill, 7,8, 9, 17422531
+- Gozan Jissatsu T\L-+-#1), 7
+- Great Chiliocosm, 85, 87, 98
+- hadaka no gengo 裸 の 言語 ,39 haikai HER, 29 haiku GE, 29 Higashiyama 東山 ,15, 129 Honen 法然 ,146 Hotoke 仏 ,13, 14 Hsiang river 湘 水,51, 130, 131 Hsiang-yen Bx, 50, 51, 88 Hsüan-tsung 支 宗,159 Hsüeh-tou #, 91, 93 Hsü Chung-ya #R- HE, 107 Hsü-t’ang 虚 堂 ,16, 69, 72-73, 76, 80, 107 Huang-po 黄 緊 ,85, 154 Huang Shan-ku 黄山 谷 ,149 Hui-neng 82, 105 Hui-ssu 223, 55 Ikkyū Sōjun 一 休 宗 純 : birth, 12; death, 32; and Mori, 28, 155-63 and Yōsō, 23-26, 75-76, 109-11, 121-22; Zentraining, 15-21 Jasoku 蛇足 ,29, 119 Jodosht 浄土 款,146 Jodo Shinsht #+-- BAR, 26 kalpa (go) #4, 75 kana hogo 仮名 法 語 , 23 Kannon 観音 ,16, 89-90 Kao-ch iu 高丘 ,55 Kao-tang Fu jay/azfit, 54, 55 Kasō #28, 16-18, 24, 109-10 Katada 堅田 ,16 katsu "%, 101, 155 Katsuroan f# Sai, 26, 169 Kenninji 建仁 寺,7, 15 Ken’o 謙 釣 ,16 kōan 公 案 ,13: defined, 179n15 Kokyauan 虎 丘 庵 ,169 Komparu Zenchiku 金 春 禅 竹,29 Kuei-tsung 帰 宗,100 Kung-sun Shu 公 係 述 ,95 Ku-yin #48, 131 Lan-ts’an #3, 51, 52, 66-67, 110, 111 Li Chien 482, 101 Ling-yün SE, 88 Li Po 4A, 149, 161
+- Li Yi 24, 41
+- Li-yüan 李源 ,160
+- Lu-shan /#/U, 181n72
+- Ma-tsu 馬祖 ,45
+- Ma Yian 馬 援 ,95
+- Mori 森 ,10, 19, 20, 28, 155-63
+- Mumu Issei 無 夢 一 清 ,172, 174
+- Murata Shuko 村田 珠 光, 29
+- Muso Soseki 278684, 172, 174
+- Musa Ryoshin #4) RH, 172, 174
+- Namu Amida Butsu 南無 阿弥 陀 仏 , 146
+- Nan-ch’üan 南 泉 ,80, 81, 84, 131
+- Nan-yüeh Pa fe, 55
+- Nanzenji 南 禅 寺,7
+- Niao K'o 5 &, 36
+- No 能 , 6, 29
+- Oei 応永 ,11
+- Okumura 奥村 , 59
+- Onin War 応 伝 の 乱 ,4, 9, 28, 29, 30, 157 168, 169
+- Pai-chang 百丈 ,25: “wild fox,” 34, 76, 124, 156
+- Pan (Lady) DERER?, 13, 18, 132, 141-42
+- P’ang (Lay brother) 顧 居士 ,98
+- Po Chü-i, 白 居易 ,36, 151, 159, 164
+- Pu-hua 普 化 ,105, 106, 112
+- renga 連歌 ,6,29
+- Rinzai 臨 済 ,26, 71, 85-86, 101, 106, 112 135, 144, 145, 153, 154, 155, 169
+- Rinzai Zen fa yeh, 7-9, 32
+- rokudo 六道 75
+- Ryozen. See Tetto Ryozen.
+- Sakai 堺 ,22, 28
+- Sakyamuni, 119
+- sanzen 参禅 ,25
+- sanzen daisen sekai =FAF ER, 87
+- Sen no Rikyu 千 の 利休 ,29
+- Shen I-chi 4, 97
+- shi 詩 ,59, 60
+- shichigon zekku 七 言 絶句 ,40
+- Shida-dera Fes, 100
+- Shinjuan 真珠 庵,32
+- shoaku makusa, shuzen bugyo 諸悪 英作 衆 a AEF, 181n58
+- Shokokuji 相国 寺, 7
+- Shuonan ANBAE, 9, 27, 28, 29, 169
+- Shun (Lord) 3##, 52, 154 Socho 宗 長 ,29 Soga painting school 曽我 流,29 Soki 4278, 133 Ssu-ma Hsiang-ju 司馬 相 如 , 108 Sumiyoshi 4377, 28, 160, 166 Sung Yi 宋玉 , 54 Sung-yüan 松 源 ,113, 114, 125-26 Su Tung-po #48, 149 Ta-hui KS, 116 Takigi #, 27, 29, 161, 169 Ta-kuan 達観 ,131 Ta-mei 大 梅 ,45 T’ao Yüan-ming [fafiB4, 40, 48-51, 143 Ta-sui AWA, 84, 86, 87 Tenryuji 天龍寺, 7 Te-shan fell, 71, 101, 112; 137, 151 Tetto Ryozen RABI, 35, 37; Ryozen Sermon, 74-75 ‘Iien-tal sei. D156
+- , Tofukuji 東福寺 , 7 tokusei (act of grace) 徳政 ,5, 139 Tou-shuai 5238, 129-30 Ts’ao-shan #¥{L], 82 Tu Fu 杜 南 ,101, 135, 165, 166 Tu Mu 杜 牧,149 Tung-shan 洞 山,14 Tz'u-ming 慈 明,65, 67, 129, 133, 134 unsui 27K, 3 un’u 2 Ry, 3, 54-55
+- , Vimalakirti, 100, 101, 117 Wang Chang-ling = Si, 19 Wang Hui-chih F#&KZ, 52 Wei-shan }B/1, 21, 88, 145 Wen-chün 文 君 ,108 Wu-shan AKI, 55, 65, 107-8, 149, 156, 165, 174, 175 Wau-tsu 748, 42-43, 87, 88 Wu Tzu-hsü (R--, 110 Yakushido 薬師 堂 、160 yang 陽 、78 Yang-chi 楊 岐,67 Yang Kuei-fei 楊貴妃 、97, 159 Yang-shan 仰 山,145 Yang-t’ai 陽台 ,55 Yao-shan 楽山 ,98 Yen-t’ou 75H, 80
+- yin 陰 ,78
+- Yoshino F#y, 11, 17
+- WON) 78 POSS, WSS, MODS, iPAlSver 123
+- Yüan-che 円 沢 。 160
+- Yaan-wu 円 悟 ,42-43, 87-88
+- Yüeh Kuang 楽 広,73
+- Yün-men 32F4, 14, 53-54, 56, 77, 92, 127
+- Yuzuriha 譲 羽,27, 99
+- Zeami 世阿弥 ,29
+
+<!-- normalize: on -->

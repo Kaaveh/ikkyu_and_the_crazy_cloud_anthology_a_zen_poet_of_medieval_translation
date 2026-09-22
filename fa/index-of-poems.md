@@ -1,7 +1,135 @@
 ---
-status: untranslated
+status: reviewed
 ---
 
 # نمایهٔ شعرها
 
-<!-- TODO: translate -->
+بیشتر شعرها زیر عنوانشان نمایه شده‌اند. آن‌هایی که عنوانی ندارند، عنوانی بر پایهٔ محتوای شعر یافته‌اند یا زیر سطر نخستشان نمایه شده‌اند. شماره‌ها به صفحه‌های چاپ اصلی انگلیسی (۱۹۸۶) ارجاع می‌دهند، نه به صفحه‌شمار این ترجمه.
+
+<!-- normalize: off -->
+
+- A Beautiful Woman’s Dark Place Has the Fragrance of a Narcissus, 157
+- A Cup of Rice in a Broken-footed Cauldron, 44
+- A Layman Reciting a Poem Before the Gate of a Brothel and Then Returning, 137
+- About Disturbances at Daitokuji, 132
+- Account List of Nyoian Property, Appendix, 24
+- Acts of Grace, 139
+- Addressed to an Assembly on the Winter Solstice, 78
+- Addressed to a Monk at Daitokuji, 123
+- Addressed to a Monk in the Hall of Long Life, 118
+- Addressed to a Monk Who Burned Books, 150
+- Addressed to a Monk Who Killed a Cat, 131
+- Addressed to Reverend Yōsō upon My Retiring from Nyoian, 25
+- Arhat Chrysanthemums, 48
+- Blind Girl’s Love Songs at Yakushido, 160
+- Calling My Hand Mori’s Hand, 158
+- Cause and Effect for a Lustful Monk, 165
+- Ch’ang-men Spring Grass, 13
+- Chrysanthemums: An Arhat and Yang Kuei-fei in the Same Vasey 97
+- Composed When Ill, 34
+- Composed When Ill, 135
+- Composing a Poem and Trading It for Food, 129
+- Congratulating Daiyūan's Monk Yōsō upon Receiving the Honorary Title of Zen Master Sde Daisho, 121
+- Congratulating Elder Ki on the New Construction of Eagle Tail Monastery and Inquiring after His Leprosy, 133
+- Congratulations for Yōsō, 109-10
+- Death Poem, 32
+- Deluded Enlightenment, 149
+- Do No Evil, Do Much Good, 36
+- Dream Chamber, 172-73
+- Earth House, 108
+- Enlightenment Poem, 18
+- Face to Face with the Beautiful One on the Eve of Daitō’s Commemoration Ceremony, 65
+- Fisherman, 130
+- Fisherman, 163
+- Frogs, 95
+- From the Mountains, Returning to the City tO
+- Half a Cloud, 107
+- Hearing a Crow, Attaining Realization, 20
+- Hell, 152
+- Hsü-t’ang’s Three Pivot Phrases, 72
+- I Hate Incense, 153
+- I Recall the Old Times Living at Takagi, 161
+- In the Morning at T’ien-t’ai, in the Evening at Nan-yüeh, 54
+- Inscription for Yōsō’s Hermitage, 123
+- Instructing the Cook in the Mountains, 100
+- Lady Mori Rides in a Cart, 157
+- Lady Mori’s Afternoon Nap, 162
+- Lamenting Soldiers Dead in the War, 152
+- Living in the Mountains, 99
+- Master Sung-yüan Rose to Lecture and Presented This Case, 125
+- Mori Refusing to Eat, 155-56
+- Muddy Sake, 46
+- Night Conversation in the Dream Chamber, 163
+- Nirvana Hall, 127
+- No One Sees It the Same, 142
+- Old Woman Kōan, 102
+- On Tiger Mount, the Snow Falls on Three Grades of Monks, 116
+- On a Brothel, 117
+- On a Spring Outing to the Tomb of the Retired Emperor Go Komatsu at Unryoin in Sen’yuji, 172
+- On the Topic of The Venerable Master Daitō’s Conduct, 70
+- Oca?
+- Pai-chang Fasting, 124
+- Pain in Pleasure, 83
+- Paper Sleeves, 159
+- Peach Blossom Waves, 76
+- Picture of an Arhat Reveling in Brothel, 135
+- Pleasure in Pain, 82
+- Po Lo-t’ien, 164
+- Praising Master Rinzai, 155
+- Praising Monk Hsü-t’ang, 69
+- Praising P’u-hua, 112
+- Praising Saint Honen, 146
+- Praising the Dharma Master Tz’u-en K’uei-chi, 120
+- Praising the Fish-Basket Kannon, 89
+- Presented to a Gathering, 125
+- Promise to Be Born in the Time of Maitreya, 158
+- Quietly Singing Beside the Lamp, 147
+- Remorse over Sins for which My Tongue Should Be Pulled Ours 7,
+- Recoilecting the Past, 148
+- Reducing Desires and Knowing Contentment, 140
+- Retreating from Mikanohara and Going to Nara, 165
+- Ridiculing Literature, 147
+- Rinzai Burned the Meditation Plank and Desk, 85
+- Sakyamuni Practicing Ascetic Discipline, 119
+- Sea Cloud, 170
+- Self-Appraisal, 113
+- Self-Appraisal, 119
+- Shakuhachi, 96
+- Shameful Today, a Purple-robed Monk, 31
+- Snowball, 98
+- Sonrin, Forest of Venerability, 171
+- Spreading Horse Dung to Cultivate the Mottled Bamboo, 51
+- Spreading Horse Dung to Cultivate the Mottled Bamboo, 153
+- Straw Raincoat and Hat, 109
+- Straw-Sandal Ch’en, 71
+- Taking a Metaphor for Reality, 145
+- Tetto's Sermon, 73-74
+- Thanking a Man for the Gift of Soy Sauce, 134
+- The Buddha’s Nirvana, 79
+- The Correct Skill for a Disorderly Age, 140
+- The Correct Skill for Great Peace, 139
+- The Gentleman’s Wealth, 143
+- The Great Master Yüan-wu Strikes a Harmony with the Cosmic Organ, 87
+- The Last Chrysanthemum in the South Garden, 143
+- The Plum Ripened, 45
+- The Scriptures Wipe Away Filth, 90
+- The Second Year of Kansho—Starvation, 167
+- The Stick, 148
+- The World at War, All Heaven, All Earth, Battle, 168-69
+- Three Poems to Show the Monks of My Circle, 115
+- Three Reflections of Master Fo-yen, 127-28
+- To Hear a Sound and Awaken to the Way, 50
+- Tortoise Around Ta-sui’s Hermitage, 84
+- Troubles at Daitokuji, 103
+- Tu-ling’s Flowers Sprinkling Tears, 166
+- Two Pieces of Skin and One Set of Bone, 144
+- Typhoon and Flood in 1460, 41
+- Under One’s Feet, the Red Thread, 113
+- Utterly Absorbed in the Dream of Wu-shan, 149
+- When Ikkyū Was Old, 175-76
+- Wind Bell, 105
+- Wishing to Thank Mori for My Deep Debt to Her, 162
+- With a Poem About a Brothel, Putting to Shame Those Brothers Who Obtain the Dharma, 138
+- Yen-t’ou’s Old Sail Kōan, 80
+
+<!-- normalize: on -->
