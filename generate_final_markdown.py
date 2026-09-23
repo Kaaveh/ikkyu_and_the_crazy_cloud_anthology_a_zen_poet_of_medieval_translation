@@ -41,6 +41,7 @@ TYPO_FIXES = [
     (r'\bandsand\b', 'and-sand'),
     (r'\bbrokenfooted\b', 'broken-footed'),
     (r'\bcloudrain\b', 'cloud-rain'),
+    (r'\beverbeleaguered\b', 'ever-beleaguered'),
     (r'\blongstanding\b', 'long-standing'),
     (r'\bpleasureloving\b', 'pleasure-loving'),
     (r'\bsimpleminded\b', 'simple-minded'),
@@ -195,6 +196,22 @@ TYPO_FIXES = [
     (r'fragrant flowing water\.’ 3\b', 'fragrant flowing water.’” [42]'),
     (r'\bconJures\b', 'conjures'),
     (r'“Fallen Hower "is\b', '“Fallen flower” is'),
+    # pp. 89-100, poems 68-90 (spec 010, session 3), each checked on the page.
+    # Two markers carry the wrong number, so these too run ahead of the
+    # general marker rules.
+    (r'wife of a layman\.”’', 'wife of a layman.”'),
+    (r'the bottom of the well\.’’48', 'the bottom of the well.” [43]'),  # 48 in the OCR
+    (r'\bT ien-pao\b', 'T’ien-pao'),
+    (r'Hinayana “‘lesser vehicle”', 'Hinayana “lesser vehicle”'),
+    (r'the term ““Arhat”’', 'the term “Arhat”'),
+    (r'let you go yet\. Ch’', 'let you go yet.” Ch’'),
+    (r'interjects, ““At the first', 'interjects, “At the first'),
+    (r'hit him with it\."35', 'hit him with it.” [45]'),             # 35 in the OCR
+    (r'notes to poem no, 54\.\)', 'notes to poem no. 54.)'),
+    (r'\(90 Daité:', '[90] Daitō:'),
+    (r'Letter from Nanko”', 'Letter from Nankō”'),
+    (r'“Mountain Road”’ has', '“Mountain Road” has'),
+    (r'In the years of Kansho,', 'In the years of Kanshō,'),         # p. 167
     # Endnote digits fused to the word before them (STYLE.md §4.2): the print
     # sets a bare superscript digit and OCR welds it onto the preceding word
     # or its closing parenthesis. Bracket it -- nothing else in the book
@@ -691,14 +708,22 @@ OCR_MAP = {
     '593': '593', 'wk': '771'
 }
 
-KNOWN_SETS = [
-    "Hsii-t’ang’s Three Pivot Phrases",
-    "Three Poems to Show the Monks of",
-    "Living in the Mountains",
-    "Addressed to a Monk Who Burned Books",
-    "Three Poems to Show the Assembly",
-    "Picture of an Arhat Reveling in a Brothel",
-]
+# Set headings: the OCR'd line, whitespace collapsed, to the printed heading.
+# Matched whole, not by prefix -- a note lemma starts "The Scriptures Wipe Away
+# Filth:" too, and the spaced-out OCR of "Addressed to a Monk Who Burned Books"
+# never matched a prefix at all. Five never matched, so each heading
+# ran into the note before it. Every one checked on the page (spec 010).
+KNOWN_SETS = {
+    "Hsii-t’ang’s Three Pivot Phrases": "Hsü-t’ang’s Three Pivot Phrases",
+    "The Scriptures Wipe Away Filth": "The Scriptures Wipe Away Filth: three poems",
+    "Living in the Mountains two poems": "Living in the Mountains: two poems",
+    "Wind Bell two poems": "Wind Bell: two poems",
+    "Three Poems to Show the Monks of": "Three Poems to Show the Monks of My Circle",
+    "On Tiger Mount, the Snow Falls on Three": "On Tiger Mount, the Snow Falls on Three Grades of Monks: two poems",
+    "Picture of an Arhat Reveling in a Brothel": "Picture of an Arhat Reveling in a Brothel: two poems",
+    "Addressed to a Monk Who Burned Books": "Addressed to a Monk Who Burned Books: three poems",
+    "The Second Year of Kansho—Starvation": "The Second Year of Kanshō—Starvation: three poems",
+}
 
 # The running foot of every translation page reads "<page>  POEM NUMBER  <n>",
 # where <n> is the first or last poem opening on that page. It is the only
@@ -761,12 +786,7 @@ def build_translations():
         return None
 
     def is_set_header(idx, line):
-        s = line.strip()
-        for sh in KNOWN_SETS:
-            if s.startswith(sh):
-                if not s.endswith(('.', ':', ';')) and not s.startswith('Hsii-t’ang’s Three Pivot Phrases:'):
-                    return True
-        return False
+        return ' '.join(line.split()) in KNOWN_SETS
 
     def is_item_start(idx, l):
         s = l.strip()
@@ -855,17 +875,7 @@ def build_translations():
             
         # 2. Set Header
         if is_set_header(pos, lines[pos]):
-            # The column gutter survives inside these headings as a run of
-            # spaces, and the count ("two poems") sits on either the heading
-            # line or the one below it.
-            set_title = re.sub(r'\s+', ' ', s)
-            cont = re.sub(r'\s+', ' ', chunk[0].strip()) if chunk else ''
-            if cont in ('two poems', 'three poems'):
-                set_title += f': {cont}'
-            elif cont == 'My Circle':
-                set_title += f' {cont}'
-            set_title = re.sub(r'(?<!:) (two|three) poems$', r': \1 poems', set_title)
-            out.append(f"### {apply_typos(set_title)}\n")
+            out.append(f"### {KNOWN_SETS[' '.join(s.split())]}\n")
             continue
             
         # 3. Poem Number

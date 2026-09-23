@@ -86,7 +86,7 @@ fix — that diff is the list of files whose Persian is now stale.
 - [x] `001`–`010` — read. Findings below; 22 files repaired across the book.
   Re-read for endnote markers in session 2, which session 1 had not checked.
 - [x] `011`–`020` — read. 40 files repaired across the book; spec 011.
-- [ ] `021`–`030`
+- [x] `021`–`030` — read. 15 files repaired across the book; spec 012.
 - [ ] `031`–`040`
 - [ ] `041`–`050`
 - [ ] `051`–`060`
@@ -256,6 +256,54 @@ Persian had dropped the whole sentence), `tryu` → `fūryū` in poem 52's last
 line, `rennorseful`, `SGto`, `Iam`, `Ts ao-shan`, `...@ burning`, `then ll`,
 `burn, |`, `Wuc-tsu`, `Hui Yian`, `Sitra` (seven of them, book-wide).
 
+### Session 3 — `021`–`030` (scan pp. 89–100)
+
+Page numbers here are the printed ones; the PDF page is 24 higher. Two
+defect classes, one of them book-wide. **15 files changed in `source/`**, all
+restorations, and they are [012](./012-retranslate-session-3.md)'s.
+
+**1. Five set headings ran into the note before them.** `KNOWN_SETS` listed
+six headings and matched them by prefix. Four were missing outright —
+*The Scriptures Wipe Away Filth*, *Wind Bell*, *On Tiger Mount, the Snow
+Falls on Three Grades of Monks*, *The Second Year of Kanshō—Starvation* — and
+*Addressed to a Monk Who Burned Books* was listed but never matched, because
+the OCR spaces its words out across the gutter. Each became the last words of
+the previous poem's note: "…the miraculous and the ordinary. The Scriptures
+Wipe Away Filth three poems". **The Persian translated all five as note
+text.** Poem 68's note ends `[مجموعه‌ی] «متون مقدس آلودگی را می‌زدایند» (سه
+شعر).`
+
+It is now a map from the OCR'd line, whitespace collapsed, to the printed
+heading, and it matches the whole line. Prefix matching was a trap in waiting:
+the note lemma "The Scriptures Wipe Away Filth: An allusion…" starts with a
+heading too. All nine headings checked on the page (pp. 90, 99, 105, 116,
+150, 167). The four that already worked come out byte-identical.
+
+Ten files: `021` `037` `050` `094` `121` lose the stray heading, and `022`
+`038` `051` `095` `122` gain it as a block, which is what turns
+`check_parity` red on those five.
+
+**2. Local damage, each checked on the page.**
+
+- **Two wrong marker numbers**, both in files 011 re-translated for their
+  markers: `025` had [48] for **43** (p. 95), `028` [35] for **45** (p. 98).
+  The sequence runs 42, 43, 44, 45, 46 through the decade now.
+- `030`: `(90 Daité:` is the label **[90]** and **Daitō** (p. 99). The Persian
+  carries `(90 دایتو` verbatim.
+- `028`: a closing quote lost after `go yet.`, doubled `““At`, `it."`, and
+  `poem no, 54` (p. 98).
+- `027`: `T ien-pao` in the poem's last line (p. 97).
+- `026`: `everbeleaguered` → `ever-beleaguered`, a line-end hyphen that is
+  the word's own (p. 96).
+- `122`: `In the years of Kansho` → **Kanshō** (p. 167), confirmed while
+  checking the Starvation heading, a decade early.
+- Stray quotes normalised where the file changes anyway, as 018's was in
+  session 2: `layman.”’`, `well.’’`, `“‘lesser vehicle”`, `““Arhat”’`,
+  `“Mountain Road”’`, and `Nanko` → `Nankō`.
+
+`022`, `023` and `029` read clean. `024`'s pages 91–94, which 011 left
+owing, match its repaired source.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -278,6 +326,19 @@ Session 2 adds these, the same kind of loss, none of which touches meaning:
   book-wide shape of every `## Notes` section, and changing it would break
   block parity across 93 files.
 
+Session 3 adds two more:
+
+- **`024`'s six stray quotes** — `cloud-rain.””`, `clear’’`, `(“‘cloud`,
+  `water’;`, `“‘lascivious`, `fragrant’`. 024 was re-translated in 011 and
+  the Persian renders every one of them correctly, so they are not worth a
+  third run.
+- **Prose block quotes break mid-quote.** `parse_prose()` starts a paragraph
+  at any indented line after one that ends in punctuation, and every line of
+  an indented block quote is indented. The *Blue Cliff Record* kōan in `028`
+  splits after its first sentence, the *Nempu* entry in `030` after
+  "Dharma.". Book-wide and structural, like the note entries above: fixing
+  it moves block parity in every file with a quoted passage.
+
 ### Found in passing by 009's PDF read — not yet confirmed against the scan
 
 For the decades that will reach them. Each is a `source/` defect the Persian
@@ -293,6 +354,14 @@ faithfully carries.
 - `128.md` — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note against
   `Unryōin` / `Sen’yūji` in the title.
 
+### Found in passing by session 3 — not yet confirmed against the scan
+
+- `031.md` — marker `[4]` where the sequence wants **47**.
+- `050.md` — `Tozan “sword mountain is a mountain in hell`: the quote never
+  closes.
+- `124.md` — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
+  heading and poem 639 on p. 167; its own page not checked.
+
 ### Found in passing by 011 — not yet confirmed against the scan
 
 Same terms. 011 re-translated these files and the Persian carries the damage
@@ -307,8 +376,8 @@ Same terms. 011 re-translated these files and the Persian carries the damage
   `024.md` and nothing else. The decade's read still owes the rest of 024's
   pages and the stray quotes 010 leaves alone (`cloud-rain.””`).
 - `031.md` — `Wu Teng Aui Yüan`, *Hui*.
-- `037.md` — `doctrine of Rydzen: Ryozcens style of Zen`; and the note ends
-  `Wind Bell two poems`, which is the next poem's heading run into it.
+- `037.md` — `doctrine of Rydzen: Ryozcens style of Zen`. ~~The note ends
+  `Wind Bell two poems`~~ — fixed in session 3 with the other set headings.
 - `038.md` — `1 |` as a line of the poem: poem 111's number.
 - `introduction-1.md` — two markers left bare, so the marker comparison
   shows the Persian with two the source lacks: `leprosy43` (no punctuation
