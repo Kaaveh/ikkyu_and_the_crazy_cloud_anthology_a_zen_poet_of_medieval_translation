@@ -44,7 +44,7 @@ an existing block, and that is exactly why none of this was caught.
 | `038.md` | **`scrambled`**, **`the coffin,`** restored; [54] |
 | `058.md` | **`as the first`** restored |
 
-### B. Markers only (11) — needs a decision
+### B. Markers only (11) — re-translate (decided)
 
 The digits were already in `source/`, welded to a closing quote (`it."35`), and
 are now bracketed. The Persian dropped most of them and left a few bare.
@@ -55,13 +55,12 @@ are now bracketed. The Persian dropped most of them and left a few bare.
 `introduction-3` [68], [69], [89], [81], plus `Wu-tsu`, `Ta-mei`, `Lan-tsan`,
 `Hui-chih`, `Kao-tang`, `Wu-shan`
 
-**Nothing sanctions inserting a marker by hand**, so as the rules stand, all
-eleven are re-translations. For nine short poem files that is cheap. For
-`introduction-1.md` it is not: 67 K characters at a chunk size of 900 is about
-73 chunks, and the two words of text in it that changed are name hyphens. The
-open question is whether to add a third sanctioned hand-edit to `CLAUDE.md`
-(put `[N]` back where the source has it, nothing else) or to re-run the file.
-**Decide before starting group B.**
+**Decided 2026-09-23: re-run them.** Nothing sanctions inserting a marker by
+hand, and the rules stay that way: no third hand-edit. All eleven go through
+the pipeline like group A, `introduction-1.md` included, even though it is
+67 K characters, about 73 chunks at 900, for two markers. Chunk sizes that
+worked last time: `introduction-1.md` 900, `introduction-3.md` 2250
+(`CLAUDE.md`). Run `introduction-1.md` with the Chrome profile to itself.
 
 ### C. No re-translation (15)
 
@@ -82,13 +81,15 @@ their entries verbatim (spec 006), so each needs one word conformed by hand:
    `pgrep -f gtranslate.py` first. Judge each draft on ezafe, not the picker.
 2. **No §1.4 markers to re-apply.** No file in groups A or B carries one or a
    `parity: offset` (checked when this spec was written).
-3. **Group B once the question above is settled.**
+3. **Group B through the same pipeline.** Short poem files first, then
+   `introduction-3.md`, then `introduction-1.md` last and on its own.
 4. **Group C by reading**, not by running anything.
 
 ## Acceptance criteria
 
 - [ ] Every group A file re-translated; `just check` green.
-- [ ] Group B decided, recorded here, and done.
+- [x] Group B decided: re-translate, no new hand-edit.
+- [ ] Every group B file re-translated.
 - [ ] Group C checked against `STYLE.md` §2; the two back-matter words
       conformed.
 - [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
