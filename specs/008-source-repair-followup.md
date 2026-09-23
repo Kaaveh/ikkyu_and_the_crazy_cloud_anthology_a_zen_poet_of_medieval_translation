@@ -78,63 +78,18 @@ low-priority back-matter files.
    verbatim regardless, so fix what's cheap here; don't hold this spec on it,
    and don't let 006 either.
 
-## Files
+## Files and acceptance criteria
 
-**This checklist lives in [010](./010-source-audit.md) now** — work it there,
-where it is kept up to date. Left here so 008 still reads as a whole.
+**Moved to [010](./010-source-audit.md), which owns them now.** The copy that
+used to sit here stayed unticked while 010 moved on, which made 008 look like
+open work of its own. It has none:
 
-### Anthology
+- requirement 1 (the 147-file read) is 010's checklist;
+- requirement 2 (the Introduction's CJK bleed) was done inside 005;
+- requirement 3 (`bibliography.md` / `glossary-index.md`) is 010
+  requirement 5.
 
-- [ ] `001`–`010`
-- [ ] `011`–`020`
-- [ ] `021`–`030`
-- [ ] `031`–`040`
-- [ ] `041`–`050`
-- [ ] `051`–`060`
-- [ ] `061`–`070`
-- [ ] `071`–`080`
-- [ ] `081`–`090`
-- [ ] `091`–`100`
-- [ ] `101`–`110`
-- [ ] `111`–`120`
-- [ ] `121`–`130`
-- [ ] `131`–`135`
-
-### Front matter and Introduction
-
-- [ ] `plates.md`
-- [ ] `foreword.md`
-- [ ] `preface.md`
-- [x] `introduction-1.md` — CJK column bleed fixed in 005 (`drop_column`).
-- [x] `introduction-2.md` — same fix.
-- [x] `introduction-3.md` — CJK column bleed fixed in 005 (`drop_column`).
-- [ ] `introduction-4.md`
-
-### Back matter
-
-- [ ] `abbreviations.md`
-- [ ] `notes.md` — already repaired in 002; re-read here since it's the
-      audit's job to confirm, not assume
-- [ ] `bibliography.md` — CJK garbling, requirement 3, low priority
-- [ ] `index-of-poems.md`
-- [ ] `glossary-index.md` — CJK garbling, requirement 3, low priority
-
-### Finally
-
-- [ ] `source/README.md` re-read once the above is done.
-
-## Acceptance criteria
-
-- [ ] Every file above read against the PDF, defects found either fixed in
-      the generator or recorded here as a deliberate exception.
-- [ ] The gibberish scan from 002 requirement 4 returns nothing outside
-      `bibliography.md` / `glossary-index.md`, or those two are explicitly
-      signed off as out of reach at 006's priority.
-- [ ] Any new flattened-verse-quotation instance found is fixed the same way
-      poem 7's was — a targeted match on confirmed text, not a general
-      indentation heuristic (002 already tried the general version and
-      reverted it).
-- [ ] `just split` re-run after every generator fix; `just check` passes.
+**008 closes when 010 does.**
 
 ## Out of scope
 

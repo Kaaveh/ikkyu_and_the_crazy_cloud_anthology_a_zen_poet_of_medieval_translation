@@ -24,6 +24,22 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ⬜ Not started |
 
+## Next up
+
+**Pick the first unfinished line. Update this list when a spec closes.**
+
+1. **[011](./011-retranslate-session-2.md)**: group A (14 files), then group C
+   (15, by reading), then group B (11: poem files, `introduction-3`, then
+   `introduction-1` on its own). `just check` is red until group A is done.
+2. **[010](./010-source-audit.md)**, next decade: `021`–`030`. Then a new
+   re-translation spec (012, …) for whatever it repairs, before the next
+   decade. Repeat through `131`–`135`, then the front and back matter,
+   `bibliography`/`glossary-index` (low priority), and `source/README.md`.
+3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+   work of its own left.
+4. **[007](./007-release.md)** last: the end-to-end read of the typeset
+   Persian PDF, once no re-translation spec is open.
+
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
 skipped`, and the book typesets at 230 pages.
 
