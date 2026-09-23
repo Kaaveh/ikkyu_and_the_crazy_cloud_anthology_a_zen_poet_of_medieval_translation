@@ -97,13 +97,13 @@ with nothing to re-apply afterwards.
 
 ## Acceptance criteria
 
-- [ ] All 22 files re-translated and written by `restore -o`.
-- [ ] `just check` passes: `check_parity` 147/147, `normalize` clean,
+- [x] All 22 files re-translated and written by `restore -o`.
+- [x] `just check` passes: `check_parity` 147/147, `normalize` clean,
       `apparatus --check` 147/147, no bidi findings.
-- [ ] Every restored word is present in the Persian — spot-check the table
+- [x] Every restored word is present in the Persian — spot-check the table
       above, which names what to look for in each file.
-- [ ] `Daiō` has a `STYLE.md` §2 row and all three files use it.
-- [ ] The typeset PDF was read for the 22 files.
+- [x] `Daiō` has a `STYLE.md` §2 row and all three files use it.
+- [x] The typeset PDF was read for the 22 files.
 
 ## Out of scope
 
@@ -113,4 +113,54 @@ touch.
 
 ## Implementation notes
 
-_(filled in during implementation)_
+### Session 1 — all 22, one sitting
+
+**20 of 22 went through at 4500 as the spec expected.** Two did not:
+
+- **`128.md` came back Classic at 4500 and at 900** — the stanza split in
+  two, «می‌کنید» for a line with no addressee. Advanced at 400 and 300; 300
+  shipped, because 400 carried a doubled zero-width space and 300 renders
+  *the mountains deepen* closer. This is spec 004's `098.md` again: a
+  sub-900-character file that only a sub-chunk rung fixes.
+- **`129.md` was Advanced at 4500 and still wrong.** «اتاقِ خواب» for *Dream
+  Chamber* reads as "bedroom", and Mumu "No Dream" became «بی‌خوابی» —
+  insomnia. Neither is a proper noun, so the §2 hand-edit could not cover it;
+  re-translated at 400 and 300, and 300 shipped: «حجره‌ی رویا», «بی‌رویا», and
+  *in the past and recently* rendered rather than smoothed. **An ezafe count
+  cannot see this.** The draft scored 15 and was the worst of the three.
+
+**`085.md` needed both `restore` repairs.** It refused on three stanza lines
+the model had kept but lost the trailing spaces on — ended with two spaces in
+the draft, as `CLAUDE.md` says. Then parity failed 12/13: the model had joined
+"…Rinzai's teachings." to "The Master further said…". Nothing was dropped, so
+the draft was split back at that sentence in scratch and restored again.
+
+**The §2 conform was the bulk of the hand work — 16 of the 22 files.** A
+fresh draft loses every correction the old file carried, so each file's
+canonical §2 forms were counted old-against-new and every shortfall traced to
+the model's variant: ایکیو ×7 files, شو-تانگ, نان-چوآن, کوی-تسونگ, the
+*Tz'u-en K'uei-chi* cluster in `057`, and so on. Three differences are
+correct and stay: `002` and `014` each lose a «دایتو» that was really Daiō,
+and `003` gains one where the model supplied a dropped subject. `067`'s
+«چینگ-یوان» was in the old file too and was caught only in the PDF read — the
+count compares against the old file, so it cannot see a form both got wrong.
+
+**The model told Daiō from Daitō unaided,** every time, in all three files. It
+rendered Daiō «دایو»; §2 now fixes it as «دایئو».
+
+**`STYLE.md`:** the Daitō row cited `fa/002.md`, whose «دایتو» was the OCR
+error; it now cites `fa/003.md`, the poem on Daitō himself. §2.6's example
+likewise. The Daiō row is new.
+
+**The PDF read found no typesetting fault in the 22.** It found source defects,
+which are 010's and are recorded there under the decade that will reach them.
+
+### Left for other specs
+
+- **ایکیو / ایکّیو survives in seven files 009 did not touch** — `044`, `046`,
+  `069`, `110`, `124`, `introduction-1`, `notes`. A §2 conform, cheap and
+  sanctioned, but out of this spec's scope.
+- **`fa/130.md`'s heading reads «(I)»** where 131–133 have «(۲)», «(۳)», «(۴)».
+  The source is `(I)`–`(IV)` throughout, so this is the model localising three
+  numerals out of four, not OCR. A heading title is translator prose, not a
+  sanctioned hand-edit, so it wants a re-translation of `130.md`.

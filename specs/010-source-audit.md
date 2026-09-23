@@ -212,6 +212,20 @@ which is 67 K characters, for a comma. A general `、` → `,` rule is not the
 answer either: `apply_typos` also runs over `bibliography.md` and
 `glossary-index.md`, whose entries 006 keeps verbatim.
 
+### Found in passing by 009's PDF read — not yet confirmed against the scan
+
+For the decades that will reach them. Each is a `source/` defect the Persian
+faithfully carries.
+
+- `018.md` — a note marker OCR'd as a bare `’’25`, no brackets.
+- `085.md` — two quoted poems ("The Gentleman's Wealth", "The Last
+  Chrysanthemum in the South Garden") flattened into the note's prose, with
+  `Bild;`, `Boe` and `%` as OCR garbage around them; and T'ao Yüan-ming's
+  poem in the second note has its lines run together in pairs.
+- `120.md` — `Sdseian`.
+- `128.md` — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note against
+  `Unryōin` / `Sen’yūji` in the title.
+
 ### Tooling
 
 The file-to-page index is worth rebuilding rather than storing — it takes

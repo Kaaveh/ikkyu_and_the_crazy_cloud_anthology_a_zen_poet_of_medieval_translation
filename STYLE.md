@@ -226,7 +226,7 @@ would mark the same boundary twice.
 
 ### §2.6 Guillemets around proper nouns are tolerated, not required
 
-`fa/002.md`'s practice is ratified: «شیو-ت’انگ», «دایتو». But the model is not
+`fa/002.md`'s practice is ratified: «شیو-ت’انگ», «دایتوکوجی». But the model is not
 consistent about it even inside that one file, and `«»` also means a real
 quotation, so the mark carries no distinction worth enforcing.
 
@@ -273,7 +273,8 @@ translator looks before inventing a form.
 | Ikkyū | ایک‌کیو | **argued** — the form in `pyproject.toml`'s `[tool.book.titles]`, which is the book's own table of contents. The ZWNJ marks the geminate *kk*; ایکیو loses it. |
 | Hsü-t'ang | شیو-ت’انگ | **argued** — §2.2 and §2.3 together. |
 | Yü-wang | یو-وانگ | **argued** — `fa/002.md`, and §2.3. |
-| Daitō | دایتو | **argued** — `fa/002.md`, and §2.4. |
+| Daitō | دایتو | **argued** — §2.4; `fa/003.md`, the poem on him. This row used to cite `fa/002.md`, whose «دایتو» was really Daiō — spec 010. |
+| Daiō | دایئو | **argued** — spec 009. §2.4, and the hiatus spelled with ئ as in کیوئونشو. Daiō Kokushi, Hsü-t'ang's student and Daitō's master: `fa/002.md`, `fa/003.md`, `fa/014.md`. **Never** «دایتو» — that was the OCR error spec 010 removed. |
 | Daitokuji | دایتوکوجی | **argued** — `fa/002.md`. |
 | Shūon'an | شو-اون-آن | **argued** — `fa/002.md`, and §2.5. |
 | Sōjun | سوجون | (suggested) |

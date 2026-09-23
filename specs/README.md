@@ -20,7 +20,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ✅ Done        |
 | 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
-| 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ⬜ Not started |
+| 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
 
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
@@ -37,16 +37,12 @@ the Persian output and asks whether it typesets. Different document, different
 question, different eyes. An earlier version of this page implied they were one
 pass; they are not.
 
-### `just check` is red, by design, until 009 runs
+### `just check` is green again
 
 010's first session fixed three generator faults and re-split, which changed 22
-files in `source/`. Their Persian was translated from the damaged text and is
-now stale: `check_parity` reports `fa/002.md: 5 blocks, source has 6`.
-
-This does **not** affect a fresh clone — `source/` is gitignored, and the
-checkers report "skipped" without it. It affects the maintainer, after
-`just split`, and it clears when [009](./009-retranslate-repaired-files.md)
-re-translates the 22.
+files in `source/`. [009](./009-retranslate-repaired-files.md) re-translated
+all 22, and `check_parity` is back to 147/147. **Each later decade of 010 that
+repairs a file will turn it red again** until the matching re-translation runs.
 
 008 is part-done: **requirement 2 (the Introduction's CJK bleed) was completed
 inside 005**, which it was blocking. Its requirement 1 (the 147-file PDF read)
