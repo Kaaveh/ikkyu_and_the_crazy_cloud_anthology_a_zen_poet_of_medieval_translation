@@ -96,7 +96,7 @@ status: reviewed
 - WON) 78 POSS, WSS, MODS, iPAlSver 123
 - Yüan-che 円 沢 。 160
 - Yaan-wu 円 悟 ,42-43, 87-88
-- Yüeh Kuang 楽 広,73
+- Yüeh Küang 楽 広,73
 - Yün-men 32F4, 14, 53-54, 56, 77, 92, 127
 - Yuzuriha 譲 羽,27, 99
 - Zeami 世阿弥 ,29

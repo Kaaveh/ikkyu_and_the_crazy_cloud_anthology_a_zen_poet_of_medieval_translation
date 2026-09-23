@@ -19,7 +19,7 @@ status: reviewed
 - Chūsei Zenka no Shisd 中 世 禅 家の 思想 .Ichikawa Haku- gen 市 川 白蓄 et al., ed. Tokyo: Iwanami Shoten, 1972.
 - Daitō Kokushi Goroku 大 燃 国師 語録 ,T 81.
 - Daitō Kokushi Nempu XSi, Okuda Shoezo 奥田 正造 , ed. Tokyo: Morie Shoten, 1933.
-- Diamond Sitra (Ch. Chin-Kang Ching #fl##), T 8. See also Conze, Buddhist Wisdom Books and Price and Wong, The Diamond Sutra.
+- Diamond Sūtra (Ch. Chin-Kang Ching #fl##), T 8. See also Conze, Buddhist Wisdom Books and Price and Wong, The Diamond Sutra.
 - Hai Lung Wang Ching 海竜 王 経 ,T 15.
 - Heart Sūtra (Ch. Hsin Ching 心 経 ),T 8. See also Conze, Buddhist Wisdom Books.
 - Heike Monogatari 平家 物語 .Nihon Koten Bungaku Taikei 日 本 古典 文学 大 系 v. 33. Tokyo: Iwanami Shoten, 1960. See also Kitagawa and Tsuchida, The Tale of the Heike.

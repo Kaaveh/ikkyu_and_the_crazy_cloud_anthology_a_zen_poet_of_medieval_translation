@@ -302,7 +302,7 @@ form the translator produced by ear:
 | T'ien-che | ت’ین-چه | تی‌ین-چِه — §2.2 |
 | Yün-men | یون-من | یون‌من / یون‌مِن — the source hyphenates; a ZWNJ is not a hyphen |
 | Pai-chang | پای-چانگ | پای‌چانگ — same |
-| Yüeh Kuang | یوئه کوانگ | یوئه گوانگ — §2.1: `Kuang` is Wade-Giles, `Guang` is the Pinyin reading |
+| Yüeh Küang | یوئه کوانگ | یوئه گوانگ — §2.1: `Kuang` is Wade-Giles, `Guang` is the Pinyin reading. The print spells it `Küang` (p. 97 and the glossary; spec 010 restored it), but Wade-Giles has no *küang* syllable, so §2.3 has no ü to carry and the Persian stays کوانگ — spec 011 |
 | Tetto Ryōzen | تتو ریوزن | تِتّو / تِتو / تِتّد, three forms in one file — §2.4 |
 | Chao-chou | چائو-چو | correct as given |
 | Lan-tsan | لان-تسان | correct as given. `source/001.md` also spells it `Lan-t’san`; that is OCR damage, not a second name, and the Persian does not follow it |
