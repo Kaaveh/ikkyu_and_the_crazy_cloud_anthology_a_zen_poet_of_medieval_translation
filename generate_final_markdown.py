@@ -263,6 +263,28 @@ TYPO_FIXES = [
     (r'alluding to Lan-tsan who baked', 'alluding to Lan-ts’an who baked'),
     (r'the mention of Lan-ts an\.', 'the mention of Lan-ts’an.'),
     (r'applies it to Lan-tsan\. Lan-t’san’s', 'applies it to Lan-t’san. Lan-t’san’s'),
+    # pp. 115-122, poems 135-175 (spec 010, session 6), each checked on the
+    # page. Markers first, as above.
+    (r'not mere fabrications\.66', 'not mere fabrications.” [66]'),
+    (r'“I have pacified your mind\.67', '“I have pacified your mind.” [67]'),
+    (r'to the present day\.”\?!', 'to the present day.” [71]'),
+    (r'tusks of Tozan', 'tusks of Tōzan'),
+    (r'Tozan “sword mountain is', 'Tōzan “sword mountain” is'),
+    (r'great compassion \.\. \. Feast', 'great compassion... Feast'),
+    (r'Vimalakirti Sutra\. Vimalakirti describes', 'Vimalakirti Sūtra. Vimalakirti describes'),
+    (r'with great\s+compassion\.’ \(See', 'with great compassion.” (See'),
+    (r'of “far-out\. \(See', 'of “far-out.” (See'),
+    (r'"to\s+cast one’s body into Hames represents', '“to cast one’s body into flames” represents'),
+    (r'oneself into Hames\.', 'oneself into flames.'),
+    (r'^1 am convinced there is no natural', 'I am convinced there is no natural'),
+    (r'Crazy madinan stirring', 'Crazy madman stirring'),
+    (r"K'uei-chi's samadhi", 'K’uei-chi’s samadhi'),
+    (r'entry for\s+K uei-chi\.', 'entry for K’uei-chi.'),
+    (r'obeisance\. Hejust went', 'obeisance. He just went'),
+    (r'biographical study of Kuci-?\s*chi,', 'biographical study of K’uei-chi,'),
+    (r'the Lotus\s+Sutra\. He asserted', 'the Lotus Sūtra. He asserted'),
+    (r'Ostensibly YsQ was', 'Ostensibly Yōsō was'),
+    (r'“man from P’u-chou”’ was', '“man from P’u-chou” was'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.
@@ -740,9 +762,10 @@ POEM_TITLES = {
     '126': 'Praising P’u-hua',
     '128': 'Under One’s Feet, the Red Thread',
     '130': 'Self-Appraisal',
-    '134': 'Three Poems to Show the Assembly (I)',
-    '135': 'Three Poems to Show the Assembly (II)',
-    '136': 'Three Poems to Show the Assembly (III)',
+    # The set heading on p. 115 and the Index; this was "to Show the Assembly".
+    '134': 'Three Poems to Show the Monks of My Circle (I)',
+    '135': 'Three Poems to Show the Monks of My Circle (II)',
+    '136': 'Three Poems to Show the Monks of My Circle (III)',
     '140': 'On Tiger Mount, the Snow Falls on Three Grades of Monks (I)',
     '141': 'On Tiger Mount, the Snow Falls on Three Grades of Monks (II)',
     '144': 'On a Brothel',
@@ -1023,10 +1046,12 @@ def build_translations():
                     t_lines = 3
                 elif len(chunk) > 3 and "With a Poem About a Brothel" in c0:
                     t_lines = 3
+                elif len(chunk) > 3 and "Congratulating Daiyuan" in c0:
+                    t_lines = 3
                 elif len(chunk) > 2 and any(k in c0 for k in [
                     "Face to Face with the Beautiful", "On the Topic", "Draw a Line", "Go to the Sea",
                     "One’s Eyes Are Not Yet", "Addressed to an Assembly", "The Great Master Yiian-wu",
-                    "Chrysanthemums: An Arhat", "Living in the Mountains", "Congratulating Daiyuan",
+                    "Chrysanthemums: An Arhat", "Living in the Mountains", "Praising the Dharma Master",
                     "A Layman Reciting", "Remorse         over", "No One Sees", "Spreading Horse Dung",
                     "A Beautiful Woman’s Dark", "Wishing to Thank", "Retreating from Mikanohara",
                     "The Last Chrysanthemum"
@@ -1038,7 +1063,7 @@ def build_translations():
                     "Snowball", "Instructing the Cook", "From the Mountains", "Wind Bell", "Straw Raincoat",
                     "Praising P’u-hua", "Under One’s Feet", "Self-Appraisal", "Self-A ppraisal", "On a Brothel",
                     "Addressed to a Monk in the Hall", "Addressed to a Monk at Daitokuji", "Sakyamuni Practicing",
-                    "Praising the Dharma Master", "Inscription for", "Pai-chang Fasting", "Presented to a Gathering",
+                    "Inscription for", "Pai-chang Fasting", "Presented to a Gathering",
                     "Nirvana Hall", "Composing a Poem", "Fisherman", "Addressed to a Monk Who Killed",
                     "About Disturbances", "Thanking a Man", "Composed When Ill", "Acts of Grace",
                     "The Correct Skill", "Reducing Desires", "Taking a Metaphor", "Praising Saint",

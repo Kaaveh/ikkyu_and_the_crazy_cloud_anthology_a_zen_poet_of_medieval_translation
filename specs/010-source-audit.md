@@ -93,7 +93,8 @@ fix — that diff is the list of files whose Persian is now stale.
   from the same pages, and `041`, `042` were `039`, `040`.
 - [x] `043`–`050` — read. 9 files repaired, 2 of them outside the decade
   for *Lan-ts'an*; spec 015. Closing paragraphs of notes found joined book-wide; spec 016.
-- [ ] `051`–`060`
+- [x] `051`–`060` — read. 9 files repaired, 1 outside the decade for its
+  set's title; spec 017.
 - [ ] `061`–`070`
 - [ ] `071`–`080`
 - [ ] `081`–`090`
@@ -429,6 +430,58 @@ page ranges in `source/` do. The prose after `046`'s block quote ("In his own
 poem…") runs into the quote: the *Prose block quotes* shape session 3
 records.
 
+### Session 6 — `051`–`060` (scan pp. 115–122)
+
+Printed page numbers; the PDF page is 24 higher. **9 files changed in
+`source/`**, all restorations: the decade's 8, and `050` for its set's
+title. Six need re-translating: [017](./017-retranslate-session-6.md). No
+book-wide defect this time; two local ones in the generator's own tables.
+
+**1. `POEM_TITLES` had the set 134–136 under a title the book never uses.**
+*Three Poems to Show the Assembly (I)–(III)*; the set heading on p. 115 and
+the book's Index both say *Three Poems to Show the Monks of My Circle*, and
+`050`'s own bold set heading always did. The Persian followed the headings:
+«سه شعر برای ارائه به جمع». Session 5 read `050` and did not catch it —
+the heading label is the generator's, the page shows only the set heading.
+
+**2. Two wrapped titles leaked a line into their verse.** The title-skip in
+`build_translations()` is a hand count per title, and two were short:
+*Praising the Dharma Master Tz’u-en / K’uei-chi* wraps to two lines on
+p. 120 and was counted as one; *Congratulating Daiyūan’s … / … / Sōe
+Daishō* wraps to three on p. 121 and was counted as two. `059` and `060`
+each opened on a fifth verse line, `K’uei-chi` and `Soe Daisho`, and the
+Persian carries both. Checked book-wide: a poem whose first verse line's last
+words are in its own title. `084`, `090`, `112`, `118` also match, and all
+four are real first lines.
+
+**3. Local damage, each checked on the page.**
+
+- **Three markers.** `054` `fabrications.66` and `mind.67` are **66** and
+  **67**, and lost their closing quotes; `059` `day.”?!` is **71**, which the
+  Persian dropped. The decade runs 66 to 71 without a gap.
+- `052`: `Tozan` → *Tōzan* ×3, and `“sword mountain”` closed.
+- `054`: `compassion.’`, `“far-out.`, `compassion .. .`, `Vimalakirti Sutra`
+  → *Sūtra*.
+- `055`: `Hames` → *flames* ×2, and the Hirano quote's ASCII `"` opened and
+  closed.
+- `057`: `1 am` → *I am*, in the poem.
+- `058`: `madinan` → *madman*, in the poem. **The Persian has «دیوانه‌ای از
+  اهل مدینه»**: a madman from Medina.
+- `059`: `K'uei-chi's`, `K uei-chi`, `Kucichi` → *K’uei-chi*; `Hejust`;
+  `Lotus Sutra` → *Sūtra*.
+- `060`: `YsQ` → *Yōsō*; `“man from P’u-chou”’`.
+
+**Left as the print has it:** `059`'s `aprocryphal`. `059`'s block quote
+ends `women.”70` on p. 120 with no opening quote to close; `source/` has
+`women. [70]`, which is the better reading of a typesetter's slip.
+
+**Left, the ASCII-for-diacritics class** (session 2): `Sakyamuni` in `057`,
+`Vimalakirti` and `Tathagata` in `054`, `Yogacara` and `samadhi` in `059` —
+each without a macron everywhere in `source/`. `Sūtra` is not in that class:
+`source/` has it with the macron 10 times to 4 without, and the decade's two
+are fixed. `054`'s block quote breaks after its first line and `059`'s prose
+after its quote runs into it: the *Prose block quotes* shape.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -484,8 +537,8 @@ faithfully carries.
 ### Found in passing by session 3 — not yet confirmed against the scan
 
 - ~~`031.md` — marker `[4]` where the sequence wants **47**.~~ Session 4.
-- `052.md` (was `050`) — `Tozan “sword mountain is a mountain in hell`: the quote never
-  closes.
+- ~~`052.md` (was `050`) — `Tozan “sword mountain is a mountain in hell`: the quote never
+  closes.~~ Session 6.
 - `129.md` (was `124`) — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
   heading and poem 639 on p. 167; its own page not checked.
 
@@ -523,6 +576,11 @@ Same terms. 011 re-translated these files and the Persian carries the damage
   and lines run together two to a paragraph. The paragraph before it
   (`The sound of the bell of Ch’ang-lo…`) looks like verse run together too.
   Found by the blank-line measurement for 016, not read on the page.
+
+### Found in passing by session 6 — not yet confirmed against the scan
+
+- `079.md` — `Sutra` once, beside `Sūtra` once in the same file.
+- `112.md` (poem 536) — `resembless` and `IfI` in the poem.
 
 ### Found in passing by 016 — each seen on its page
 
