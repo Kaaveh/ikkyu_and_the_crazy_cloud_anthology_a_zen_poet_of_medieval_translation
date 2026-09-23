@@ -69,14 +69,67 @@ and `042`.
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated; `apparatus --check` green on `031`
+- [x] Every group A file re-translated; `apparatus --check` green on `031`
       and `037`.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
       for any group A file: `031` carries [47], `034` [50], `042` [60].
-- [ ] *Shōen* is «شوئن» in `041` and `042`.
-- [ ] Group C checked.
-- [ ] `just check` green.
+- [x] *Shōen* is «شوئن» in `041` and `042`.
+- [x] Group C checked.
+- [x] `just check` green.
 
 ## Out of scope
 
 Anything 010 has not read yet.
+
+## Implementation notes
+
+### One sitting, three of four at 4500
+
+**Every draft came back Advanced.** No space-joined verb prefix in any of them.
+The 0-ezafe lines were all verse. `031` and `037` gained their quoted poems as
+four lines of verse each; restore took all four drafts first time.
+
+**`034` went to 400, for a typo, not for Classic.** At 4500 the note read
+«باید با آن دست‌وپنج نرم کنیم», which is a dropped letter and not something
+either sanctioned hand-edit covers. Re-running at 4500 gave the same output,
+byte for byte. 900 did too: the file is 801 characters, so it is one chunk at
+either size. 400 split it, came back Advanced with the same block count, and
+reads «دست‌ و پنجه» (the ZWNJ was stripped by `just fix`). Same ladder, second
+kind of failure: it moves the model off a bad reading as well as off Classic.
+
+**§2, conformed against the old files and the table:**
+
+- `031`: کوی-تسونگ → کوئی-تسونگ ×7, «وو تِنگ هویی یوان» → «وو تنگ هوی یوآن»,
+  «دو فو» → «تو فو», one ویمالاکی‌رتی, بودی‌ساتوا ×2 → §2.7's بودیساتوا
+- `034`: «شو-تانگ لو» → «شیو-ت’انگ لو»
+- `037`: ایکیو → ایک‌کیو ×3, «چو سو-تسونگ» → «چ’و سو-تسونگ», «سان تی شی» →
+  «سان ت’ی شی», and the model's own «تای‌شوآن‌جینگ» → «ت’ای شیوآن چینگ»
+- `042`: شوئِن → شوئن, «سوما شیانگ‌جو» → «سو-ما شیانگ-جو», «وِن‌جون» →
+  «ون-چیون», «وِن شوآن» → «ون شیوآن»
+- `041` (group B): شوین → شوئن
+
+The new forms are in `STYLE.md` §2 under spec 013.
+
+**One edit made and taken back.** `037`'s draft glosses *The Great Mystery* as
+`(یا *تای‌شوآن‌جینگ* / *Taixuanjing*)`. I first deleted the parenthetical
+as Pinyin. §2.9 keeps the model's glosses and does not correct them. So it went
+back in, with only the Persian half conformed to §2.1.
+
+**Left as the model gave it:** `037`'s «بلو کلیف رکورد». The book has four
+renderings of the *Blue Cliff Record* and §2 settles none of them. It is a
+title, not a transliteration rule, and so it is for 007's read, not a conform
+here.
+
+**Result:** `just check` green, 153/153 on parity and anchors. The marker
+comparison disagrees only on `064`, `070` and `introduction-1`, 010's known
+three (`062` and `068` before 014 renumbered). `031` carries [47], `034` [50],
+`042` [60].
+
+### Group C
+
+All four read. `032` has «کاتسو» both times. `033` closes the charlatan quote
+cleanly: «…شیاد بوده‌ام.». `035` reads «همین امر برای ایجاد آشوبی بزرگ در
+طریقت ما کافی بود.» `036` has «ریوزن». Nothing to conform.
+
+The typeset PDF was not read. This spec's criteria do not ask for it, unlike
+012's.

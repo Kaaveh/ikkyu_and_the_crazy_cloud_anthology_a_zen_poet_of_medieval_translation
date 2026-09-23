@@ -407,6 +407,17 @@ not see them until a re-read did.
 | Ch’üan | چ’یوآن | چوآن — §2.2 and §2.3, as Nan-ch'üan. P'ang's interlocutor in `028.md`, not the *Ch'uan* of *Ch'uan Teng Lu* |
 | Ma Yüan | ما یوآن | ما یوان — §2.3, as Yüan-wu |
 
+Spec 013 adds five. The first four had a settled form in other files that the
+new drafts missed; the last is a name the model supplied itself.
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| Tu Fu | تو فو | دو فو — §2.1: `T` is ت; `Du` is the Pinyin reading. 36 occurrences already have تو فو |
+| Ssu-ma Hsiang-ju | سو-ما شیانگ-جو | سوما شیانگ‌جو — the source hyphenates |
+| San T’i Shih | سان ت’ی شی | سان تی شی — §2.2 |
+| Shōen | شوئن | شوین / شوئِن — §2.4, the hiatus spelled with ئ as in دایئو, and the kasre goes |
+| T’ai Hsüan Ching | ت’ای شیوآن چینگ | تای‌شوآن‌جینگ — §2.1, built from the Pinyin *Taixuanjing*. Not in `source/`: the model added it with its own gloss in `037.md`. The Persian is conformed and the gloss is kept (§2.9) |
+
 ---
 
 ### §2.9 The translator's parenthetical romanisations are kept
