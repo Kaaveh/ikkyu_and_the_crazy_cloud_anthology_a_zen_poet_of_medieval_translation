@@ -87,7 +87,8 @@ fix — that diff is the list of files whose Persian is now stale.
   Re-read for endnote markers in session 2, which session 1 had not checked.
 - [x] `011`–`020` — read. 40 files repaired across the book; spec 011.
 - [x] `021`–`030` — read. 15 files repaired across the book; spec 012.
-- [ ] `031`–`040`
+- [x] `031`–`040` — read. 10 files repaired; spec 013. Six poems found
+  swallowed book-wide; spec 014, **which must run before `041`–`050`**.
 - [ ] `041`–`050`
 - [ ] `051`–`060`
 - [ ] `061`–`070`
@@ -304,6 +305,68 @@ Ten files: `021` `037` `050` `094` `121` lose the stray heading, and `022`
 `022`, `023` and `029` read clean. `024`'s pages 91–94, which 011 left
 owing, match its repaired source.
 
+### Session 4 — `031`–`040` (scan pp. 100–108)
+
+Printed page numbers, as in session 3. One structural defect, book-wide and
+too big for this spec, and local damage in every file of the decade. **10
+files changed in `source/`**, all restorations, and nothing outside the
+decade; they are [013](./013-retranslate-session-4.md)'s, except `038`.
+
+**1. Six poems are not in `source/` at all.** Poem 113, *Half a Cloud*, is
+the last paragraph of `038.md`'s notes: its display number OCRs as `NIS`,
+`get_num()` rejects it, so the poem, its title and its verse ran into the
+note before it, and its own `Notes:` became a second `## Notes` in `038`.
+Poem 111, the second *Wind Bell*, is the same fault inside a set: its number
+OCRs as `1 |` and it sits in 110's verse as a fifth line and four more.
+
+Checked book-wide two ways — a page-foot number with no `# Poem` heading
+(111, 113, 332, 690), and a left-margin token under five characters that
+`get_num()` rejects (adds `Bild;`, `Boe`, `537,`). Every one confirmed on
+its page:
+
+| poem | page | OCR'd number | swallowed into |
+|---|---|---|---|
+| 111 *Wind Bell (II)* | 105 | `1 \|` | `038` (110) |
+| 113 *Half a Cloud* | 107 | `NIS` | `038` (110) |
+| 315 *The Gentleman's Wealth* | 143 | `Bild;` | `085` (308) |
+| 332 *The Last Chrysanthemum in the South Garden* | 143 | `Boe` | `085` (308) |
+| 537 *Promise to Be Born in the Time of Maitreya* | 158 | `537,` | `108` (536) |
+| 690 *Sea Cloud* | 170 | `690,` | `126` (647) |
+
+All six are in the book's own *Index of Poems*. **The Anthology has 126
+poems, not 120**, and 009's PDF read had it backwards: the "two quoted
+poems" it recorded in `085.md` are poems 315 and 332. Fixing it adds six
+files and renumbers every file after `038`, which moves `fa/`, `_quarto.yml`
+and every file number in this spec's checklist. That is
+[014](./014-swallowed-poems.md). It must run before `041`–`050` is read, or
+the next decade is read under numbers that are about to change.
+
+**2. Local damage, each checked on the page.**
+
+- **Four markers.** `031` `[4]?` is **47**; `034` `women.”5?` is **50**, and
+  the Persian dropped it; `038` `[5]?` is **57**; `040` `[6]°` is **60**.
+  The decade runs 46 to 60 without a gap.
+- **Three quoted poems flattened**, now in `VERSE_QUOTES`: Tu Fu's couplet
+  in `031` (p. 101), Ch'u Ssu-tsung's quatrain in `037` (p. 104), Hsü
+  Chung-ya's in `038` (p. 107). Each turns `apparatus --check` red on the
+  stale Persian.
+- `031`: `Aui` → *Hui*, `I’m:`, `flavors.”’`, `ina poem`, `flavors ?`.
+- `032`: `‘‘Katsu,”’` in the poem, and the unclosed `“Katsu.` in the note.
+- `033`: `charlatan.”’`. `034`: the unclosed `“the old woman burned the
+  hermitage,`.
+- `035`: `sufhcient`. The old `sufh-\s*cient` rule never fired, because
+  `dehyphenate()` joins the halves first; it now matches both.
+- `036`, `037`: `Ryozen`, `Rydzen: Ryozcens` → *Ryōzen*, *Ryōzen’s*. Each
+  anchored on its context: `Ryozen` stands in `introduction-2.md` and the
+  glossary too.
+- `037`: `oppor- _ tunity`. `038`: `““The banner`, the unclosed `“The wind
+  moves.`, `noon.”`, `stancc` → *distance*, `HalfaCloud`.
+- `039`, `040`: `Shoen` → *Shōen*.
+
+**Left as the print has it:** `038`'s `balustrade. [57]` closes no quote,
+and neither does the page. `034`'s title *Old Woman Kōan* is `POEM_TITLES`'
+own, for an untitled poem.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -346,9 +409,10 @@ faithfully carries.
 
 - ~~`018.md` — a note marker OCR'd as a bare `’’25`, no brackets.~~ Fixed in
   session 2 by the closing-quote marker rule.
-- `085.md` — two quoted poems ("The Gentleman's Wealth", "The Last
+- `085.md` — ~~two quoted poems ("The Gentleman's Wealth", "The Last
   Chrysanthemum in the South Garden") flattened into the note's prose, with
-  `Bild;`, `Boe` and `%` as OCR garbage around them; and T'ao Yüan-ming's
+  `Bild;`, `Boe` and `%` as OCR garbage around them~~ — **not quotes:
+  poems 315 and 332**, swallowed; session 4, spec 014. T'ao Yüan-ming's
   poem in the second note has its lines run together in pairs.
 - `120.md` — `Sdseian`.
 - `128.md` — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note against
@@ -356,7 +420,7 @@ faithfully carries.
 
 ### Found in passing by session 3 — not yet confirmed against the scan
 
-- `031.md` — marker `[4]` where the sequence wants **47**.
+- ~~`031.md` — marker `[4]` where the sequence wants **47**.~~ Session 4.
 - `050.md` — `Tozan “sword mountain is a mountain in hell`: the quote never
   closes.
 - `124.md` — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
@@ -375,10 +439,11 @@ Same terms. 011 re-translated these files and the Persian carries the damage
   as verse. Every rule is anchored on its own text: `just split` changed
   `024.md` and nothing else. The decade's read still owes the rest of 024's
   pages and the stray quotes 010 leaves alone (`cloud-rain.””`).
-- `031.md` — `Wu Teng Aui Yüan`, *Hui*.
-- `037.md` — `doctrine of Rydzen: Ryozcens style of Zen`. ~~The note ends
+- ~~`031.md` — `Wu Teng Aui Yüan`, *Hui*.~~ Session 4.
+- ~~`037.md` — `doctrine of Rydzen: Ryozcens style of Zen`.~~ Session 4. ~~The note ends
   `Wind Bell two poems`~~ — fixed in session 3 with the other set headings.
-- `038.md` — `1 |` as a line of the poem: poem 111's number.
+- `038.md` — `1 |` as a line of the poem: poem 111's number. **Poem 111
+  swallowed**, session 4; spec 014.
 - `introduction-1.md` — two markers left bare, so the marker comparison
   shows the Persian with two the source lacks: `leprosy43` (no punctuation
   before the digit) and `Mori.“50` (an opening quote where the closing-quote

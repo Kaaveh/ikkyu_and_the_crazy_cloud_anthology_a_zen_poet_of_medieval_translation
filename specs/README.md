@@ -24,19 +24,28 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
 | 012 | [Re-translate what 010's third session repaired](./012-retranslate-session-3.md) | 010 | ✅ Done        |
+| 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ⬜ Not started |
+| 014 | [The six swallowed poems](./014-swallowed-poems.md)        | 010        | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[010](./010-source-audit.md)**, next decade: `031`–`040`. Then a new
-   re-translation spec (013, …) for whatever it repairs, before the next
-   decade.
+1. **[014](./014-swallowed-poems.md)** — six poems the generator ran into
+   the file before them. It renumbers every file after `038`, so it goes
+   **before 010's next decade**, which would otherwise be read under numbers
+   about to change.
+2. **[013](./013-retranslate-session-4.md)** — four files re-translated, one
+   conform. Before or after 014, not during; after 014, its `039`/`040` are
+   `041`/`042`.
+3. **[010](./010-source-audit.md)**, next decade: `041`–`050` (under 014's
+   numbering). Then a new re-translation spec for whatever it repairs, before
+   the next decade.
    Repeat through `131`–`135`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+4. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-3. **[007](./007-release.md)** last: the end-to-end read of the typeset
+5. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
@@ -62,8 +71,12 @@ and [011](./011-retranslate-session-2.md) re-translated 39 of them. Its
 third (poems 068–090) changed 15, among them five set headings that had run
 into the note before them and two markers carrying the wrong number — both in
 files 011 had just re-translated for their markers;
-[012](./012-retranslate-session-3.md) owns them. Three of
-the 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
+[012](./012-retranslate-session-3.md) owns them. Its fourth (poems
+091–115) changed 10, [013](./013-retranslate-session-4.md)'s — and found six
+poems the generator had never started, each run into the file before it.
+The Anthology has 126 poems, not 120; [014](./014-swallowed-poems.md) gives
+them back. Three of
+011's 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
 the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
 argument for 010 — and for the marker comparison in its *Tooling* notes.
@@ -77,11 +90,11 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo
 ```
 
-**010 and its re-translation specs (009, 011, 012, …) alternate rather than run in
+**010 and its re-translation specs (009, 011, 012, 013, …) alternate rather than run in
 sequence.** Each decade of the audit
 that repairs a file makes that file's Persian stale, so the tail of the roadmap
 is a loop: read a chunk, fix the generator, list what broke, re-translate it,

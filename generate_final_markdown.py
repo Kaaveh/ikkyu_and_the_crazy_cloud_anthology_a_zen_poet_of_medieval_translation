@@ -212,6 +212,30 @@ TYPO_FIXES = [
     (r'Letter from Nanko”', 'Letter from Nankō”'),
     (r'“Mountain Road”’ has', '“Mountain Road” has'),
     (r'In the years of Kansho,', 'In the years of Kanshō,'),         # p. 167
+    # pp. 100-108, poems 91-115 (spec 010, session 4), each checked on the
+    # page. Markers first, for the same reason as above.
+    (r'Kuei-tsung hit him again\.4\?', 'Kuei-tsung hit him again. [47]'),
+    (r'problem of relations between men and women\.”5\?', 'problem of relations between men and women.” [50]'),
+    (r'polished balustrade\.5\?', 'polished balustrade. [57]'),
+    (r'originating in the Wen Hsüan\.6°', 'originating in the Wen Hsüan. [60]'),
+    (r'\bWu Teng Aui Yüan\b', 'Wu Teng Hui Yüan'),
+    (r'“I’m: going here', '“I’m going here'),
+    (r'Zen of Five flavors\.”’', 'Zen of Five flavors.”'),
+    (r'two lines ina poem', 'two lines in a poem'),
+    (r'heaviness of other flavors \?', 'heaviness of other flavors?'),
+    (r'shout ‘‘Katsu,”’', 'shout “Katsu,”'),
+    (r'shout “Katsu\. \(See', 'shout “Katsu.” (See'),
+    (r'a charlatan\.”’', 'a charlatan.”'),
+    (r'burned the hermitage, is one', 'burned the hermitage,” is one'),
+    (r'doctrine of Ryozen is swept', 'doctrine of Ryōzen is swept'),
+    (r'doctrine of Rydzen: Ryozcens style', 'doctrine of Ryōzen: Ryōzen’s style'),
+    (r'\boppor- _ tunity\b', 'opportunity'),
+    (r'One said, ““The banner moves', 'One said, “The banner moves'),
+    (r'“The wind moves\. Hui-neng', '“The wind moves.” Hui-neng'),
+    (r'midnight watch at noon\.55', 'midnight watch at noon.” [55]'),
+    (r'receding into the stancc\.', 'receding into the distance.'),
+    (r'\bHalfaCloud\b', 'Half a Cloud'),
+    (r'\blibrarian Shoen\b', 'librarian Shōen'),
     # Endnote digits fused to the word before them (STYLE.md §4.2): the print
     # sets a bare superscript digit and OCR welds it onto the preceding word
     # or its closing parenthesis. Bracket it -- nothing else in the book
@@ -222,7 +246,7 @@ TYPO_FIXES = [
     # ...and to a closing quote: "meaning.”11". Punctuation first, so that
     # "“1 know" -- an opening quote on a misread I -- is left alone.
     (r'([.?!,][”’"]{1,2})(\d{1,3})(?=\s|$)', r'\1 [\2]'),
-    (r'\bsufh-\s*cient\b', 'sufficient'),
+    (r'\bsufh-?\s*cient\b', 'sufficient'),   # dehyphenate() joins it first
     (r'\bSelfAppraisal\b', 'Self-Appraisal'),
     (r'\bSelf-A ppraisal\b', 'Self-Appraisal'),
     (r'\bCl’w’s\b', "Ch’u’s"),
@@ -334,6 +358,19 @@ VERSE_QUOTES = [
      'In the land of great T’ang, they have not yet struck the drum.',
      'Pleasure in pain, pain in pleasure.',
      'Who says gold is like dung? [41]'),
+    # p. 101, poem 91: Tu Fu's "Li Chien's House".
+    ('About to eat the two tasty fish,',
+     'Who would look for the heaviness of other flavors? [49]'),
+    # p. 104, poem 108: Ch'u Ssu-tsung in the San T'i Shih.
+    ('Pines, cedars in the wind outside, disordered mountains are green.',
+     'At a desk, burning incense, facing a stone screen,',
+     'I remember last year, after spring rain,',
+     'Swallow mud sometimes soiled The Great Mystery as I read. [52]'),
+    # p. 107, poem 111: Hsü Chung-ya.
+    ('She rises at dawn, fearful of the spring cold,',
+     'Lightly raising the vermilion blinds, gazes at the camellia.',
+     'Not a handful of willow fluff to gather.',
+     'Harmonizing with the wind, it hangs above the polished balustrade. [58]'),
 ]
 
 def split_verse_quotes(paras):
