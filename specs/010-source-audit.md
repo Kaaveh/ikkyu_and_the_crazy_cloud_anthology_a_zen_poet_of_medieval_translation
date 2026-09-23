@@ -84,7 +84,8 @@ fix — that diff is the list of files whose Persian is now stale.
 ### Anthology
 
 - [x] `001`–`010` — read. Findings below; 22 files repaired across the book.
-- [ ] `011`–`020`
+  Re-read for endnote markers in session 2, which session 1 had not checked.
+- [x] `011`–`020` — read. 40 files repaired across the book; spec 011.
 - [ ] `021`–`030`
 - [ ] `031`–`040`
 - [ ] `041`–`050`
@@ -202,6 +203,59 @@ broken hyphen-joins repaired (`scribing` → `phrase describing`, `havior` →
 The other 21 changed words inside existing blocks, where no checker in this
 repo can see them. That is the argument for the rest of this spec.
 
+### Session 2 — `011`–`020` (scan pp. 102–112), and `001`–`010` again
+
+Six defects. Two are book-wide generator faults; the rest are OCR damage
+matched on confirmed text. **40 files changed in `source/`**, all of them
+restorations, and they are [011](./011-retranslate-session-2.md)'s.
+
+**1. The fallback cut was still deleting English on the one-column pages.**
+Session 1 limited `clean_translation_line()` to the 21 pages where
+`drop_column()` measures no gutter. On those pages it cut 8 times, and all 8
+were English: "When **Nan-ch'üan** saw them" (p. 105), "Yüan-wu **said**"
+(p. 112), "would **know**" and "Yün-men, **cloud**" (pp. 90, 92 — session 1's
+own decade), "**the reader**", "**scrambled**", "**the coffin,**", "**as the
+first**". It never cut a CJK character there. A one-column page has no column,
+so the function is gone, `is_column_junk()` with it.
+
+**2. Endnote markers are the least reliable thing in the OCR.** In the
+Anthology they run 1, 2, 3 … without a restart, which makes a gap cheap to
+see. It took this read to look, and the first twenty poems alone had:
+
+- digits lost outright — `meaning.”`, `response.”`, `world.”`, `answer 5`;
+- digits welded to a closing quote, which the endnote rule did not cover —
+  `object.”29`, `it."35`. A new rule brackets them. It needs punctuation before
+  the quote, so `“1 know` (an opening quote and a misread *I*) is left alone;
+- digits misread as punctuation — `!2`, `?°`, `2?`, `3®`, `3!`, `*8`, `.!`;
+- **the wrong number** — `18` for 13 (p. 103), `24` for 21 (p. 106), `9` for 6
+  (p. 97), and `33` for 34 (p. 112). These are the dangerous ones: they look
+  right and send the reader to the wrong note;
+- `(26`, `(27` for the print's own bracketed poem-number labels on p. 97.
+
+Poems 001–020 now carry 1–34 without a gap. **The Persian dropped most of the
+damaged ones**: of 25 files whose markers disagree between `source/` and `fa/`,
+most are this class. The comparison is in *Tooling* below.
+
+**3. Dehyphenation fused names that break across a line.** `Master Fo-/yen`
+became `Foyen`, `Chao-/chou` `Chaochou`, `Yüan-/wu` `YGanwu`. `join_hyphen()`
+now keeps the hyphen when the hyphenated form is printed whole on a line
+somewhere in the book. That restored 18 names across 14 files.
+
+**4. Verse quoted in notes, flattened.** `split_poem7_death_verse()` is now
+`split_verse_quotes()` over a table of confirmed quotes, matched across
+paragraph breaks, because the OCR split one of them in two. Three were added:
+the *Blue Cliff Record* verse in poem 35 (p. 101, session 1's decade), the
+*Lotus Sūtra* couplet in poem 37 (p. 103), and the love song in poem 66
+(p. 112). Requirement 4 still holds: each is matched on its own text.
+
+**5. `Küang` → `Kuang` was wrong.** The print has **Yüeh Küang** on p. 97 and in
+the glossary. The OCR gave five spellings of him, now one rule.
+
+**6. Local OCR damage, each checked on the page.** `poem no. Tk` → `71.` (the
+Persian had dropped the whole sentence), `tryu` → `fūryū` in poem 52's last
+line, `rennorseful`, `SGto`, `Iam`, `Ts ao-shan`, `...@ burning`, `then ll`,
+`burn, |`, `Wuc-tsu`, `Hui Yian`, `Sitra` (seven of them, book-wide).
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -212,12 +266,25 @@ which is 67 K characters, for a comma. A general `、` → `,` rule is not the
 answer either: `apply_typos` also runs over `bibliography.md` and
 `glossary-index.md`, whose entries 006 keeps verbatim.
 
+Session 2 adds these, the same kind of loss, none of which touches meaning:
+
+- **ASCII for diacritics in some names** — `Sakyamuni` (14 of 14), `Kasyapa`,
+  `Acarya`. Consistent, and the Persian spells the name from `STYLE.md` §2.
+- **Stray and doubled quotes** — `’’` for `”`, `fish.’`, `““When`, a missing
+  opening quote on `“Ears`, a missing closing one after `“Pivot`. The
+  translator renders `«»` either way.
+- **Note entries run together.** The print starts each lemma on a new line
+  in italics; `parse_prose()` joins them into one paragraph. That is the
+  book-wide shape of every `## Notes` section, and changing it would break
+  block parity across 93 files.
+
 ### Found in passing by 009's PDF read — not yet confirmed against the scan
 
 For the decades that will reach them. Each is a `source/` defect the Persian
 faithfully carries.
 
-- `018.md` — a note marker OCR'd as a bare `’’25`, no brackets.
+- ~~`018.md` — a note marker OCR'd as a bare `’’25`, no brackets.~~ Fixed in
+  session 2 by the closing-quote marker rule.
 - `085.md` — two quoted poems ("The Gentleman's Wealth", "The Last
   Chrysanthemum in the South Garden") flattened into the note's prose, with
   `Bild;`, `Boe` and `%` as OCR garbage around them; and T'ao Yüan-ming's
@@ -232,3 +299,22 @@ The file-to-page index is worth rebuilding rather than storing — it takes
 seconds and it moves whenever the generator changes. Anchor on word 4-grams
 that appear on at most three pages, take the pages sharing the most of them.
 Every one of the 147 files resolved on the first run with no manual help.
+
+**Endnote markers, `source/` against `fa/`.** A cheap check that `just check`
+does not run. It is how session 2 found out the Persian had dropped markers:
+
+```bash
+python3 - <<'PY'
+import re, glob, os
+tr = str.maketrans('۰۱۲۳۴۵۶۷۸۹', '0123456789')
+for f in sorted(glob.glob('source/[0-9i]*.md')):
+    g = 'fa/' + os.path.basename(f)
+    s = re.findall(r'\[(\d{1,3})\]', open(f).read())
+    p = re.findall(r'\[(\d{1,3})\]', open(g).read().translate(tr))
+    if s != p: print(os.path.basename(f), s, p)
+PY
+```
+
+In the Anthology the sequence alone finds gaps: markers run 1, 2, 3 … and a
+bracketed number that breaks the run is either a misread marker or a
+reference to the full *Anthology*'s numbering (`[101]`, `[640]`).

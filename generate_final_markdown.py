@@ -124,7 +124,9 @@ TYPO_FIXES = [
     (r'\bSungyüan\b', 'Sung-yüan'),
     (r'\bNan-?c[hl]’üan\b', 'Nan-ch’üan'),
     (r'\bWenchün\b', 'Wen-chün'),
-    (r'\bKüang\b', 'Kuang'),
+    # Yüeh Küang, of the Chin Shu anecdote in poem 27's note: the print has the
+    # umlaut (p. 97, and the glossary). The OCR gives five spellings of him.
+    (r'\bY[a-zü]*eh K[a-zü]*ang\b', 'Yüeh Küang'),
     (r'\bChü-’i\b', 'Chü-i'),
     (r'\bboftheFounder\'s\b', "of the Founder's"),
     (r'\bofthe\b', 'of the'),
@@ -142,6 +144,44 @@ TYPO_FIXES = [
     (r'\bdrunknneess\b', 'drunkenness'),
     (r'\befHorescence\b', 'efflorescence'),
     (r'\bimpoverishcd\.4\b', 'impoverished [4]'),
+    # Spec 010 session 2, poems 37-66, scan pp. 102-112. Each checked against
+    # the page image. The endnote markers come first: the rules below them
+    # would bracket a misread number as it stands.
+    # Session 1's decade, pp. 89-101, re-read for markers alone.
+    (r'comely woman\.!', 'comely woman. [1]'),
+    (r'can’t answer 5 sums', 'can’t answer” [5] sums'),
+    (r'denizen of hell\.’', 'denizen of hell. [7]'),
+    (r'relieved\.9', 'relieved. [6]'),
+    (r'\((2[67]) (?=the bow|son of)', r'[\1] '),   # poem-number labels, p. 97
+    (r'\bsouls210\b', 'souls? [10]'),
+    (r'\bYGanwu', 'Yüan-wu'),
+    (r'deep meaning\.”', 'deep meaning.” [11]'),       # digits lost entirely
+    (r'inspection\.!2', 'inspection. [12]'),
+    (r'completely at\s+will\.18', 'completely at will. [13]'),
+    (r'response\.”(?=$| One, two)', 'response.” [17]'),
+    (r'grass\.”"!8', 'grass.” [18]'),
+    (r'dung\.\?°', 'dung. [20]'),
+    (r'lips\.’’24', 'lips.” [21]'),
+    (r'world\.”(?= As can be seen)', 'world.” [26]'),
+    (r'object\.’’2\?', 'object.” [27]'),
+    (r'destroyed\.’’3®', 'destroyed.” [30]'),
+    (r'Buddha-nature\.”3!', 'Buddha-nature.” [31]'),
+    (r'itch\.”’2', 'itch.” [32]'),
+    (r'enlightened\.\*8', 'enlightened. [33]'),
+    (r'capacity\.33', 'capacity. [34]'),
+    (r'poem no\. Tk\b', 'poem no. 71.'),
+    (r'\brennorseful\b', 'remorseful'),
+    (r'\bSGto\b', 'Sōtō'),
+    (r'\bIam\b', 'I am'),
+    (r'\bTs ao-shan\b', 'Ts’ao-shan'),
+    (r'\.\.\.@ burning', '. . . a burning'),
+    (r'\bwas also tryu\b', 'was also fūryū'),
+    (r'then ll be\b', 'then I’ll be'),
+    (r'and burn, \| An', 'and burn, . . . : An'),
+    (r'\bWuc-tsu\b', 'Wu-tsu'),
+    (r'\bHui Yian\b', 'Hui Yüan'),
+    (r'\b([Ss])itra\b', r'\1ūtra'),
+    (r'voice\.’”’', 'voice.’”'),
     # Endnote digits fused to the word before them (STYLE.md §4.2): the print
     # sets a bare superscript digit and OCR welds it onto the preceding word
     # or its closing parenthesis. Bracket it -- nothing else in the book
@@ -149,6 +189,9 @@ TYPO_FIXES = [
     # Excludes "p.61", the one real citation with no space before its digits.
     (r'(?<!\bp)([.?])(\d{1,3})\b', r'\1 [\2]'),
     (r'\)(\d{1,3})\b', r') [\1]'),
+    # ...and to a closing quote: "meaning.”11". Punctuation first, so that
+    # "“1 know" -- an opening quote on a misread I -- is left alone.
+    (r'([.?!,][”’"]{1,2})(\d{1,3})(?=\s|$)', r'\1 [\2]'),
     (r'\bsufh-\s*cient\b', 'sufficient'),
     (r'\bSelfAppraisal\b', 'Self-Appraisal'),
     (r'\bSelf-A ppraisal\b', 'Self-Appraisal'),
@@ -170,9 +213,15 @@ def apply_typos(text):
 
 HYPHEN_PAT = re.compile(r'([a-zA-Z]+)-\n\s*([a-zA-Z]+)')
 
+# Hyphenated forms the print sets whole on a line somewhere. A line-end hyphen
+# in one of these is the word's own, not the typesetter's: "Master Fo-/yen"
+# came out "Foyen", "Chao-/chou" "Chaochou", "Yüan-/wu" "YGanwu".
+ATTESTED_HYPHENS = {h.lower() for h in re.findall(r'[A-Za-z]+-[A-Za-z]+', '\f'.join(pages))}
+
 def join_hyphen(m):
     w1, w2 = m.group(1), m.group(2)
-    if w1.lower() in ('non', 'self', 'well', 'all', 'cross'):
+    if (w1.lower() in ('non', 'self', 'well', 'all', 'cross')
+            or f'{w1}-{w2}'.lower() in ATTESTED_HYPHENS):
         return f'{w1}-{w2}'
     return f'{w1}{w2}'
 
@@ -185,49 +234,10 @@ def strip_page_footer(page_text):
 
 cjk_pat = re.compile(r'[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff\uff00-\uffef]')
 
-word_pat = re.compile(r'\b[A-Za-z][a-z]{2,}\b')
-shout_pat = re.compile(r'\b[A-Z][A-Za-z]*[A-Z][A-Za-z0-9]*\b')
-
 # Two or more all-caps tokens in a row: the OCR's failed reading of the
 # Chinese column -- "ABA RE", "BRETC EER". Used by drop_column() to confirm
 # that what sits right of a measured gutter really is the column.
 shout_run_pat = re.compile(r'(?<![.\w])(?:\b[A-Z]{2,}\b[ ]?){2,}')
-
-def is_column_junk(tail):
-    """Is this the Chinese column, read by the OCR as Latin?
-
-    The print edition sets the original in a right-hand column. Where the OCR
-    read it as CJK the character range finds it; where it failed it produced
-    things like "TEL ek RE 9S", which only a shape test can tell from the
-    continuation of an English sentence across the same gutter. English prose
-    is made of ordinary words; the column has none, or one flanked by capital
-    salad.
-    """
-    if re.fullmatch(r"[a-z’'\-.,;:!?]+", tail.strip()):
-        return False          # "up", "ado." -- a short word the line broke before
-    words = word_pat.findall(tail)
-    return not words or (len(words) <= 1 and len(shout_pat.findall(tail)) >= 2)
-
-def clean_translation_line(line):
-    if len(line) - len(line.lstrip()) >= 45:
-        return ''
-    m_cjk = cjk_pat.search(line)
-    if m_cjk:
-        cjk_pos = m_cjk.start()
-        if 'Praising Saint' in line and cjk_pos < 40:
-            pass
-        elif cjk_pos >= 35:
-            return line[:cjk_pos].rstrip()
-    # Three spaces, not four: on the tightest lines the gutter comes through as
-    # only three. A wide gap that far into a line is as often prose the OCR
-    # spaced badly, so cut only where what follows is the column.
-    for m in re.finditer(r'\s{3,}\S', line):
-        col = m.end() - 1
-        if col < 45:
-            continue
-        if col - m.start() >= 4 or is_column_junk(line[col:]):
-            return line[:m.start()].rstrip()
-    return line.rstrip()
 
 def parse_prose(text):
     lines = text.splitlines()
@@ -256,37 +266,37 @@ def parse_prose(text):
             cleaned.append(apply_typos(p_clean))
     return cleaned
 
-POEM7_DEATH_VERSE = re.compile(
-    # No `(?P<pre>.*admired:) ` prefix. parse_prose() breaks a paragraph after
-    # a line ending in ':', so "...the personality Ikkyū admired:" is already a
-    # paragraph of its own and the verse starts the next one. Requiring the
-    # prefix meant this never matched and the fix was dead code for two specs:
-    # source/002.md still carried the death poem flattened into its note.
-    # Confirmed against p. 93 of the scan, where it is four indented lines.
-    r'Eighty-five years Knowing nothing even about the Patriarchs, '
-    r'Rowing with my elbow, serving, going, '
-    r'Erasing my tracks in the Great Void\. \[4\] '
-    r'(?P<post>Yü-wang:.*)'
-)
+# Verse quoted inside a note, which parse_prose() flattens into one line.
+# STYLE.md §3.3. Each is confirmed against the scan -- a general verse rule
+# turns dozens of quoted kōans into fake verse (spec 010 requirement 4). A
+# quote's lines, found run together, get their breaks back and a paragraph of
+# their own.
+VERSE_QUOTES = [
+    # p. 93, poem 7: Hsü-t'ang's death poem.
+    ('Eighty-five years',
+     'Knowing nothing even about the Patriarchs,',
+     'Rowing with my elbow, serving, going,',
+     'Erasing my tracks in the Great Void. [4]'),
+    # p. 101, poem 35: the Blue Cliff Record's appreciatory verse. The OCR
+    # split it in two, so quotes are matched across paragraph breaks.
+    ('The staff swallows up heaven and earth,',
+     'In vain do you speak of running the peach blossom rapids.',
+     'Those with sun-burned tails are not catching the clouds and seizing mist,',
+     'Those with bleached gills, why must they lose their livers and their souls? [10]'),
+    # p. 103, poem 37: the Lotus Sūtra.
+    ('I am the Dharma King',
+     'With respect to the Dharma acting completely at will. [13]'),
+    # p. 112, poem 66: the little love song.
+    ('‘She often called her maid for no reason at all,',
+     'Just so that her lover would recognize her voice.’”'),
+]
 
-def split_poem7_death_verse(paras):
-    """Re-break Hsü-t'ang's death poem out of poem 7's flattened note.
-
-    See STYLE.md §3.3. The raw OCR still shows the print's own line breaks
-    (checked against the PDF), which parse_prose has no way to keep.
-    """
-    out = []
-    for p in paras:
-        m = POEM7_DEATH_VERSE.match(p)
-        if not m:
-            out.append(p)
-            continue
-        out.append('Eighty-five years\n'
-                    'Knowing nothing even about the Patriarchs,\n'
-                    'Rowing with my elbow, serving, going,\n'
-                    'Erasing my tracks in the Great Void. [4]')
-        out.append(m.group('post'))
-    return out
+def split_verse_quotes(paras):
+    text = '\n\n'.join(paras)
+    for lines in VERSE_QUOTES:
+        pat = r'\s*' + r'\s+'.join(map(re.escape, lines)) + r'\s*'
+        text = re.sub(pat, lambda m: '\n\n' + '\n'.join(lines) + '\n\n', text)
+    return [p for p in text.split('\n\n') if p]
 
 print("Preprocessing modules ready.")
 
@@ -416,10 +426,9 @@ def drop_column(page_text):
     lands *between* two English words: "they would ignore fF, DARRZ karma and
     the world..." That reads as interleaving but is only a missing cut.
 
-    clean_translation_line() is the poem files' cut and is wrong here. It
-    treats any run of three spaces past column 45 as the gutter, and the
-    Introduction is set justified, so it also eats stretched word spacing --
-    52 lines, including "his craziness" and "balancing act".
+    The old cut treated any run of three spaces past column 45 as the gutter,
+    and the Introduction is set justified, so it also ate stretched word
+    spacing -- 52 lines, including "his craziness" and "balancing act".
 
     find_gutter() measures the blank run instead of guessing at it, and the
     measurement doubles as the test for whether to cut at all: a one-column
@@ -683,19 +692,12 @@ def get_trans_lines():
     for p_idx in range(88, 201):
         m = FOOT_NUM.search(pages[p_idx].rstrip())
         page_starts.append((len(all_lines), m.group(1) if m else None))
-        # Measure the gutter before guessing at it. Spec 008 requirement 2
-        # found that clean_translation_line()'s "three spaces past column 45"
-        # rule eats justified word spacing, and fixed the Introduction with
-        # drop_column(). These pages are set justified too, and the same rule
-        # was deleting English here -- "Chamber" off a poem title on p.187,
-        # "Daiō told" out of poem 8's note, "phrase de-" out of the line above
-        # it. Where a gutter is measurable the column is already gone, so the
-        # guess must not run as well; where it is not (21 one-column pages),
-        # clean_translation_line() stays the fallback. Spec 008 requirement 1.
-        page = strip_page_footer(pages[p_idx])
-        cut = drop_column(page)
-        lines = cut.splitlines() if cut != page else [
-            clean_translation_line(l) for l in page.splitlines()]
+        # Cut the column where a gutter is measurable, and nowhere else.
+        # There used to be a fallback guess -- "three spaces past column 45"
+        # -- for the pages drop_column() leaves alone. Those 21 pages are
+        # genuinely one-column, so every cut it made there was English: eight
+        # of them, "When Nan-ch'üan saw them" among them. Spec 010, session 2.
+        lines = drop_column(strip_page_footer(pages[p_idx])).splitlines()
         all_lines.extend(lines)
 
     text = '\n'.join(all_lines)
@@ -945,19 +947,9 @@ def build_translations():
             if after_colon:
                 n_lines = [after_colon] + n_lines
             note_paras = parse_prose('\n'.join(n_lines))
-            # STYLE.md §3.3: Hsü-t'ang's death poem, quoted inline in poem 7's
-            # note, is a stanza in the print edition but parse_prose has no way
-            # to tell a quoted verse from a quoted anecdote and flattens both
-            # alike (checked: doing this generally turns dozens of quoted kōans
-            # in other notes into fake "verse"). This is the one case confirmed
-            # against the scan, p. 93.
-            #
-            # Unguarded. This used to read `if num == '7'`, and num is None on
-            # a Notes chunk -- the number belongs to the poem item, not to its
-            # notes -- so the call never fired and source/002.md carried the
-            # poem flattened through two specs that each recorded it as fixed.
-            # No guard is needed: the pattern is the poem's whole text.
-            note_paras = split_poem7_death_verse(note_paras)
+            # Unguarded: num is None on a Notes chunk, and a guard on it kept
+            # the poem 7 fix dead through two specs. The quotes are guard enough.
+            note_paras = split_verse_quotes(note_paras)
             for p in note_paras:
                 out.append(p + "\n")
             continue

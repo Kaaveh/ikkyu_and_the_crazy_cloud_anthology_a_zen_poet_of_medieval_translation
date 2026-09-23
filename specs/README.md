@@ -22,6 +22,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
 | 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
+| 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ⬜ Not started |
 
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
 skipped`, and the book typesets at 230 pages.
@@ -37,12 +38,16 @@ the Persian output and asks whether it typesets. Different document, different
 question, different eyes. An earlier version of this page implied they were one
 pass; they are not.
 
-### `just check` is green again
+### `just check` is red on three files, and 011 is what greens it
 
-010's first session fixed three generator faults and re-split, which changed 22
-files in `source/`. [009](./009-retranslate-repaired-files.md) re-translated
-all 22, and `check_parity` is back to 147/147. **Each later decade of 010 that
-repairs a file will turn it red again** until the matching re-translation runs.
+010's first session fixed three generator faults and changed 22 files in
+`source/`; [009](./009-retranslate-repaired-files.md) re-translated them. Its
+second session (poems 011–020) changed 40 more, three fixes of it book-wide,
+and [011](./011-retranslate-session-2.md) is their re-translation.
+`apparatus --check` fails on `010`, `011` and `020`, whose verse quotes were
+re-broken. **Most of the 40 fail nothing**: `check_parity` counts blocks, and
+a restored word or endnote marker does not change the count. That is the
+argument for 010 — and for the marker comparison in its *Tooling* notes.
 
 008 is part-done: **requirement 2 (the Introduction's CJK bleed) was completed
 inside 005**, which it was blocking. Its requirement 1 (the 147-file PDF read)
@@ -53,11 +58,12 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo
 ```
 
-**010 and 009 alternate rather than run in sequence.** Each decade of the audit
+**010 and its re-translation specs (009, 011, …) alternate rather than run in
+sequence.** Each decade of the audit
 that repairs a file makes that file's Persian stale, so the tail of the roadmap
 is a loop: read a chunk, fix the generator, list what broke, re-translate it,
 green the checkers, read the next chunk.
