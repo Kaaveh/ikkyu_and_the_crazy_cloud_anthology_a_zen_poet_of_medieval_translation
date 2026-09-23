@@ -73,16 +73,59 @@ sanctioned hand-edit (`CLAUDE.md`), every occurrence:
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated; `apparatus --check` green on `046`.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+- [x] Every group A file re-translated; `apparatus --check` green on `046`.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
       for any group A file: `046` carries [61]–[63], `049` [65].
-- [ ] *Daiki Kōjū Zenji* is «دایکی کوجو زنجی» in `044`, whatever gloss the
+- [x] *Daiki Kōjū Zenji* is «دایکی کوجو زنجی» in `044`, whatever gloss the
       model adds beside it (§2.9).
-- [ ] *Lan-ts'an* is «لان-تس’ان» everywhere in `fa/`: no «لان-تسان» left.
-- [ ] Group C checked.
-- [ ] `just check` green.
+- [x] *Lan-ts'an* is «لان-تس’ان» everywhere in `fa/`: no «لان-تسان» left.
+- [x] Group C checked.
+- [x] `just check` green.
 
 ## Out of scope
 
 Anything 010 has not read yet. `049`'s closing paragraph, run into its last
 note: that is 016's, and 015's draft will carry it joined, as `source/` does.
+
+## Implementation notes
+
+### One sitting, all three at 4500
+
+**Every draft came back Advanced** — 11, 30 and 13 ezafe — and `restore`
+took each first time. `046`'s couplet came back as two lines of verse and
+`apparatus --check` went green on it. Block counts match `source/` in all
+three.
+
+**§2, conformed against the old files and the table:**
+
+- `044`: «دایکی کوجو زِنجی» → «دایکی کوجو زنجی», the kasre going as in
+  ته-تسونگ. The model's `(Daiki Kōjū Zenji)` gloss is kept (§2.9).
+- `046`: لان-تسان → لان-تس’ان ×6, ایکّیو → ایک‌کیو ×2, «زو-شو» → «تزو-شیو»
+  ×6, «چو» → «چ’و» ×3, «چوان‌تنگ‌لو» → «چ’وآن تنگ لو», تِه-تسونگ →
+  ته-تسونگ. *Kasō Sōdon* came back «کاسو سودون», where the old file had the
+  OCR's «سدون». The dynasty stays «تانگ», as it is book-wide; the 25 «ت’انگ»
+  in `fa/` are Hsü-t'ang.
+- `049`: ایکیو → ایک‌کیو ×5, «سونگ-یوان» → «سونگ-یوآن» ×2, «شو-تانگ» →
+  «شیو-ت’انگ» ×3, and «دارِمایِ» → «دارمایِ» (§2.7).
+- Group B: «لان-تسان» → «لان-تس’ان», `001` ×2 and `introduction-3` ×6.
+  None left in `fa/`. `glossary-index` keeps `Lan-ts’an` verbatim, as 006
+  keeps every entry.
+
+`just fix` turned `049`'s nested ASCII quotes into guillemets and one comma
+in `044`.
+
+**Left as the model gave it:** `049`'s third and fourth lines. «سی سال است
+که سنگینیِ / ذنِ «سونگ-یوآن» را بر دوش می‌کشم» folds *heavy on my
+shoulders* into the burden and breaks on an ezafe. It is a reading, not an
+error either sanctioned edit covers, and 016 re-translates `049` next anyway.
+
+**Result:** `just check` green, 153/153 on parity and anchors. The marker
+comparison disagrees only on `064`, `070` and `introduction-1`, 010's known
+three. `046` carries [61]–[63], `049` [65].
+
+### Group C
+
+All four read. `045` has «چه نوع ذنی است؟». `047` has «پ’و-هوا» all three
+times. `048` closes «…گسسته نشده است؟» [64]». `050` has nothing to carry.
+
+The typeset PDF was not read. This spec's criteria do not ask for it.

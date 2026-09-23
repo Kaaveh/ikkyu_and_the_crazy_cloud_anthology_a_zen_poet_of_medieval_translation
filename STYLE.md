@@ -418,6 +418,13 @@ new drafts missed; the last is a name the model supplied itself.
 | Shōen | شوئن | شوین / شوئِن — §2.4, the hiatus spelled with ئ as in دایئو, and the kasre goes |
 | T’ai Hsüan Ching | ت’ای شیوآن چینگ | تای‌شوآن‌جینگ — §2.1, built from the Pinyin *Taixuanjing*. Not in `source/`: the model added it with its own gloss in `037.md`. The Persian is conformed and the gloss is kept (§2.9) |
 
+Spec 015 adds two, both from the fifth decade's restored source.
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| Daiki Kōjū Zenji | دایکی کوجو زنجی | دایکی کوجو زِنجی — §2.4, and the kasre goes. The old file had «کوجا», from the OCR's `Koja` |
+| Kasō Sōdon | کاسو سودون | correct as given. The old file had «سدون», from the OCR's `Sddon` |
+
 ---
 
 ### §2.9 The translator's parenthetical romanisations are kept

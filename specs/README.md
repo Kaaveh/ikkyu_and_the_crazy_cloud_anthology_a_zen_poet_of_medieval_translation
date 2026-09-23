@@ -26,26 +26,23 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 012 | [Re-translate what 010's third session repaired](./012-retranslate-session-3.md) | 010 | ✅ Done        |
 | 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ✅ Done        |
 | 014 | [The six swallowed poems](./014-swallowed-poems.md)        | 010        | ✅ Done        |
-| 015 | [Re-translate what 010's fifth session repaired](./015-retranslate-session-5.md) | 010 | ⬜ Not started |
+| 015 | [Re-translate what 010's fifth session repaired](./015-retranslate-session-5.md) | 010 | ✅ Done        |
 | 016 | [A note's closing paragraph, given back](./016-note-afterwords.md) | 010 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[015](./015-retranslate-session-5.md)** — three files re-translated,
-   *Lan-ts'an* conformed in two more after its §2 row was found wrong. It is
-   what keeps `just check` red: `046`.
-2. **[016](./016-note-afterwords.md)** — 16 files whose note's closing
+1. **[016](./016-note-afterwords.md)** — 16 files whose note's closing
    paragraph runs into the last gloss. Blocks nothing; before the next
    decade is cheaper, since nine of the 16 are in decades not yet read.
-3. **[010](./010-source-audit.md)**, next decade: `051`–`060`. Then a new
+2. **[010](./010-source-audit.md)**, next decade: `051`–`060`. Then a new
    re-translation spec for whatever it repairs, before the next decade.
    Repeat through `131`–`141`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-4. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-5. **[007](./007-release.md)** last: the end-to-end read of the typeset
+4. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
