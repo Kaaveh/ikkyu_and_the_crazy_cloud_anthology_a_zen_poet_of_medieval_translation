@@ -66,15 +66,67 @@ of its own. Every other change is inside an existing block and fails nothing.
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated; `just check` green.
-- [ ] The five heading-less notes (`021` `037` `050` `094` `121`) no longer
+- [x] Every group A file re-translated; `just check` green.
+- [x] The five heading-less notes (`021` `037` `050` `094` `121`) no longer
       end in the next set's title.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
       for any group A file; `025` carries [43] and `028` [45].
-- [ ] Group C checked.
-- [ ] Typeset PDF read for the touched files.
+- [x] Group C checked.
+- [x] Typeset PDF read for the touched files.
 
 ## Out of scope
 
 Anything 010 has not read yet. `031`'s `[4]`, `050`'s unclosed quote and
 `124`'s `Kansho` are recorded in 010 for their decades.
+
+## Implementation notes
+
+### One sitting, all 13 at 4500
+
+**Every file came back Advanced at the first rung.** No space-joined verb
+prefix in any draft (the six hits in `038` are «نمی» and «تمامی», not
+prefixes), and `030`'s zero-ezafe note paragraphs read as ordinary
+declarative Persian, not Classic: subjects present, names transliterated,
+nothing doubled. `037` is the file 011 found Classic at every rung in the
+tail of its note; this time the tail reads Advanced.
+
+**Two block joins, split back in scratch**, as 011 did for `038` and `071`:
+
+- `028` — the kōan's first sentence and the rest joined by a single newline.
+  That is the paragraph break 010 records as a source defect (*Prose block
+  quotes break mid-quote*), so the model was right and parity wanted it back.
+- `038` — «…ترک کنم.» and «پس از آنکه…» run into one paragraph.
+
+**§2, conformed against the old files.** ایکیو → ایک‌کیو (`021` `030` `037`
+`038` `050`); `028` lost P’ang ×6, Ch’üan ×3 and Hsüeh-tou, the three rows
+spec 011 added to §2 for this very file; `038` P’u-hua ×8, Hsü-t’ang ×3,
+Hui-neng, *Ch’uan Teng Lu*; `050` Hsü-t’ang; ZWNJ-for-hyphen in `021`
+(*Shih-shih Chi-ku Lüeh*), `025` (Kung-sun), `051` (Shao-lin), `094`
+(Chao-chou ×2), `095` (Shih-huang), `121` (Ch’ang-an); `037` Ch’u Ssu-tsung;
+`030` «کریزی کلاود» → «ابر دیوانه» and «دایتوکو-جی» → «دایتوکوجی». `just fix`
+took a tatweel out of `021` and an ASCII quote out of `038`.
+
+**Result:** `check_parity` 147/147, `just check` green. The marker
+comparison disagrees only on `062`, `068` and `introduction-1`, the three
+010 already records.
+
+**PDF read** (pp. 77–78, 86, 88, 96, 110, 159, 186 of the typeset book): the
+five set headings set bold under their poem heading, the split paragraphs
+hold, and the Latin glosses render in place. `038`'s `1 |` is set as a line
+of poem 111: the source defect 010 has for decade `031`–`040`.
+
+### Requirement 3 could not be met as written
+
+The siblings disagree with each other, not only with the new headings:
+`023` has «کلام مقدس، آلودگی را می‌زداید» against `022` and `024`'s «متون
+مقدس آلودگی را می‌زدایند»; `096` has «به آتش کشید» against `095` and
+`097`'s «سوزاند»; `052` has «بر فراز کوه ببر… سه دسته» against `051`'s «بر
+کوه ببر… سه مرتبه»; and the set numbering is `(I)` in some and `(۱)` in
+others. Each new set heading matches its own poem's title. Retitling a
+sibling is translator prose, not one of the two sanctioned hand-edits, so it
+is left, and recorded here for 007's read.
+
+### Group C
+
+`026` and `027` read: the Persian of each already carries what the source
+gained. Nothing to conform.
