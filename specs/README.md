@@ -22,22 +22,21 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
 | 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
-| 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ⬜ Not started |
+| 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[011](./011-retranslate-session-2.md)**: group A (14 files), then group C
-   (15, by reading), then group B (11: poem files, `introduction-3`, then
-   `introduction-1` on its own). `just check` is red until group A is done.
-2. **[010](./010-source-audit.md)**, next decade: `021`–`030`. Then a new
+1. **[010](./010-source-audit.md)**, next decade: `021`–`030`. Then a new
    re-translation spec (012, …) for whatever it repairs, before the next
-   decade. Repeat through `131`–`135`, then the front and back matter,
+   decade. **012 also carries `024.md`**, which 011 held back: its source is
+   too damaged to translate clean, and this decade is the one that repairs it.
+   Repeat through `131`–`135`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-4. **[007](./007-release.md)** last: the end-to-end read of the typeset
+3. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
@@ -54,14 +53,14 @@ the Persian output and asks whether it typesets. Different document, different
 question, different eyes. An earlier version of this page implied they were one
 pass; they are not.
 
-### `just check` is red on three files, and 011 is what greens it
+### Why 010 needs its re-translation specs
 
 010's first session fixed three generator faults and changed 22 files in
 `source/`; [009](./009-retranslate-repaired-files.md) re-translated them. Its
 second session (poems 011–020) changed 40 more, three fixes of it book-wide,
-and [011](./011-retranslate-session-2.md) is their re-translation.
-`apparatus --check` fails on `010`, `011` and `020`, whose verse quotes were
-re-broken. **Most of the 40 fail nothing**: `check_parity` counts blocks, and
+and [011](./011-retranslate-session-2.md) re-translated 39 of them. Three of
+the 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
+the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
 argument for 010 — and for the marker comparison in its *Tooling* notes.
 

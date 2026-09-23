@@ -87,18 +87,100 @@ their entries verbatim (spec 006), so each needs one word conformed by hand:
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated; `just check` green.
+- [ ] Every group A file re-translated; `just check` green. **13 of 14**, and
+      `just check` is green. `024` is held back on purpose: see *024* below.
 - [x] Group B decided: re-translate, no new hand-edit.
-- [ ] Every group B file re-translated.
-- [ ] Group C checked against `STYLE.md` §2; the two back-matter words
+- [x] Every group B file re-translated.
+- [x] Group C checked against `STYLE.md` §2; the two back-matter words
       conformed.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
-      for any file in groups A and B. (It still shows `062` and `068`, where
-      the Persian has a marker the source lacks. Those are source defects for
-      a later decade of 010.)
-- [ ] Typeset PDF read for the touched files.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+      for any file in groups A and B, **except `introduction-1`**, where the
+      Persian has [43] and [50] and the source leaves them bare. Same class as
+      `062` and `068`: a source defect, recorded in 010. (`024` agrees: its old
+      Persian already carried its markers.)
+- [x] Typeset PDF read for the touched files.
 
 ## Out of scope
 
 Anything 010 has not read yet. The marker comparison lists files outside this
 spec, and they wait for their decade.
+
+## Implementation notes
+
+### Session 1 — 39 of 40, one sitting
+
+**Chunk sizes.** Most files at 4500. The exceptions, each chosen by reading
+the drafts from each rung:
+
+| file | shipped | why |
+|---|---|---|
+| `009` | 300 | Classic at 4500 and 900 (no ezafe, 7 blocks for 4); 400 went Classic in its last third. `CLAUDE.md` already said 300. |
+| `014` | 900 | 4500 was Advanced but took the source's doubled `““When` as an opening quote and ran one «» from [15] to the end of the file, every inner quote turned into ”“. A quote cannot cross a chunk boundary. |
+| `introduction-3` | 2250 | As last time. 62/62 blocks, every marker. |
+| `introduction-1` | 900 | As last time. 106/106 blocks. Chrome profile to itself. |
+
+**Two files have a Classic passage at every rung, and shipped anyway.** The
+fallback is deterministic, so each one's Classic passage is the *same text*
+the old file had. The re-translation restores what the source gained and
+loses nothing:
+
+- **`001`** — *taryn* through Tz'u-ming's students, at 4500, 900, 400 and 300.
+  It is not the OCR damage in that passage (`taryn`, `fia`, `ryi#`): with
+  those fixed in a scratch copy the model still fell back. Smaller rungs only
+  added stray «...». Shipped 4500.
+- **`037`** — the tail of the note at 4500 and 900 («بلو کلیف رکورد»); 400
+  moved the Classic chunk next to `Rydzen: Ryozcens` instead, and 300 split
+  blocks. Shipped 4500. «کیکان» looks like a tell and is not: it is *kikan*,
+  the word the note is explaining.
+
+`introduction-3`'s Eliot paragraphs, which render *allusion* «کنایه», are the
+same case: word for word what spec 005 shipped.
+
+### 024 — held back, not re-translated
+
+No rung is clean. 4500: first chunk Classic, and `## ⟦2⟧` welded onto the
+poem's last line. 2250 and 900: one Classic stretch each, and marker [38]
+dropped. 400 and 300: Classic throughout, with «...» and a Hangul fragment in
+the output. The damage (`’3? 69]`, `[4]°`, `Stitra`) sits exactly where [38]
+is lost, so this is `CLAUDE.md`'s "stop — the input is the problem".
+
+It is also the one file in this spec that 010 has not read: it is in decade
+`021`–`030`, which is next. That decade will change `source/024.md` again, and
+its re-translation spec should carry 024 — re-translating it now would be done
+twice. The old `fa/024.md` stays: it lacks *the reader* and is Classic in
+places, but its markers agree with the source.
+
+### Paragraph joins
+
+`038` joined *Rinzai had the steward…* to *P'u-hua put the coffin…*; `071` left
+the *Chuang Tzu* quote on its own line with no blank line. Neither dropped
+anything, so each was split back in scratch, as 009 did for `085`.
+
+### §2
+
+Every draft was conformed against its old file, as 009 did: ایکیو on almost
+every file, and the usual ZWNJ-for-hyphen and dropped-apostrophe errors. The
+count compares against the old file, so it cannot see a form both got wrong;
+reading caught five that the old files had carried since 004 and 005 — P'ang and
+Ch'üan in `028`, Ma Yüan in `025`, Tung-shan ×7 in `introduction-1`, and
+Hsü-t'ang as «هسو-تانگ» in the same file. The first three are new rows in
+`STYLE.md` §2. `introduction-3`'s T'ao Yüan-ming was matched to the rest of the
+book («تائو»), not to §2.2, which wants «ت’ائو»: see *Left for other specs*.
+
+**Group C** — `031`, `057`, `124`, `133` needed conforms; the other nine were
+right. The PDF read found two that the name check had missed, in `031` and
+`057`. `Yüeh Küang` stays «یوئه کوانگ» (`STYLE.md` §2): Wade-Giles has no
+*küang* syllable, so there is no ü to carry.
+
+**The PDF read found no typesetting fault.** It found source defects, which
+are in 010 under *Found in passing by 011*.
+
+### Left for other specs
+
+- **`024`** — for the re-translation spec after 010's decade `021`–`030`.
+- **T'ao is «تائو» in all 21 places the book names T'ao Yüan-ming**, never
+  §2.2's «ت’ائو», though §2.2 cites that very name as its reason. A book-wide
+  conform, not this spec's.
+- **The model writes «...» before a poem number** — «شعر شماره‌ی... ۲۰۹»,
+  «کوآن شماره... ۶۳» — in `001`, `014`, `019`, and in the old files too.
+  Translator prose, so not a sanctioned hand-edit.

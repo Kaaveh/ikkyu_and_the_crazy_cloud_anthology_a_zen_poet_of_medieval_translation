@@ -293,6 +293,30 @@ faithfully carries.
 - `128.md` — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note against
   `Unryōin` / `Sen’yūji` in the title.
 
+### Found in passing by 011 — not yet confirmed against the scan
+
+Same terms. 011 re-translated these files and the Persian carries the damage
+(or, where noted, quietly corrects it).
+
+- `024.md` (poem 69) — `filth.’3? 69]` is presumably marker 37 plus the
+  print's `[69]` label; `[4]°` is presumably [40]; `Stitra`. **This is what
+  kept 024 out of 011:** no chunk size translates it clean, and the damage sits
+  exactly where the model drops [38]. Decade `021`–`030` reaches it, and its
+  re-translation spec should carry 024.
+- `031.md` — `Wu Teng Aui Yüan`, *Hui*.
+- `037.md` — `doctrine of Rydzen: Ryozcens style of Zen`; and the note ends
+  `Wind Bell two poems`, which is the next poem's heading run into it.
+- `038.md` — `1 |` as a line of the poem: poem 111's number.
+- `introduction-1.md` — two markers left bare, so the marker comparison
+  shows the Persian with two the source lacks: `leprosy43` (no punctuation
+  before the digit) and `Mori.“50` (an opening quote where the closing-quote
+  rule expects a closing one). The model brackets both, correctly. Also
+  `interview. [4]!`.
+- `introduction-3.md` — `my ruins,84`, bare, after a comma.
+- `001.md` — `taryn`, `fia`, `ryi#` for *fūryū*, *fū*, *ryū*. Session 1's
+  decade, read twice and left. Not what makes that passage Classic: 011 fixed
+  them in a scratch copy and the model still fell back.
+
 ### Tooling
 
 The file-to-page index is worth rebuilding rather than storing — it takes
