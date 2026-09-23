@@ -298,11 +298,14 @@ faithfully carries.
 Same terms. 011 re-translated these files and the Persian carries the damage
 (or, where noted, quietly corrects it).
 
-- `024.md` (poem 69) — `filth.’3? 69]` is presumably marker 37 plus the
-  print's `[69]` label; `[4]°` is presumably [40]; `Stitra`. **This is what
-  kept 024 out of 011:** no chunk size translates it clean, and the damage sits
-  exactly where the model drops [38]. Decade `021`–`030` reaches it, and its
-  re-translation spec should carry 024.
+- ~~`024.md` (poems 69–71's notes)~~ — **confirmed on pp. 90–94 and fixed**,
+  ahead of its decade, in 011's session 2: `filth.’3? 69]` is marker 37 and
+  the label [69]; `(79` the label [70]; `Pi` the label [71]; `[4]°` is 40;
+  **`dung ? [42]` is 41 in the print**, and `water.’ 3` is the real 42;
+  `Stitra`, `Wu-tai`, `conJures`, `Fallen Hower`. Three quoted poems set back
+  as verse. Every rule is anchored on its own text: `just split` changed
+  `024.md` and nothing else. The decade's read still owes the rest of 024's
+  pages and the stray quotes 010 leaves alone (`cloud-rain.””`).
 - `031.md` — `Wu Teng Aui Yüan`, *Hui*.
 - `037.md` — `doctrine of Rydzen: Ryozcens style of Zen`; and the note ends
   `Wind Bell two poems`, which is the next poem's heading run into it.

@@ -182,6 +182,19 @@ TYPO_FIXES = [
     (r'\bHui Yian\b', 'Hui Yüan'),
     (r'\b([Ss])itra\b', r'\1ūtra'),
     (r'voice\.’”’', 'voice.’”'),
+    # pp. 91-94, the notes to "The Scriptures Wipe Away Filth" (poems 69-71),
+    # each checked on the page. Anchored on their own text, and ahead of the
+    # general marker rules below, which would bracket the wrong digit.
+    (r'wiping filth\.’3\? 69\]', 'wiping filth.” [37] [69]'),
+    (r'\bSea Dragon King Stitra\b', 'Sea Dragon King Sūtra'),
+    (r'\(79 (?=bow’s reflection)', '[70] '),
+    (r'\bOn Wu-tai mountain\b', 'On Wu-t’ai mountain'),
+    (r'pisses at the sky\.4°', 'pisses at the sky. [40]'),
+    (r'\bPi (?=On the south side of the mountain)', '[71] '),
+    (r'gold is like dung \?42', 'gold is like dung? [41]'),   # 42 in the OCR
+    (r'fragrant flowing water\.’ 3\b', 'fragrant flowing water.’” [42]'),
+    (r'\bconJures\b', 'conjures'),
+    (r'“Fallen Hower "is\b', '“Fallen flower” is'),
     # Endnote digits fused to the word before them (STYLE.md §4.2): the print
     # sets a bare superscript digit and OCR welds it onto the preceding word
     # or its closing parenthesis. Bracket it -- nothing else in the book
@@ -289,6 +302,21 @@ VERSE_QUOTES = [
     # p. 112, poem 66: the little love song.
     ('‘She often called her maid for no reason at all,',
      'Just so that her lover would recognize her voice.’”'),
+    # pp. 91-93, the notes to poems 69-71: Hsüeh-tou's tomb, kōan 96, and
+    # the appreciatory verse to Yün-men's kōan. Each came out a paragraph per
+    # line, or two lines run together.
+    ('The Three Sovereigns and Five Emperors, what about them?',
+     'His suffering lasted twenty years.',
+     'It did not get collected in the Great Storehouse of Sutras.',
+     'Up to now, it is scattered wildly over Breast Peak. [39]'),
+    ('On Wu-t’ai mountain, clouds steam rice.',
+     'Before the old Buddha Hall, the dog pisses at the sky. [40]'),
+    ('On the south side, cloud; on the north side, rain,',
+     'The forty-seven Saints and six Patriarchs look one another in the eye.',
+     'In the land of the barbarians, a monk mounts the lectern.',
+     'In the land of great T’ang, they have not yet struck the drum.',
+     'Pleasure in pain, pain in pleasure.',
+     'Who says gold is like dung? [41]'),
 ]
 
 def split_verse_quotes(paras):

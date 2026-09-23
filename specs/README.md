@@ -30,8 +30,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 
 1. **[010](./010-source-audit.md)**, next decade: `021`–`030`. Then a new
    re-translation spec (012, …) for whatever it repairs, before the next
-   decade. **012 also carries `024.md`**, which 011 held back: its source is
-   too damaged to translate clean, and this decade is the one that repairs it.
+   decade.
    Repeat through `131`–`135`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
 2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no

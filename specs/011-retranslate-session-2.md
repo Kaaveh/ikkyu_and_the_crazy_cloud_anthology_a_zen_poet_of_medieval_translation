@@ -87,8 +87,8 @@ their entries verbatim (spec 006), so each needs one word conformed by hand:
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated; `just check` green. **13 of 14**, and
-      `just check` is green. `024` is held back on purpose: see *024* below.
+- [x] Every group A file re-translated; `just check` green. `024` in session
+      2, after its source was repaired.
 - [x] Group B decided: re-translate, no new hand-edit.
 - [x] Every group B file re-translated.
 - [x] Group C checked against `STYLE.md` §2; the two back-matter words
@@ -136,7 +136,7 @@ loses nothing:
 `introduction-3`'s Eliot paragraphs, which render *allusion* «کنایه», are the
 same case: word for word what spec 005 shipped.
 
-### 024 — held back, not re-translated
+### 024 — held back in session 1
 
 No rung is clean. 4500: first chunk Classic, and `## ⟦2⟧` welded onto the
 poem's last line. 2250 and 900: one Classic stretch each, and marker [38]
@@ -177,10 +177,31 @@ are in 010 under *Found in passing by 011*.
 
 ### Left for other specs
 
-- **`024`** — for the re-translation spec after 010's decade `021`–`030`.
 - **T'ao is «تائو» in all 21 places the book names T'ao Yüan-ming**, never
   §2.2's «ت’ائو», though §2.2 cites that very name as its reason. A book-wide
   conform, not this spec's.
 - **The model writes «...» before a poem number** — «شعر شماره‌ی... ۲۰۹»,
   «کوآن شماره... ۶۳» — in `001`, `014`, `019`, and in the old files too.
   Translator prose, so not a sanctioned hand-edit.
+
+### Session 2 — 024, source first
+
+Session 1's diagnosis held: the source was the problem. Read against the scan
+(pp. 90–94), `024.md` had ten defects, not the three 011 listed, and one of them
+was a wrong number: `dung ? [42]` is **41** in the print; the real 42 was the
+`3` after *fragrant flowing water*. Also `(79` and `Pi` for the labels [70] and
+[71], `Wu-tai`, `conJures`, `Fallen Hower`, and the three quoted poems (Hsüeh-tou's
+tomb, kōan 96, Yün-men's verse) set a paragraph per line.
+
+**Fixed in `generate_final_markdown.py`, isolated.** Ten typo rules, each
+anchored on its own surrounding text and placed ahead of the general marker
+rules, and three `VERSE_QUOTES` entries. `just split` against a snapshot of
+`source/` changed `024.md` and no other file.
+
+**The repaired source translated clean at 4500 on the first run**: 14/14 blocks,
+all nine markers and labels, Advanced throughout. The rung that was hopeless
+on the damaged text is the default on the repaired one. One draft repair: the
+model ran lines 3 and 4 of Yün-men's verse onto one line, and it was broken
+back in scratch before `restore`. §2 conformed as usual, plus Wu-t'ai →
+«وو-ت’ای» (§2.2) and a Pinyin «جیانگ-هو» → «چیانگ-هو». PDF read: the three
+verse blocks set as stanzas.
