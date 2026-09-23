@@ -429,6 +429,32 @@ VERSE_QUOTES = [
      'I would like to tell but lack the words. [95]'),
 ]
 
+# A note's closing paragraph on the poem as a whole, set off in print by a
+# blank line. build_translations() drops every blank line in a chunk, since a
+# blank line is also where a page ends, so these are put back by their text:
+# a blank line is kept only before one of them. Each is confirmed on its page
+# (spec 016); the other blank lines in notes are page breaks, labels like
+# 024's "(79" and "Pi", or a set title, and must not split.
+AFTERWORDS = (
+    'This poem has always been held up',                    # p. 67, poem 6
+    'The intrusion of the first person pronoun',            # p. 71, poem 17
+    'This same theme is taken up by',                       # p. 82, poem 46
+    'There are very few important female figures',         # p. 89, poem 68
+    'The opening of this set of poems invokes',             # p. 91, poem 71
+    'In the first line of this poem, it is no longer',      # p. 93, poem 71
+    'Overtly simple, this poem',                            # p. 96, poem 75
+    'These poems occur within a group of poems',            # p. 99, poem 90
+    'As duplicated in the translation',                     # p. 114, poem 130
+    'This poem is the seventh in the same series',          # p. 134, poem 244
+    'While the moral of the title is simple',               # p. 142, poem 293
+    'For the poet, the sound of the dry leaves',            # p. 145, poem 352
+    'Although considered to be doctrinally opposed',        # p. 146, poem 362
+    'These are the first poems in the Crazy Cloud',         # p. 156, poem 532
+    'This is one of the very few poems in the Crazy Cloud', # p. 158, poem 536
+    'This poem and its afternote seem',                     # p. 161, poem 542
+    'There is an entry in the Nempu which may refer',       # p. 169, poem 647
+)
+
 def split_verse_quotes(paras):
     text = '\n\n'.join(paras)
     for lines in VERSE_QUOTES:
@@ -1094,8 +1120,10 @@ def build_translations():
         # 4. Notes Section
         if s.startswith(('Notes:', 'Note:')):
             out.append("#### Notes\n")
-            # Parse note paragraphs
-            n_lines = chunk
+            # Parse note paragraphs, keeping the blank line before an afterword
+            n_lines = [lines[j] for j in range(pos+1, next_pos)
+                       if lines[j].strip()
+                       or (j+1 < len(lines) and lines[j+1].strip().startswith(AFTERWORDS))]
             # If the header line had text after colon
             after_colon = re.sub(r'^(?:Notes:|Note:)\s*', '', s).strip()
             if after_colon:

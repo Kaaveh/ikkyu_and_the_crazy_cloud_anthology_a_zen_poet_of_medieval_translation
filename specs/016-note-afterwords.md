@@ -82,16 +82,84 @@ first means those decades read a `source/` that already has the break.
 
 ## Acceptance criteria
 
-- [ ] `just split` changes exactly the 16 files, each by one paragraph break
+- [x] `just split` changes exactly the 16 files, each by one paragraph break
       (`024` by two), and no text.
-- [ ] Each of the 17 paragraphs read on its page.
-- [ ] The 16 re-translated; `check_parity` 153/153.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no new
+- [x] Each of the 17 paragraphs read on its page.
+- [x] The 16 re-translated; `check_parity` 153/153.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no new
       disagreement.
-- [ ] `just check` green.
+- [x] `just check` green.
 
 ## Out of scope
 
 010's *Note entries run together* and *Prose block quotes break mid-quote*:
 both book-wide shapes it records and keeps. `139`'s flattened *Moonlight
 Night*, for 010's decade `131`–`141`.
+
+## Implementation notes
+
+### The generator: matched on the text, not the blank line
+
+`AFTERWORDS` in `generate_final_markdown.py` lists the 17 openings, each with
+its page. A Notes chunk keeps a blank line only where the next line starts
+with one of them, and `parse_prose()` splits there. The page-foot test found
+them; it is not what the code runs on (010 requirement 4). The three
+non-afterword hits — `024`'s `(79` and `Pi`, the *Congratulating Elder Ki*
+set title — have no entry and do not move.
+
+`just split` against a snapshot of `source/` changed exactly the 16 files,
+each by one paragraph break (`024` by two), whitespace-identical otherwise.
+
+**All 17 read on their pages** (pp. 67, 71, 82, 89, 91, 93, 96, 99, 114,
+134, 142, 145, 146, 156, 158, 161, 169): each a roman paragraph after the
+last italic lemma, set off by a blank line.
+
+### Re-translation: one sitting
+
+All 16 drafted at 4500, one at a time. 14 came back at block parity with
+every marker and no space-joined verb prefix. The exceptions:
+
+| file | shipped | why |
+|---|---|---|
+| `026` | 400 | Classic at 4500 (the stanza broken into four blocks). 900 kept the poem and the afterword Advanced and the notes block Classic («…را برای او به خانه می‌آورد»). 400 clean, 5/5. |
+| `092` | 400 | 4500 was Advanced at parity but dated Hōnen «۱۱۳۳-۱۲۰۹»; the source says 1133-1212 (the old file had «۱۱۲۱», also wrong). 900 got the date and turned the tail Classic, inverting a sentence («بدون شک در رحمت او نیست») and dropping *and that alone*. 400 right on both. |
+| `001` | 4500 | The Classic *fūryū* passage 011 recorded is back, the same text; 011 shipped it at 4500 after trying every rung. |
+
+**A date is not something the block or marker counts see.** `092`'s was
+found by a number comparison, `source/` against `fa/`, now run on all 16:
+the only other differences are `131`'s «هفتاد و چهارمین» for *74th*,
+`030`'s title «(۲)» for *(II)*, and `112`'s `offset +1`.
+
+**Draft repairs in scratch, before `restore`**, as 011 did:
+
+- `004`: line 1 broken in two; joined.
+- `024`: Yün-men's verse, lines 3 and 4 run together — the same fault 011
+  repaired. Split.
+- `131`: the model joined the last two Nempu paragraphs. Split, nothing
+  dropped.
+
+**§1.4:** `112` is the only one of the 16 with a marker. Re-applied after
+`restore`, header identical to the old file's.
+
+**§2, conformed against the old files and the table:** ایکیو / ایککیو /
+ایکّیو → ایک‌کیو in 13 files, and the recorded forms: `001` تز’و-مینگ (the
+model gave two spellings), یانگ-چ’ی, یون-من, چ’یو یوآن, لان-تس’ان,
+دایتوکوجی; `004` ته-شان, چ’ن; `015` تس’او-شان; `021` شی-شی چی-کو لیوئه;
+`024` شیوئه-تو, یوآن-وو, وو-ت’ای, چیانگ-هو, یون-من; `030` دایتوکوجی and
+«کریزی کلاود» → ابر دیوانه; `049` سونگ-یوآن, شیو-ت’انگ; `075` تز’و-مینگ;
+`086` «شیو-ت’انگ لو», «چ’وآن تنگ لو», چوانگ چو, چوانگ تزو, and *Chien-ho*
+«چین-هو» (new, `STYLE.md` §2); `091` یانگ-شان, وی-شان; `092` هونن; `109`
+پای-چانگ; `131` ته-شان, شو-اون-آن. A scan of the 16 for every form §2's
+"what the model gave" column records came back clean after.
+
+**Left as the model gave it:** `030`'s «(۲)»: the book has both «(II)» and
+«(۲)» in titles, and a title is the translator's. `024`'s *Blue Cliff
+Record* twice in one paragraph, «سوابق صخره‌ی آبی» and «…کبود»: 013's case,
+for 007. The ایکیو left in `071`, `introduction-1` and `notes.md` is outside
+this spec.
+
+**Result:** `just check` green, 153/153 on parity and anchors. The marker
+comparison disagrees only on `064`, `070` and `introduction-1`, 010's known
+three.
+
+The typeset PDF was not read. This spec's criteria do not ask for it.

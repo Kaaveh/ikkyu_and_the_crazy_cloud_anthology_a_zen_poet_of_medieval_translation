@@ -27,22 +27,19 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ✅ Done        |
 | 014 | [The six swallowed poems](./014-swallowed-poems.md)        | 010        | ✅ Done        |
 | 015 | [Re-translate what 010's fifth session repaired](./015-retranslate-session-5.md) | 010 | ✅ Done        |
-| 016 | [A note's closing paragraph, given back](./016-note-afterwords.md) | 010 | ⬜ Not started |
+| 016 | [A note's closing paragraph, given back](./016-note-afterwords.md) | 010 | ✅ Done        |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[016](./016-note-afterwords.md)** — 16 files whose note's closing
-   paragraph runs into the last gloss. Blocks nothing; before the next
-   decade is cheaper, since nine of the 16 are in decades not yet read.
-2. **[010](./010-source-audit.md)**, next decade: `051`–`060`. Then a new
+1. **[010](./010-source-audit.md)**, next decade: `051`–`060`. Then a new
    re-translation spec for whatever it repairs, before the next decade.
    Repeat through `131`–`141`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-4. **[007](./007-release.md)** last: the end-to-end read of the typeset
+3. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
@@ -91,8 +88,8 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes
 ```
 
 **010 and its re-translation specs (009, 011, 012, 013, 015, …) alternate rather than run in

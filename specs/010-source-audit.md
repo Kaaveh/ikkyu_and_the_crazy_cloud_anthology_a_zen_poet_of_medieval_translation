@@ -524,6 +524,17 @@ Same terms. 011 re-translated these files and the Persian carries the damage
   (`The sound of the bell of Ch’ang-lo…`) looks like verse run together too.
   Found by the blank-line measurement for 016, not read on the page.
 
+### Found in passing by 016 — each seen on its page
+
+- `086.md` (poem 293, p. 142) — Lady Pan's fan poem, quoted in the note,
+  flattened into two prose paragraphs: *White and pure as frost or snow…*
+  and *But always I dread the coming of autumn…*. The print sets it as
+  indented verse. A `VERSE_QUOTES` entry.
+- `109.md` (poems 531–532, p. 156) — *The poems concerning Mori are grouped
+  together…* is an indented paragraph of its own in print, and runs into the
+  afterword before it: that ends `(See p. 28.)`, and `parse_prose()` only
+  splits an indent after `.` `!` `?` and quotes, not `)`.
+
 ### Found in passing by 014 — each confirmed on its page
 
 For the decades that will reach them. 014 checked every *Index of Poems*

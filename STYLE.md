@@ -425,6 +425,12 @@ Spec 015 adds two, both from the fifth decade's restored source.
 | Daiki Kōjū Zenji | دایکی کوجو زنجی | دایکی کوجو زِنجی — §2.4, and the kasre goes. The old file had «کوجا», from the OCR's `Koja` |
 | Kasō Sōdon | کاسو سودون | correct as given. The old file had «سدون», from the OCR's `Sddon` |
 
+Spec 016 adds one.
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| Chien-ho | چین-هو | چیِن-هو / چیِن‌هو — the kasre goes, and the source hyphenates. The marquis in `086`'s Chuang Tzu story |
+
 ---
 
 ### §2.9 The translator's parenthetical romanisations are kept
