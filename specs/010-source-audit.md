@@ -91,7 +91,8 @@ fix — that diff is the list of files whose Persian is now stale.
   poems found swallowed book-wide; spec 014 gave them back and renumbered,
   so this decade is now `031`–`042`: `039`, `040` are poems 111 and 113,
   from the same pages, and `041`, `042` were `039`, `040`.
-- [ ] `043`–`050`
+- [x] `043`–`050` — read. 9 files repaired, 2 of them outside the decade
+  for *Lan-ts'an*; spec 015. Closing paragraphs of notes found joined book-wide; spec 016.
 - [ ] `051`–`060`
 - [ ] `061`–`070`
 - [ ] `071`–`080`
@@ -370,6 +371,64 @@ the next decade is read under numbers that are about to change.
 and neither does the page. `034`'s title *Old Woman Kōan* is `POEM_TITLES`'
 own, for an untitled poem.
 
+### Session 5 — `043`–`050` (scan pp. 109–115)
+
+Printed page numbers; the PDF page is 24 higher. Eight files, because 014's
+renumbering moved the decade's first two to `041`/`042`, which session 4
+had read. **9 files changed in `source/`**, all restorations: the decade's 7,
+and `001` and `introduction-3` for one name. Three need re-translating:
+[015](./015-retranslate-session-5.md).
+One structural defect, book-wide: [016](./016-note-afterwords.md).
+
+**1. A note's closing paragraph runs into its last entry.** Poem 130's note
+ends with a paragraph of its own on p. 114, set off by a blank line: "As
+duplicated in the translation, the three rhyming lines…". It is about the
+poem as a whole, not the last lemma, and `source/049.md` appends it to
+*Sung-yüan*'s gloss. The raw has the blank line; `build_translations()`
+drops every blank line when it builds a chunk, so `parse_prose()` never sees
+the break. It cannot simply keep them: a blank line is also a page break.
+
+Measured book-wide: a blank line inside a Notes chunk, with the same page
+foot on both sides. **17 such paragraphs in 16 files** — `001` `004` `015`
+`021` `024`(×2) `026` `030` `049` `075` `086` `091` `092` `109` `112` `118`
+`131`. Three more are already split some other way (`010`, `024`'s second,
+`139`), and three hits are not afterwords: `024`'s `(79` and `Pi` labels,
+and a set title in `073`–`075`. Fixing it moves block parity in all 16, most
+of them read and re-translated already. Too big for a session: spec 016.
+
+**2. Local damage, each checked on the page.**
+
+- **Three markers.** `046` `you.”’6` is **62** and `dukes ?68` is **63**;
+  `049` `future.’’6°` is **65**, left bare by the OCR and missing from the
+  Persian. The decade runs 61 to 65 without a gap.
+- **Lan-ts'an's couplet flattened**, now in `VERSE_QUOTES` (p. 111, `046`).
+  Its first line was a paragraph of its own and its second ran into the next
+  lemma. Turns `apparatus --check` red on the stale Persian.
+- `044`: `Daiki Koja Zenji` → *Kōjū*; the Persian transliterates the OCR.
+  `Message.’`.
+- `045`: `1s` → *is*, in the poem.
+- `046`: `Lan-tsan` in the poem and the legend; `Master as: Kasō Sddon` →
+  *Master Kasō: Kasō Sōdon*; `YSso`; `Ch us`; `way.’`; the missing `”`
+  after `messenger?`, with `Lan-ts an`; `activity’`.
+- `047`: `P’yu-hua`. `048`: `severed?’`.
+- `049`: `Kasé’s`, `"1 know`, `Tetto` → *Tettō*.
+- `050`: `scriptures ;`.
+
+**3. *Lan-ts'an*, and a §2 row built on the OCR.** p. 110 prints
+**Lan-ts’an** where `046`'s poem had `Lan-tsan`. So do the glossary-index and
+Introduction pp. 51–52; `introduction-3` had `Lan-tsan` and `Lan-ts an`
+there, now fixed. p. 66, `001`'s note, prints **Lan-t’san** twice: a slip in
+the book, and `source/` now follows it. `STYLE.md` §2 had settled
+`Lan-tsan` → «لان-تسان» as «correct as given» and called `001`'s spelling OCR
+damage — both backwards. The row is corrected to «لان-تس’ان», and 015 conforms
+`001` and `introduction-3`. **2 more files changed in `source/`**, 9 in all.
+
+**Left as the print has it:** `048`'s `in the the Sung-yüan Yü-lu`. `046`'s
+`pp. 16-18` has a hyphen where the print sets an en dash, as 38 of the 40
+page ranges in `source/` do. The prose after `046`'s block quote ("In his own
+poem…") runs into the quote: the *Prose block quotes* shape session 3
+records.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -457,6 +516,13 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 - `001.md` — `taryn`, `fia`, `ryi#` for *fūryū*, *fū*, *ryū*. Session 1's
   decade, read twice and left. Not what makes that passage Classic: 011 fixed
   them in a scratch copy and the model still fell back.
+
+### Found in passing by session 5 — not yet confirmed against the scan
+
+- `139.md` — a Tu Fu poem, "Moonlight Night", flattened in its note: title
+  and lines run together two to a paragraph. The paragraph before it
+  (`The sound of the bell of Ch’ang-lo…`) looks like verse run together too.
+  Found by the blank-line measurement for 016, not read on the page.
 
 ### Found in passing by 014 — each confirmed on its page
 

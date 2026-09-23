@@ -311,7 +311,7 @@ form the translator produced by ear:
 | Yüeh Küang | یوئه کوانگ | یوئه گوانگ — §2.1: `Kuang` is Wade-Giles, `Guang` is the Pinyin reading. The print spells it `Küang` (p. 97 and the glossary; spec 010 restored it), but Wade-Giles has no *küang* syllable, so §2.3 has no ü to carry and the Persian stays کوانگ — spec 011 |
 | Tetto Ryōzen | تتو ریوزن | تِتّو / تِتو / تِتّد, three forms in one file — §2.4 |
 | Chao-chou | چائو-چو | correct as given |
-| Lan-tsan | لان-تسان | correct as given. `source/001.md` also spells it `Lan-t’san`; that is OCR damage, not a second name, and the Persian does not follow it |
+| Lan-ts’an | لان-تس’ان | **corrected by spec 010, session 5.** This row used to read `Lan-tsan` → لان-تسان, «correct as given». The book's form is `Lan-ts’an` (glossary-index; Introduction pp. 51–52; poem 121's note), and `Lan-tsan` was the OCR dropping the apostrophe. §2.2, as Ts’ao-shan. p. 66 prints `Lan-t’san` twice, for `001.md`: the book's own slip, not a second name, and the Persian does not follow it |
 
 **89 corrections in ten files** — about nine per file, so of the order of 1,200
 across the book. §2 is not a formality: it is the largest single hand-edit this

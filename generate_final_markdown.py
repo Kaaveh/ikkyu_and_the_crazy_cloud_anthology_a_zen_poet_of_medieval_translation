@@ -236,6 +236,33 @@ TYPO_FIXES = [
     (r'receding into the stancc\.', 'receding into the distance.'),
     (r'\bHalfaCloud\b', 'Half a Cloud'),
     (r'\blibrarian Shoen\b', 'librarian Shōen'),
+    # pp. 109-115, poems 117-134 (spec 010, session 5), each checked on the
+    # page. Markers first, as above.
+    (r'in a revolting way\.’61', 'in a revolting way.” [61]'),
+    (r'common likes of you\.”’6\b', 'common likes of you.” [62]'),
+    (r'kings and dukes \?68', 'kings and dukes? [63]'),
+    (r'red thread is not yet severed\?’64', 'red thread is not yet severed?” [64]'),
+    (r'Buddha of the future\.’’6°', 'Buddha of the future.” [65]'),
+    (r'\bDaiki Koja Zenji\b', 'Daiki Kōjū Zenji'),
+    (r'the Essential Message\.’ So', 'the Essential Message.” So'),
+    (r'splendid fame, 1s what', 'splendid fame, is what'),
+    (r'How about Lan-tsan turning', 'How about Lan-ts’an turning'),
+    (r'Master as: Kasō Sddon', 'Master Kasō: Kasō Sōdon'),
+    (r'\bYSso \(1376', 'Yōsō (1376'),
+    (r'bring about Ch us defeat', 'bring about Ch’u’s defeat'),
+    (r'Lan-tsan was roasting', 'Lan-ts’an was roasting'),
+    (r'messenger\? Lan-ts an replied', 'messenger?” Lan-ts’an replied'),
+    (r'“great activity’ and', '“great activity” and'),
+    (r'\bP’yu-hua:', 'P’u-hua:'),
+    (r'\bKasé’s descendant', 'Kasō’s descendant'),
+    (r'"1 know Zen best', '“I know Zen best'),
+    (r'last words of Tetto,', 'last words of Tettō,'),
+    (r'words of the scriptures ;', 'words of the scriptures;'),
+    # Lan-ts'an elsewhere, found by the same session: pp. 51-52 print
+    # "Lan-ts'an", p. 66 prints "Lan-t'san" twice -- the book's own slip.
+    (r'alluding to Lan-tsan who baked', 'alluding to Lan-ts’an who baked'),
+    (r'the mention of Lan-ts an\.', 'the mention of Lan-ts’an.'),
+    (r'applies it to Lan-tsan\. Lan-t’san’s', 'applies it to Lan-t’san. Lan-t’san’s'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.
@@ -385,6 +412,9 @@ VERSE_QUOTES = [
      'Lightly raising the vermilion blinds, gazes at the camellia.',
      'Not a handful of willow fluff to gather.',
      'Harmonizing with the wind, it hangs above the polished balustrade. [58]'),
+    # p. 111, poem 121: Lan-ts'an's own poem.
+    ('I did not pay court to the emperor.',
+     'What is there to envy in kings and dukes? [63]'),
     # pp. 143-144, poem 332: T'ao Yüan-ming. 009's PDF read found it run
     # together in pairs (spec 014).
     ('I built my hut beside a traveled road',
