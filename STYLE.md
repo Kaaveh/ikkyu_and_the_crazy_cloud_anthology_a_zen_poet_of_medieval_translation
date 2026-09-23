@@ -391,6 +391,16 @@ in a five-line poem. And §2.3 is doing real work: `Hsüan-tsang` and
 `Hsüan-tsung` are two different men, and without the ü rule the model's forms
 for them collide.
 
+Spec 011 adds three that spec 004 let through: the old files had the model's
+form, so the conform, which compares a new draft against the old file, could
+not see them until a re-read did.
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| P’ang | پ’انگ | پانگ, ten times in `028.md` — §2.2, as P'u-hua |
+| Ch’üan | چ’یوآن | چوآن — §2.2 and §2.3, as Nan-ch'üan. P'ang's interlocutor in `028.md`, not the *Ch'uan* of *Ch'uan Teng Lu* |
+| Ma Yüan | ما یوآن | ما یوان — §2.3, as Yüan-wu |
+
 ---
 
 ### §2.9 The translator's parenthetical romanisations are kept
