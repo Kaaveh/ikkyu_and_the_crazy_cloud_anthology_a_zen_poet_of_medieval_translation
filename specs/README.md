@@ -24,7 +24,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
 | 012 | [Re-translate what 010's third session repaired](./012-retranslate-session-3.md) | 010 | ✅ Done        |
-| 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ⬜ Not started |
+| 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ✅ Done        |
 | 014 | [The six swallowed poems](./014-swallowed-poems.md)        | 010        | ✅ Done        |
 
 ## Next up
