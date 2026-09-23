@@ -52,7 +52,7 @@ SECTIONS = [
 # Guards against a silent re-extraction change upstream. If
 # generate_final_markdown.py is edited and the shape moves, this fails loudly
 # here rather than producing a source/ that no longer matches fa/.
-EXPECTED_POEMS = 135
+EXPECTED_POEMS = 141
 EXPECTED_INTRO = 4
 
 

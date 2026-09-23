@@ -25,31 +25,27 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
 | 012 | [Re-translate what 010's third session repaired](./012-retranslate-session-3.md) | 010 | ✅ Done        |
 | 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ⬜ Not started |
-| 014 | [The six swallowed poems](./014-swallowed-poems.md)        | 010        | ⬜ Not started |
+| 014 | [The six swallowed poems](./014-swallowed-poems.md)        | 010        | ✅ Done        |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[014](./014-swallowed-poems.md)** — six poems the generator ran into
-   the file before them. It renumbers every file after `038`, so it goes
-   **before 010's next decade**, which would otherwise be read under numbers
-   about to change.
-2. **[013](./013-retranslate-session-4.md)** — four files re-translated, one
-   conform. Before or after 014, not during; after 014, its `039`/`040` are
-   `041`/`042`.
-3. **[010](./010-source-audit.md)**, next decade: `041`–`050` (under 014's
-   numbering). Then a new re-translation spec for whatever it repairs, before
-   the next decade.
-   Repeat through `131`–`135`, then the front and back matter,
+1. **[013](./013-retranslate-session-4.md)** — four files re-translated, one
+   conform. 014 has run, so its files are under the new numbers; the spec
+   says which. It is what keeps `just check` red: `031` and `037`.
+2. **[010](./010-source-audit.md)**, next decade: `043`–`050`. 014 moved
+   the old `039`/`040`, already read, to `041`/`042`. Then a new
+   re-translation spec for whatever it repairs, before the next decade.
+   Repeat through `131`–`141`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-4. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-5. **[007](./007-release.md)** last: the end-to-end read of the typeset
+4. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
-**All 147 files are translated** — `check_parity` reports `147 file(s) match, 0
-skipped`, and the book typesets at 230 pages.
+**All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
+skipped`, and the book typesets at 236 pages.
 
 **007 is part-done and tagged `v0.1.0`.** Every `TBD`/`TODO` is settled,
 `README.md` and the two licence files exist, and `just build` produces all three
@@ -74,8 +70,8 @@ files 011 had just re-translated for their markers;
 [012](./012-retranslate-session-3.md) owns them. Its fourth (poems
 091–115) changed 10, [013](./013-retranslate-session-4.md)'s — and found six
 poems the generator had never started, each run into the file before it.
-The Anthology has 126 poems, not 120; [014](./014-swallowed-poems.md) gives
-them back. Three of
+The Anthology has 126 poems, not 120; [014](./014-swallowed-poems.md) gave
+them back, and with them fixed two poems' titles and two poems' fourth lines. Three of
 011's 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
 the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
@@ -177,15 +173,15 @@ not where the roadmap put it — see the 008 note below.
 
 | Group                                              | Files | Chars   | Chunks |
 |----------------------------------------------------|------:|--------:|-------:|
-| Anthology (`001`–`135`): 120 poems, 15 prose intros |   135 | 152,935 |    137 |
-| Introduction (`introduction-1` … `-4`)              |     4 | 118,065 |     28 |
+| Anthology (`001`–`141`): 126 poems, 15 prose intros |   141 | 153,504 |    143 |
+| Introduction (`introduction-1` … `-4`)              |     4 | 118,094 |     28 |
 | Front matter (`plates`, `foreword`, `preface`)      |     3 |  15,773 |      5 |
 | Back matter (`abbreviations`, `notes`, `bibliography`, `index-of-poems`, `glossary-index`) | 5 | 35,523 | 11 |
-| **Total**                                           | **147** | **322,296** | **181** |
+| **Total**                                           | **153** | **322,894** | **187** |
 
 Counts are from `source/` after 008's `drop_column()`, which removed 1,229
-characters of Chinese column from the Introduction. Only **twelve files exceed
-one chunk**, and only two of those are poems (`001.md`, `024.md`); the other 133
+characters of Chinese column from the Introduction, re-measured after 014. Only **twelve files exceed
+one chunk**, and only two of those are poems (`001.md`, `024.md`); the other 139
 poem files are a single chunk apiece.
 
 **4,500 is the translator's default, not the right size.** Spec 005 found the
@@ -195,7 +191,7 @@ block parity: `introduction-2.md` wanted 4500, `introduction-3.md` 2250,
 the ladder, not by dividing chars by 4,500 — `introduction-1.md` shipped at 900,
 about 73 chunks, not the 15 this table implies.
 
-93 of the 135 Anthology files carry a `## Notes` section.
+97 of the 141 Anthology files carry a `## Notes` section.
 
 ## Definition of done (every spec)
 

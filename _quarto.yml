@@ -31,7 +31,7 @@ book:
 
   sidebar:
     style: docked
-    # 135 poems make an unusably long nav if every part is open.
+    # 141 Anthology files make an unusably long nav if every part is open.
     collapse-level: 1
 
   chapters:
@@ -182,6 +182,12 @@ book:
         - fa/133.md
         - fa/134.md
         - fa/135.md
+        - fa/136.md
+        - fa/137.md
+        - fa/138.md
+        - fa/139.md
+        - fa/140.md
+        - fa/141.md
 
   appendices:
     - fa/abbreviations.md
@@ -225,7 +231,7 @@ format:
     documentclass: book
     toc-depth: 1
     # openany: most poems are under a page, so openright would leave an empty
-    # verso after each of 135 chapters.
+    # verso after each of 141 chapters.
     classoption: [openany]
     mainfont: "Vazirmatn-Regular.ttf"
     mainfontoptions:

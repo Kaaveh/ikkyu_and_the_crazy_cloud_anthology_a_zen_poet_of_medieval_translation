@@ -5,8 +5,8 @@ Medieval Japan_**, Sonja Arntzen's translation of and commentary on the
 *Kyōunshū* — the Chinese-language poems of the Japanese Zen monk Ikkyū Sōjun
 (1394–1481), who called himself Crazy Cloud.
 
-120 poems and 15 prose introductions, plus front matter, a four-part
-Introduction and five back-matter sections: 147 files, 230 typeset pages.
+126 poems and 15 prose introductions, plus front matter, a four-part
+Introduction and five back-matter sections: 153 files, 236 typeset pages.
 
 📄 **[Latest PDF and EPUB](../../releases/latest)**
 
@@ -129,7 +129,7 @@ images/        the four plates
 assets/        RTL and EPUB stylesheets
 tools/         the apparatus adapter, its tests, the checker pin
                (the general checkers are the bargardan-tools package)
-_quarto.yml    the book: three formats, 147 sections in two parts
+_quarto.yml    the book: three formats, 153 sections in two parts
 _language.yml  Persian UI strings — Quarto ships no fa locale
 ```
 

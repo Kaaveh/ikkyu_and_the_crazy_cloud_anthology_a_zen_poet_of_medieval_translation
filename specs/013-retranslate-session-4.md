@@ -1,7 +1,7 @@
 # 013 — Re-translate what 010's fourth session repaired
 
 **012 again, for the next batch. `source/` changed in 10 files; four need
-re-translating, one needs a §2 conform, and `038` belongs to 014.**
+re-translating, one needs a §2 conform, and `038` went to 014.**
 
 ## Context
 
@@ -22,9 +22,9 @@ existing block and fails nothing.
 010 session 4 (committed). Run the generator and `just split` first if
 `source/` predates it: `source/` is gitignored.
 
-**Before or after 014, not during.** 014 renumbers every file after `038`,
-so `039` and `040` here are `041` and `042` once it has run. Nothing here
-depends on 014; if 014 goes first, use the new names.
+**014 has run**, and renumbered every file after `038`. The names below
+are the new ones: what 010's session 4 read as `039` and `040` are `041`
+and `042`.
 
 ## The files
 
@@ -35,13 +35,13 @@ depends on 014; if 014 goes first, use the new names.
 | `031.md` | marker **[47], was [4]** — the Persian carries `[4]`; Tu Fu's couplet set as verse — **check fails**; *Hui*, `I’m`, `in a poem` |
 | `034.md` | marker **[50]**, which the Persian dropped; the closing quote after `the hermitage,` |
 | `037.md` | Ch'u Ssu-tsung's quatrain set as verse — **check fails**; `Ryōzen: Ryōzen’s style`, was `Rydzen: Ryozcens`; `opportunity` |
-| `040.md` | marker **[60], was [6]°** — the Persian carries `[6]`; `Shōen` |
+| `042.md` | marker **[60], was [6]°** — the Persian carries `[6]`; `Shōen` |
 
 ### B. §2 conform (1)
 
-- `039.md` — «شوین» for *Shōen*, where `040.md` has «شوئن». §2.4 drops the
+- `041.md` — «شوین» for *Shōen*, where `042.md` has «شوئن». §2.4 drops the
   macron and §2.8's «دایئو» spells the hiatus with ئ, so «شوئن» is the form.
-  A sanctioned hand-edit (`CLAUDE.md`). If 040's re-translation comes back
+  A sanctioned hand-edit (`CLAUDE.md`). If 042's re-translation comes back
   with something else, conform both to «شوئن».
 
 ### C. No re-translation (4)
@@ -56,9 +56,7 @@ depends on 014; if 014 goes first, use the new names.
 
 ### Not here
 
-- `038.md` — marker [57], a quoted poem, five local repairs, **and poems 111
-  and 113 inside it**. Re-translating it now would be thrown away when 014
-  splits it into three files. 014 owns it.
+- `038.md` — split in three and re-translated by 014.
 
 ## Requirements
 
@@ -74,11 +72,11 @@ depends on 014; if 014 goes first, use the new names.
 - [ ] Every group A file re-translated; `apparatus --check` green on `031`
       and `037`.
 - [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
-      for any group A file: `031` carries [47], `034` [50], `040` [60].
-- [ ] *Shōen* is «شوئن» in `039` and `040`.
+      for any group A file: `031` carries [47], `034` [50], `042` [60].
+- [ ] *Shōen* is «شوئن» in `041` and `042`.
 - [ ] Group C checked.
-- [ ] `just check` green except `038`, which stays red until 014.
+- [ ] `just check` green.
 
 ## Out of scope
 
-`038.md` — 014. Anything 010 has not read yet.
+Anything 010 has not read yet.

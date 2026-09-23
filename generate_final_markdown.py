@@ -236,6 +236,20 @@ TYPO_FIXES = [
     (r'receding into the stancc\.', 'receding into the distance.'),
     (r'\bHalfaCloud\b', 'Half a Cloud'),
     (r'\blibrarian Shoen\b', 'librarian Shōen'),
+    # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
+    # three of the six poems it started, re-translated with them. Each checked
+    # on the page. "pupils.*Most" is a smudge in the print, not a marker.
+    (r'understand this\?’’%', 'understand this?” [96]'),
+    (r'sword\?\s+Rinzai said, “Misfortune, misfortune\.’ 11\b',
+     'sword?’ Rinzai said, ‘Misfortune, misfortune.’” [111]'),
+    (r'his foresight\.1!2', 'his foresight. [112]'),
+    (r'The “Three Essentials,’ the', 'The “Three Essentials,” the'),
+    (r'translated as “‘clerics’’', 'translated as “clerics”'),
+    (r'\bfled to Kokyuan\b', 'fled to Kokyūan'),
+    (r'went to the Shnonan at Takigi', 'went to the Shūon’an at Takigi'),
+    (r'it is too late\.’ He put', 'it is too late.” He put'),
+    (r'the gd “‘sobriquets’”’', 'the gō “sobriquets”'),
+    (r'upon his pupils\.\*Most', 'upon his pupils. Most'),
     # Endnote digits fused to the word before them (STYLE.md §4.2): the print
     # sets a bare superscript digit and OCR welds it onto the preceding word
     # or its closing parenthesis. Bracket it -- nothing else in the book
@@ -371,6 +385,18 @@ VERSE_QUOTES = [
      'Lightly raising the vermilion blinds, gazes at the camellia.',
      'Not a handful of willow fluff to gather.',
      'Harmonizing with the wind, it hangs above the polished balustrade. [58]'),
+    # pp. 143-144, poem 332: T'ao Yüan-ming. 009's PDF read found it run
+    # together in pairs (spec 014).
+    ('I built my hut beside a traveled road',
+     'Yet hear no noise of passing carts and horses.',
+     'You would like to know how it is done?',
+     'With the mind detached, one’s place becomes remote.',
+     'Picking chrysanthemums by the Eastern hedge,',
+     'I catch sight of the distant southern hills:',
+     'The mountain air is lovely as the sun sets',
+     'And flocks of flying birds return together.',
+     'In these things is a fundamental truth',
+     'I would like to tell but lack the words. [95]'),
 ]
 
 def split_verse_quotes(paras):
@@ -627,7 +653,7 @@ POEM_TITLES = {
     '35': 'Peach Blossom Waves',
     '37': 'Addressed to an Assembly on the Winter Solstice',
     '40': 'The Buddha’s Nirvana',
-    '44': 'Two Pieces of Skin and One Set of Bone',
+    '44': 'Yen-t’ou’s Old Sail Kōan',
     '46': 'Pleasure in Pain',
     '47': 'Pain in Pleasure',
     '52': 'Tortoise Around Ta-sui’s Hermitage',
@@ -648,7 +674,9 @@ POEM_TITLES = {
     '94': 'Old Woman Kōan',
     '101': 'Troubles at Daitokuji (I)',
     '108': 'Troubles at Daitokuji (II)',
-    '110': 'Wind Bell',
+    '110': 'Wind Bell (I)',
+    '111': 'Wind Bell (II)',
+    '113': 'Half a Cloud',
     '115': 'Earth House',
     '117': 'Straw Raincoat and Hat',
     '120': 'Congratulations for Yōsō (I)',
@@ -692,6 +720,8 @@ POEM_TITLES = {
     '292': 'The Correct Skill for a Disorderly Age',
     '293': 'Reducing Desires and Knowing Contentment',
     '308': 'No One Sees It the Same',
+    '315': 'The Gentleman’s Wealth',
+    '332': 'The Last Chrysanthemum in the South Garden',
     '344': 'Untitled [Two pieces of skin and one set of bone]',
     '352': 'Taking a Metaphor for Reality',
     '362': 'Praising Saint Hōnen',
@@ -714,7 +744,8 @@ POEM_TITLES = {
     '533': 'Lady Mori Rides in a Cart',
     '535': 'A Beautiful Woman’s Dark Place Has the Fragrance of a Narcissus',
     '536': 'Calling My Hand Mori’s Hand',
-    '539': 'Promise to Be Born in the Time of Maitreya',
+    '537': 'Promise to Be Born in the Time of Maitreya',
+    '539': 'Paper Sleeves',
     '541': 'Blind Girl’s Love Songs at Yakushidō',
     '542': 'I Recall the Old Times Living at Takigi',
     '543': 'Wishing to Thank Mori for My Deep Debt to Her',
@@ -729,6 +760,7 @@ POEM_TITLES = {
     '640': 'The Second Year of Kanshō—Starvation (II)',
     '641': 'The Second Year of Kanshō—Starvation (III)',
     '647': 'The World at War, All Heaven, All Earth, Battle',
+    '690': 'Sea Cloud',
     '715': 'Sonrin, Forest of Venerability',
     '771': 'On a Spring Outing to the Tomb of the Retired Emperor Go Komatsu at Unryōin in Sen’yūji',
     '819': 'Dream Chamber (I)',
@@ -742,7 +774,14 @@ OCR_MAP = {
     'i': '7', '8': '8', 'y/': '17', 'ZS': '25', '2)': '27',
     '99': '35', '97': '37', '15': '75', 'Dil': '251',
     'BiZ': '512', 'Dot': '531', '592': '532', '7': '572',
-    '593': '593', 'wk': '771'
+    '593': '593', 'wk': '771',
+    # Six display numbers the OCR garbled past the rule below, so each poem --
+    # title, verse, notes -- ran into the file before it. Keyed on the
+    # stripped line, and each occurs once in the translation run. Every one
+    # checked on its page (spec 014). Not a looser rule: get_num() would then
+    # start poems on page numbers and note labels.
+    '1 |': '111', 'NIS': '113', 'Bild;': '315', 'Boe': '332',
+    '537,': '537', '690,': '690',
 }
 
 # Set headings: the OCR'd line, whitespace collapsed, to the printed heading.
@@ -933,7 +972,8 @@ def build_translations():
                     "One’s Eyes Are Not Yet", "Addressed to an Assembly", "The Great Master Yiian-wu",
                     "Chrysanthemums: An Arhat", "Living in the Mountains", "Congratulating Daiyuan",
                     "A Layman Reciting", "Remorse         over", "No One Sees", "Spreading Horse Dung",
-                    "A Beautiful Woman’s Dark", "Wishing to Thank", "Retreating from Mikanohara"
+                    "A Beautiful Woman’s Dark", "Wishing to Thank", "Retreating from Mikanohara",
+                    "The Last Chrysanthemum"
                 ]):
                     t_lines = 2
                 elif len(chunk) > 1 and any(k in c0 for k in [
@@ -949,7 +989,8 @@ def build_translations():
                     "Ridiculing Literature", "Recollecting the Past", "The Stick", "Deluded Enlightenment",
                     "Lamenting Soldiers", "Hell", "1 Hate Incense", "Praising Master Rinzai",
                     "Lady Mori Rides", "Calling My Hand", "Lady Mori's Afternoon", "Night Conversation",
-                    "Po Lo-t ien", "Cause and Effect", "Sonrin, Forest"
+                    "Po Lo-t ien", "Cause and Effect", "Sonrin, Forest",
+                    "Half a Cloud", "The Gentleman’s Wealth", "Promise to Be Born", "Sea Cloud"
                 ]):
                     t_lines = 1
                 else:
@@ -959,16 +1000,21 @@ def build_translations():
             
             # Special handling for poems with attached notes without 'Notes:' header
             trailing_notes = []
-            if num == '541':
-                # 4 verses, then notes
-                actual_v = v_lines[:4]
-                trailing_notes = v_lines[4:]
-                v_lines = actual_v
-            elif num == '542':
-                # 4 verses, then prose commentary
-                actual_v = v_lines[:4]
-                trailing_notes = v_lines[4:]
-                v_lines = actual_v
+            afternote = []
+            if num in ('541', '542'):
+                # Four verses, then text no item start begins: 541's notes,
+                # whose "Notes" has no colon, and 542's prose afternote, whose
+                # own "Notes:" comes after it. Counted in verses, not raw lines:
+                # each poem wraps a verse onto an indented second line, and a
+                # raw-line cut pushed verse 4 out of the stanza (spec 014).
+                starts = [vi for vi, vl in enumerate(v_lines)
+                          if len(vl) - len(vl.lstrip()) < 2]
+                cut = starts[4] if len(starts) > 4 else len(v_lines)
+                v_lines, rest = v_lines[:cut], v_lines[cut:]
+                if num == '541':
+                    trailing_notes = rest
+                else:
+                    afternote = rest
             elif num == '715':
                 # prose intro was before the 4 verses
                 # find where 'Sixteen-foot' starts
@@ -1003,6 +1049,9 @@ def build_translations():
                 out.append(v)
             out.append("")
             
+            for p in parse_prose('\n'.join(afternote)) if afternote else []:
+                out.append(p + "\n")
+
             if trailing_notes:
                 out.append("#### Notes\n")
                 tn_text = '\n'.join(trailing_notes)

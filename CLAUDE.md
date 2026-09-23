@@ -1,7 +1,8 @@
 # Working on this book
 
 A Persian translation of *Ikkyū and the Crazy Cloud Anthology* (Sonja Arntzen).
-135 poems and 12 surrounding sections, 147 files.
+126 poems and 15 prose introductions in 141 files, and 12 surrounding
+sections: 153 files.
 
 ## The shape of the repo
 

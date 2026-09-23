@@ -40,7 +40,7 @@ Modern scholarly Persian. Ordinary contemporary academic register: dates,
 citations and institutional names as a Persian historian would write them. No
 archaism. This is not a hard decision and nothing in the book pushes against it.
 
-### §1.2 The verse — all 135 poems, lyric and obscene alike
+### §1.2 The verse — all 126 poems, lyric and obscene alike
 
 **The classical Persian poetic lexicon, kept compact.** نهانگاه rather than
 جای تاریک; زربفت rather than پارچهٔ طلایی; می‌گردد rather than می‌چرخد.
@@ -69,7 +69,7 @@ Note first what Arntzen is doing: she is **frank, not crude**. "dark place",
 "narcissus", "thighs" are Ikkyū's own images, rendered without a wink. The
 Persian matches that, and does not soften it.
 
-`source/107.md` — Poem 535:
+`source/111.md` — Poem 535:
 
 > A Beautiful Woman's Dark Place Has the Fragrance of a Narcissus
 > …Delicately the narcissus revolves between thighs.
@@ -81,7 +81,7 @@ Persian matches that, and does not soften it.
 نرگس به لطافت در میانِ ران‌ها می‌گردد.
 ```
 
-`source/080.md` — Poem 284:
+`source/082.md` — Poem 284:
 
 > With a Poem About a Brothel, Putting to Shame Those Brothers Who Obtain the Dharma
 > …The young girl in the brothel wears gold brocade.
@@ -112,7 +112,7 @@ directly under its heading:
 پیشگاهِ «چ’و» را باید از دور نگریست و نیز بر آن برشد.  
 ```
 
-Roughly 30 of the 135 Anthology files are candidates — every file matching
+Roughly 30 of the 141 Anthology files are candidates — every file matching
 brothel / Mori / lust / thigh and their neighbours. The exact set is decided
 file by file as each is translated, not listed here in advance.
 
@@ -122,19 +122,19 @@ is not — "Cloud-rain, fūryū" is allusion, and the note explaining it runs to
 page. §1.4 marks the poem's language, never its subject, or the marker ends up
 on every poem in the book and stops meaning anything.
 
-**Spec 004 read all 28 candidates and marked two: `107.md` and `108.md`.**
+**Spec 004 read all 28 candidates and marked two: `111.md` and `112.md`.**
 That is the whole set for the Anthology, and it is a tenth of what this
 section budgeted for.
 
-- **`107.md`** — poem 535, the poem §1.4 is written around:
+- **`111.md`** — poem 535, the poem §1.4 is written around:
   `و گل نرگس، ظریف و آرام، میان ران‌ها می‌چرخد.`
-- **`108.md`** — poem 536: the lady as `استادِ بازیِ عشق‌ورزی`, curing
+- **`112.md`** — poem 536: the lady as `استادِ بازیِ عشق‌ورزی`, curing
   `ساقه‌ی جواهرنشان`.
 
 The other 26 are all the poem 6 case, and the run of them is what shows the
-line is in the right place. `053.md` is titled "On a Brothel" and its four
-lines are cloud-rain and love's deep river; `076.md` is an arhat revelling in
-one; `119.md` is titled "Cause and Effect for a Lustful Monk" and is four
+line is in the right place. `055.md` is titled "On a Brothel" and its four
+lines are cloud-rain and love's deep river; `078.md` is an arhat revelling in
+one; `124.md` is titled "Cause and Effect for a Lustful Monk" and is four
 lines of doctrine. The title names the subject, the verse is allusion, and
 neither is what §1.4 marks. **Arntzen is frank far more often than she is
 crude, and the marker is for the crude.**
@@ -142,6 +142,12 @@ crude, and the marker is for the crude.**
 The practical consequence: `check_parity` needs the `<!-- parity: offset +1 -->`
 companion in two files, not thirty, so the cost §1.4 accepted knowingly turned
 out to be small. Both were verified with all three checkers green.
+
+**Spec 014 read poem 537 on its own terms and left it unmarked.** It had
+been inside 536's file, under 536's marker, until 014 gave it a file of its
+own (`113.md`). Blind Mori, mandarin ducks, the dawn of Maitreya: allusion,
+the poem 6 case. File numbers in this section are 014's, which renumbered
+every Anthology file after `038`.
 
 **This is the expensive decision in this file, and the cost is accepted
 knowingly:**
@@ -231,7 +237,7 @@ consistent about it even inside that one file, and `«»` also means a real
 quotation, so the mark carries no distinction worth enforcing.
 
 **This is the one place the book knowingly accepts variation.** Making it a rule
-would mean hand-editing 147 files for a mark that changes no meaning, and the
+would mean hand-editing 153 files for a mark that changes no meaning, and the
 machine draft is the edition. A name with guillemets and the same name without
 are both correct.
 
@@ -380,13 +386,13 @@ ear, and none is a judgement call.
 | Fu-chou | فو-چو | فو-جو — Wade-Giles `ch` is چ, as in Chao-chou |
 | Tien-tai | تین-تای | تیِن-تای — the kasre goes. The source spells it without the apostrophe and the Persian does not invent one |
 | Feng-yüeh | فنگ-یوئه | فِنگ-یوئه — the kasre goes |
-| Maitreya | مایتریا | مایتریه — §2.7's recorded form, promoted here because `110.md` is where it finally met verse |
+| Maitreya | مایتریا | مایتریه — §2.7's recorded form, promoted here because `113.md` is where it finally met verse |
 | Jui-yen, Wu-men, Tung-po, Shan-ku, Tu-ling, Tou-shuai, Ta-kuan, Ku-yin, Chiang-hu, Po-yün, Yao-shan, Ku-tsun-su Yü-lu | — | correct as given |
 
 **Three things this table is evidence for.** The model's commonest error is not
 a spelling but a *separator*: a ZWNJ where the source has a hyphen, or a hyphen
 where it has a space. It is inconsistent within one file — P'u-hua twice in
-`038.md`, Te-shan in four spellings across the book, K'uei-chi nine times wrong
+`039.md`, Te-shan in four spellings across the book, K'uei-chi nine times wrong
 in a five-line poem. And §2.3 is doing real work: `Hsüan-tsang` and
 `Hsüan-tsung` are two different men, and without the ü rule the model's forms
 for them collide.
@@ -452,7 +458,7 @@ lines in `fa/` because it is four lines in `source/`.
 
 A Persian line is typically longer than Arntzen's English line, so a four-line
 quatrain can wrap to eight in the PDF and read as eight. **That is fixed once in
-`tex/preamble.tex`, not 135 times in the text** — verse gets a hanging indent, so
+`tex/preamble.tex`, not 141 times in the text** — verse gets a hanging indent, so
 a continuation is visibly a continuation and not a new line.
 
 The preamble currently has no verse handling at all; adding it is spec 007's
@@ -488,7 +494,7 @@ on the page, and that is recorded here so nobody patches `fa/002.md` instead.
 
 ### §4.1 The run-on form is kept
 
-**The run-on form is kept.** 93 of the 135 Anthology files carry a `## Notes`
+**The run-on form is kept.** 97 of the 141 Anthology files carry a `## Notes`
 section of glosses run together into one paragraph — headword, colon,
 explanation, then the next headword. Persian keeps them in one paragraph.
 

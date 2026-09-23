@@ -87,9 +87,11 @@ fix — that diff is the list of files whose Persian is now stale.
   Re-read for endnote markers in session 2, which session 1 had not checked.
 - [x] `011`–`020` — read. 40 files repaired across the book; spec 011.
 - [x] `021`–`030` — read. 15 files repaired across the book; spec 012.
-- [x] `031`–`040` — read. 10 files repaired; spec 013. Six poems found
-  swallowed book-wide; spec 014, **which must run before `041`–`050`**.
-- [ ] `041`–`050`
+- [x] `031`–`042` — read as `031`–`040`. 10 files repaired; spec 013. Six
+  poems found swallowed book-wide; spec 014 gave them back and renumbered,
+  so this decade is now `031`–`042`: `039`, `040` are poems 111 and 113,
+  from the same pages, and `041`, `042` were `039`, `040`.
+- [ ] `043`–`050`
 - [ ] `051`–`060`
 - [ ] `061`–`070`
 - [ ] `071`–`080`
@@ -98,7 +100,8 @@ fix — that diff is the list of files whose Persian is now stale.
 - [ ] `101`–`110`
 - [ ] `111`–`120`
 - [ ] `121`–`130`
-- [ ] `131`–`135`
+- [ ] `131`–`141` — `132` (poem 690) and `131`'s note were read and repaired
+  in 014.
 
 ### Front matter and Introduction
 
@@ -412,18 +415,19 @@ faithfully carries.
 - `085.md` — ~~two quoted poems ("The Gentleman's Wealth", "The Last
   Chrysanthemum in the South Garden") flattened into the note's prose, with
   `Bild;`, `Boe` and `%` as OCR garbage around them~~ — **not quotes:
-  poems 315 and 332**, swallowed; session 4, spec 014. T'ao Yüan-ming's
-  poem in the second note has its lines run together in pairs.
-- `120.md` — `Sdseian`.
-- `128.md` — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note against
-  `Unryōin` / `Sen’yūji` in the title.
+  poems 315 and 332**, swallowed; session 4, spec 014. ~~T'ao Yüan-ming's
+  poem in the second note has its lines run together in pairs.~~ Set as
+  verse in 014, in what is now `089.md`.
+- `125.md` (was `120`) — `Sdseian`.
+- `134.md` (was `128`) — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note
+  against `Unryōin` / `Sen’yūji` in the title.
 
 ### Found in passing by session 3 — not yet confirmed against the scan
 
 - ~~`031.md` — marker `[4]` where the sequence wants **47**.~~ Session 4.
-- `050.md` — `Tozan “sword mountain is a mountain in hell`: the quote never
+- `052.md` (was `050`) — `Tozan “sword mountain is a mountain in hell`: the quote never
   closes.
-- `124.md` — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
+- `129.md` (was `124`) — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
   heading and poem 639 on p. 167; its own page not checked.
 
 ### Found in passing by 011 — not yet confirmed against the scan
@@ -442,8 +446,8 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 - ~~`031.md` — `Wu Teng Aui Yüan`, *Hui*.~~ Session 4.
 - ~~`037.md` — `doctrine of Rydzen: Ryozcens style of Zen`.~~ Session 4. ~~The note ends
   `Wind Bell two poems`~~ — fixed in session 3 with the other set headings.
-- `038.md` — `1 |` as a line of the poem: poem 111's number. **Poem 111
-  swallowed**, session 4; spec 014.
+- ~~`038.md` — `1 |` as a line of the poem: poem 111's number. **Poem 111
+  swallowed**, session 4.~~ Spec 014: now `039.md`.
 - `introduction-1.md` — two markers left bare, so the marker comparison
   shows the Persian with two the source lacks: `leprosy43` (no punctuation
   before the digit) and `Mori.“50` (an opening quote where the closing-quote
@@ -453,6 +457,27 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 - `001.md` — `taryn`, `fia`, `ryi#` for *fūryū*, *fū*, *ryū*. Session 1's
   decade, read twice and left. Not what makes that passage Classic: 011 fixed
   them in a scratch copy and the model still fell back.
+
+### Found in passing by 014 — each confirmed on its page
+
+For the decades that will reach them. 014 checked every *Index of Poems*
+entry on an Anthology page against the poem the generator starts there.
+That is how it found these; none is a missing poem.
+
+- ~~`014.md` (poem 44, p. 80) — titled from the wrong poem.~~ Untitled in
+  print; `POEM_TITLES` gave it *Two Pieces of Skin and One Set of Bone*, the
+  Index's title for poem 344 on p. 144. The Index calls poem 44 *Yen-t'ou's
+  Old Sail Kōan*. **Fixed and re-translated in 014**, with poem 539, which
+  had 537's title — 014 is in a decade already read, so nothing else would
+  have reached it.
+- `090.md`, `097.md`, `126.md` (poems 344, 384, 605) are `Untitled [first
+  line]` in `POEM_TITLES` where the Index gives a title — *Two Pieces of
+  Skin and One Set of Bone*, *Utterly Absorbed in the Dream of Wu-shan*,
+  *Tu-ling's Flowers Sprinkling Tears*. Poems 44, 94 and 539 follow the
+  Index. Either convention is defensible and the book has both. Decide once,
+  not per decade.
+- `introduction-1.md` — `Shnonan` and `Shuonan` for *Shūon’an*, the same
+  OCR 014 fixed in `131.md`'s Nempu entry.
 
 ### Tooling
 

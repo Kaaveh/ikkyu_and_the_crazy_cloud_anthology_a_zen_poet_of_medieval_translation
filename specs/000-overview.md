@@ -15,13 +15,13 @@ The infrastructure is finished and was built before any translation began
 
 ## Structure
 
-147 files under `fa/`, mirroring `source/` byte-for-byte:
+153 files under `fa/`, mirroring `source/` byte-for-byte:
 
 | | |
 |---|---|
 | `plates.md`, `foreword.md`, `preface.md` | front matter |
 | `introduction-1.md` – `introduction-4.md` | the translator's Introduction, four parts |
-| `001.md` – `135.md` | the Anthology: 120 poems and 15 prose introductions |
+| `001.md` – `141.md` | the Anthology: 126 poems and 15 prose introductions |
 | `abbreviations.md`, `notes.md`, `bibliography.md`, `index-of-poems.md`, `glossary-index.md` | back matter |
 
 Files are numbered **by position, not by poem number**. Ikkyū's poem numbers are not
@@ -57,7 +57,7 @@ renamed file silently disables both for that chapter.
 **Runs are sequential.** gTranslator uses one Chrome profile
 (`~/.gtranslate/chrome-profile`) and `_cleanup_chrome_profile()` SIGKILLs whatever
 holds it at startup. Two concurrent runs means the second kills the first mid-file.
-There is no parallelising the 147 files.
+There is no parallelising the 153 files.
 
 ## The pipeline
 
@@ -111,7 +111,7 @@ needed the flag.
 
 ### `--raw` is mandatory, and matters more here than in the prose books
 
-Without it, `clean_text()` unwraps hard line breaks before sending. On 135 files of
+Without it, `clean_text()` unwraps hard line breaks before sending. On 141 files of
 verse that runs a stanza together before the model ever sees it.
 
 ### Always through `tools/apparatus.py`

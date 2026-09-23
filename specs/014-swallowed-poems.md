@@ -66,11 +66,70 @@ the two names it would move.
 
 ## Acceptance criteria
 
-- [ ] `just split` writes 153 files, 141 of them Anthology.
-- [ ] Every page-foot poem number has a `# Poem` heading.
-- [ ] `038`, `085`, `108`, `126` (old numbers) carry one `## Notes` each.
-- [ ] `fa/` mirrors `source/` file-for-file; `just check` green.
-- [ ] Counts updated everywhere requirement 4 names.
+- [x] `just split` writes 153 files, 141 of them Anthology.
+- [x] Every page-foot poem number has a `# Poem` heading — 126 headings, no
+      page foot without one.
+- [x] `038`, `085`, `108`, `126` (old numbers) carry one `## Notes` each —
+      as `087`, `112`, `131`. `038` now carries none, which is the print:
+      the *Wind Bell* set's notes, labelled `[110]` and `[111]`, follow
+      poem 111 on p. 105 and so sit in `039`, the way the *Scriptures Wipe
+      Away Filth* set's all sit in `024`.
+- [x] `fa/` mirrors `source/` file-for-file: `check_parity` 153 of 153,
+      `normalize` clean. **`just check` is not green**, and was not before
+      this spec: `apparatus --check` fails `031` and `037`, 013's stale
+      verse quotes. 013 is what turns it green.
+- [x] Counts updated everywhere requirement 4 names, and `README.md`.
+
+## What was done
+
+**The six poems** start in the generator on their confirmed OCR strings;
+`EXPECTED_POEMS` is 141. `fa/` was renumbered with `git mv` from the top
+down, and the map checked by diffing every moved pair: all byte-identical
+except the files below.
+
+**Four more generator faults, found by requirement 7's read** and fixed
+because each put wrong text in a file this spec was re-translating anyway,
+or in one no later decade would reach:
+
+- **Poem 539 had 537's title.** `POEM_TITLES` called it *Promise to Be Born
+  in the Time of Maitreya*, so once 537 existed two poems shared it. 539 is
+  untitled in print; the Index calls it *Paper Sleeves* (p. 159), and so
+  does the generator now.
+- **Poem 44 had 344's title**, *Two Pieces of Skin and One Set of Bone*.
+  The Index calls 44 *Yen-t'ou's Old Sail Kōan* (p. 80). `014.md` is in a
+  decade 010 has already read, so nothing else would have caught it.
+- **Poems 541 and 542 each lost their fourth line.** `trailing_notes` cut
+  after four *raw* lines, and each poem wraps one verse, so line 4 went into
+  a `## Notes` — which is also why `118.md` (542) had two. Now cut after four
+  verses. 542's text after the verse is an afternote, not notes (its own
+  `Notes:` follows on p. 161), and is set as plain prose.
+
+**Requirement 7: no seventh poem.** Every *Index of Poems* entry on an
+Anthology page resolves to a poem the generator starts, a set heading or a
+prose introduction. Three looked like misses and are not: *Tu-ling's Flowers
+Sprinkling Tears* (p. 166) is the Index's title for 605, *Yen-t'ou's Old
+Sail Kōan* for 44, and the OCR's `Oca?` is *Ox, 21*, an Introduction page.
+The Index also shows the book titling untitled poems two ways; that is in
+010's notes, not decided here.
+
+**The hosts' local damage**, confirmed on pp. 143–144 and 169–170 and fixed
+in the same run, since they were being re-translated: markers **[96]**,
+**[111]**, **[112]**; T'ao Yüan-ming's poem set as verse; `“‘clerics’’`,
+`Essentials,’`, `late.’`, `the gd “‘sobriquets’”’`, `pupils.*Most` (a smudge
+in the print, not a marker), `Kokyuan`, and `the Shnonan` → *Shūon’an*.
+
+**Fourteen files through the pipeline:** the six new ones, the four hosts,
+`115` (539, retitled), `117` and `118` (541, 542), and `014` (44). All at
+4500 except `039` and `131`, which each merged two blocks there. `039` came
+back clean at 900. `131` at 900 was Classic in its first note — *men of the
+cloth* as «مردان پارچه» — and took 400. §2 conformed by hand in ten of
+them (Ikkyū, P'u-hua, Hsü-t'ang, T'ao Yüan-ming, Po Chü-i, Maitreya,
+Takigi and the rest); `just fix` for quotes in three.
+
+**§1.4:** the marker is back on 536 (`112.md`). 537 (`113.md`) read on its
+own terms and left unmarked — `STYLE.md` §1.4 records it.
+
+The book typesets at 236 pages.
 
 ## Out of scope
 
