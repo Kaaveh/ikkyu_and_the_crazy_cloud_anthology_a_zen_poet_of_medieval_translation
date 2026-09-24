@@ -31,22 +31,19 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 017 | [Re-translate what 010's sixth session repaired](./017-retranslate-session-6.md) | 010 | ✅ Done        |
 | 018 | [Re-translate what 010's seventh session repaired](./018-retranslate-session-7.md) | 010 | ✅ Done        |
 | 019 | [Re-translate what 010's eighth session repaired](./019-retranslate-session-8.md) | 010 | ✅ Done        |
-| 020 | [Re-translate what 010's ninth session repaired](./020-retranslate-session-9.md) | 010 | ⬜ Not started |
+| 020 | [Re-translate what 010's ninth session repaired](./020-retranslate-session-9.md) | 010 | ✅ Done        |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[020](./020-retranslate-session-9.md)** — one file re-translated,
-   `086`: a marker the Persian misnumbered, one it left bare, and Lady Pan's
-   fan poem set back as verse. `just check` is red on `086` until it runs.
-2. **[010](./010-source-audit.md)**, next decade: `091`–`100`. Then a new
+1. **[010](./010-source-audit.md)**, next decade: `091`–`100`. Then a new
    re-translation spec for whatever it repairs, before the next decade.
    Repeat through `131`–`141`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-4. **[007](./007-release.md)** last: the end-to-end read of the typeset
+3. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0

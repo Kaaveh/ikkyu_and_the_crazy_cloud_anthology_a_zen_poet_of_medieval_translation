@@ -58,12 +58,12 @@ marker comparison in 010's *Tooling* disagrees on `086` too.
 
 ## Acceptance criteria
 
-- [ ] `086` re-translated.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no
+- [x] `086` re-translated.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no
       disagreement for `086`: [90] [91] [92] [93].
-- [ ] `086`'s fan poem is ten lines of verse.
-- [ ] Group B checked.
-- [ ] `just check` green.
+- [x] `086`'s fan poem is ten lines of verse.
+- [x] Group B checked.
+- [x] `just check` green.
 
 ## Out of scope
 
@@ -73,4 +73,46 @@ once.
 
 ## Implementation notes
 
-_None yet._
+### One run, at 4500
+
+**The draft came back Advanced**, with 16 ezafe. `086` carried no §1.4 marker
+and no `parity: offset`.
+
+**The fan poem came back as ten lines**, one per line of the English. What
+`restore` refused was elsewhere: the model had joined the four *Chuang Tzu*
+paragraphs with single newlines, three lines more than `source/` has, so
+`restore` could not align the breaks by position and named the poem's lines.
+Putting the three blank lines back in the `/tmp` draft was enough; no text
+changed. Block count matches `source/`: 10.
+
+**The markers are right**: [90] [91] [92] [93], where the old file had [9] and
+a bare «۹۲».
+
+**§2, conformed against the table:** «چوآن‌تِنگ‌لو» → «چ’وآن تنگ لو»,
+«شو-تانگ‌لو» → «شیو-ت’انگ لو», «چوانگ‌تزو» → «چوانگ تزو», «چوانگ‌چو» →
+«چوانگ چو» ×2, «چیِن-هو» → «چین-هو». *Lady Pan* came back «بانو پان».
+
+**Left as the model gave it:** «دکان ماهی‌فروشی» for *dried fish store*; the
+word *dried* is gone.
+
+### The quotes in the *Chuang Tzu* passage are still wrong
+
+The model quotes the story's inner speech with ASCII `"`, inside and around
+`"وو"` and `"یوئه"`, and `just fix` turned them into guillemets one after the
+other. The paragraph that begins «به او گفتم» now reads `»وو«` and `»یوئه«`,
+and a `"من` opens in it that closes only in the next paragraph, as
+`بمانم."» «اما`. These are the same faults the old file had. The English
+causes part of it: the perch's speech opens in one paragraph and closes in the
+next, and nothing opens it again in between.
+
+**Re-running changes nothing:** a second run at 4500 gave the same text,
+character for character. `CLAUDE.md` sanctions no hand-edit for quote marks,
+so the faults stay in `fa/`. They are left for 007's typeset read, or for a
+spec that decides whether quote marks become a third sanctioned edit.
+
+**Result:** `just check` is green, with 153/153 on parity and anchors.
+
+### Group B
+
+`084` read: «مهارِ نیروی عظیم» and «آن چیست؟ نیک‌بختیِ عظیمِ راهِ آسمان.»
+[89]. `087` read: «موضوعات/پدیده‌ها» in guillemets. Nothing to carry.
