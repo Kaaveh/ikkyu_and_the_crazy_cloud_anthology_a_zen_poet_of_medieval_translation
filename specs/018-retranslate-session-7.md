@@ -53,13 +53,13 @@ Persian had the marker right and the source did not.
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+- [x] Every group A file re-translated.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
       for any group A file: `063` carries [72], `066` [75], `069` [77] and
       [78].
-- [ ] `070`'s poem names the Buddha-Devil kōan.
-- [ ] Group B checked.
-- [ ] `just check` green.
+- [x] `070`'s poem names the Buddha-Devil kōan.
+- [x] Group B checked.
+- [x] `just check` green.
 
 ## Out of scope
 
@@ -69,3 +69,45 @@ paragraph where p. 125 has five: that is the book-wide shape in 010's
 `070`'s *Ikkyū often refers…* and the breaks inside `069`'s and `070`'s
 quotes belong to the *Prose block quotes* shape, which is left alone
 book-wide.
+
+## Implementation notes
+
+### One sitting, all four at 4500
+
+**Every draft came back Advanced**, with 3, 3, 5 and 7 ezafe, and `restore`
+took each one on the first try. Block counts match `source/` in all four. No
+file in group A carried a §1.4 marker or a `parity: offset`.
+
+**The markers are back.** `063` carries [72], where the old file had [2].
+`066` carries [75] and `069` [77]. The model put [77] after the sentence's
+full stop, which is where the source has it. `070` keeps [79] and [80]. The
+marker comparison now disagrees only on `introduction-1`, the last of the
+three that 010 has recorded since session 2.
+
+**`070`'s third line names the kōan:** «آن «کوآنِ» (معمای ذن) مربوط به «بودا
+و شیطان» را مطرح کرد». The note keeps «کوآنِ «بودا-شیطان»».
+
+**§2, conformed against the table:**
+
+- `063`: پای‌چانگ → پای-چانگ ×6.
+- `066`: سونگ‌یوان → سونگ-یوآن ×7, ایکیو → ایک‌کیو ×2. *Po-yün* came
+  back «بو-یون», as the old file had it; §2 lists it as correct as given.
+- `069`: «چینگ-یوان» → «چ’ینگ-یوآن», ایکیو → ایک‌کیو.
+- `070`: چینگ-سو → چ’ینگ-سو ×14, تزو-مینگ → تز’و-مینگ ×3, «شو چوان تنگ
+  لو» → «شیو چ’وآن تنگ لو», ایکیو → ایک‌کیو ×5. *Tou-shuai* came back
+  two ways; the four «تو-شوآی» are made «تو-شوای», as the old file and the
+  draft's other three have it.
+
+`just fix` turned `070`'s nested ASCII quotes into «طریقتِ».
+
+**Left as the model gave it:** `066`'s «بطریقان» for *Patriarchs*, in the
+poem and the note. The old file had the same word, and no §2 row covers it.
+
+**Result:** `just check` is green, with 153/153 on parity and anchors.
+
+### Group B
+
+`064` read: «…بودا خواهید شد!»» [74], and the opening «... carries the
+elision. Nothing to carry.
+
+The typeset PDF was not read. This spec's criteria do not ask for it.
