@@ -103,11 +103,10 @@ fix — that diff is the list of files whose Persian is now stale.
   Lady Pan's fan poem set back as verse.
 - [x] `091`–`100` — read. 4 files repaired, none outside the decade; spec 021.
   A kōan's closing quote lost in a poem line, which the Persian misread.
-- [ ] `101`–`110`
-- [ ] `111`–`120`
-- [ ] `121`–`130`
-- [ ] `131`–`141` — `132` (poem 690) and `131`'s note were read and repaired
-  in 014.
+- [x] `101`–`141` — read in one session, as session 11. 26 files repaired,
+  2 of them outside the range for their titles; spec 022. Seven verse
+  quotes set back as verse, and the three `Untitled` poems given the Index's
+  titles. `132` (poem 690) and `131`'s note were read and repaired in 014.
 
 ### Front matter and Introduction
 
@@ -702,6 +701,123 @@ convention poems 44, 94 and 539 follow. `097` (poem 384) is `Untitled` where
 the Index gives *Utterly Absorbed in the Dream of Wu-shan*: 014's open
 question, unchanged.
 
+### Session 11 — `101`–`141` (scan pp. 150–177)
+
+The last four decades of the Anthology, read in one session. Printed page
+numbers; the PDF page is 24 higher. **26 files changed in `source/`**: 24 in
+the range, plus `090` and `097` for their titles. Fourteen need
+re-translating: [022](./022-retranslate-session-11.md). One generator path
+fixed, and 014's open title question decided.
+
+**1. Seven verse quotes set back as verse**, each in `VERSE_QUOTES`:
+
+- `101`, p. 151: Po Chü-i's grass poem, eight lines, which ran two to a
+  paragraph. Found in passing by session 10.
+- `113`, p. 159: three lines of "Everlasting Sorrow".
+- `117`, p. 160: the cowherd's couplet.
+- `126`, p. 167: Tu Fu's "Spring View", eight lines.
+- `139`, p. 174: the *Wakan Rōei Shū* couplet, and on p. 175 Tu Fu's
+  "Moonlight Night", eight lines. Its title stays a paragraph of its own, as
+  the print sets it.
+- `141`, pp. 176–177: the couplet from "Sending Ink to a Friend".
+
+`113`, `117` and `126` came out a paragraph per line, the way 024's quotes
+did in 011. The rest were run together. **`117`'s would not match at first.**
+Poem 541's notes have no colon after "Notes", so they come in through
+`trailing_notes`, and that path never called `split_verse_quotes()`. Now
+it does. It is the only such path: 542's afternote is prose. Five of these
+files change block count, and all six change hard breaks. Both turn
+`just check` red until 022 runs.
+
+**2. Three markers, one with the wrong number.**
+
+- `139` `rain.113` is **114**. The decade has 113 on the Shou-yang note and
+  115 on "Moonlight Night", and the OCR's 113 sat between them. **The
+  Persian carries [113] twice.**
+- `103` `“Yes, yes. 101` is **101**, bare and without its closing quote.
+  The Persian dropped it.
+- `125` `livable. 109` is **109**. The print sets `livable.”109` with no
+  quote open, which is 059's `women.”70` again, so `source/` takes
+  `livable. [109]`. The Persian has a bare «۱۰۹».
+
+The range runs 99 to 116 without a gap. This is the end of the Anthology's
+markers.
+
+**3. `109`'s afterword is two paragraphs**, as p. 156 sets it. 016 found it.
+`parse_prose()` never splits an indent after `)`. A rule that splits after
+every `.)` also moved `001` and `introduction-1`, where the print does not
+break, so it is anchored instead. `PARA_STARTS` holds the one confirmed
+opening, *The poems concerning Mori are grouped*.
+
+**4. The three `Untitled` poems take the Index's titles.** Kaaveh decided
+this. `090` is *Two Pieces of Skin and One Set of Bone*, `097` is *Utterly
+Absorbed in the Dream of Wu-shan*, and `126` is *Tu-ling's Flowers
+Sprinkling Tears*. That is the convention poems 44, 94, 376 and 539 already
+followed. Poem 542 has no title on p. 185 either, and it already carried
+the Index's.
+
+**5. Local damage, each checked on the page.**
+
+- `101`: `papiyan` → *pāpiyān*, `Po Chit-i` → *Po Chü-i*, `Off.”’`.
+- `103`: `“Here, Master?”’:`.
+- `105`: `On ppab1=53` → *on pp. 51-53*, `Iwant`, `generations,’`,
+  straight quotes on `"Be that as it may, you've`, `casc` → *ease*.
+  **The Persian carries «در صفحه ۵۳ (ppab1=53)».**
+- `106`: `and "moon.` → *and “moon.”*
+- `108`: `Ch'u's`, in the poem. `109`: `Cs Pavilion` → *Ch’u’s Pavilion*,
+  and `objective. fact`, where the print has a speck.
+- `112`: `IfI` in the poem. **`resembless` is the print's**, confirmed on
+  p. 158.
+- `116`, `117`: `Yakushido` ×3 → *Yakushidō*, as the poem's own title has
+  it. Anchored, because `introduction-1`, the Index and the glossary-index
+  have it bare too.
+- `117`: `human being. But` loses its closing quote.
+- `118`: `Li Pos poem ‘The Jeweled` → *Li Po’s poem “The Jeweled*.
+- `119`: `if lever forget` → *if I ever forget*, in the poem. The Persian
+  has it right already.
+- `120`: `Chou. [108]` loses its closing quote; `She's`.
+- `121`: `IKkyu's`, which the stem rule does not reach.
+- `125`: `Sdseian` → *Sōseian*. **The Persian carries «سادِسی‌آن»
+  (Sdseian).**
+- `126`: `passable. ;` in the poem, `“Spring View,”’`.
+- `129`: `Kansho: 1461` → *Kanshō*, `“Burning house’`, `“Triple Sphere’’`,
+  `Im Buddhist`.
+- `130`: `Bunsho` → *Bunshō*; `and «instructed`, a speck the OCR read as a
+  guillemet. **The Persian carries it**: «و «آنها را با آن راهنمایی کردم»
+  has an opening mark that never closes.
+- `131`: `Bunsho: 1466` → *Bunshō*.
+- `134`: `Unryoin` ×2, `Sen’yuji`, `Sen’yiji` → *Unryōin*, *Sen’yūji*.
+- `135`: `“Dream’’`, `“Dream Window,’`, `“Dream Chamber”’`, `Muso` →
+  *Musō*, `Musi` → *Musū*. **The Persian has «موسی» for *Musi***, which
+  reads as Moses.
+- `139`: the three Dream monks as in `135`, and `Musa Ryoshin` → *Musū
+  Ryōshin*, `Tofukuji` ×2 → *Tōfukuji*, `Tenrydji` → *Tenryūji*. Also
+  `Sifth-watch` → *fifth-watch*, `5:00 a.m.` → *A.M.* as the line's 3:00
+  has it, `Cl’ang-lo`, `Wakan Roei Shi: ;` → *Wakan Rōei Shū:*,
+  `Chou's`, and `moonlight ?`.
+- `140`: `said, "It is`.
+- `141`: `Tien-tai` → *T’ien-t’ai*, `‘‘ten-thousand-times`.
+
+`102`, `104`, `107`, `110`, `111`, `114`, `115`, `122`, `123`, `124`,
+`127`, `128`, `132`, `133`, `136`, `137` and `138` read clean.
+
+**Left as the print has it:** `112`'s `resembless`. `118`'s *An illusion to
+Li Po’s poem*. `109`'s and `129`'s `existance`, where `source/` already has
+*existence*. `105`'s Nempu quote sets *Ikkyu* without the macron, and
+`source/` has *Ikkyū*. `123`'s `Po Chü-'i`, where `source/` has *Po Chü-i*.
+`139`'s *Musō Soseki*, with no macron on Soseki. `118`'s *Shinbo*. The
+Nempu quotes in `125` and `131`, the Rinzai dialogue in `105` and `106`,
+and Jui-yen's in `103` break by line or mid-quote: the *Prose block quotes*
+shape.
+
+**Left, in the ASCII-for-diacritics class:** `Onin` in `109`, `117`, `125`,
+`129` and `131`, and in `source/` generally. There is no *Ōnin* anywhere in
+it, and the Persian spells «اونین» either way. `Mara` in `101`,
+`Sakyamuni` in `113` and `133`, and `sala` in `133`'s poem.
+
+**The Anthology is read.** What is left of this spec is the front matter,
+`introduction-4`, and the back matter.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -750,17 +866,17 @@ faithfully carries.
   poems 315 and 332**, swallowed; session 4, spec 014. ~~T'ao Yüan-ming's
   poem in the second note has its lines run together in pairs.~~ Set as
   verse in 014, in what is now `089.md`.
-- `125.md` (was `120`) — `Sdseian`.
-- `134.md` (was `128`) — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note
-  against `Unryōin` / `Sen’yūji` in the title.
+- ~~`125.md` (was `120`) — `Sdseian`.~~ Session 11.
+- ~~`134.md` (was `128`) — `Unryoin`, `Sen’yuji`, `Sen’yiji` in the note
+  against `Unryōin` / `Sen’yūji` in the title.~~ Session 11.
 
 ### Found in passing by session 3 — not yet confirmed against the scan
 
 - ~~`031.md` — marker `[4]` where the sequence wants **47**.~~ Session 4.
 - ~~`052.md` (was `050`) — `Tozan “sword mountain is a mountain in hell`: the quote never
   closes.~~ Session 6.
-- `129.md` (was `124`) — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
-  heading and poem 639 on p. 167; its own page not checked.
+- ~~`129.md` (was `124`) — `The Second Year of Kansho: 1461.` Probably *Kanshō*, as in the
+  heading and poem 639 on p. 167; its own page not checked.~~ Session 11.
 
 ### Found in passing by 011 — not yet confirmed against the scan
 
@@ -792,15 +908,17 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 
 ### Found in passing by session 5 — not yet confirmed against the scan
 
-- `139.md` — a Tu Fu poem, "Moonlight Night", flattened in its note: title
+- ~~`139.md` — a Tu Fu poem, "Moonlight Night", flattened in its note: title
   and lines run together two to a paragraph. The paragraph before it
   (`The sound of the bell of Ch’ang-lo…`) looks like verse run together too.
-  Found by the blank-line measurement for 016, not read on the page.
+  Found by the blank-line measurement for 016, not read on the page.~~
+  Both, session 11.
 
 ### Found in passing by session 6 — not yet confirmed against the scan
 
 - ~~`079.md` — `Sutra` once, beside `Sūtra` once in the same file.~~ Session 8.
-- `112.md` (poem 536) — `resembless` and `IfI` in the poem.
+- ~~`112.md` (poem 536) — `resembless` and `IfI` in the poem.~~ Session 11:
+  `IfI` fixed; `resembless` is the print's.
 
 ### Found in passing by session 8 — not yet confirmed against the scan
 
@@ -810,10 +928,10 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 
 ### Found in passing by session 10
 
-- `101.md` (poem 390, p. 151) — Po Chü-i's poem in the note, eight lines in
+- ~~`101.md` (poem 390, p. 151) — Po Chü-i's poem in the note, eight lines in
   print, is run together into four paragraphs, two lines to most of them.
   Also `Po Chit-i`, `Off.”’`, and `papiyan` for *pāpiyān*. `[388]` and
-  `[390]` are the print's own labels.
+  `[390]` are the print's own labels.~~ Session 11.
 - `foreword.md` — `Jodoshinsh@`, probably *Jōdoshinshū*; its page not
   checked. `glossary-index.md` has `Jodosht` and `Honen`, which 006 keeps
   verbatim.
@@ -821,10 +939,10 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 ### Found in passing by 016 — each seen on its page
 
 - ~~`086.md` (poem 293, p. 142) — Lady Pan's fan poem, flattened.~~ Session 9.
-- `109.md` (poems 531–532, p. 156) — *The poems concerning Mori are grouped
+- ~~`109.md` (poems 531–532, p. 156) — *The poems concerning Mori are grouped
   together…* is an indented paragraph of its own in print, and runs into the
   afterword before it: that ends `(See p. 28.)`, and `parse_prose()` only
-  splits an indent after `.` `!` `?` and quotes, not `)`.
+  splits an indent after `.` `!` `?` and quotes, not `)`.~~ Session 11.
 
 ### Found in passing by 014 — each confirmed on its page
 
@@ -838,12 +956,13 @@ That is how it found these; none is a missing poem.
   Old Sail Kōan*. **Fixed and re-translated in 014**, with poem 539, which
   had 537's title — 014 is in a decade already read, so nothing else would
   have reached it.
-- `090.md`, `097.md`, `126.md` (poems 344, 384, 605) are `Untitled [first
+- ~~`090.md`, `097.md`, `126.md` (poems 344, 384, 605) are `Untitled [first
   line]` in `POEM_TITLES` where the Index gives a title — *Two Pieces of
   Skin and One Set of Bone*, *Utterly Absorbed in the Dream of Wu-shan*,
   *Tu-ling's Flowers Sprinkling Tears*. Poems 44, 94 and 539 follow the
   Index. Either convention is defensible and the book has both. Decide once,
-  not per decade.
+  not per decade.~~ **Decided in session 11: the Index.** All three now
+  carry its titles, as 44, 94, 376, 539 and 542 already did.
 - `introduction-1.md` — `Shnonan` and `Shuonan` for *Shūon’an*, the same
   OCR 014 fixed in `131.md`'s Nempu entry.
 

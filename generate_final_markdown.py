@@ -364,6 +364,64 @@ TYPO_FIXES = [
     (r'and that alonc\.', 'and that alone.'),
     (r'Tu Mu \(803- 52\)', 'Tu Mu (803-52)'),
     (r'books in your belly\.,', 'books in your belly.'),
+    # pp. 151-177, poems 390-839 (spec 010, sessions 11-14), each checked on
+    # the page. Anchored on each file's own text: Yakushidō, Unryōin and
+    # Sen'yūji are ASCII in the glossary-index too, and 006 keeps it verbatim.
+    (r'Sanskrit papiyan,', 'Sanskrit pāpiyān,'),
+    (r'poem by Po Chit-i,', 'poem by Po Chü-i,'),
+    (r'I Send Someone Off\.”’', 'I Send Someone Off.”'),
+    (r'“Here, Master\?”’:', '“Here, Master?”:'),
+    (r'“Yes, yes\. 101\b', '“Yes, yes.” [101]'),
+    (r'discussed On ppab1=53\.', 'discussed on pp. 51-53.'),
+    (r'“First, Iwant to', '“First, I want to'),
+    (r'for later generations,’ said Rinzai', 'for later generations,” said Rinzai'),
+    (r'"Be that as it may, you\'ve', '“Be that as it may, you’ve'),
+    (r'taking his casc\.', 'taking his ease.'),
+    (r'for “sun” and "moon\.', 'for “sun” and “moon.”'),
+    (r"^Ch'u's Pavilion, sunset", 'Ch’u’s Pavilion, sunset'),
+    (r'\bCs Pavilion:', 'Ch’u’s Pavilion:'),
+    (r'realm of objective\. fact', 'realm of objective fact'),
+    (r'\bIfI get ill', 'If I get ill'),
+    (r'I traveled to Yakushido and heard the blind girl’s', 'I traveled to Yakushidō and heard the blind girl’s'),
+    (r'leisurely to Yakushido and', 'leisurely to Yakushidō and'),
+    (r'^Yakushido: A temple', 'Yakushidō: A temple'),
+    (r'I am not a human being\. But to console', 'I am not a human being.” But to console'),
+    (r'Li Pos poem ‘The Jeweled', 'Li Po’s poem “The Jeweled'),
+    (r'Mori, if lever forget', 'Mori, if I ever forget'),
+    (r'dreaming he was Chuang Chou\. \[108\]', 'dreaming he was Chuang Chou.” [108]'),
+    (r'“She\'s sleeping', '“She’s sleeping'),
+    (r'Another of IKkyu\'s sobriquets', 'Another of Ikkyū’s sobriquets'),
+    (r'the Sdseian in Sumiyoshi', 'the Sōseian in Sumiyoshi'),
+    # "livable.”109" in print, with no quote open: 059's "women.”70" again.
+    (r'and not livable\. 109\b', 'and not livable. [109]'),
+    (r'the roads are not passable\. ;', 'the roads are not passable.'),
+    (r'“Spring View,”’', '“Spring View,”'),
+    (r'The Second Year of Kansho: 1461', 'The Second Year of Kanshō: 1461'),
+    (r'“Burning house’ is', '“Burning house” is'),
+    (r'“Triple Sphere’’ is', '“Triple Sphere” is'),
+    (r'\bIm Buddhist cosmology', 'In Buddhist cosmology'),
+    (r'first year of Bunsho, soldiers', 'first year of Bunshō, soldiers'),
+    (r'a poem and «instructed', 'a poem and instructed'),
+    (r'first year of Bunsho: 1466', 'first year of Bunshō: 1466'),
+    (r'Unryoin at Sen’yuji: Unryoin', 'Unryōin at Sen’yūji: Unryōin'),
+    (r'Higashiyama Sen’yiji', 'Higashiyama Sen’yūji'),
+    (r'three named “Dream’’;', 'three named “Dream”;'),
+    (r'reverends Muso “Dream Window,’ Musi', 'reverends Musō “Dream Window,” Musū'),
+    (r'the name “Dream Chamber”’ and', 'the name “Dream Chamber” and'),
+    (r'^Muso “Dream Window’: Muso Soseki', 'Musō “Dream Window”: Musō Soseki'),
+    (r'founder of Tenrydji', 'founder of Tenryūji'),
+    (r'Musi “Dream High’: Musa Ryoshin \(d\. 1281\) of Tofukuji', 'Musū “Dream High”: Musū Ryōshin (d. 1281) of Tōfukuji'),
+    (r'Mumu “No Dream’: Mumu Issei \(d\. 1368\), also of Tofukuji', 'Mumu “No Dream”: Mumu Issei (d. 1368), also of Tōfukuji'),
+    (r"Chuang Chou's butterfly dream", 'Chuang Chou’s butterfly dream'),
+    (r'\bSifth-watch bell:', 'fifth-watch bell:'),
+    (r'to 5:00 a\.m\. Cl’ang-lo:', 'to 5:00 A.M. Ch’ang-lo:'),
+    (r'Wakan Roei Shi: ;', 'Wakan Rōei Shū:'),
+    # "rain.113" in the OCR; p. 174 sets 114, between 113 and 115.
+    (r'deepen in the rain\.113\b', 'deepen in the rain. [114]'),
+    (r'in the moonlight \?115\b', 'in the moonlight? [115]'),
+    (r'Everyone said, "It is dangerous', 'Everyone said, “It is dangerous'),
+    (r'comprise Tien-tai mountain', 'comprise T’ien-t’ai mountain'),
+    (r'as the ‘‘ten-thousand-times', 'as the “ten-thousand-times'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.
@@ -435,6 +493,14 @@ cjk_pat = re.compile(r'[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff\uff
 # that what sits right of a measured gutter really is the column.
 shout_run_pat = re.compile(r'(?<![.\w])(?:\b[A-Z]{2,}\b[ ]?){2,}')
 
+# Indented paragraphs that follow a line parse_prose() will not split after.
+# p. 156 indents "The poems concerning Mori…" after "(See p. 28.)"; splitting
+# after every ".)" would also split 001 and introduction-1, where the print
+# does not (spec 010, session 11).
+PARA_STARTS = (
+    'The poems concerning Mori are grouped',
+)
+
 def parse_prose(text):
     lines = text.splitlines()
     paragraphs = []
@@ -449,7 +515,7 @@ def parse_prose(text):
         indent = len(l) - len(l.lstrip())
         if indent >= 2 and curr_para:
             prev = curr_para[-1]
-            if prev.endswith(('.', '!', '?', '”', '"', ':', '’', "'", ';', '—')):
+            if prev.endswith(('.', '!', '?', '”', '"', ':', '’', "'", ';', '—')) or s.startswith(PARA_STARTS):
                 paragraphs.append(' '.join(curr_para))
                 curr_para = []
         curr_para.append(s)
@@ -539,6 +605,43 @@ VERSE_QUOTES = [
      'cold winds that scatter the burning heart,',
      'when it will be laid away in a hamper,',
      'love and favor cut off midway. [93]'),
+    # pp. 151-177, spec 010 sessions 11-14. Po Chü-i's grass poem ran two
+    # lines to a paragraph; the rest came out a paragraph per line.
+    ('Luxuriant, the grass on the plain,',                       # p. 151, poem 390
+     'In one year, withers and flourishes.',
+     'The wild fire burns but cannot destroy it.',
+     'When the spring wind blows,',
+     'The fragrant grass encroaches on the ancient path;',
+     'It meets the azure sky and rough wall,',
+     'As I sent you off again, old friend,',
+     'My heart overflows with the feeling of parting. [100]'),
+    ('In the middle of the night, when no one was around, intimate talk:',  # p. 159, poem 537
+     'If in the sky, then let us be the two wings of a single bird;',
+     'If on land, let us be the connected branches of a single trunk. [105]'),
+    ('I blush that you have come so far to meet me;',            # p. 160, poem 541
+     'Although my body is different, love lasts forever. [107]'),
+    ('The state crumbles, mountains and rivers remain.',         # p. 167, poem 605
+     'The city in spring, grass and shrubs grow rankly.',
+     'Feeling the times, flowers sprinkle tears.',
+     'Lamenting separation, birds startle the heart.',
+     'The signal fires have burned continuously for three months;',
+     'A letter from home would be worth a myriad pieces of gold.',
+     'I scratch my white head, thinning the hair even more;',
+     'Soon there will not be enough to stand up to a comb. [110]'),
+    ('The sound of the bell of Ch’ang-lo ends in the flowers,',  # p. 174, poem 820
+     'The color of the willows by Dragon Pond deepen in the rain. [114]'),
+    # p. 175, poem 822: Tu Fu's "Moonlight Night". Its title is left a
+    # paragraph of its own, as the print sets it.
+    ('Tonight, at Fu-chou, the moon,',
+     'From the bedchamber, my wife gazes alone.',
+     'I long for my far-away little ones,',
+     'Who are too young to understand the worry of Ch’ang-an.',
+     'Scented mist moistens her cloud hair.',
+     'Clear light chills her jade white arms,',
+     'When will we two lean out of the open casement again',
+     'And let the double glistening tracks of our tears dry in the moonlight? [115]'),
+    ('Moon bright Hua Ting, windy pure night,',                  # pp. 176-177, poem 839
+     'The ten-thousand-times pounded frost flowers fall on a wool coat. [116]'),
 ]
 
 # A note's closing paragraph on the poem as a whole, set off in print by a
@@ -891,14 +994,14 @@ POEM_TITLES = {
     '308': 'No One Sees It the Same',
     '315': 'The Gentleman’s Wealth',
     '332': 'The Last Chrysanthemum in the South Garden',
-    '344': 'Untitled [Two pieces of skin and one set of bone]',
+    '344': 'Two Pieces of Skin and One Set of Bone',
     '352': 'Taking a Metaphor for Reality',
     '362': 'Praising Saint Hōnen',
     '367': 'Ridiculing Literature',
     '376': 'Quietly Singing Beside the Lamp',
     '381': 'Recollecting the Past',
     '383': 'The Stick',
-    '384': 'Untitled [Utterly absorbed in the dream of Wu-shan]',
+    '384': 'Utterly Absorbed in the Dream of Wu-shan',
     '385': 'Deluded Enlightenment',
     '388': 'Addressed to a Monk Who Burned Books (I)',
     '389': 'Addressed to a Monk Who Burned Books (II)',
@@ -924,7 +1027,7 @@ POEM_TITLES = {
     '572': 'Po Lo-t’ien',
     '593': 'Cause and Effect for a Lustful Monk',
     '604': 'Retreating from Mikanohara and Going to Nara',
-    '605': 'Untitled [Would that it were the realm of Gods and Immortals]',
+    '605': 'Tu-ling’s Flowers Sprinkling Tears',
     '639': 'The Second Year of Kanshō—Starvation (I)',
     '640': 'The Second Year of Kanshō—Starvation (II)',
     '641': 'The Second Year of Kanshō—Starvation (III)',
@@ -1229,7 +1332,7 @@ def build_translations():
                 tn_text = '\n'.join(trailing_notes)
                 if tn_text.startswith('Notes'):
                     tn_text = tn_text[5:].strip()
-                for p in parse_prose(tn_text):
+                for p in split_verse_quotes(parse_prose(tn_text)):
                     out.append(p + "\n")
             continue
             

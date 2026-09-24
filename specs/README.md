@@ -33,18 +33,23 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 019 | [Re-translate what 010's eighth session repaired](./019-retranslate-session-8.md) | 010 | ✅ Done        |
 | 020 | [Re-translate what 010's ninth session repaired](./020-retranslate-session-9.md) | 010 | ✅ Done        |
 | 021 | [Re-translate what 010's tenth session repaired](./021-retranslate-session-10.md) | 010 | ✅ Done        |
+| 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[010](./010-source-audit.md)**, next decade: `101`–`110`. Then a new
-   re-translation spec for whatever it repairs, before the next decade.
-   Repeat through `131`–`141`, then the front and back matter,
-   `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+1. **[022](./022-retranslate-session-11.md)** — 14 files re-translated,
+   the last of the Anthology. Six are red on parity from verse quotes set back
+   as verse, three carry wrong or missing markers, and three take the
+   Index's titles.
+2. **[010](./010-source-audit.md)**, the Anthology done: the front matter,
+   `introduction-4`, the back matter, `bibliography`/`glossary-index` (low
+   priority), and `source/README.md`. A re-translation spec for whatever
+   each part repairs.
+3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-3. **[007](./007-release.md)** last: the end-to-end read of the typeset
+4. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
@@ -88,7 +93,9 @@ still running into a note. Its ninth (poems 280–344) changed 3,
 [020](./020-retranslate-session-9.md)'s, one of them for a quoted poem
 flattened into prose. Its tenth (poems 352–389) changed 4,
 [021](./021-retranslate-session-10.md)'s, one of them a poem line the
-Persian misread for want of a closing quote. Three of
+Persian misread for want of a closing quote. Its eleventh, the rest of the
+Anthology (poems 390–839), changed 26, [022](./022-retranslate-session-11.md)'s,
+with seven verse quotes set back as verse. Three of
 011's 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
 the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
@@ -103,11 +110,11 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo
 ```
 
-**010 and its re-translation specs (009, 011, 012, 013, 015, 017, 018, 019, 020, 021, …) alternate rather than run in
+**010 and its re-translation specs (009, 011, 012, 013, 015, 017, 018, 019, 020, 021, 022, …) alternate rather than run in
 sequence.** Each decade of the audit
 that repairs a file makes that file's Persian stale, so the tail of the roadmap
 is a loop: read a chunk, fix the generator, list what broke, re-translate it,
