@@ -21,7 +21,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
 | 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
-| 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 In progress |
+| 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 Read; closes with 023 |
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
 | 012 | [Re-translate what 010's third session repaired](./012-retranslate-session-3.md) | 010 | ✅ Done        |
 | 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ✅ Done        |
@@ -34,18 +34,22 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 020 | [Re-translate what 010's ninth session repaired](./020-retranslate-session-9.md) | 010 | ✅ Done        |
 | 021 | [Re-translate what 010's tenth session repaired](./021-retranslate-session-10.md) | 010 | ✅ Done        |
 | 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ✅ Done        |
+| 023 | [Re-translate what 010's twelfth session repaired](./023-retranslate-session-12.md) | 010 | ⬜ Not started |
+| 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[010](./010-source-audit.md)**, the Anthology done: the front matter,
-   `introduction-4`, the back matter, `bibliography`/`glossary-index` (low
-   priority), and `source/README.md`. A re-translation spec for whatever
-   each part repairs.
+1. **[023](./023-retranslate-session-12.md)**: five files re-translated and
+   three entry lists re-copied. `just check` is red on `preface` until it
+   runs, and when it has, 010 closes.
 2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-3. **[007](./007-release.md)** last: the end-to-end read of the typeset
+3. **[024](./024-introduction-read.md)**: `introduction-1/2/3`, which 010
+   ticked for the CJK fix and never read. About thirty markers are wrong,
+   every quoted poem is flattened, and a re-translation spec will follow.
+4. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
@@ -91,7 +95,11 @@ flattened into prose. Its tenth (poems 352–389) changed 4,
 [021](./021-retranslate-session-10.md)'s, one of them a poem line the
 Persian misread for want of a closing quote. Its eleventh, the rest of the
 Anthology (poems 390–839), changed 26, [022](./022-retranslate-session-11.md)'s,
-with seven verse quotes set back as verse. Three of
+with seven verse quotes set back as verse. Its twelfth, everything else,
+changed 9. [023](./023-retranslate-session-12.md) has them. The preface had
+never had its last page read, and eight of 002's note repairs were guesses.
+It also found that the Introduction had never been read at all. That is
+[024](./024-introduction-read.md). Three of
 011's 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
 the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
@@ -106,8 +114,8 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022  →  010  →  023  →  024
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    intro
 ```
 
 **010 and its re-translation specs (009, 011, 012, 013, 015, 017, 018, 019, 020, 021, 022, …) alternate rather than run in
@@ -171,8 +179,8 @@ not where the roadmap put it — see the 008 note below.
   | `bibliography.md` | 261 | garbled — 008 requirement 3, deliberately deferred |
   | `glossary-index.md` | 241 | same |
   | `abbreviations.md` | 26 | **correct.** Japanese titles, kept verbatim by 006 |
-  | `notes.md` | 2 | correct |
-  | `foreword.md` | 1 | the `が` in an OCR-mangled German book title |
+  | `notes.md` | 0 | was 2: `な し` in a garbled page reference, not correct as this row said. Fixed in 010 session 12 |
+  | `foreword.md` | 0 | was 1: the `が` in an OCR-mangled German book title. Fixed in 010 session 12 |
   | `introduction-1/2/3` | **0** | was 161 / 43 / 141 before `drop_column()` |
 
   Three stray ideographic commas (`、`) survive in `introduction-1/3` and

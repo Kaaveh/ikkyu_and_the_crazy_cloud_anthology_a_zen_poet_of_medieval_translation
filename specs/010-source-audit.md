@@ -110,36 +110,43 @@ fix — that diff is the list of files whose Persian is now stale.
 
 ### Front matter and Introduction
 
-- [ ] `plates.md`
-- [ ] `foreword.md`
-- [ ] `preface.md`
+- [x] `plates.md` — read in session 12. The epigraph had lost its source.
+- [x] `foreword.md` — read in session 12.
+- [x] `preface.md` — read in session 12. **Its last page was never read.**
 - [x] `introduction-1.md` — CJK column bleed fixed in 005 (`drop_column`).
-- [x] `introduction-2.md` — same fix.
-- [x] `introduction-3.md` — same fix.
-- [ ] `introduction-4.md`
+  **Not read against the scan**: session 12 found that out. Moved to
+  [024](./024-introduction-read.md).
+- [x] `introduction-2.md` — same fix, same move.
+- [x] `introduction-3.md` — same fix, same move.
+- [x] `introduction-4.md` — read in session 12.
 
 ### Back matter
 
-- [ ] `abbreviations.md`
-- [ ] `notes.md` — repaired in 002; re-read here, since the audit's job is to
-      confirm rather than assume
-- [ ] `bibliography.md` — CJK garbling, requirement 5, low priority
-- [ ] `index-of-poems.md`
-- [ ] `glossary-index.md` — same
+- [x] `abbreviations.md` — read in session 12.
+- [x] `notes.md` — repaired in 002; re-read in session 12. Eight of 002's
+      own fixes had guessed a page reference instead of reading it.
+- [x] `bibliography.md` — CJK garbling, requirement 5. **Signed off as out
+      of reach** in session 12.
+- [x] `index-of-poems.md` — read in session 12.
+- [x] `glossary-index.md` — same as the bibliography: signed off.
 
 ### Finally
 
-- [ ] `source/README.md` re-read once the above is done.
+- [x] `source/README.md` re-read once the above is done. It is generated
+  from the headings: 153 rows, and it carries the Index titles session 11
+  gave `090`, `097` and `126`.
 
 ## Acceptance criteria
 
-- [ ] Every file above read against the scan, defects fixed in a generator or
-      recorded here as a deliberate exception.
-- [ ] Every file whose source changed is listed in a re-translation spec.
-- [ ] The gibberish scan from 002 requirement 4 returns nothing outside
-      `bibliography.md` / `glossary-index.md`, or those two are signed off as
+- [x] Every file above read against the scan, defects fixed in a generator or
+      recorded here as a deliberate exception. `introduction-1/2/3` are
+      handed to [024](./024-introduction-read.md), which reads them.
+- [x] Every file whose source changed is listed in a re-translation spec:
+      [023](./023-retranslate-session-12.md), and 024 for `introduction-1`.
+- [x] The gibberish scan from 002 requirement 4 returns nothing outside
+      `bibliography.md` / `glossary-index.md`, and those two are signed off as
       out of reach at 006's priority.
-- [ ] `just split` re-run after every generator fix.
+- [x] `just split` re-run after every generator fix.
 - [ ] `just check` passes — which, because a repair breaks parity against the
       stale Persian, means after the matching re-translation spec has run.
 
@@ -818,12 +825,129 @@ it, and the Persian spells «اونین» either way. `Mara` in `101`,
 **The Anthology is read.** What is left of this spec is the front matter,
 `introduction-4`, and the back matter.
 
+### Session 12 — front matter, `introduction-4`, back matter (PDF pp. 7–24, 83–85, 202–221)
+
+PDF page numbers throughout; the front matter has roman folios. **9 files
+changed in `source/`**, all restorations. Eight need re-translating or a
+verbatim entry re-copied: [023](./023-retranslate-session-12.md). The ninth,
+`introduction-1`, is [024](./024-introduction-read.md)'s. One structural
+defect, and one finding that took three files out of this spec.
+
+**1. The preface's last page was never read.** `build_preface()` took
+`range(20, 23)`, PDF pp. 21–23, and the preface runs to p. 24 (xvi). Source
+and Persian both ended mid-word on `The Hepburn romaniza-`, and **two
+paragraphs were missing**: the romanization and name-order conventions, and
+the citation conventions that say whose numbering the Anthology's poem numbers
+follow. The Persian ends «رومی‌سازی هپبورن-». Now `range(20, 24)`, which turns
+`check_parity` red on `preface`: 9 blocks against 10.
+
+**2. The Introduction was never read.** Its checklist lines were ticked for
+005's CJK-bleed fix, not for a read against the scan. The marker comparison
+showed it: the Introduction's 88 markers are as damaged as the Anthology's
+were, with about 30 wrong or missing. Checking those found more. **Every
+quoted poem in the Introduction is run together as prose**, and
+`introduction-1/2/3` carry no hard line break at all. There is local damage
+the Anthology's rules never reached as well: `Gid` for *Giō*, `kéan!>`,
+`biwa hashi`, `Jodo Shinsht`. That is weeks of work, not a fold-in, so it
+moved to [024](./024-introduction-read.md) with what this session confirmed.
+The one change it made there is `IKkyu` → *Ikkyū*, ×6. The `IKky` rule now
+runs ahead of the stem rules, which replaces session 11's anchored one.
+
+**3. `notes.md`: eight of 002's own fixes were guesses.** `NOTE_FIXES`
+replaced OCR garbage with a whole note, and eight of those replacements
+disagree with pp. 179–183. They look right and send the reader to the wrong
+place:
+
+| note | print | `source/` had |
+|---|---|---|
+| Intro 59 | roll **4** | roll 6 |
+| Intro 73 | ***Ch’uan Teng Lu*, roll 11, T 51**, p. 284a | CZS, no. 240, T 48 |
+| Trans. 9 | KZ, p. **11** | p. 18 |
+| Trans. 59 | *Shih Chi*, SP, roll **117, p. 2a** | roll 84, p. 4b, Intro 70's reference |
+| Trans. 78 | KZ, p. **193** | p. 176 |
+| Trans. 99 | p. **115a** | `v. roll 7, ZZ, v. 138, p. 116a` |
+| Trans. 100 | roll 13 | `roll roll 13` |
+| Trans. 108 | roll **1** | roll 8 |
+
+The four doubtful digits were checked at 300–400 dpi. Each is corrected in
+`NOTE_FIXES` itself. The rest are in a new `NOTE_TYPOS` list, applied per
+note after `apply_typos`. **The Persian carries every one of them**, and
+more: `yg` in Trans. 1 (*Ikkyū*), and `Paar`, `Walsre`, `7394`, `Daas`,
+`pelo` for page references. Also fixed: Trans. 10, 25, 28, 33, 35, 40, 45, 81,
+92, 105 and 116, whose page references were garbage. Intro 18 had lost its
+`294c`. Also `Ruiji`, `ruiju`, `Shinjaan`, `Tokushu` ×3, `Jikaishu` ×2,
+`kana hogo` ×2, `“so,” … “‘katsute,”`, `1s`, `shazen bugy0`, `““Yüan-ming`,
+`Taisho Daizokyo`, `Sutra` ×6, `Yi-lu`, `Demieville`, `Lin-tst`,
+`Vallee-Poussin`, `L’ Abhidharmakosa`, `Honen`, `Kato`, `Wakan Roei Shi`,
+and Intro 63's `“Crazy Cloud Anthology’`. Intro 82 is *Katō Shūichi*, as
+the print orders it. The general rule that reverses the name to *Shūichi
+Katō* is right for the foreword's title and wrong here.
+
+**4. Local damage, each checked on the page.**
+
+- `plates` (p. 13): the epigraph's source, *“Ikkyū no Shisō to Sono
+  Shōgai”*, under Yanagida's name. It was dropped.
+- `foreword` (pp. 17–20): **`(yg: Im Garten der sc が ez Shin)`** is
+  *(Ikkyū: Im Garten der schönen Shin)*, the German translation Katō
+  co-published. **The Persian dropped the title**, and the sentence reads
+  as if the book had none. Also `NO`/`No` → *Nō*, `Jodoshinsh@` →
+  *Jōdoshinshū*, `Honen` → *Hōnen*, `Dogen` ×3 and `Dégen` → *Dōgen*,
+  `Soto` → *Sōtō*, `Shobd Genzo` → *Shōbō Genzō*, `Francois`, `poetes
+  maudits`, and the signature `Kato SHUICHI` → *Katō Shūichi*. The Persian
+  glosses it `(Kato Shuichi)`.
+- `preface` (pp. 21–24): **the list of reprinted poems** was OCR noise
+  (`78,25`, `13; TA; 15,84`, `551.0592, 5331935, 530, 297; 539) 541 542.
+  5435 56/7.`). The Persian carries it digit for digit, `TA` included. It
+  is now the print's 44 numbers, from 6 to 567. Also `IKkyu`, `Kato
+  Shuichi`, `Iida Shotaro`, the stray `、` after `U.B.C.`, and on the
+  recovered page `Siitra`, `Shisd`, `Chasei`, `Shiso`.
+- `introduction-4` (pp. 83–85): `Shisd`, `Shiso` → *Shisō*; **`49 gd,`** is
+  *49 gō*, and the Persian dropped the term; `shi sha` → *shi shū*; `ge,
+  “‘religious odes.` closed; `Such ¢n order`; `“One, two, three; ah! three,
+  two, one` closed. Markers 85–88 are right.
+- `abbreviations` (p. 202): *ZZ* is **1946 (photo reprint of the original
+  *Dainihon Zoku Zōkyō*)**, not 1968. The entry is hard-coded in the
+  generator, and whoever typed it guessed.
+- `index-of-poems` (pp. 215–218), in a new `INDEX_TYPOS` list:
+  `Same Vasey 97`, `City tO` (101), `Oca?` (*Ox, 21*), `Pulled Ours 7,`
+  (*Out, 137*). These are four entries whose page numbers the OCR ate.
+  Also `Yakushido`, `Sde Daisho`, `Unryoin in Sen’yuji`, `Honen`,
+  `Tetto's`, `Kansho`, `Daiyūan's`. `Recoilecting` is a broken *l* in the
+  print, confirmed at 600 dpi. It is *Recollecting*, as `095`'s title has it.
+- `bibliography`: one word, `Chūsei Zenka no Shisd`, through the general
+  rule.
+
+**Left as the print has it:** the preface's `commited`, which `source/`
+already has as *committed*, and `prounciation`. The abbreviations' `世界禅家`
+for 中世禅家, `Ssu Pu Pe Yao` and `Taisō Issai Kyō`, all typesetter's slips,
+where `source/` has the better reading. The *Index*'s preamble keeps its added
+sentence, *Numbers refer to the pages of the original publication*. It is
+006's, for a reader of the Persian, and the print has no need of it. The UNESCO
+line's `(UNESCO)` for the print's `(Unesco)`. Notes 11 and 14 are three and
+two paragraphs in print and one block in `source/`: the *note entries run
+together* shape.
+
+**Left, in the ASCII-for-diacritics class:** `Onin` in notes 1 and 2,
+`Gekokujo` in note 5, `Vimalakirti` in notes 61 and Trans. 48, and the
+Index's `Sakyamuni`, where the print sets *Śākyamuni*.
+
+**Signed off: `bibliography.md` and `glossary-index.md`.** Nearly every entry's
+characters are garbled (`Pi-yen Lu 225% 5%`, `Chin Shu $®`, `Cl’uan Teng
+Lu fase`), so a repair means retyping the CJK for some 90 + 150 entries from
+the page. That is out of reach at 006's priority, which keeps both verbatim.
+Requirement 5 allows it. The gibberish scan returns nothing outside these
+two.
+
+**The Anthology, the front matter, `introduction-4` and the back matter are
+read.** What was 010's is done, except `just check`, which waits on 023.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
 `preface.md` and `introduction-3.md`, two in `introduction-1.md`, and one in
 `018.md`. The 018 one was normalised because that file is being re-translated
-anyway. The other four are not worth a re-translation of `introduction-1.md`,
+anyway, and the preface's in session 12 for the same reason. The
+Introduction's three are 024's. The other four are not worth a re-translation of `introduction-1.md`,
 which is 67 K characters, for a comma. A general `、` → `,` rule is not the
 answer either: `apply_typos` also runs over `bibliography.md` and
 `glossary-index.md`, whose entries 006 keeps verbatim.
@@ -896,7 +1020,8 @@ Same terms. 011 re-translated these files and the Persian carries the damage
   `Wind Bell two poems`~~ — fixed in session 3 with the other set headings.
 - ~~`038.md` — `1 |` as a line of the poem: poem 111's number. **Poem 111
   swallowed**, session 4.~~ Spec 014: now `039.md`.
-- `introduction-1.md` — two markers left bare, so the marker comparison
+- `introduction-1.md` — **moved to [024](./024-introduction-read.md)**, as
+  is every other `introduction-1/2/3` item below. Two markers left bare, so the marker comparison
   shows the Persian with two the source lacks: `leprosy43` (no punctuation
   before the digit) and `Mori.“50` (an opening quote where the closing-quote
   rule expects a closing one). The model brackets both, correctly. Also
@@ -932,8 +1057,7 @@ Same terms. 011 re-translated these files and the Persian carries the damage
   print, is run together into four paragraphs, two lines to most of them.
   Also `Po Chit-i`, `Off.”’`, and `papiyan` for *pāpiyān*. `[388]` and
   `[390]` are the print's own labels.~~ Session 11.
-- `foreword.md` — `Jodoshinsh@`, probably *Jōdoshinshū*; its page not
-  checked. `glossary-index.md` has `Jodosht` and `Honen`, which 006 keeps
+- ~~`foreword.md` — `Jodoshinsh@`, probably *Jōdoshinshū*.~~ Session 12. `glossary-index.md` has `Jodosht` and `Honen`, which 006 keeps
   verbatim.
 
 ### Found in passing by 016 — each seen on its page

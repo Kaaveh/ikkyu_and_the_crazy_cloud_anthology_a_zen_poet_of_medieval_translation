@@ -49,6 +49,7 @@ TYPO_FIXES = [
     (r'\btwentyseventh\b', 'twenty-seventh'),
     (r'\bdrunkeness\b', 'drunkenness'),
     (r'\bcommited\b', 'committed'),
+    (r'\bIKky', 'Ikky'),             # "IKkyu": preface, introduction-1, notes
     (r'\bT?[I1]kky[a-zA-Z@#]*[\'’]s\b', 'Ikkyū’s'),
     (r'\bT?[I1]kky[a-zA-Z@#]*s\b', 'Ikkyū’s'),
     (r'\bT?[I1]kky[a-zA-Z@#]+', 'Ikkyū'),
@@ -390,7 +391,6 @@ TYPO_FIXES = [
     (r'Mori, if lever forget', 'Mori, if I ever forget'),
     (r'dreaming he was Chuang Chou\. \[108\]', 'dreaming he was Chuang Chou.” [108]'),
     (r'“She\'s sleeping', '“She’s sleeping'),
-    (r'Another of IKkyu\'s sobriquets', 'Another of Ikkyū’s sobriquets'),
     (r'the Sdseian in Sumiyoshi', 'the Sōseian in Sumiyoshi'),
     # "livable.”109" in print, with no quote open: 059's "women.”70" again.
     (r'and not livable\. 109\b', 'and not livable. [109]'),
@@ -458,6 +458,30 @@ TYPO_FIXES = [
     (r'senient', 'sentient'),
     (r'ephithet', 'epithet'),
     (r'frequently occuring', 'frequently occurring'),
+    # Foreword, pp. ix-xii (spec 010, session 12). Each checked on the page.
+    (r'\bNO theater\b', 'Nō theater'),
+    (r'\bNo actors\b', 'Nō actors'),
+    (r'\bJodoshinsh@', 'Jōdoshinshū'),
+    (r'founded by Honen and Shinran', 'founded by Hōnen and Shinran'),
+    (r'\bD[oé]gen\b', 'Dōgen'),
+    (r'\bSoto Zen\b', 'Sōtō Zen'),
+    (r'\bShobd Genzo\b', 'Shōbō Genzō'),
+    (r'\bFrancois Villon\b', 'François Villon'),
+    (r'\bpoetes maudits\b', 'poètes maudits'),
+    (r'\(\S*: Im Garten der .*? Shin\)', '(Ikkyū: Im Garten der schönen Shin)'),
+    (r'\bKato (?:SHUICHI|Shuichi)\b', 'Katō Shūichi'),
+    # Preface, pp. xiii-xvi.
+    (r'\bIida Shotaro\b', 'Iida Shōtarō'),
+    (r'U\.B\.C\.、', 'U.B.C.,'),
+    (r'poems number 6, 78,25.*?56/7\.', 'poems number 6, 7, 8, 25, 26, 27, 73, 74, 75, 84, 85, 89, 90, 94, 101, 108, 130, 134, 135, 136, 144, 156, 175, 179, 254, 255, 264, 284, 287, 362, 367, 454, 531, 532, 533, 535, 536, 537, 539, 541, 542, 543, 567.'),
+    (r'\bNihon Shisd Taikei\b', 'Nihon Shisō Taikei'),
+    (r'\bCh[aū]sei Zenka no Shis[od]\b', 'Chūsei Zenka no Shisō'),
+    # A Note on the Text, pp. 59-61.
+    (r'\bof 49 gd, poems', 'of 49 gō, poems'),
+    (r'\bKyōunshū shi sha\b', 'Kyōunshū shi shū'),
+    (r'ge, “‘religious odes\. This', 'ge, “religious odes.” This'),
+    (r'\bSuch ¢n order', 'Such an order'),
+    (r'ah! three, two, one slips', 'ah! three, two, one” slips'),
 ]
 
 def apply_typos(text):
@@ -741,7 +765,8 @@ def build_frontmatter():
         "### Epigraph",
         "",
         "> \"To speak of Ikkyū is really to speak of oneself. ... This man will now continue for some time to summon up a new concern among various people. We forget he was a Zen monk. It is a strange and marvelous thing that everyone has the sense of secretly having met him somewhere before. Is he not perhaps the only one of a kind in the history of Buddhism through India, China, and Japan?\"  ",
-        "> — **Yanagida Seizan**",
+        "> — **Yanagida Seizan**  ",
+        "> “Ikkyū no Shisō to Sono Shōgai”",
         "",
         "---",
         "",
@@ -784,7 +809,7 @@ def build_foreword():
     return '\n'.join(out)
 
 def build_preface():
-    raw = '\n'.join([strip_page_footer(pages[i]) for i in range(20, 23)])
+    raw = '\n'.join([strip_page_footer(pages[i]) for i in range(20, 24)])
     paras = parse_prose(dehyphenate(raw))
     if paras and paras[0].lower() == 'preface':
         paras = paras[1:]
@@ -1367,7 +1392,7 @@ def build_abbreviations():
         "- **KZ**: *Kyōunshū Zenshaku* (狂雲集全釈). Hirano Sōjō. Tokyo: Shunjūsha, 1976.",
         "- **SP**: *Ssu Pu Pei Yao* (四部備要). Shanghai: Chung hua shu chü, 1936.",
         "- **T**: *Taishō Shinshū Daizōkyō* (大正新修大蔵経). Tokyo: Taishō Issai Kyō Kankōkai, 1922.",
-        "- **ZZ**: *Zoku Zōkyō* (続蔵経). Hong Kong: Hong Kong Buddhist Association, 1968.",
+        "- **ZZ**: *Zoku Zōkyō* (続蔵経). Hong Kong: Hong Kong Buddhist Association, 1946 (photo reprint of the original *Dainihon Zoku Zōkyō*).",
         ""
     ]
     return '\n'.join(out)
@@ -1400,22 +1425,66 @@ def find_gutter(lines):
 
 def build_notes():
     NOTE_FIXES = [
-        (r'SOM Chivane\s+MO\s+6\s+2\s+Sleep:\s*230b\.', '59. Ch’uan Teng Lu, roll 6, T 51, p. 230b.'),
+        (r'SOM Chivane\s+MO\s+6\s+2\s+Sleep:\s*230b\.', '59. Ch’uan Teng Lu, roll 4, T 51, p. 230b.'),
         (r'60\)\s*CZSsnow\s*177\.\s*Not translated here:', '60. CZS, no. 177. Not translated here.'),
-        (r'Us Cie\.\s*240\s*ike,\s*wes\s*Wi,\s*PS\s*284a\.', '73. CZS, no. 240, T 48, p. 284a.'),
-        (r'OK Zeal\s*に', '9. KZ, p. 18.'),
+        (r'Us Cie\.\s*240\s*ike,\s*wes\s*Wi,\s*PS\s*284a\.', '73. Ch’uan Teng Lu, roll 11, T 51, p. 284a.'),
+        (r'OK Zeal\s*に', '9. KZ, p. 11.'),
         (r'TIT KZeep\.\s*36\.', '11. KZ, p. 36.'),
         (r'230\s*CZSape\s*372\.', '23. CZS, p. 372.'),
         (r'DAN Gh van henoe Lay rol iia\s*wolep:\s*286a\.', '24. Ch’uan Teng Lu, roll 11a, T 51, p. 286a.'),
         (r'D9,\s*KZ pa\s*52:', '29. KZ, p. 52.'),
-        (r'DUNS Chins\s*Parola\s*ET', '59. Shih Chi, SP, roll 84, p. 4b.'),
+        (r'DUNS Chins\s*Parola\s*ET', '59. Shih Chi, SP, roll 117, p. 2a.'),
         (r'625\s*CZ;\s*ps\s*429:', '62. CZS, p. 429.'),
         (r'Gbr KZ pul\s*26:', '65. KZ, p. 126.'),
         (r'68:\s*KZ,\s*p\.\s*139\)', '68. KZ, p. 139.'),
-        (r'\bKM\b', '78. KZ, p. 176.'),
-        (r'dBSy pall Sas', 'roll 7, ZZ, v. 138, p. 116a.'),
-        (r'13sps iib:', 'roll 13, p. 11b.'),
-        (r'dizi Se collllspa25ab;', 'Tzu, SP, roll 8, p. 25ab.'),
+        (r'\bKM\b', '78. KZ, p. 193.'),
+        (r'dBSy pall Sas', '138, p. 115a.'),
+        (r'13sps iib:', '13, p. 11b.'),
+        (r'dizi Se collllspa25ab;', 'Tzu, SP, roll 1, p. 25ab.'),
+    ]
+
+    # Read against pp. 179-183 in spec 010, session 12. Per note, after
+    # apply_typos. Page references the OCR left as garbage, and the names
+    # and quotes it damaged. Several NOTE_FIXES above had guessed a page
+    # reference rather than read it; those are corrected in place.
+    NOTE_TYPOS = [
+        # Notes to the Introduction.
+        (r'^11\. (.*)Zoku Gunsho Ruiji\b', r'11. \1Zoku Gunsho Ruijū'),
+        (r'^18\. Wu-men Kuan, kōan 15, T 48, p\.$', '18. Wu-men Kuan, kōan 15, T 48, p. 294c.'),
+        (r'\bShinjaan\b', 'Shinjūan'),
+        (r'\bIkkyū Tokushu\b', 'Ikkyū Tokushū'),
+        (r'taking it for “so,” kun reading “‘katsute,”', 'taking it for “sō,” kun reading “katsute,”'),
+        (r'\bkana hogo\b', 'kana hōgo'),
+        (r'\bJikaishu\b', 'Jikaishū'),
+        (r'lady’s name 1s written', 'lady’s name is written'),
+        (r'\bGunsho ruiju\b', 'Gunsho ruijū'),
+        (r'“shoaku makusa, shazen bugy0”', '“shoaku makusa, shūzen bugyō”'),
+        (r'Kyōunshū “Crazy Cloud Anthology’', 'Kyōunshū ‘Crazy Cloud Anthology’'),
+        (r'““Yüan-ming heard', '“Yüan-ming heard'),
+        (r'Taisho Daizokyo', 'Taishō Daizōkyō'),
+        (r'^82\. Shūichi Katō and Yanagida', '82. Katō Shūichi and Yanagida'),
+        (r'\b(Lotus|Diamond|Vimalakirti|Heart) Sutra\b', r'\1 Sūtra'),
+        # Notes to the Translations.
+        (r'^1\. Yanagida, yg, p\. 165\.', '1. Yanagida, Ikkyū, p. 165.'),
+        (r'kōan no\. 60, T 48, jay, ete:', 'kōan no. 60, T 48, p. 192c.'),
+        (r'kōan no\. 64, T 48, Paar', 'kōan no. 64, T 48, p. 195a.'),
+        (r'Paul Demieville, Les Entretiens de Lin-tst\.', 'Paul Demiéville, Les Entretiens de Lin-tsi.'),
+        (r'kōan no\. 15, T 48, joe, Walsre:', 'kōan no. 15, T 48, p. 155c.'),
+        (r'v\. 138; pe 7394:', 'v. 138, p. 739a.'),
+        (r'Mochizuki Shinko, Bukkyo Daijiten, Val, pao2g:', 'Mochizuki Shinkō, Bukkyō Daijiten, v. 1, p. 629.'),
+        (r'kan no\. 96, T 48, Pacolibs', 'kōan no. 96, T 48, p. 291b.'),
+        (r'p- 179bs', 'p. 179b.'),
+        (r'Sung-yüan Yi-lu\b', 'Sung-yüan Yü-lu'),
+        (r'Tz’u-en\.”’', 'Tz’u-en.”'),
+        (r'\bp- 304a\.', 'p. 304a.'),
+        (r'ZZ, v\. 11605\) jo 2 な し', 'ZZ, v. 138, p. 218a.'),
+        (r'Chuang TE, SR, seat 8\) fejoy', 'Chuang Tzu, SP, roll 9, pp. 1-2.'),
+        (r'Louis de la Vallee-Poussin, tr\., L’ Abhidharmakosa', 'Louis de la Vallée-Poussin, tr., L’Abhidharmakośa'),
+        (r'Ishizuka, Honen, the', 'Ishizuka, Hōnen, the'),
+        (r'SP, roll 12, Daas$', 'SP, roll 12, p. 9a.'),
+        (r'^113\. Kato and', '113. Katō and'),
+        (r'Wakan Roei Shi, p\. 67', 'Wakan Rōei Shū, p. 67'),
+        (r'part 2, pelo:$', 'part 2, p. 13.'),
     ]
 
     all_notes_text = []
@@ -1458,7 +1527,10 @@ def build_notes():
         cleaned = []
         for n in notes:
             n_clean = re.sub(r'\s+', ' ', n).strip()
-            cleaned.append(apply_typos(n_clean))
+            n_clean = apply_typos(n_clean)
+            for pat, rep in NOTE_TYPOS:
+                n_clean = re.sub(pat, rep, n_clean)
+            cleaned.append(n_clean)
         return cleaned
 
     intro_notes = parse_notes_block(intro_notes_raw)
@@ -1557,10 +1629,26 @@ def build_index_of_poems():
     if curr:
         entries.append(' '.join(curr))
 
+    # Read against pp. 191-194 in spec 010, session 12.
+    INDEX_TYPOS = [
+        (r'^Blind Girl’s Love Songs at Yakushido,', 'Blind Girl’s Love Songs at Yakushidō,'),
+        (r'in the Same Vasey 97$', 'in the Same Vase, 97'),
+        (r'Zen Master Sde Daisho,', 'Zen Master Sōe Daishō,'),
+        (r'Returning to the City tO$', 'Returning to the City, 101'),
+        (r'at Unryoin in Sen’yuji,', 'at Unryōin in Sen’yūji,'),
+        (r'^Oca\?$', 'Ox, 21'),
+        (r'^Praising Saint Honen,', 'Praising Saint Hōnen,'),
+        (r'Should Be Pulled Ours 7,$', 'Should Be Pulled Out, 137'),
+        (r'^Recoilecting', 'Recollecting'),     # a broken l in the print
+        (r"^Tetto's Sermon", 'Tettō’s Sermon'),
+        (r'^The Second Year of Kansho—', 'The Second Year of Kanshō—'),
+    ]
     cleaned = []
     for e in entries:
-        e_clean = re.sub(r'\s+', ' ', e).strip()
-        cleaned.append(apply_typos(e_clean))
+        e_clean = apply_typos(re.sub(r'\s+', ' ', e).strip())
+        for pat, rep in INDEX_TYPOS:
+            e_clean = re.sub(pat, rep, e_clean)
+        cleaned.append(e_clean)
 
     out = [
         "## Index of Poems",
