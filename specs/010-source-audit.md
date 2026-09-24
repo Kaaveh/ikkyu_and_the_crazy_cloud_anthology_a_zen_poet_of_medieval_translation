@@ -97,7 +97,8 @@ fix — that diff is the list of files whose Persian is now stale.
   set's title; spec 017.
 - [x] `061`–`070` — read. 5 files repaired, none outside the decade; spec 018.
   Settles two of the three standing marker disagreements, `064` and `070`.
-- [ ] `071`–`080`
+- [x] `071`–`080` — read. 7 files repaired, none outside the decade; spec 019.
+  One more set heading ran into a note; it was the last one missing.
 - [ ] `081`–`090`
 - [ ] `091`–`100`
 - [ ] `101`–`110`
@@ -545,6 +546,70 @@ inside `069`'s Hirano quote and `070`'s *Hsü Ch’uan Teng Lu* quote.
 them in the poem. The print has *Yamarāja*. `source/` has no macron form
 anywhere, and the Persian spells it «یاماراجا» either way.
 
+### Session 8 — `071`–`080` (scan pp. 130–137)
+
+Printed page numbers; the PDF page is 24 higher. **7 files changed in
+`source/`**, all restorations and all in the decade. Six need re-translating:
+[019](./019-retranslate-session-8.md). One defect of a book-wide class,
+which turned out to have one member left.
+
+**1. A tenth set heading ran into the note before it.** *Congratulating
+Elder Ki on the New Construction of Eagle Tail Monastery and Inquiring after
+His Leprosy* is set on p. 133 as a three-line heading over poems 240 and
+244, with no "two poems" line under it. It was not in `KNOWN_SETS`, so it
+became the last words of `073`'s note, and **the Persian translated it as
+note text**: «تبریک به استاد «کی» (Ki) بابت ساخت صومعهٔ «دم عقاب»…». Session
+5's blank-line measurement saw it as "a set title in `073`–`075`" and left
+it. The map now has its first line, as it has *Three Poems to Show the Monks
+of* for a wrapped heading; the rest of the heading falls into the set
+chunk, which is dropped. `073` loses the stray text and `074` gains the
+heading as a block, which is what turns `check_parity` red on `074`.
+
+Checked book-wide: every poem titled `(I)` in `source/` now carries a bold
+set heading except `036`, `045`, `108` and `136`. Those four sets open with a
+prose introduction and the print gives them no heading. Nothing else is
+missing.
+
+**2. Four markers.**
+
+- `072` `a cat.81` is **81**, and lost its closing quote. The Persian has
+  both.
+- `073` `returning home.’’82` is **82**; `Wu-men Kuan.8?` is **83**. **The
+  Persian carries [8]**, the wrong number.
+- `080` `marvelous.”’8?` is **87**, and the Persian dropped it.
+
+The decade runs 81 to 87 without a gap.
+
+**3. Local damage, each checked on the page.**
+
+- `071`: the poem's last line ends `singing,` where p. 130 sets a full stop,
+  and **the Persian ends the poem on a comma**. `Ch Yüan’s` is **Ch’ü
+  Yüan’s** (p. 131); the Persian has «چو یوان» where §2 has «چ’یو یوآن».
+- `072`: `Nan-ch’tian`, in the poem. The Persian has it right.
+- `073`: `poetry ;` in the poem; `“a storm in a tea pot` closed;
+  `“cnlightenment poem` is *“enlightenment” poem*, across the page break.
+- `075`: `Soki` ×2 is **Sōki**, each anchored on its context, because the
+  glossary-index has `Soki` too. `Jikaishi` is **Jikaishū**; **the Persian
+  has «جیکایشی (Jikaishi)»**. `httle` is *little*, and four stray quotes:
+  `beauty’`, `far out’’`, `song’:`, `song’?`.
+- `079`: `Mafijusri` ×2 and `Majijusri` are **Mañjuśri**, as p. 136 sets
+  it. `ch’ing/jo` and `jd` are **jō**; **the Persian has *jo* twice**.
+  `Sutra` in the poem is *Sūtra*, and `Sarangama`, split across a line, is
+  *Sūrangama*. `“circumstances”’`, `““Making`.
+- `080`: `“no mind”’`.
+
+`076`, `077` and `078` read clean.
+
+**Left as the print has it:** `071`'s `on on the banks` (p. 131), `072`'s
+`52.)One` with no space, `077`'s `“A lecture master asked, “The Twelvefold`
+with two opening doubles and `plowed.86` closing neither, and `079`'s
+`ch’ing/jō This` with no full stop.
+
+**Left, in the ASCII-for-diacritics class:** `Ananda` ×4 in `079`, where the
+print has *Ānanda*; `source/` has no macron form, and the Persian spells it
+«آناندا» either way. `Sūrangama` for the print's *Śūraṅgama*: it is the form
+`bibliography.md` has, twice.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -642,8 +707,14 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 
 ### Found in passing by session 6 — not yet confirmed against the scan
 
-- `079.md` — `Sutra` once, beside `Sūtra` once in the same file.
+- ~~`079.md` — `Sutra` once, beside `Sūtra` once in the same file.~~ Session 8.
 - `112.md` (poem 536) — `resembless` and `IfI` in the poem.
+
+### Found in passing by session 8 — not yet confirmed against the scan
+
+- `introduction-3.md` — `Ch Yüan` ×4 for *Ch’ü Yüan*, the damage session 8
+  fixed in `071`. The rule there is anchored on `071`'s context.
+- `introduction-1.md` — `Jikaishi` once, probably *Jikaishū* as on p. 133.
 
 ### Found in passing by 016 — each seen on its page
 

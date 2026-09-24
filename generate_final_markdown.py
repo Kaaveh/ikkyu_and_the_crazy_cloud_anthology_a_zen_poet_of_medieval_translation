@@ -308,6 +308,35 @@ TYPO_FIXES = [
     (r'understand his Path\? Then,', 'understand his Path?’ Then,'),
     (r'relents and says: ““ “You have a go', 'relents and says: “‘You have a go'),
     (r'Ch’ing-su said: “You can enter', 'Ch’ing-su said: ‘You can enter'),
+    # pp. 130-137, poems 216-264 (spec 010, session 8), each checked on the
+    # page. Markers first. p. 135 sets "plowed.86" with no quote to close.
+    (r'\ba cat\.81\b', 'a cat.” [81]'),
+    (r'returning home\.’’82\b', 'returning home.” [82]'),
+    (r'Wu-men Kuan\.8\?', 'Wu-men Kuan. [83]'),
+    (r'and marvelous\.”’8\?', 'and marvelous.” [87]'),
+    (r'night after night singing,', 'night after night singing.'),
+    (r'call up Ch Yüan’s', 'call up Ch’ü Yüan’s'),
+    (r'little Nan-ch’tian;', 'little Nan-ch’üan;'),
+    (r'\bpoetry ;', 'poetry;'),
+    (r'in a tea pot drawn', 'in a tea pot” drawn'),
+    (r'“cnlightenment poem', '“enlightenment” poem'),
+    # Sōki. The glossary-index has "Soki" too, and 006 keeps it verbatim.
+    (r'Elder Ki: Soki,', 'Elder Ki: Sōki,'),
+    (r'Here Soki is', 'Here Sōki is'),
+    (r'In the Jikaishi \(Self', 'In the Jikaishū (Self'),
+    (r'“rustic beauty’ or', '“rustic beauty” or'),
+    (r'“far out’’;', '“far out”;'),
+    (r'“little love song’:', '“little love song”:'),
+    (r'the “httle love song”', 'the “little love song”'),
+    (r'the “little love song’\? and', 'the “little love song” and'),
+    (r'\bMa[fj]ijusri\b', 'Mañjuśri'),
+    (r'Sūrangama Sutra,', 'Sūrangama Sūtra,'),
+    (r'\bSarangama Sūtra\b', 'Sūrangama Sūtra'),
+    (r'that is ch’ing/jo This', 'that is ch’ing/jō This'),
+    (r'ing of jd in', 'ing of jō in'),
+    (r'“circumstances”’ or', '“circumstances” or'),
+    (r'lines as ““Making', 'lines as “Making'),
+    (r'“no mind”’ describes', '“no mind” describes'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.
@@ -898,6 +927,7 @@ KNOWN_SETS = {
     "Wind Bell two poems": "Wind Bell: two poems",
     "Three Poems to Show the Monks of": "Three Poems to Show the Monks of My Circle",
     "On Tiger Mount, the Snow Falls on Three": "On Tiger Mount, the Snow Falls on Three Grades of Monks: two poems",
+    "Congratulating Elder Ki on the New": "Congratulating Elder Ki on the New Construction of Eagle Tail Monastery and Inquiring after His Leprosy",
     "Picture of an Arhat Reveling in a Brothel": "Picture of an Arhat Reveling in a Brothel: two poems",
     "Addressed to a Monk Who Burned Books": "Addressed to a Monk Who Burned Books: three poems",
     "The Second Year of Kansho—Starvation": "The Second Year of Kanshō—Starvation: three poems",
