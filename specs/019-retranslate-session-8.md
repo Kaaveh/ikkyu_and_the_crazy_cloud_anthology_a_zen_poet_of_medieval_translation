@@ -55,14 +55,14 @@ comparison in 010's *Tooling*: `073` and `080` disagree with `source/`.
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+- [x] Every group A file re-translated.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
       for any group A file: `073` carries [82] [83] [84], `080` [87].
-- [ ] `071`'s poem ends on a full stop.
-- [ ] `073`'s note ends at *(See p. 13.)*; `074` opens the set with its
+- [x] `071`'s poem ends on a full stop.
+- [x] `073`'s note ends at *(See p. 13.)*; `074` opens the set with its
       heading.
-- [ ] Group B checked.
-- [ ] `just check` green.
+- [x] Group B checked.
+- [x] `just check` green.
 
 ## Out of scope
 
@@ -72,4 +72,51 @@ the decade that reaches them.
 
 ## Implementation notes
 
-_None yet._
+### One sitting, all six at 4500
+
+**Every draft came back Advanced**, with 9, 8, 3, 5, 5 and 13 ezafe, and
+`restore` took each one on the first try. Block counts match `source/` in all
+six. No file in group A carried a §1.4 marker or a `parity: offset`.
+
+**The markers are right.** `073` carries [82] [83] [84], where the old file had
+[8] for [83]. `080` carries [87]. The marker comparison now disagrees only on
+`introduction-1`, as it did after 018.
+
+**`071`'s poem ends on a full stop**: «…شب‌به‌شب نغمه‌سرایی می‌کند.»
+
+**`073`'s note ends at** «(ص. ۱۳ را ببینید.)», and the *Elder Ki* heading is
+gone from it. **`074` opens the set with its heading**, in bold, before the
+first line: «تبریک به استاد «کی» بابت ساخت صومعه‌ی «دمِ عقاب» و جویا شدن از
+وضعیت بیماری جذام او».
+
+**`075` carries** «جیکایشو» (Jikaishū) and سوکی (Sōki). **`079` has *jō*
+twice**, where the old file had *jo*.
+
+**§2, conformed against the table:**
+
+- `071`: «چو یوان» → «چ’یو یوآن»; «چو» → «چ’و» ×2, the clouds of Ch’u;
+  ایکیو → ایک‌کیو.
+- `073`: چانگ‌شین → چ’انگ-شین ×4, چوانگ‌تزو → چوانگ تزو, ایکیو → ایک‌کیو ×3.
+- `075`: تسو-مینگ → تز’و-مینگ ×4, ایکیو → ایک‌کیو ×2, and «ایگل‌تیل» →
+  «دمِ عقاب» ×2, in the title and the note.
+
+**Eagle Tail is translated, not transliterated.** The new `074` came back
+«دمِ عقاب» in both its title and the set heading, and every file already has
+*Eagle Peak* as «قله‌ی عقاب». `075` was the odd one out, so it was conformed,
+and §2.8 has a row for it now. The three titles still word the rest of the
+heading differently («جویا شدن از وضعیت» against «پرس‌وجو درباره»). That is
+prose, not a proper noun, and is left as the model gave it.
+
+`just fix` turned the nested ASCII quotes in `073` («بوفه», «مال») and `079`
+(«بودای شیطانی») into guillemets.
+
+**Left as the model gave it:** `079`'s «آرهات» for *Arhat*. §2.7 suggests
+«اَرهَت», but the book has «آرهات» in five files and the other nowhere, and the
+old `079` had it too.
+
+**Result:** `just check` is green, with 153/153 on parity and anchors.
+
+### Group B
+
+`072` read: «نان-چ’یوآنِ کوچک» in the poem, and «…گربه‌ای خفته است.» [81].
+Nothing to carry.

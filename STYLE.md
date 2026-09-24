@@ -431,6 +431,12 @@ Spec 016 adds one.
 |---|---|---|
 | Chien-ho | چین-هو | چیِن-هو / چیِن‌هو — the kasre goes, and the source hyphenates. The marquis in `086`'s Chuang Tzu story |
 
+Spec 019 adds one.
+
+| Source | Persian | What the model gave, and which rule |
+|---|---|---|
+| Eagle Tail Monastery | صومعهٔ «دمِ عقاب» | «ایگل‌تیل» in `075`, and in the old `074` — **not a transliteration**, as Crazy Cloud. The set heading in `074` and the poem's own *Eagle Peak*, «قله‌ی عقاب», both came back translated |
+
 ---
 
 ### §2.9 The translator's parenthetical romanisations are kept
