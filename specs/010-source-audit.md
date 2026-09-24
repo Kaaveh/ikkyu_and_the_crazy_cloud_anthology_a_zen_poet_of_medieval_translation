@@ -95,7 +95,8 @@ fix — that diff is the list of files whose Persian is now stale.
   for *Lan-ts'an*; spec 015. Closing paragraphs of notes found joined book-wide; spec 016.
 - [x] `051`–`060` — read. 9 files repaired, 1 outside the decade for its
   set's title; spec 017.
-- [ ] `061`–`070`
+- [x] `061`–`070` — read. 5 files repaired, none outside the decade; spec 018.
+  Settles two of the three standing marker disagreements, `064` and `070`.
 - [ ] `071`–`080`
 - [ ] `081`–`090`
 - [ ] `091`–`100`
@@ -481,6 +482,68 @@ each without a macron everywhere in `source/`. `Sūtra` is not in that class:
 `source/` has it with the macron 10 times to 4 without, and the decade's two
 are fixed. `054`'s block quote breaks after its first line and `059`'s prose
 after its quote runs into it: the *Prose block quotes* shape.
+
+### Session 7 — `061`–`070` (scan pp. 123–130)
+
+Printed page numbers; the PDF page is 24 higher. **5 files changed in
+`source/`**, all restorations and all in the decade. Four need re-translating:
+[018](./018-retranslate-session-7.md). No book-wide defect in the generator.
+One book-wide shape is recorded for a decision (item 3).
+
+**1. Five markers, and two old disagreements settled.**
+
+- `063` `eating.”2` is **72**. The print sets `eating.72` with no quote to
+  close. **The Persian carries [2]**, the wrong number, and it sends the
+  reader to note 2.
+- `064` `Buddhas!’ 74` is **74**, left bare by the OCR. The Persian had
+  bracketed it already. This was one of the three standing disagreements in
+  *Tooling*, and it was the source that was wrong.
+- `066` `Yü-lu®>` is **75**, and the Persian dropped it.
+- `069` `Yü-lu.??` is **77**, and the Persian dropped it.
+- `070` `Devil.’ 79` is **79**, again bare. Here too the Persian had it
+  right: the second standing disagreement.
+
+The decade runs 72 to 80 without a gap. The marker comparison now disagrees
+only on `introduction-1` among the old three, and on `063`, `066` and `069`,
+which are 018's.
+
+**2. Local damage, each checked on the page.**
+
+- `063`: `‘a day of no work` opens with `“`.
+- `064`: `“*...` becomes `“...`, and `“You shall all become Buddhas!’`
+  becomes `‘…’”`, a quote inside a quote.
+- `066`: `Sung-ytian` and `Sung-yuan` become *Sung-yüan*; `(1025- 72)`.
+- `070`: `BuddhaDevil` ×2, one of them in the poem, becomes *Buddha-Devil*.
+  Neither half is in `join_hyphen()`'s keep-list, and the print never sets
+  the pair whole on one line. **The Persian's third line has no Buddha-Devil
+  at all.** Also `Sungdynasty` becomes *Sung-dynasty*, and `Chingsu`
+  becomes *Ch’ing-su*. In the *Hsü Ch’uan Teng Lu* quote, five quotes are
+  restored as p. 129 sets them: `fruit.”`, `‘Tz’u-ming.`, `Path?’`,
+  `“‘You have a go`, `‘You can enter`.
+
+`061`, `062`, `067` and `068` read clean.
+
+**3. The prose introductions are flattened to one paragraph, book-wide.**
+p. 125 sets the *Prose Introduction to No. 187* as five paragraphs, each
+indented. `source/065.md` has it as one. **All 15 prose-introduction files
+in `source/` are a single paragraph.** `build_translations()` strips every
+line of the chunk before handing it to `parse_prose()`, so the indent that
+splits a paragraph is gone before it is looked for. Fixing it would move block parity in
+every one of the 15 that the print breaks, and they have not been counted.
+Like 016's afterwords, that is too big for a session and wants a spec of its
+own. It is not opened here.
+
+**Left as the print has it:** `063`'s `hid his tooks`, `065`'s
+`distinguising`, and `070`'s `enbroiled`, each confirmed at 300 dpi. `063`'s
+`Ta-chih: An honorific name for Pai-chang` has no full stop, and neither has
+`067`'s `See notes to poem no. 33`. p. 130 starts a new paragraph at
+*Ikkyū often refers*. The marker digit hid it from `parse_prose()`, the way
+`059`'s did in session 6: the *Prose block quotes* shape. So is the break
+inside `069`'s Hirano quote and `070`'s *Hsü Ch’uan Teng Lu* quote.
+
+**Left, in the ASCII-for-diacritics class:** `Yamaraja` ×2 in `063`, one of
+them in the poem. The print has *Yamarāja*. `source/` has no macron form
+anywhere, and the Persian spells it «یاماراجا» either way.
 
 ### Left alone, on purpose
 

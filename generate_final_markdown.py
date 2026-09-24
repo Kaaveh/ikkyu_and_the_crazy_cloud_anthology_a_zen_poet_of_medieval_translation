@@ -285,6 +285,29 @@ TYPO_FIXES = [
     (r'the Lotus\s+Sutra\. He asserted', 'the Lotus Sūtra. He asserted'),
     (r'Ostensibly YsQ was', 'Ostensibly Yōsō was'),
     (r'“man from P’u-chou”’ was', '“man from P’u-chou” was'),
+    # pp. 123-130, poems 176-210 (spec 010, session 7), each checked on the
+    # page. Markers first, as above. p. 124 sets "eating.72" with no quote to
+    # close; p. 130 opens a paragraph at "Ikkyū often refers" that the marker
+    # digit hid from parse_prose(), left as the Prose block quotes shape.
+    (r'Pai-chang stopped eating\.”2\b', 'Pai-chang stopped eating. [72]'),
+    (r'constantly said, “You shall all become Buddhas!’ 74\b',
+     'constantly said, ‘You shall all become Buddhas!’” [74]'),
+    (r'Sung-yüan Yü-lu®> presents', 'Sung-yüan Yü-lu [75] presents'),
+    (r'Ku-tsun-su Yü-lu\.\?\? Ikkyū', 'Ku-tsun-su Yü-lu. [77] Ikkyū'),
+    (r'realm of the Devil\.’ 79 Ikkyū', 'realm of the Devil.’” [79] Ikkyū'),
+    (r'rule was ‘a day of no work', 'rule was “a day of no work'),
+    (r'in the universe, “\*\.\.\. when he saw', 'in the universe, “... when he saw'),
+    (r'Master Sung-ytian was', 'Master Sung-yüan was'),
+    (r'Po-yün \(1025- 72\)', 'Po-yün (1025-72)'),
+    (r'before Sung-yuan himself', 'before Sung-yüan himself'),
+    (r'\bBuddhaDevil\b', 'Buddha-Devil'),
+    (r'\bSungdynasty\b', 'Sung-dynasty'),
+    (r'\bChingsu\b', 'Ch’ing-su'),
+    (r'to eat this fruit\. Tou-shuai said', 'to eat this fruit.” Tou-shuai said'),
+    (r'Ch’ing-su said, “Tz’u-ming\. I', 'Ch’ing-su said, ‘Tz’u-ming. I'),
+    (r'understand his Path\? Then,', 'understand his Path?’ Then,'),
+    (r'relents and says: ““ “You have a go', 'relents and says: “‘You have a go'),
+    (r'Ch’ing-su said: “You can enter', 'Ch’ing-su said: ‘You can enter'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.

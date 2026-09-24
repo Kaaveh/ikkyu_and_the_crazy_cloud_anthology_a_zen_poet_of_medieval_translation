@@ -29,18 +29,23 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 015 | [Re-translate what 010's fifth session repaired](./015-retranslate-session-5.md) | 010 | ✅ Done        |
 | 016 | [A note's closing paragraph, given back](./016-note-afterwords.md) | 010 | ✅ Done        |
 | 017 | [Re-translate what 010's sixth session repaired](./017-retranslate-session-6.md) | 010 | ✅ Done        |
+| 018 | [Re-translate what 010's seventh session repaired](./018-retranslate-session-7.md) | 010 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[010](./010-source-audit.md)**, next decade: `061`–`070`. Then a new
+1. **[018](./018-retranslate-session-7.md)** — four files re-translated:
+   three for endnote markers the Persian lost or misnumbered, one for the
+   Buddha-Devil kōan its poem dropped. `just check` is green without it; the
+   marker comparison is what shows it.
+2. **[010](./010-source-audit.md)**, next decade: `071`–`080`. Then a new
    re-translation spec for whatever it repairs, before the next decade.
    Repeat through `131`–`141`, then the front and back matter,
    `bibliography`/`glossary-index` (low priority), and `source/README.md`.
-2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-3. **[007](./007-release.md)** last: the end-to-end read of the typeset
+4. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
@@ -76,7 +81,9 @@ found a §2 row built on the OCR's spelling rather than the book's, and found
 a note's closing paragraph joined to its last gloss in 16 files —
 [016](./016-note-afterwords.md). Its sixth (poems 135–175) changed 9,
 [017](./017-retranslate-session-6.md)'s, two of them for title lines the
-generator miscounted. Three of
+generator miscounted. Its seventh (poems 176–210) changed 5,
+[018](./018-retranslate-session-7.md)'s, and found every prose introduction
+set as a single paragraph. Three of
 011's 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
 the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
@@ -91,11 +98,11 @@ and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo
 ```
 
-**010 and its re-translation specs (009, 011, 012, 013, 015, 017, …) alternate rather than run in
+**010 and its re-translation specs (009, 011, 012, 013, 015, 017, 018, …) alternate rather than run in
 sequence.** Each decade of the audit
 that repairs a file makes that file's Persian stale, so the tail of the roadmap
 is a loop: read a chunk, fix the generator, list what broke, re-translate it,
