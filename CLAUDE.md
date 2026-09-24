@@ -36,14 +36,16 @@ instead of the pinned tag, `pip install -e ../bargardan-tools`.
 
 - **Translate with `gTranslator`, one file at a time.** It lives at
   `~/Project/Backend/gTranslator`, is private, and nothing in `just check`
-  depends on it — only producing a *new* draft does:
+  depends on it — only producing a *new* draft does. Call `apparatus.py`
+  through the venv, as `just` does: its shebang is `env python3`, which
+  cannot see `bargardan_tools`.
 
   ```bash
   GT=~/Project/Backend/gTranslator
-  tools/apparatus.py strip source/002.md -o /tmp/002.en.md
+  .venv/bin/python tools/apparatus.py strip source/002.md -o /tmp/002.en.md
   "$GT/.venv/bin/python" "$GT/gtranslate.py" \
       -f /tmp/002.en.md -t fa -w --raw -o /tmp/002.fa.md
-  tools/apparatus.py restore source/002.md /tmp/002.fa.md -o fa/002.md
+  .venv/bin/python tools/apparatus.py restore source/002.md /tmp/002.fa.md -o fa/002.md
   ```
 
 - **`-w` is mandatory.** Every other mode serves the Classic model, which

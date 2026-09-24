@@ -32,10 +32,10 @@ What it does need
 Pipeline -- note there is no `strip` step for files with no structural heading,
 but running it is always safe:
 
-    tools/apparatus.py strip   source/002.md                -o /tmp/002.en.md
-    <gTranslator on /tmp/002.en.md>                          -o /tmp/002.fa.md
-    tools/apparatus.py restore source/002.md /tmp/002.fa.md -o fa/002.md
-    tools/apparatus.py --check
+    .venv/bin/python tools/apparatus.py strip   source/002.md                -o /tmp/002.en.md
+    <gTranslator on /tmp/002.en.md>                                           -o /tmp/002.fa.md
+    .venv/bin/python tools/apparatus.py restore source/002.md /tmp/002.fa.md -o fa/002.md
+    .venv/bin/python tools/apparatus.py --check
 """
 
 from __future__ import annotations
