@@ -101,7 +101,8 @@ fix — that diff is the list of files whose Persian is now stale.
   One more set heading ran into a note; it was the last one missing.
 - [x] `081`–`090` — read. 3 files repaired, none outside the decade; spec 020.
   Lady Pan's fan poem set back as verse.
-- [ ] `091`–`100`
+- [x] `091`–`100` — read. 4 files repaired, none outside the decade; spec 021.
+  A kōan's closing quote lost in a poem line, which the Persian misread.
 - [ ] `101`–`110`
 - [ ] `111`–`120`
 - [ ] `121`–`130`
@@ -657,6 +658,50 @@ none has the macron. The Persian spells it «مارا» either way.
 where the Index says *Two Pieces of Skin and One Set of Bone*. That wants
 one decision for all three files, not one per decade.
 
+### Session 10 — `091`–`100` (scan pp. 145–150)
+
+Printed page numbers; the PDF page is 24 higher. **4 files changed in
+`source/`**, all restorations and all in the decade. One needs
+re-translating: [021](./021-retranslate-session-10.md). No book-wide defect.
+
+**1. A kōan's closing quote, lost in a poem line.** `091`'s second line read
+`The kan “privately carriages pass confuses clear and cloudy.`; p. 145 sets
+`The kōan “privately carriages pass” confuses`. With no closing quote, **the
+Persian put the whole rest of the line inside the kōan**: «در خفا، کالسکه
+عبور می‌کند و مرز میانِ صاف و ابری را درهم می‌آمیزد.» The poem says the
+kōan confuses clear and cloudy, not that the carriages do.
+
+**2. Local damage, each checked on the page.**
+
+- `091`: `““No words`; `can get through.97` is **97**, which kept its
+  number and lost its closing quote. The Persian has both.
+- `092`: `Honen` ×3 and `Henen's` are **Hōnen**, two of them in the poem;
+  `Jodoshi` is **Jōdoshū**. Each is anchored on `092`'s own text, because
+  the glossary-index, the bibliography, `foreword.md` and `notes.md` spell
+  it `Honen` too. Also `Butsu’’` and `alonc`, the latter at marker **98**.
+  The Persian has «هونن» and «جودو-شو» already.
+- `097`: `(803- 52)`, the same join as `066`'s in session 7.
+- `100`: the poem's last line ends `belly.,`. At 400 dpi p. 150 has a full
+  stop and a speck after it, not a comma.
+
+The decade runs 97 to 98 without a gap; 99 and 100 are in `101`, poem 390's
+notes, which cover the whole set. `093`, `094`, `095`, `096`, `098` and
+`099` read clean.
+
+**Left as the print has it:** `098`'s note has *sentient* where p. 149 sets
+`senient`, the better reading of a typesetter's slip. `092`'s `Bliss... .` for
+the print's `Bliss. . . .`. `091`'s kōan breaks after `enter;` and runs `In
+principle` into the quote, and `092`'s Hōnen quote breaks at `It is nothing`
+and `Those who believe`: the *Prose block quotes* shape. `097`'s
+`(1037-101)` and `(1045-105)` are the print's own ranges, hyphens for en
+dashes as everywhere.
+
+**Poem 376 has no title on p. 147.** `094` is titled *Quietly Singing Beside
+the Lamp* from `POEM_TITLES`, which is the Index's title for it. That is the
+convention poems 44, 94 and 539 follow. `097` (poem 384) is `Untitled` where
+the Index gives *Utterly Absorbed in the Dream of Wu-shan*: 014's open
+question, unchanged.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -762,6 +807,16 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 - `introduction-3.md` — `Ch Yüan` ×4 for *Ch’ü Yüan*, the damage session 8
   fixed in `071`. The rule there is anchored on `071`'s context.
 - `introduction-1.md` — `Jikaishi` once, probably *Jikaishū* as on p. 133.
+
+### Found in passing by session 10
+
+- `101.md` (poem 390, p. 151) — Po Chü-i's poem in the note, eight lines in
+  print, is run together into four paragraphs, two lines to most of them.
+  Also `Po Chit-i`, `Off.”’`, and `papiyan` for *pāpiyān*. `[388]` and
+  `[390]` are the print's own labels.
+- `foreword.md` — `Jodoshinsh@`, probably *Jōdoshinshū*; its page not
+  checked. `glossary-index.md` has `Jodosht` and `Honen`, which 006 keeps
+  verbatim.
 
 ### Found in passing by 016 — each seen on its page
 

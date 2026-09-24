@@ -350,6 +350,20 @@ TYPO_FIXES = [
     (r'\bthen youd best\b', 'then you’d best'),
     (r'dried fish store\.’ 92\b', 'dried fish store.’” [92]'),
     (r'and on "objects to realize', 'and on “objects” to realize'),
+    # pp. 145-150, poems 352-389 (spec 010, session 10), each checked on the
+    # page. Hōnen is anchored on 092's own lines: the glossary-index and the
+    # bibliography have "Honen" too, and 006 keeps them verbatim.
+    (r'The kan “privately carriages pass\s+confuses', 'The kōan “privately carriages pass” confuses'),
+    (r'Wei-shan said: ““No words', 'Wei-shan said: “No words'),
+    (r'can get through\.97\b', 'can get through.” [97]'),
+    (r'^Honen, I have heard', 'Hōnen, I have heard'),
+    (r'^Henen\'s One-Sheet', 'Hōnen’s One-Sheet'),
+    (r'Honen: \(1133-1212\) Founder of the Jodoshi,', 'Hōnen: (1133-1212) Founder of the Jōdoshū,'),
+    (r'Honen’s One-Sheet Document: Contains', 'Hōnen’s One-Sheet Document: Contains'),
+    (r'“Namu Amida Butsu’’', '“Namu Amida Butsu”'),
+    (r'and that alonc\.', 'and that alone.'),
+    (r'Tu Mu \(803- 52\)', 'Tu Mu (803-52)'),
+    (r'books in your belly\.,', 'books in your belly.'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.
