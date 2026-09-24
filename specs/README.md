@@ -19,7 +19,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 005 | [Introduction & front matter](./005-introduction.md)       | 003, 008§2 | ✅ Done        |
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ✅ Done        |
 | 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
-| 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
+| 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | ✅ Done        |
 | 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | ✅ Done        |
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
@@ -41,12 +41,10 @@ start (🟨 In progress) and when you finish (✅ Done).
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[008](./008-source-repair-followup.md)** can close: 010 closed with
-   023. It has no work of its own left.
-2. **[024](./024-introduction-read.md)**: `introduction-1/2/3`, which 010
+1. **[024](./024-introduction-read.md)**: `introduction-1/2/3`, which 010
    ticked for the CJK fix and never read. About thirty markers are wrong,
    every quoted poem is flattened, and a re-translation spec will follow.
-3. **[007](./007-release.md)** last: the end-to-end read of the typeset
+2. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
@@ -102,9 +100,9 @@ the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
 argument for 010 — and for the marker comparison in its *Tooling* notes.
 
-008 is part-done: **requirement 2 (the Introduction's CJK bleed) was completed
-inside 005**, which it was blocking. Its requirement 1 (the 147-file PDF read)
-and requirement 3 (`bibliography.md` / `glossary-index.md`) are untouched.
+008 is closed. **Requirement 2 (the Introduction's CJK bleed) was completed
+inside 005**, which it was blocking. Requirements 1 and 3 moved to 010 and
+closed with it, except the Introduction's read, which is 024's.
 
 ## Recommended order
 

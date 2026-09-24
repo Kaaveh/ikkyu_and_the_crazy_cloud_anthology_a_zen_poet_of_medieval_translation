@@ -89,7 +89,7 @@ open work of its own. It has none:
 - requirement 3 (`bibliography.md` / `glossary-index.md`) is 010
   requirement 5.
 
-**008 closes when 010 does.**
+**008 closes when 010 does.** It did, with 023.
 
 ## Out of scope
 
@@ -100,4 +100,15 @@ translation, not here.
 
 ## Implementation notes
 
-_(filled in during implementation)_
+**Closed with 010, on 2026-09-24.** Nothing was done under this number after
+the handover, so there is nothing to record beyond where each requirement
+went:
+
+- **Requirement 1, the 147-file read**, is 010's, and done, with one
+  exception. 010 closed by handing `introduction-1/2/3` to
+  [024](./024-introduction-read.md) unread. The Introduction's read is still
+  owed, and 024 owns it.
+- **Requirement 2, the Introduction's CJK bleed**, was done inside 005.
+- **Requirement 3, `bibliography.md` and `glossary-index.md`**, was signed off
+  by 010's twelfth session as out of reach at 006's priority. Both stay
+  verbatim.
