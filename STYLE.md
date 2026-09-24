@@ -384,7 +384,7 @@ ear, and none is a judgement call.
 | Sen’yūji | سن-یو-جی | سن‌یو-جی — §2.5: the hyphen already marks the mora boundary |
 | Ch’ang-an, Ch’ang-lo | چ’انگ-آن, چ’انگ-لو | چانگ‌آن / چانگ‌لو — §2.2; the source hyphenates |
 | Fu-chou | فو-چو | فو-جو — Wade-Giles `ch` is چ, as in Chao-chou |
-| Tien-tai | تین-تای | تیِن-تای — the kasre goes. The source spells it without the apostrophe and the Persian does not invent one |
+| Tien-tai | تین-تای | تیِن-تای — the kasre goes. The source now has *T’ien-t’ai* in `141` and `introduction-3`, as the print does, but the book's nine occurrences carry no apostrophe, and `141` follows them (spec 022) |
 | Feng-yüeh | فنگ-یوئه | فِنگ-یوئه — the kasre goes |
 | Maitreya | مایتریا | مایتریه — §2.7's recorded form, promoted here because `113.md` is where it finally met verse |
 | Jui-yen, Wu-men, Tung-po, Shan-ku, Tu-ling, Tou-shuai, Ta-kuan, Ku-yin, Chiang-hu, Po-yün, Yao-shan, Ku-tsun-su Yü-lu | — | correct as given |

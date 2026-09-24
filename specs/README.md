@@ -33,23 +33,19 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 019 | [Re-translate what 010's eighth session repaired](./019-retranslate-session-8.md) | 010 | ✅ Done        |
 | 020 | [Re-translate what 010's ninth session repaired](./020-retranslate-session-9.md) | 010 | ✅ Done        |
 | 021 | [Re-translate what 010's tenth session repaired](./021-retranslate-session-10.md) | 010 | ✅ Done        |
-| 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ⬜ Not started |
+| 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ✅ Done        |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[022](./022-retranslate-session-11.md)** — 14 files re-translated,
-   the last of the Anthology. Six are red on parity from verse quotes set back
-   as verse, three carry wrong or missing markers, and three take the
-   Index's titles.
-2. **[010](./010-source-audit.md)**, the Anthology done: the front matter,
+1. **[010](./010-source-audit.md)**, the Anthology done: the front matter,
    `introduction-4`, the back matter, `bibliography`/`glossary-index` (low
    priority), and `source/README.md`. A re-translation spec for whatever
    each part repairs.
-3. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
+2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
    work of its own left.
-4. **[007](./007-release.md)** last: the end-to-end read of the typeset
+3. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0

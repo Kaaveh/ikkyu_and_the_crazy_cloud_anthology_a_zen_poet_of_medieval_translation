@@ -101,16 +101,79 @@ fa/141.md: 5 blocks, source has 6
 
 ## Acceptance criteria
 
-- [ ] The 14 files of group A re-translated.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no
+- [x] The 14 files of group A re-translated.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no
       disagreement for any file in the range.
-- [ ] `135` and `139` distinguish Musō from Musū.
-- [ ] Every verse quote in `101`, `113`, `117`, `126`, `139` and `141` is
+- [x] `135` and `139` distinguish Musō from Musū. §2.4 drops the macron,
+      so both are «موسو»; the glosses tell them apart, and «موسی» is gone.
+- [x] Every verse quote in `101`, `113`, `117`, `126`, `139` and `141` is
       verse in `fa/`.
-- [ ] Group B checked.
-- [ ] `just check` green.
+- [x] Group B checked.
+- [x] `just check` green.
 
 ## Out of scope
 
 Anything 010 has not read yet: the front matter, `introduction-4` and the
 back matter.
+
+## Implementation notes
+
+### Fourteen runs, all at 4500
+
+**Every draft came back Advanced**, and `restore` took each one on the first
+try. Ezafe ran from 1 in `090` and `097`, which are four-line poems with a
+one-line note, to 20 in `139`. `103` scored 0; reading it settled that. It
+is short dialogue with no ezafe to make, its sentences are restructured, and
+no Latin name is left standing. None of the 14 carried a §1.4 marker or a
+`parity: offset`.
+
+**One block was lost, and it was a blank line.** `141`'s draft had 5 blocks to
+the English 6: the model ran the couplet onto the paragraph that introduces
+it. One blank line put back in the scratch draft fixed it, and no text
+changed. That is 020's `086` again.
+
+**The verse quotes came back as verse**, one Persian line per English line,
+in all six files. **The markers are right**: [101] in `103`, [109] in `125`,
+[113] [114] [115] in `139`. `139`'s label [822] came back in Persian digits,
+«[۸۲۲]», which the marker comparison reads the same. It is left as the model
+gave it.
+
+**What the old files carried is gone.** `105` has «صفحات ۵۱ تا ۵۳», not
+`(ppab1=53)`. `125` has «سوسِی‌آن», not `(Sdseian)`. `130` has no stray
+guillemet. `135` has no «موسی». `090`, `097` and `126` carry the Index's titles.
+
+**§2, conformed against the table:**
+
+- *Ikkyū*: «ایکیو» → «ایک‌کیو», in `105`, `109`, `117`, `125` and `141`.
+- *Te-shan* «ته-شان» ×2 and *Shih-huang* «شی-هوانگ» in `101`.
+- *Po Chü-i*: «بو چو-یی» → «پو چیو-ای», in `101` and `113`.
+- *Pai-chang* «پای-چانگ» ×2 and *Ch’u* «چ’و» ×2 in `109`.
+- In `113`: *Maitreya* «مایتریه» → «مایتریا» ×5, *Hsüan-tsung*
+  «شوان‌زونگ» → «شیوآن-تسونگ», and *Kuei-fei* «گوئی‌فی» → «کوئی-فی».
+- *Li-yüan* «لی-یوآن» and *Yüan-che* «یوآن-چه» in `117`.
+- *Ch’ang-an* «چ’انگ-آن» in `126` and `139`, and *Ch’ang-lo* «چ’انگ-لو» and
+  *Fu-chou* «فو-جو» → «فو-چو» ×6 in `139`.
+- *Tung-po* «تونگ-پو» and *Shan-ku* «شان-کو» in `097`, as the old file had
+  them.
+- In `141`: *Feng-yüeh* «فنگ-یوئه» and *T’ien-t’ai* «تین-تای».
+
+**`STYLE.md`'s *Tien-tai* row was stale.** It said the source spells the name
+without the apostrophe. Since session 11 the source has *T’ien-t’ai* in
+`141`, and `introduction-3` always had it. The book's nine Persian
+occurrences carry no apostrophe, so `141` follows them, and the row now says
+why.
+
+**Left as the model gave it:** «شکوفه‌های شبنم‌گون» for *frost flowers* in
+`141`, which is dew, not frost. And `139`'s «شماره... ۵۳۷», with a stray
+ellipsis in a cross-reference.
+
+**`just fix` normalized two files**: a stray ZWNJ in `105`, and the ASCII
+commas in `135`'s heading label, «۸۱۹، ۸۲۰، ۸۲۱، ۸۲۲».
+
+**Result:** `just check` is green, with 153/153 on parity and anchors.
+
+### Group B
+
+All 12 read against the old Persian. Each renders the corrected source
+already, or differs only in a Latin gloss. That is `131`'s `(Bunsho)`, left
+because a missing macron is not worth a run. Nothing to carry.
