@@ -52,12 +52,12 @@ marker moved. What shows the damage is reading: `091`'s poem.
 
 ## Acceptance criteria
 
-- [ ] `091` re-translated.
-- [ ] `091`'s second line quotes only *privately carriages pass*.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no
+- [x] `091` re-translated.
+- [x] `091`'s second line quotes only *privately carriages pass*.
+- [x] The endnote-marker comparison in 010's *Tooling* shows no
       disagreement for `091`: [97].
-- [ ] Group B checked.
-- [ ] `just check` green.
+- [x] Group B checked.
+- [x] `just check` green.
 
 ## Out of scope
 
@@ -67,4 +67,26 @@ Index gives one) is 014's open question.
 
 ## Implementation notes
 
-_None yet._
+### One run, at 4500
+
+**The draft came back Advanced**, and `restore` took it on the first try.
+It scores 2 on ezafe, the same as the old file, which is a short one: the
+sentences are restructured, no Latin name is left standing, and «کوآن» is the
+right term. `091` carried no §1.4 marker and no `parity: offset`.
+
+**The poem's second line quotes the kōan alone**: «کوآنِ «در خفا کالسکه‌ها
+می‌گذرند» مرز میان شفافیت و تیرگی را در هم می‌آمیزد.» The old file had put
+the rest of the line inside the quote.
+
+**The marker is right**: [97], as before.
+
+**§2, conformed against the table:** «وی‌شان» → «وی-شان» ×3, «یانگ‌شان» →
+«یانگ-شان». The table's wrong column has the ZWNJ forms, which is what the
+model gave.
+
+**Result:** `just check` is green, with 153/153 on parity and anchors.
+
+### Group B
+
+`092` read: «هونن» ×4 and «جودو-شو». `097` read: «۸۰۳-۸۵۲». `100` read: the
+poem ends on a full stop. Nothing to carry.
