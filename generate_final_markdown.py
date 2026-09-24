@@ -337,6 +337,19 @@ TYPO_FIXES = [
     (r'“circumstances”’ or', '“circumstances” or'),
     (r'lines as ““Making', 'lines as “Making'),
     (r'“no mind”’ describes', '“no mind” describes'),
+    # pp. 137-144, poems 280-344 (spec 010, session 9), each checked on the
+    # page. "too many.9" is 91: the general rule would make it [9].
+    (r'Power of the Great, the final', 'Power of the Great,” the final'),
+    (r'says, What is it\?', 'says, “What is it?'),
+    (r'road of Heaven\.’’89\b', 'road of Heaven.” [89]'),
+    (r'one body is too many\.9\b', 'one body is too many.” [91]'),
+    (r'“Why, of course! Ill soon', '“Why, of course! I’ll soon'),
+    (r'said to him, “Come, perch', 'said to him, ‘Come, perch'),
+    (r'“Why, of course! Tm just', '‘Why, of course! I’m just'),
+    (r'right\?” The perch flushed', 'right?’ The perch flushed'),
+    (r'\bthen youd best\b', 'then you’d best'),
+    (r'dried fish store\.’ 92\b', 'dried fish store.’” [92]'),
+    (r'and on "objects to realize', 'and on “objects” to realize'),
     # pp. 143-144 and 169-170, poems 332, 647 and 690 (spec 014): the notes of
     # three of the six poems it started, re-translated with them. Each checked
     # on the page. "pupils.*Most" is a smudge in the print, not a marker.
@@ -501,6 +514,17 @@ VERSE_QUOTES = [
      'And flocks of flying birds return together.',
      'In these things is a fundamental truth',
      'I would like to tell but lack the words. [95]'),
+    # pp. 141-142, poem 293: Lady Pan's fan poem. Found by spec 016.
+    ('To begin I cut fine silk of ch’i.',
+     'White and pure as frost or snow,',
+     'Shape it to make a paired-joy fan,',
+     'round, round as the luminous moon,',
+     'to go in and out of my lord’s breast,',
+     'when lifted to stir him a gentle breeze.',
+     'But always I dread the coming of autumn,',
+     'cold winds that scatter the burning heart,',
+     'when it will be laid away in a hamper,',
+     'love and favor cut off midway. [93]'),
 ]
 
 # A note's closing paragraph on the poem as a whole, set off in print by a

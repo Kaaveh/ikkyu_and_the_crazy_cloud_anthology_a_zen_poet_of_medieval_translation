@@ -99,7 +99,8 @@ fix — that diff is the list of files whose Persian is now stale.
   Settles two of the three standing marker disagreements, `064` and `070`.
 - [x] `071`–`080` — read. 7 files repaired, none outside the decade; spec 019.
   One more set heading ran into a note; it was the last one missing.
-- [ ] `081`–`090`
+- [x] `081`–`090` — read. 3 files repaired, none outside the decade; spec 020.
+  Lady Pan's fan poem set back as verse.
 - [ ] `091`–`100`
 - [ ] `101`–`110`
 - [ ] `111`–`120`
@@ -610,6 +611,52 @@ print has *Ānanda*; `source/` has no macron form, and the Persian spells it
 «آناندا» either way. `Sūrangama` for the print's *Śūraṅgama*: it is the form
 `bibliography.md` has, twice.
 
+### Session 9 — `081`–`090` (scan pp. 137–144)
+
+Printed page numbers; the PDF page is 24 higher. **3 files changed in
+`source/`**, all restorations and all in the decade. One needs
+re-translating: [020](./020-retranslate-session-9.md). No book-wide defect.
+
+**1. One marker with the wrong number, one left bare.** `086`'s
+`too many.9` is **91**, and it lost its closing quote. The general rule made
+it `[9]`, and **the Persian carries [9]**. `086`'s `store.’ 92` is **92**,
+left bare, and the Persian has a bare «۹۲». The decade runs 88 to 96 without
+a gap.
+
+**2. Lady Pan's fan poem is verse again**, now in `VERSE_QUOTES`: ten lines
+on pp. 141–142, in `086`'s note. 016 found it. Its first line was the end of
+the lemma's paragraph and the rest ran together two paragraphs deep. This
+turns `check_parity` and `apparatus --check` red on `086`.
+
+**3. Local damage, each checked on the page.**
+
+- `084`: the *I Ching* quote had lost two quote marks. The print has
+  `“Taming Power of the Great,”` and `says, “What is it?`; the quote closes
+  `Heaven.”89`, not `’’`. The Persian has the quote right already.
+- `086`, in the *Chuang Tzu* passage: `Ill` and `Tm` are *I’ll* and
+  *I’m*, and `youd` is *you’d*. `“Come, perch` and `“Why, of course! Tm`
+  open with single quotes, since both are inside Chuang Chou's speech, and
+  so does `right?” The perch`. The passage now closes `store.’”`.
+- `087`: `"objects to` is *“objects” to*. The Persian has it right.
+
+`081`, `083`, `085`, `088` and `089` read clean. `082` differs only in stray
+quotes: `‘acceptable’` and `Dharma.’’ [88]`, where p. 138 has doubles. That
+is the class this spec leaves alone, and nothing else in the file changes.
+
+**Left as the print has it:** `Yueh` in `086`, with no ü. `086`'s first
+*Will that be all right?* closes no quote. p. 141 breaks the *Chuang Tzu*
+passage into two paragraphs, and `source/` has four: the *Prose block
+quotes* shape. `089`'s *fūryū* lemma runs into the Rinzai quote before it:
+the *note entries run together* shape.
+
+**Left, in the ASCII-for-diacritics class:** `Mara` in `087` (×2) and
+`090`, where the print has *Māra*. Those are the only four in `source/`, and
+none has the macron. The Persian spells it «مارا» either way.
+
+**Still open, from 014:** `090` is poem 344, `Untitled` in `POEM_TITLES`
+where the Index says *Two Pieces of Skin and One Set of Bone*. That wants
+one decision for all three files, not one per decade.
+
 ### Left alone, on purpose
 
 Five stray ideographic commas (`、`) sit in English prose — one each in
@@ -718,10 +765,7 @@ Same terms. 011 re-translated these files and the Persian carries the damage
 
 ### Found in passing by 016 — each seen on its page
 
-- `086.md` (poem 293, p. 142) — Lady Pan's fan poem, quoted in the note,
-  flattened into two prose paragraphs: *White and pure as frost or snow…*
-  and *But always I dread the coming of autumn…*. The print sets it as
-  indented verse. A `VERSE_QUOTES` entry.
+- ~~`086.md` (poem 293, p. 142) — Lady Pan's fan poem, flattened.~~ Session 9.
 - `109.md` (poems 531–532, p. 156) — *The poems concerning Mori are grouped
   together…* is an indented paragraph of its own in print, and runs into the
   afterword before it: that ends `(See p. 28.)`, and `parse_prose()` only
