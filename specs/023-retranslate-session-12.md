@@ -87,15 +87,108 @@ and preamble, leave every entry line as `strip` gave it, `restore -o`.
 
 ## Acceptance criteria
 
-- [ ] The 5 files of group A re-translated.
-- [ ] `preface.md` has the two paragraphs, and its poem list is the 44
-      numbers from 6 to 567 and nothing else.
-- [ ] `foreword.md` names *Im Garten der schönen Shin*.
-- [ ] `notes.md`'s eight corrected references read as 010's table has them.
-- [ ] Group B re-copied, entries byte-identical to `source/`.
-- [ ] `just check` green. That closes 010.
+- [x] The 5 files of group A re-translated.
+- [x] `preface.md` has the two paragraphs, and its poem list is the 43
+      numbers from 6 to 567 and nothing else. (The spec said 44; the print
+      has 43. See below.)
+- [x] `foreword.md` names *Im Garten der schönen Shin*.
+- [x] `notes.md`'s eight corrected references read as 010's table has them.
+- [x] Group B re-copied, entries byte-identical to `source/`.
+- [x] `just check` green. That closes 010.
 
 ## Out of scope
 
 `introduction-1/2/3`, which are 024's. `bibliography.md` and
 `glossary-index.md` beyond the one word above. 010 signed both off.
+
+## Implementation notes
+
+### Group A: four plain runs and one harness
+
+**`plates` and `foreword` at 4500, `preface` at 900**, all Advanced and all
+restored on the first try. `plates`' four image paths came back intact, and
+the epigraph's second line has its hard break. The model ran `*Mori’s poem:*`
+onto the stanza before it. One blank line put back in the scratch draft fixed
+that, as in 022's `141`. `foreword` names *Im Garten der schönen Shin*.
+
+**`preface`: the print has 43 poem numbers, not 44.** The spec's count was
+wrong. On p. xv the list runs 16 + 11 + 11 + 5 = 43, from 6 to 567, and
+`source/` and the Persian carry exactly those numbers in that order. The two
+recovered paragraphs are the last two blocks, and parity is back to 10 on
+10. At 900 the ezafe count falls from 17 in the first paragraph to 0–3 in
+the rest, so all seven of those paragraphs were read. They are Advanced:
+restructured, no Latin left standing, and nothing doubled.
+
+**`introduction-4` at 4500.** *49 gō* is back as «۴۹ شعر از نوع «گو» (gō)»,
+and markers [85]–[88] are right. **Left as the model gave it:** «مجموعه‌ی
+سه‌شعریِ شماره‌های... شماره‌های ۶۹، ۷۰ و ۷۱», a stutter on *nos.* The
+meaning is intact. 2250 does not stutter, but it serves the last three
+paragraphs Classic («ترکیبی از ملاحظات عینی و ذهنی، انتخاب اشعار … را تعیین
+کرده است»), which is the worse trade.
+
+### `notes.md` needed 006's harness again, rebuilt
+
+Both plain runs failed exactly as 006 recorded. At 4500 the draft had 205
+blocks, with notes 65+66 and 18+19 merged. At 900 the count was 207, but in
+both drafts the citation-only chunks came back Classic: 12–14 notes handed
+back in English, `کز`, `ت 48`, `رول`. The harness was thrown away after 006,
+so it was rebuilt in the scratchpad to 006's description. Pieces of about
+1,800 characters, each behind note 3 as a primer whose translation is
+discarded. Each piece is gated on block count, the `CZS|KZ|SP|ZZ|T N` set
+per note, an Arabic-script letter, and no `رول`/`اس پی`/`کز،`. A failing
+piece is halved and retried. **47 calls, and all 207 blocks passed**,
+without the mop-up pass.
+
+**What the old file carried is gone**: `Paar`, `Walsre`, `pe 7394`, `Daas`,
+`pelo`, `joe`, and `yg` in Trans. 1. **The eight corrected references read
+as 010's table has them**: Intro 59 roll ۴, Intro 73 *Ch’uan Teng Lu* roll
+۱۱, T 51, 284a, Trans. 9 KZ ۱۱, Trans. 59 SP roll ۱۱۷ p. 2a, Trans. 78 KZ
+۱۹۳, Trans. 99 ۱۱۵a, Trans. 100 roll ۱۳, Trans. 108 roll ۱. Intro 18 has its
+294c and Intro 82 is Katō Shūichi.
+
+006's two hand-steps were applied to the scratch draft again. The entry
+numbers went back to Latin digits (§4.2), and `<!-- normalize: off -->`
+went around note 106, the Sukey Hughes title in ASCII quotes, which was note
+71 in 006's numbering.
+
+**Left as the model gave it, as 006 left the old file:** titles are sometimes
+transliterated and sometimes left in Latin script. The old file had 45 notes
+with Latin standing and this one has 54. Page columns are sometimes Latin
+(`ص 4b`) and sometimes Persian (`ص ۹الف`, `۲۵ الف و ب`): 6 notes in the old
+file and 11 here. Hurvitz is «هوروویتس» here and «هورویتز» in the preface. Each
+file keeps its old spelling, as requirement 5 says.
+
+### §2, conformed against the table and the old files
+
+- *Ikkyū*: «ایکیو», «ایکّیو» → «ایک‌کیو» in all five. The old `notes.md`
+  had «ایکیو» ×20 unconformed. It now has none.
+- *Kyōunshū*: «کی‌اون‌شو», «کیو-اون-شو» → «کیوئونشو», in `foreword`,
+  `introduction-4` and `notes`.
+- *Hsü-t’ang*: «شو-تانگ» → «شیو-ت’انگ», in `plates` and `notes` (×3).
+- *T’ao Yüan-ming*: «تائو یوان‌مینگ» → «ت’ائو یوآن-مینگ», in `foreword` and
+  `notes`.
+- *Po Chü-i* «پو چیو-ای» and *Niao K’o* «نیائو ک’و» in `plates`, as the old
+  file had them.
+- *Shinran*: «شین‌ران» → «شینران», as the old `foreword` had it.
+- *Lin-chi*: «لین‌چی» → «لین-چی», in `preface` and `notes`. *Ichijoji*
+  «ایچیجوجی», as the old `preface` had it.
+- In `notes`: *kōan* «کوان» → «کوآن», *Nempu* «نِمپو» → «نمپو», *Chuang Tzu*
+  «چوانگ‌تزو» → «چوانگ تزو», *Ch’uan Teng Lu* → «چ’وآن تنگ لو», *Wu Teng Hui
+  Yüan* «وو تِنگ هویی یوآن» → «وو تنگ هوی یوآن», *Wang Chang-ling*
+  «چانگ‌لینگ» → «چانگ-لینگ», and *Vimalakīrti* → «ویمالاکیرتی».
+- *Dōgen*, *Rennyo*, *Hōnen*, *Katō Shūichi*, *Yanagida Seizan* and *Iida
+  Shōtarō* came back as the old files had them.
+
+### Group B
+
+Built by 006 requirement 3: the old file's Persian heading and preamble,
+every entry as `strip` gave it, and `restore -o`. **All 210 entry lines are
+byte-identical to `source/`.** That is 5 in `abbreviations`, 123 in
+`index-of-poems` and 82 in `bibliography`. The diff is the ZZ entry, the
+eleven index entries, and *Shisō* in `bibliography`.
+
+### Result
+
+`just fix` normalized two files: two stray ZWNJs in `notes`, and the ASCII
+quotes the model put around «ایک‌کیو» inside `plates`' epigraph. **`just
+check` is green**, with 153/153 on parity and anchors. That closes 010.

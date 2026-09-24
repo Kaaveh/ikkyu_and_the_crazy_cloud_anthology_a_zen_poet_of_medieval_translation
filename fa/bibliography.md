@@ -16,7 +16,7 @@ status: reviewed
 - Chuang Tzu #£#, SP. See also Watson, The Complete Works of Chuang Tzu.
 - Cl’uan Teng Lu fase, T 51.
 - Chüan T’ang Shih 全 唐 詩 .T'ai-pei: Photo reprint of 1706 K’ang-hsi edition Hung-yeh Shu-chü, 1977.
-- Chūsei Zenka no Shisd 中 世 禅 家の 思想 .Ichikawa Haku- gen 市 川 白蓄 et al., ed. Tokyo: Iwanami Shoten, 1972.
+- Chūsei Zenka no Shisō 中 世 禅 家の 思想 .Ichikawa Haku- gen 市 川 白蓄 et al., ed. Tokyo: Iwanami Shoten, 1972.
 - Daitō Kokushi Goroku 大 燃 国師 語録 ,T 81.
 - Daitō Kokushi Nempu XSi, Okuda Shoezo 奥田 正造 , ed. Tokyo: Morie Shoten, 1933.
 - Diamond Sūtra (Ch. Chin-Kang Ching #fl##), T 8. See also Conze, Buddhist Wisdom Books and Price and Wong, The Diamond Sutra.

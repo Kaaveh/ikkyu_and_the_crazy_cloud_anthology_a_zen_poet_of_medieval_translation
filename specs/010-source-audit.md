@@ -147,7 +147,7 @@ fix — that diff is the list of files whose Persian is now stale.
       `bibliography.md` / `glossary-index.md`, and those two are signed off as
       out of reach at 006's priority.
 - [x] `just split` re-run after every generator fix.
-- [ ] `just check` passes — which, because a repair breaks parity against the
+- [x] `just check` passes — which, because a repair breaks parity against the
       stale Persian, means after the matching re-translation spec has run.
 
 ## Out of scope
@@ -939,7 +939,7 @@ Requirement 5 allows it. The gibberish scan returns nothing outside these
 two.
 
 **The Anthology, the front matter, `introduction-4` and the back matter are
-read.** What was 010's is done, except `just check`, which waits on 023.
+read.** What was 010's is done. `just check` went green when 023 ran.
 
 ### Left alone, on purpose
 

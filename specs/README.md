@@ -21,7 +21,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | 🟨 In progress |
 | 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
-| 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | 🟨 Read; closes with 023 |
+| 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | ✅ Done        |
 | 011 | [Re-translate what 010's second session repaired](./011-retranslate-session-2.md) | 010 | ✅ Done        |
 | 012 | [Re-translate what 010's third session repaired](./012-retranslate-session-3.md) | 010 | ✅ Done        |
 | 013 | [Re-translate what 010's fourth session repaired](./013-retranslate-session-4.md) | 010 | ✅ Done        |
@@ -34,22 +34,19 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 020 | [Re-translate what 010's ninth session repaired](./020-retranslate-session-9.md) | 010 | ✅ Done        |
 | 021 | [Re-translate what 010's tenth session repaired](./021-retranslate-session-10.md) | 010 | ✅ Done        |
 | 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ✅ Done        |
-| 023 | [Re-translate what 010's twelfth session repaired](./023-retranslate-session-12.md) | 010 | ⬜ Not started |
+| 023 | [Re-translate what 010's twelfth session repaired](./023-retranslate-session-12.md) | 010 | ✅ Done        |
 | 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[023](./023-retranslate-session-12.md)**: five files re-translated and
-   three entry lists re-copied. `just check` is red on `preface` until it
-   runs, and when it has, 010 closes.
-2. **[008](./008-source-repair-followup.md)** closes when 010 does. It has no
-   work of its own left.
-3. **[024](./024-introduction-read.md)**: `introduction-1/2/3`, which 010
+1. **[008](./008-source-repair-followup.md)** can close: 010 closed with
+   023. It has no work of its own left.
+2. **[024](./024-introduction-read.md)**: `introduction-1/2/3`, which 010
    ticked for the CJK fix and never read. About thirty markers are wrong,
    every quoted poem is flattened, and a re-translation spec will follow.
-4. **[007](./007-release.md)** last: the end-to-end read of the typeset
+3. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0

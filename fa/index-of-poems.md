@@ -21,15 +21,15 @@ status: reviewed
 - Addressed to a Monk Who Killed a Cat, 131
 - Addressed to Reverend Yōsō upon My Retiring from Nyoian, 25
 - Arhat Chrysanthemums, 48
-- Blind Girl’s Love Songs at Yakushido, 160
+- Blind Girl’s Love Songs at Yakushidō, 160
 - Calling My Hand Mori’s Hand, 158
 - Cause and Effect for a Lustful Monk, 165
 - Ch’ang-men Spring Grass, 13
-- Chrysanthemums: An Arhat and Yang Kuei-fei in the Same Vasey 97
+- Chrysanthemums: An Arhat and Yang Kuei-fei in the Same Vase, 97
 - Composed When Ill, 34
 - Composed When Ill, 135
 - Composing a Poem and Trading It for Food, 129
-- Congratulating Daiyūan's Monk Yōsō upon Receiving the Honorary Title of Zen Master Sde Daisho, 121
+- Congratulating Daiyūan's Monk Yōsō upon Receiving the Honorary Title of Zen Master Sōe Daishō, 121
 - Congratulating Elder Ki on the New Construction of Eagle Tail Monastery and Inquiring after His Leprosy, 133
 - Congratulations for Yōsō, 109-10
 - Death Poem, 32
@@ -42,7 +42,7 @@ status: reviewed
 - Fisherman, 130
 - Fisherman, 163
 - Frogs, 95
-- From the Mountains, Returning to the City tO
+- From the Mountains, Returning to the City, 101
 - Half a Cloud, 107
 - Hearing a Crow, Attaining Realization, 20
 - Hell, 152
@@ -65,9 +65,9 @@ status: reviewed
 - Old Woman Kōan, 102
 - On Tiger Mount, the Snow Falls on Three Grades of Monks, 116
 - On a Brothel, 117
-- On a Spring Outing to the Tomb of the Retired Emperor Go Komatsu at Unryoin in Sen’yuji, 172
+- On a Spring Outing to the Tomb of the Retired Emperor Go Komatsu at Unryōin in Sen’yūji, 172
 - On the Topic of The Venerable Master Daitō’s Conduct, 70
-- Oca?
+- Ox, 21
 - Pai-chang Fasting, 124
 - Pain in Pleasure, 83
 - Paper Sleeves, 159
@@ -78,14 +78,14 @@ status: reviewed
 - Praising Master Rinzai, 155
 - Praising Monk Hsü-t’ang, 69
 - Praising P’u-hua, 112
-- Praising Saint Honen, 146
+- Praising Saint Hōnen, 146
 - Praising the Dharma Master Tz’u-en K’uei-chi, 120
 - Praising the Fish-Basket Kannon, 89
 - Presented to a Gathering, 125
 - Promise to Be Born in the Time of Maitreya, 158
 - Quietly Singing Beside the Lamp, 147
-- Remorse over Sins for which My Tongue Should Be Pulled Ours 7,
-- Recoilecting the Past, 148
+- Remorse over Sins for which My Tongue Should Be Pulled Out, 137
+- Recollecting the Past, 148
 - Reducing Desires and Knowing Contentment, 140
 - Retreating from Mikanohara and Going to Nara, 165
 - Ridiculing Literature, 147
@@ -103,7 +103,7 @@ status: reviewed
 - Straw Raincoat and Hat, 109
 - Straw-Sandal Ch’en, 71
 - Taking a Metaphor for Reality, 145
-- Tetto's Sermon, 73-74
+- Tettō’s Sermon, 73-74
 - Thanking a Man for the Gift of Soy Sauce, 134
 - The Buddha’s Nirvana, 79
 - The Correct Skill for a Disorderly Age, 140
@@ -113,7 +113,7 @@ status: reviewed
 - The Last Chrysanthemum in the South Garden, 143
 - The Plum Ripened, 45
 - The Scriptures Wipe Away Filth, 90
-- The Second Year of Kansho—Starvation, 167
+- The Second Year of Kanshō—Starvation, 167
 - The Stick, 148
 - The World at War, All Heaven, All Earth, Battle, 168-69
 - Three Poems to Show the Monks of My Circle, 115
