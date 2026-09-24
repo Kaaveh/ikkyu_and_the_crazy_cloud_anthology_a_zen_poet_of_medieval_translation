@@ -65,18 +65,69 @@ and fails nothing.
 
 ## Acceptance criteria
 
-- [ ] Every group A file re-translated; `apparatus --check` green on `059`
+- [x] Every group A file re-translated; `apparatus --check` green on `059`
       and `060`.
-- [ ] The endnote-marker comparison in 010's *Tooling* shows no disagreement
+- [x] The endnote-marker comparison in 010's *Tooling* shows no disagreement
       for any group A file: `059` carries [70] and [71].
-- [ ] No «مدینه» in `058`.
-- [ ] `050`–`052`'s headings name the monks of the circle, not an assembly,
+- [x] No «مدینه» in `058`.
+- [x] `050`–`052`'s headings name the monks of the circle, not an assembly,
       in one wording.
-- [ ] Group B checked.
-- [ ] `just check` green.
+- [x] Group B checked.
+- [x] `just check` green.
 
 ## Out of scope
 
 Anything 010 has not read yet. `059`'s prose after its block quote
 (*Hence, he became known…*) and `054`'s block quote broken after its first
 line: 010's *Prose block quotes* shape, left alone book-wide.
+
+## Implementation notes
+
+### One sitting, all six at 4500
+
+**Every draft came back Advanced**, with 5, 2, 5, 1, 5 and 3 ezafe, and
+`restore` took each one on the first try. `059` and `060` came back with four
+verse lines, and `apparatus --check` went green on both. Block counts match
+`source/` in all six.
+
+**The set title is one wording in all four places.** The model gave
+`050`–`052` «سه شعر برای راهبانِ حلقهٔ من (۱/۲/۳)», and `050`'s bold set
+heading came back the same, without the old «ارائه به». *To Show* is gone
+from both: it reads «for the monks of my circle». That is the model's reading
+and it is consistent across all four, so it stays. The numerals are Persian
+in all three, where the old files mixed `(III)` in.
+
+**`058`** has no «مدینه»: «دیوانه‌ای شوریده».
+
+**`059` stays at 4500. I tried 900 and 400, and both were worse.** All three
+render the *Three Vehicles* passage as «وسیله نقلیه», a means of transport,
+and all three spell Weinstein two ways, «واینستین» and «واینشتاین». At 900 the
+closing quote was also broken in two. At 400 the verse was split into
+paragraphs and most of the prose was Classic. The 4500 draft has the same
+«وسیله نقلیه» as the old reviewed file, so this is the model's reading and not
+a chunk fallback. Neither sanctioned hand-edit covers it: *Vehicle* has no §2
+row, and Weinstein has no row either. Recorded for 007's read.
+
+**§2, conformed against the table:**
+
+- `052`: ایکیو → ایک‌کیو ×2, «شو-تانگ لو» → «شیو-ت’انگ لو». *Tōzan*
+  came back «توزان», as the old file had it.
+- `059`: کویی-چی / کوئی-چی → ک’وئی-چی ×9, تزو-اِن / تزو-ان → تز’و-ان ×3,
+  فا-هسیانگ → فا-شیانگ, هسوان-تسانگ → شیوآن-تسانگ, «تسونگ-لین شِنگ-شی» →
+  «تس’ونگ-لین شنگ-شی», ایکیو / ایککیو → ایک‌کیو.
+- `060`: پو-جو → پ’و-چو ×4, ایکیو → ایک‌کیو ×3. *Yōsō* came back «یوسو».
+  The model dropped the old title's Latin glosses, which §2.9 allows.
+- `050`: ایکیو → ایک‌کیو.
+
+`just fix` took out one stray ZWNJ in `058`.
+
+**Result:** `just check` is green, with 153/153 on parity and anchors. The
+marker comparison disagrees only on `064`, `070` and `introduction-1`, the
+three that 010 already records. `059` carries [70] and [71].
+
+### Group B
+
+All three read. `054` closes both quotes, «…خیال نیست.» [66]» and «…آرام
+کردم.» [67]». `055` has «شعله‌ها» each time. `057` has «یقین دارم».
+
+The typeset PDF was not read. This spec's criteria do not ask for it.
