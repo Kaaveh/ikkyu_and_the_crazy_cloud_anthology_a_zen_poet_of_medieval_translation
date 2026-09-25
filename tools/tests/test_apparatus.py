@@ -50,6 +50,10 @@ class HeadingRendering(unittest.TestCase):
         self.assertIn("۸۱۹", out)
         self.assertIn("۸۲۰", out)
 
+    def test_prose_introduction_has_no_english_between_its_numbers(self):
+        out = roundtrip("107.md", "# Prose Introduction to Nos. 531 and 532\n\nText.\n")
+        self.assertIn("# درآمدِ منثور بر ۵۳۱ و ۵۳۲\n", out)
+
 
 class HardBreaks(unittest.TestCase):
     def test_breaks_are_restored_run_by_run(self):

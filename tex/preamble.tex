@@ -38,3 +38,31 @@
 % \bodydir TRT, so its *first* item lands at the right edge: rule, then \hfill.
 \renewcommand{\footnoterule}{%
   \kern-3pt\hbox to \columnwidth{\vrule width .4\columnwidth height .4pt\hfill}\kern2.6pt}
+
+% Plates (spec 007). Pandoc's \pandocbounded caps an image at the whole
+% \textheight, which leaves no room for the plate's heading and caption: plate 1
+% ran off the foot of its page and lost its caption, and left the page before
+% it blank. Same definition, capped at 60% of the page: at 70% plate 1, its chapter
+% title and its section heading still could not share a page, and the page
+% before them stayed blank.
+\makeatletter
+\renewcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{.6\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi}
+\makeatother
+
+% The translated alt text already opens with «تصویر ۱:», so LaTeX's own
+% "Figure 1:" label doubled it. caption is loaded after this file, hence the hook.
+\AtBeginDocument{\captionsetup[figure]{labelformat=empty}}
+
+% No line break at a hyphen (spec 007). A Latin run broken there puts the
+% hyphen on the wrong side at the end of an RTL line: "(Tung-shan's" typeset as
+% "(-Tung" / "shan's". Same for LaTeX's own hyphenation of Latin words
+% ("Wash-ington"). Persian is never hyphenated, so this costs nothing there.
+\hyphenpenalty=10000
+\exhyphenpenalty=10000

@@ -121,10 +121,11 @@ def render_for(name: str):
             return f"{FA_PLATE} {to_persian_digits(int(match.group('plate_n')))}:"
         if match.group("prose"):
             # The numbers are cross-references into the Anthology and have to
-            # survive exactly; only the digits change script.
+            # survive exactly; only the digits change script -- and the one
+            # English word among them, "Nos. 531 and 532" (spec 007).
             refs = regex.sub(r"\d+",
                              lambda d: to_persian_digits(int(d.group())),
-                             match.group("prose_n"))
+                             match.group("prose_n")).replace(" and ", " و ")
             return f"{FA_PROSE} {refs}"
         raise AssertionError(f"unhandled heading in {name}: {match.group()!r}")
 
