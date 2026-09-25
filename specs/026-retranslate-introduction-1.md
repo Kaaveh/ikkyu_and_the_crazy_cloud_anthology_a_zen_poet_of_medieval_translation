@@ -102,13 +102,82 @@ Every other paragraph read as Advanced in v2 and has not changed since.
 
 ## Acceptance criteria
 
-- [ ] `introduction-1` re-translated: 119 blocks, markers 1–57 in order, 31
+- [x] `introduction-1` re-translated: 119 blocks, markers 1–57 in order, 31
       hard breaks.
-- [ ] Every paragraph read. None left Classic, or each one left is named
-      here with the reason.
-- [ ] §2 conformed.
-- [ ] `just check` green. That closes 025 and 024.
+- [x] Every paragraph read. None left Classic.
+- [x] §2 conformed.
+- [x] `just check` green: 153/153 on parity, normalize and anchors. That
+      closes 025 and 024.
 
 ## Out of scope
 
 `introduction-2` and `-3`, which 025 finished.
+
+## Implementation notes
+
+**Done in the session after 025's, from 025's scratchpad drafts.** Nothing was
+re-run from scratch.
+
+### Assembled paragraph by paragraph, not by more rejections
+
+Rejecting a whole piece re-translates all its paragraphs, and v5 showed the
+cost: a rejection aimed at one paragraph regressed its neighbours. But v2–v5
+all pass the run-structure gate, so paragraph *i* is the same English
+paragraph in every version. **The draft is built by picking, for each
+paragraph, a version already read**, which is a selection among machine
+outputs and not an edit. The picks, by 0-based paragraph index:
+
+| paragraphs | version |
+|---|---|
+| 1–3 | v3 |
+| 12, 13, 58, 59 | v4 |
+| 14–16 | v5 |
+| 21 | v2 |
+| 22, 23, 96, 97 | v3 |
+| every other paragraph | v2, which is identical in all four versions |
+
+**Three paragraphs were Classic in every version**: 11 (*these were truly
+popular arts*), 98 (*surely, this is an unusual group of poems*) and 99 (*the
+time Ikkyū and Mori spent together*). Each was translated alone behind ten
+primers: the four prose paragraphs before it, 025's fixed primer, and five
+long paragraphs from `introduction-2` and `-3`. Each came back with at least
+one Advanced candidate:
+- **11:** 2 of 10 were Advanced. Candidate 3 was taken, with *without formally
+  taking the tonsure* as «بی‌آنکه رسماً راهب شوند و موی سر بتراشند».
+- **98:** 6 of 10 were Advanced. Candidate 4 was taken because it says *in his
+  seventies* («هفتاد و چند سالگی»); candidate 7 read nicely but said «دههٔ هفتمِ
+  عمر», his sixties.
+- **99:** 8 of 10 were Advanced; candidate 7 was taken.
+
+Then the whole file was read, all 273 lines. No Classic paragraph is left,
+and no Latin digit stands outside a marker or a gloss.
+
+### §2
+
+- *Ikkyū* ×156.
+- *Shūon’an* «شوئون‌آن» → «شو-اون-آن» ×10.
+- *Hsü-t’ang* «شو-تانگ» → «شیو-ت’انگ».
+- *Daiō* «دایو» → «دایئو».
+- *Yün-men* → «یون-من».
+- *Ken’ō* «کن‌ئو»/«کن‌او» → «کن-او».
+- *Giō* «گی‌ئو» → «گیو», as the old file had it and by §2.4.
+- *Tung-shan* «تونگ‌شان», and once «دونگ‌شان» from the Pinyin → «تونگ-شان»
+  ×8.
+- *Pai-chang* «پای‌چانگ», and «بای‌ژانگ» from the Pinyin → «پای-چانگ». That is
+  8 against the source's 9: the model used a pronoun once.
+- *Wei-shan* «وی-شان»; *Wang Chang-ling* «وانگ چانگ-لینگ».
+- *Ch’ang-hsin* «چ’انگ-شین», *Ch’ang-men* «چ’انگ-من», *Ch’a-tu* «چ’ا-تو»,
+  *Chiang-hsi* «چیانگ-شی», all by §2.1 and §2.2.
+- *Zeami* «زآمی».
+- *Nyoian*, *Yakushidō*, *Sumiyoshi* and *Katsuroan* as the old file had them.
+- *Daitokuji* «دایتوکوجی» throughout.
+
+### Also done
+
+- STYLE §4.2 now records the persianised-marker exception.
+- `CLAUDE.md` no longer says the verb-prefix test settles Advanced against
+  Classic.
+
+The harness is not in the repo. It lived in 025's scratchpad and served this
+file only. **If a future long run needs it, 025's notes describe it**, and
+006's advice stands: that is the point to put it in `tools/`.

@@ -110,7 +110,8 @@ Carried from 010's *found in passing* lists:
 - [x] Every quoted poem in the Introduction is verse in `source/`.
 - [x] Every changed file listed in a re-translation spec:
       [025](./025-retranslate-introduction.md).
-- [ ] `just check` passes after that spec has run.
+- [x] `just check` passes after that spec has run. It took 025 and
+      [026](./026-retranslate-introduction-1.md).
 
 ## Session 1 — the read (2026-09-25)
 

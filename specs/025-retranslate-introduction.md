@@ -71,8 +71,8 @@ predates that commit, rebuild it first:
 - [x] All 25 verse quotes set as verse. In `source/` that took a generator
       fix, since 024 had set 23. Both files done here carry theirs (2 + 12);
       `introduction-1`'s 11 are 026's.
-- [ ] `just check` is green. Red on `introduction-1` alone, which 026 closes,
-      and that also closes 024.
+- [x] `just check` is green, once [026](./026-retranslate-introduction-1.md)
+      closed `introduction-1`. That also closes 024.
 
 ## Out of scope
 

@@ -559,7 +559,9 @@ the marker survive the round-trip at all. The Advanced model persianises every
 numeral it meets in running prose and leaves every bracketed one untouched —
 5 occurrences out of 5 across the ten pilot files, with no exception either
 way. `[۴]` could only be produced by hand, in roughly 70 files, on every
-re-run.
+re-run. **Spec 025 found the exception:** `introduction-1` came back with
+`[۳۲]`–`[۳۵]` in some pieces. They were put back to Latin in the draft, as
+006 did for `notes.md`'s entry numbers.
 
 The bracket also does the job the old rule wanted from the digit script. `[4]`
 in a Persian paragraph is visibly not prose, which is what an anchor should be.

@@ -67,7 +67,8 @@ instead of the pinned tag, `pip install -e ../bargardan-tools`.
   spec 004's `099.md` at scale. What Classic actually looks like, once you are
   reading, is dropped subjects, a doubled word («ابهامات و ابهامات»), Latin
   names left standing inside the Persian, and the wrong term for the thing the
-  chapter is about. **The verb-prefix test below is what settles it.**
+  chapter is about. Spec 004's verb-prefix test used to settle it. **In spec
+  025 Classic joined «می‌» with a ZWNJ too, so only reading settles it now.**
 
   ```bash
   awk 'length>120' fa/preface.md | while IFS= read -r l; do
