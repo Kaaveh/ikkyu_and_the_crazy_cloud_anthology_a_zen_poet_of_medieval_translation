@@ -698,7 +698,10 @@ AFTERWORDS = (
 def split_verse_quotes(paras, quotes=VERSE_QUOTES):
     text = '\n\n'.join(paras)
     for lines in quotes:
-        pat = r'\s*' + r'\s+'.join(map(re.escape, lines)) + r'\s*'
+        # A space inside a line matches any whitespace too: the OCR can put a
+        # line's "(no. N)" label in a paragraph of its own (spec 025).
+        pat = r'\s*' + r'\s+'.join(re.escape(l).replace(r'\ ', r'\s+')
+                                   for l in lines) + r'\s*'
         text = re.sub(pat, lambda m: '\n\n' + '\n'.join(lines) + '\n\n', text)
     return [p for p in text.split('\n\n') if p]
 
@@ -1037,6 +1040,8 @@ INTRO_TYPOS = [
     # p. 68 (44)
     (r'the favor of my teaching\. \[97\]', 'the favor of my teaching.” [67]'),
     (r'“Tam the one who looks', '“I am the one who looks'),
+    # The title of poem 57 is its own line in the print (spec 025).
+    (r'use of allusion\. The Plum Ripened$', 'use of allusion.\n\nThe Plum Ripened'),
     # p. 69 (45)
     (r'the plum has ripencd\." \[68\]', 'the plum has ripened.” [68]'),
     (r'reference to “words’’', 'reference to “words”'),

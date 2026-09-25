@@ -35,17 +35,19 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 021 | [Re-translate what 010's tenth session repaired](./021-retranslate-session-10.md) | 010 | ✅ Done        |
 | 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ✅ Done        |
 | 023 | [Re-translate what 010's twelfth session repaired](./023-retranslate-session-12.md) | 010 | ✅ Done        |
-| 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ✅ Read; check waits on 025 |
-| 025 | [Re-translate the Introduction](./025-retranslate-introduction.md) | 024 | ⬜ Not started |
+| 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ✅ Read; check waits on 026 |
+| 025 | [Re-translate the Introduction](./025-retranslate-introduction.md) | 024 | ✅ `-2`, `-3`; `-1` moved to 026 |
+| 026 | [Re-translate `introduction-1`, piece by piece](./026-retranslate-introduction-1.md) | 025 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[025](./025-retranslate-introduction.md)**: re-translate
-   `introduction-1/2/3`, which [024](./024-introduction-read.md) read and
-   repaired: markers 1–84, 25 verse quotes, and some forty names.
-   `introduction-1` is the longest run in the book.
+1. **[026](./026-retranslate-introduction-1.md)**: re-translate
+   `introduction-1` through the piece harness
+   [025](./025-retranslate-introduction.md) built. No plain run of it is
+   usable, and its Classic paragraphs can only be found by reading.
+   `just check` is red on this file alone.
 2. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
