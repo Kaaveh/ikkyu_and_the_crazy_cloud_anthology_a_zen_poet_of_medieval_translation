@@ -46,12 +46,57 @@ EOF
 inside English entries; those are the book's, not faults. Skip them when
 reading the output.
 
+## Session 1 (2026-09-25): re-translation does not fix the quotes
+
+**107 is done.** Re-translated at the default chunk, restored; only the heading
+changed, to `درآمدِ منثور بر ۵۳۱ و ۵۳۲`. `just check` green.
+
+**014, 020 and 086 were re-translated and came back with the same faults.**
+All three came back Advanced (ezafe 25 / 7 / 46, read). Put through
+`normalize --fix` in scratch, as `just fix` would, the sweep flags 014 line 12
+~35 times and line 14 once, 020 lines 16–17, and 086 line 14 — the very
+`»وو« و »یوئه«` 007 found. None was restored; `fa/` still holds the old three.
+
+**The model is not the cause; nested quotation is.** The English nests quotes
+in all three (014 line 12 runs `“”““”“…””“`; 086 line 14 `“‘‘`). The model
+keeps the nesting: an outer `«…»` with an inner `"…"` or `”…“`. Then
+`normalize`'s `quotes` rule — two regexes, `"([^"\n]*)"` and `“([^”\n]*)”`,
+in `bargardan_tools` — pairs by position, not by nesting:
+
+- Inside `«…»` the inner marks are an odd run once the model closes a quote
+  with `."»` (020, 086), so every pair after it is paired across the gap
+  between two quotes, and turns out `»…«`.
+- The model writes the curly pair RTL-reversed, `”…“` (014). The curly regex
+  opens at a `“` that is really a close, and every span it rewrites is the gap
+  between two quotes.
+
+No chunk size changes this: the nesting is in the English. **STYLE.md §6's
+`<<<TBD>>>` — "nested quotation inside a `«»` span. Has not come up" — is
+exactly this, and it has come up.**
+
+### What closes it, and it is not a re-translation
+
+A decision, then work in whichever place it lands:
+
+1. **Fix the `quotes` rule in `bargardan-tools`** to know nesting and the
+   reversed curly pair, tag it, bump the pin here, and settle §6 on what an
+   inner quote becomes. Then re-run this spec as written. Shared package:
+   the other books take the change too.
+2. **Sanction a third hand-edit** in `CLAUDE.md` — repairing quote marks — and
+   fix the three by hand. Leaves the rule to break the next nested quote.
+3. **Exempt the three spans** with `<!-- normalize: off -->` and hand-write
+   the inner marks. Same objection, plus a hand-edit that isn't sanctioned
+   either.
+
+Recommended: 1. It is the root cause, and the only one that also stops the
+fault recurring.
+
 ## Acceptance criteria
 
 - [ ] All four re-translated through the `CLAUDE.md` pipeline (`-w --raw`,
       `strip` / `restore -o`), each read for Classic.
 - [ ] The sweep above prints nothing outside the three back-matter files.
-- [ ] `fa/107.md`'s heading is `درآمدِ منثور بر ۵۳۱ و ۵۳۲`.
+- [x] `fa/107.md`'s heading is `درآمدِ منثور بر ۵۳۱ و ۵۳۲`.
 - [ ] `just check` passes.
 - [ ] The four pages read in the typeset PDF.
 

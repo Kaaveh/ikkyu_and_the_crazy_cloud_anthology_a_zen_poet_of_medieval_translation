@@ -38,14 +38,16 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ✅ Done        |
 | 025 | [Re-translate the Introduction](./025-retranslate-introduction.md) | 024 | ✅ Done        |
 | 026 | [Re-translate `introduction-1`, piece by piece](./026-retranslate-introduction-1.md) | 025 | ✅ Done        |
-| 027 | [Re-translate what 007's typeset read found](./027-retranslate-typeset-read.md) | 007 | ⬜ Not started |
+| 027 | [Re-translate what 007's typeset read found](./027-retranslate-typeset-read.md) | 007 | 🟨 In progress |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
 1. **[027](./027-retranslate-typeset-read.md)**: four files 007's typeset
-   read found wrong in `fa/`.
+   read found wrong in `fa/`. 107 done. The other three wait on a decision:
+   re-translating reproduces the fault, because `normalize` cannot pair
+   nested quotes (027 session 1).
 2. **[007](./007-release.md)**: tag `v1.0.0` once 027 closes. The read itself
    is done.
 
