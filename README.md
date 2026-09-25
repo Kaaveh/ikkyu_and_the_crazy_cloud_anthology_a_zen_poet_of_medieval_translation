@@ -106,6 +106,11 @@ Latin-dominant lines inside a right-to-left paragraph: the neutral punctuation
 that ends such a line lands at its other end, so an entry typesets as
 `.Shoten, 1972`. Both are recorded in spec 007 and neither is fixed in v0.1.0.
 
+Those two files are also the OCR's text, unrepaired: in the glossary, a run of
+entries is often joined into one paragraph, and both carry stray symbols where
+the scan had characters it could not read. Everything else in the book was
+read against the scan (spec 010); these two were not.
+
 ## Versioning
 
 Releases are tagged `vMAJOR.MINOR.PATCH`.

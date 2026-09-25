@@ -66,3 +66,9 @@
 % ("Wash-ington"). Persian is never hyphenated, so this costs nothing there.
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
+
+% Even leading (spec 007). A line carrying a damma or kasra is taller than
+% \baselineskip allows for, and TeX then pushes it down by \lineskip: a
+% quatrain with one diacritic opened a stanza gap in its middle (poem 640).
+% Keep every baseline on the grid instead.
+\lineskiplimit=-\maxdimen
