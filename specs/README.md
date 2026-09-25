@@ -38,21 +38,25 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ✅ Done        |
 | 025 | [Re-translate the Introduction](./025-retranslate-introduction.md) | 024 | ✅ Done        |
 | 026 | [Re-translate `introduction-1`, piece by piece](./026-retranslate-introduction-1.md) | 025 | ✅ Done        |
+| 027 | [Re-translate what 007's typeset read found](./027-retranslate-typeset-read.md) | 007 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[007](./007-release.md)**: the end-to-end read of the typeset
-   Persian PDF, once no re-translation spec is open.
+1. **[027](./027-retranslate-typeset-read.md)**: four files 007's typeset
+   read found wrong in `fa/`.
+2. **[007](./007-release.md)**: tag `v1.0.0` once 027 closes. The read itself
+   is done.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
-skipped`, and the book typesets at 236 pages.
+skipped`, and the book typesets at 234 pages.
 
-**007 is part-done and tagged `v0.1.0`.** Every `TBD`/`TODO` is settled,
+**007 is tagged `v0.1.0` and its read is done.** Every `TBD`/`TODO` is settled,
 `README.md` and the two licence files exist, and `just build` produces all three
-formats clean. What is left in it is one criterion: **the end-to-end read of the
-typeset Persian PDF**, and that is what keeps the tag at `v0.1.0`.
+formats clean. The end-to-end read of the typeset PDF ran on 2026-09-25: eight
+faults fixed in the build, four files handed to 027. **027 is what keeps the tag
+at `v0.1.0`.**
 
 **It is not the same read as 010.** 010 reads `source/` against the 228-page
 English scan and asks whether the English says what the book says; 007 reads
@@ -109,7 +113,7 @@ closed with it, except the Introduction's read, which is 024's.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022  →  010  →  023  →  024  →  025
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022  →  010  →  023  →  024  →  025  →  026  →  007  →  027
 repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    intro   redo
 ```
 

@@ -91,8 +91,9 @@ and a tagged release.
       reads forwards.
 - [x] The EPUB spine is right-to-left — `page-progression-direction="rtl"` on
       `<spine>` in `content.opf`. **Not yet opened in a real reader.**
-- [ ] The whole PDF read end to end. **Not done** — four pages spot-checked; see
-      the notes below. This is what v0.1.0 rather than v1.0.0 reserves.
+- [x] The whole PDF read end to end — every page, 2026-09-25. See *The
+      typeset read* below. Four files it found go to
+      [027](./027-retranslate-typeset-read.md), which the `v1.0.0` tag waits on.
 - [x] The release artifact contains no `source/`, no monolith, no raw OCR, no PDF of
       the original.
 - [x] `book-version` bumped; tag pushed.
@@ -169,3 +170,44 @@ were rendered and read — the title page, a plate, a poem with notes (52, page
 abbreviations page. That is a spot check, not the read. **This is why the
 release is `v0.1.0`**: the end-to-end read stays open, along with 008
 requirement 1, which is the same read from the other side.
+
+### The typeset read (requirement 5)
+
+Every page, read as rendered: the front matter, the Introduction and the
+back matter one page at a time, the Anthology two pages to an image. Before
+that, three sweeps over the whole book, which point the eye rather than
+replace it:
+
+- **Missing glyphs** from the LuaLaTeX log: CJK only, the known limitation.
+  No Persian or Latin glyph is missing.
+- **Reversed Latin**: every Latin word in `pdftotext` output checked against
+  `fa/`. None reversed; the only unknowns were words hyphenated across a line.
+- **Quotation marks** in `fa/`: see 027.
+
+**Fixed in the build, so `fa/` is untouched.** Each one is commented at its
+fix.
+
+| fault | where | fix |
+|---|---|---|
+| Plate 1 ran off its page, lost its caption and left page 3 blank | plates | `\pandocbounded` capped at 60% of the page |
+| `Figure 1: تصویر ۱: …` — the label doubled | plates | caption label off |
+| `(-Tung` / `shan's`: a line broken at a hyphen puts the hyphen on the wrong side of the Latin run | Introduction, book-wide | no line break at a hyphen |
+| A kasra or damma pushed its line down: poem 640's quatrain opened a stanza gap in its middle | book-wide | `\lineskiplimit` |
+| `(T 14 ،Vimalakirti Sūtra)` — a Persian comma between Latin runs welded them and broke the brackets | `notes.md`, 17 places | `tex/rlm-before-comma.lua` |
+| A wrapped verse line read as a line of its own: poem 115's quatrain as six lines | ~10 poems | `tex/verse-hang.lua`, continuations hang |
+| `درآمدِ منثور بر ۵۳۱ and ۵۳۲` | `107.md` | `apparatus.py`; the file itself is 027's |
+| `۱۲۰ شعر`, `۱۴۷ بخش` in the reader's note | `index.md` | 126 and 153 |
+
+**Left as it is**, with the reason:
+
+- `(Ryōzen) (۱۲۹۵-۱۳۶۹)` in `introduction-2.md` typesets as `((Ryōzen` at a
+  line end. Two parentheticals side by side with the line broken between them
+  — once in the book. The Persian is right.
+- The bibliography and glossary are the OCR's text: joined entries, stray
+  symbols, blank CJK, full stops at the wrong end. 008 requirement 3,
+  deliberately deferred; `README.md` now says so.
+- `notes.md` renders a Taishō column letter sometimes as `a`, sometimes as
+  `الف`. Both read correctly; a style inconsistency, not a typesetting fault.
+
+**Still not done:** the EPUB opened in a real reader. It builds, and its
+spine is RTL.

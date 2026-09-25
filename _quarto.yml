@@ -245,7 +245,7 @@ format:
       - inner=28mm
       - outer=22mm
     include-in-header: tex/preamble.tex
-    filters: [tex/rlm-before-comma.lua]
+    filters: [tex/rlm-before-comma.lua, tex/verse-hang.lua]
     colorlinks: true
 
   epub:
