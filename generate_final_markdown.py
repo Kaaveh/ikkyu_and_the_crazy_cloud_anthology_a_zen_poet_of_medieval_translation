@@ -66,12 +66,12 @@ TYPO_FIXES = [
     (rf'\bY{O}Q?s{O}\b', 'Yōsō'),
     (rf'\bDait{O}[\'’]s\b', 'Daitō’s'),
     (rf'\bDait{O}\b', 'Daitō'),
-    # "Daid" is not always a mangled "Daitō". Three of its four occurrences in
-    # the OCR are Daiō Kokushi -- Hsü-t'ang's student and Daitō's own master --
-    # and mapping them all to Daitō erased him from the book and made poem 7's
-    # note say Hsü-t'ang instructed Daitō, which he did not. Checked against
-    # pp. 93, 94 and 105 of the scan. Only the Daitokuji founder is Daitō.
-    (rf'\bDaid{O}?\b(?=,\s*founder)', 'Daitō'),
+    # "Daid" is never a mangled "Daitō". It is Daiō Kokushi -- Hsü-t'ang's
+    # student and Daitō's own master -- and mapping it to Daitō erased him
+    # from the book and made poem 7's note say Hsü-t'ang instructed Daitō,
+    # which he did not. Checked against pp. 93, 94 and 105 of the scan, and
+    # the fourth, "Daiō, founder of the Daitokuji line", on PDF p. 51 at
+    # 400 dpi: a context rule had kept that one as Daitō (spec 024).
     (rf'\bDaid{O}?\b', 'Daiō'),
     # An ideographic comma the OCR left in English prose, in text the gutter
     # fix above restores. Targeted, not a general 、 -> , rule: four more sit
@@ -525,7 +525,7 @@ PARA_STARTS = (
     'The poems concerning Mori are grouped',
 )
 
-def parse_prose(text):
+def parse_prose(text, split_after=()):
     lines = text.splitlines()
     paragraphs = []
     curr_para = []
@@ -539,7 +539,8 @@ def parse_prose(text):
         indent = len(l) - len(l.lstrip())
         if indent >= 2 and curr_para:
             prev = curr_para[-1]
-            if prev.endswith(('.', '!', '?', '”', '"', ':', '’', "'", ';', '—')) or s.startswith(PARA_STARTS):
+            if (prev.endswith(('.', '!', '?', '”', '"', ':', '’', "'", ';', '—'))
+                    or prev.endswith(split_after) or s.startswith(PARA_STARTS)):
                 paragraphs.append(' '.join(curr_para))
                 curr_para = []
         curr_para.append(s)
@@ -694,9 +695,9 @@ AFTERWORDS = (
     'There is an entry in the Nempu which may refer',       # p. 169, poem 647
 )
 
-def split_verse_quotes(paras):
+def split_verse_quotes(paras, quotes=VERSE_QUOTES):
     text = '\n\n'.join(paras)
-    for lines in VERSE_QUOTES:
+    for lines in quotes:
         pat = r'\s*' + r'\s+'.join(map(re.escape, lines)) + r'\s*'
         text = re.sub(pat, lambda m: '\n\n' + '\n'.join(lines) + '\n\n', text)
     return [p for p in text.split('\n\n') if p]
@@ -860,6 +861,391 @@ def intro_page(i):
     return drop_column(strip_page_footer(pages[i]))
 
 
+# The Introduction's own OCR damage, read against PDF pp. 27-83 (spec 024).
+# Page numbers in the comments are the PDF's, printed folio in brackets.
+# Applied to the Introduction alone, after apply_typos: the stem rules have
+# already run, and nothing here can reach the bibliography or glossary, whose
+# entries stay verbatim. Markers first -- the Introduction numbers its notes
+# 1-88 and about thirty were misread -- then names, quotes and lost words.
+INTRO_TYPOS = [
+    # PDF p. 27 (printed 3)
+    (r'mad\. “‘Cloud” calls', 'mad. “Cloud” calls'),
+    (r'the word “‘cloud,” the echo of un’u, ““cloud-rain,”', 'the word “cloud,” the echo of un’u, “cloud-rain,”'),
+    (r'“crazy about love’;', '“crazy about love”;'),
+    # p. 28 (4)
+    (r'overturning their susuperiors, a term', 'overturning their superiors,” a term'),
+    (r'hurling down heaven\. 、', 'hurling down heaven.'),
+    # p. 29 (5)
+    (r'“act of grace,’ meaning', '“act of grace,” meaning'),
+    (r'acts of the impoverished \[4\]', 'acts of the impoverished. [4]'),
+    (r'great “people’s age\. \[5\]', 'great “people’s age.” [5]'),
+    (r'go anywhere\.®', 'go anywhere. [6]'),
+    # p. 30 (6)
+    (r'\bNo (?=drama|dramatists?\b|could draw|form to new)', 'Nō '),   # and p. 53
+    (r'\bconnoisseurs, -and\b', 'connoisseurs, and'),
+    (r'\bmaster SGchG\b', 'master Sōchō'),
+    (r'family origin: Although', 'family origin. Although'),
+    # p. 31 (7)
+    (r'\bthe Ryoanji, for example', 'the Ryōanji, for example'),
+    (r'\bTofukuji\b', 'Tōfukuji'),
+    (r'\bShokokuji, Nanzenji, Tenrytji\b', 'Shōkokuji, Nanzenji, Tenryūji'),
+    (r'in the fifteenth century\.’', 'in the fifteenth century. [7]'),
+    # p. 33 (9)
+    (r'\b(?:Shaon an|Shnonan|Shtion’an|Shuonan)\b', 'Shūon’an'),
+    # p. 34 (10)
+    (r'“Portrait of Ikkyū,9 is', '“Portrait of Ikkyū,” [9] is'),
+    (r'“‘I-novelists’”', '“I-novelists”'),
+    (r'historical sense\. \[19\]', 'historical sense. [10]'),
+    (r'Reverend Ikkyū,”™', 'Reverend Ikkyū,” [11]'),
+    # p. 35 (11)
+    (r'\bof the Oi era\b', 'of the Ōei era'),
+    (r'Southern Court\. \[13\] a point of some importancce,', 'Southern Court, [13] a point of some importancce.'),
+    # p. 36 (12)
+    (r'\bempress s entourage', 'empress’s entourage'),
+    # p. 37 (13)
+    (r'neglect are deep\.!4', 'neglect are deep. [14]'),
+    (r'into a kéan!>', 'into a kōan [15]'),
+    (r'\bbiwa hashi’s', 'biwa hōshi’s'),
+    (r'\bGid\b', 'Giō'),
+    (r"\bGio's", 'Giō’s'),
+    (r'\bGio\b', 'Giō'),
+    # p. 38 (14)
+    (r'kōan ““Tung-shan’s Three Beatings’’:', 'kōan “Tung-shan’s Three Beatings”:'),
+    (r'“Ch’a-tu\.”’', '“Ch’a-tu.”'),
+    (r'"Pao-tzu Monastery in Ho-nan\.”’', '“Pao-tzu Monastery in Ho-nan.”'),
+    (r'"When did you leave there\?”', '“When did you leave there?”'),
+    (r"“Tung-shan's Three Beatings’’ and", '“Tung-shan’s Three Beatings” and'),
+    # p. 39 (15)
+    (r'“of the mind’’ because', '“of the mind” because'),
+    # p. 40 (16)
+    (r'\bKen’ (?=\(|died)', 'Ken’ō '),
+    (r'\bKenQ is\b', 'Ken’ō is'),
+    (r'give one to you\.20The following', 'give one to you.” [20] The following'),
+    (r'ever abandon me\? \[21\]', 'ever abandon me?” [21]'),
+    (r"\bKasS's", 'Kasō’s'),
+    (r'\bMaster Daio\b', 'Master Daiō'),
+    (r'\bnot to seck a', 'not to seek a'),
+    # p. 41 (17)
+    (r'bring him in\. \[29\]', 'bring him in. [23]'),
+    (r"\bat Keno's hermitage", 'at Ken’ō’s hermitage'),
+    # p. 42 (18)
+    (r'not a Master yet\.’ “Then', 'not a Master yet.” “Then'),
+    (r'““Now you are a Master', '“Now you are a Master'),
+    (r'a fair jade-like face Sings\. \[2\]\?', 'a fair jade-like face sings. [25]'),
+    # p. 43 (19)
+    (r'The “abandoned woman in', 'The “abandoned woman” in'),
+    (r'“Small Vehicle Buddhism', '“Small Vehicle” Buddhism'),
+    (r'“Great Vehicle’ point', '“Great Vehicle” point'),
+    # p. 44 (20)
+    (r'“one pause’’\), implied “‘all at rest,” “nothing left to do\. \[27\]', '“one pause”), implied “all at rest,” “nothing left to do.” [27]'),
+    (r'burns it himself\. \[3\]°', 'burns it himself. [30]'),
+    # p. 45 (21)
+    (r'mentions a ‘straw raincoat', 'mentions a “straw raincoat'),
+    (r'monk’s name I had\. \(no\. 73\)\?', 'monk’s name I had. (no. 73) [32]'),
+    (r'“Tf you say', '“If you say'),
+    # p. 46 (22)
+    (r'much less make them live\. \[34\]', 'much less make them live.” [34]'),
+    (r'\ba free self governing\b', 'a free self-governing'),
+    (r'\brcstrictive\b', 'restrictive'),
+    # p. 47 (23)
+    (r'\bkana hogo\b', 'kana hōgo'),
+    (r'\bopinion that YSso\b', 'opinion that Yōsō'),
+    # p. 48 (24)
+    (r'place them in the hermitage\. \.', 'place them in the hermitage.'),
+    (r'my style\. \(no\. 84\) \[89\]', 'my style. (no. 84) [39]'),
+    # p. 49 (25)
+    (r'or else a brothel\. \(no\. 85\) \[4\]°', 'or else a brothel. (no. 85) [40]'),
+    (r"\bTetto's", 'Tettō’s'),
+    (r'Worldly Self Glorification', 'Worldly Self-Glorification'),
+    (r'rule was ‘‘a day of no work', 'rule was “a day of no work'),
+    (r'sanzen interview\. \[4\]!', 'sanzen interview. [41]'),
+    (r'“T was certified', '“I was certified'),
+    # p. 50 (26)
+    (r'you were not certified\. \[42\]', 'you were not certified.” [42]'),
+    (r'\bJikaishi\b', 'Jikaishū'),
+    (r'\bleprosy43', 'leprosy [43]'),
+    (r'\bJodo Shinsht\b', 'Jōdo Shinshū'),
+    (r'\(“money’’\), and zen \(““Zen’’\)', '(“money”), and zen (“Zen”)'),
+    (r'or else a brothel went', 'or else a brothel” went'),
+    (r'Katsuroan、 “Blind Donkey Hermitage\. The', 'Katsuroan, “Blind Donkey Hermitage.” The'),
+    # p. 51 (27)
+    (r'““How can there', '“How can there'),
+    (r'“Well how\?', '“Well, how?'),
+    (r'\bkarmic aftiliation', 'karmic affiliation'),
+    # p. 52 (28)
+    (r'to Sumiyoshi\. \[4\]\?', 'to Sumiyoshi. [47]'),
+    (r'\bYakushido\b', 'Yakushidō'),
+    (r'"my late attendant Mori\.“50', '“my late attendant Mori.” [50]'),
+    (r'“I-novel”’ as', '“I-novel” as'),
+    # p. 53 (29)
+    (r'from Ikkyū\. \[5\]!', 'from Ikkyū. [51]'),
+    (r'\bSGcho\b', 'Sōchō'),
+    (r"\bSocho's", 'Sōchō’s'),   # and p. 54
+    (r'\bSocho\b', 'Sōchō'),
+    (r'\bShuko\b', 'Shukō'),
+    (r'\bRikyu\b', 'Rikyū'),
+    (r'“grass hut’’', '“grass hut”'),
+    (r"\bMuromachi's most", 'Muromachi’s most'),
+    (r'\brenga, No, tea\b', 'renga, Nō, tea'),
+    # p. 54 (30)
+    (r'a cup of citrus rind fea n@n\)', 'a cup of citrus rind tea. (no. 33)'),
+    (r'\bthe «basic', 'the basic'),
+    # p. 55 (31)
+    (r'\breduced to afield\b', 'reduced to a field'),
+    (r'\bcnergetically\b', 'energetically'),
+    (r'\bSQcho\b', 'Sōchō'),
+    (r'\brebuilding, kkyu\b', 'rebuilding, Ikkyū'),
+    # p. 57 (33)
+    (r'“‘old-time Zen’ made', '“old-time Zen” made'),
+    (r'“Composed When ie\b', '“Composed When Ill.”'),
+    # p. 58 (34)
+    (r"“Pai-chang'swild fox", '“Pai-chang’s wild fox'),
+    (r'\bown Zen\. was\b', 'own Zen was'),
+    # p. 59 (35) -- introduction-2 starts
+    (r'thirst for existence\.’”5\?', 'thirst for existence.” [57]'),
+    (r'““What is the broad', '“What is the broad'),   # and p. 60
+    (r'do much good\.”>8', 'do much good.” [58]'),
+    (r'a teaching like that\.”” Bird', 'a teaching like that.” Bird'),
+    (r"\bRyozen's", 'Ryōzen’s'),   # and p. 61
+    (r'\bRyozen\b', 'Ryōzen'),
+    # p. 60 (36)
+    (r'codger up in the tree\. \[60\]', 'codger up in the tree.” [60]'),
+    # p. 61 (37)
+    (r'\bVimalakirti Siatra', 'Vimalakirti Sūtra'),
+    (r'“evil’’ make two', '“evil” make two'),
+    (r'\bin the second hne\b', 'in the second line'),
+    # p. 62 (38)
+    (r'as the "old Zen master', 'as the “old Zen master'),
+    (r'as we read, must have been', 'as we read, “It must have been'),
+    (r'\bsung, Do no evil', 'sung, “Do no evil'),
+    (r'\bRydzen\b', 'Ryōzen'),
+    (r'presentation\.\.\. is', 'presentation . . . is'),
+    (r'its readers a aechine act rigorous', 'its readers a searching and rigorous'),
+    (r'for themselves\. \. \. \.“62', 'for themselves. . . .” [62]'),
+    (r'“positive’’', '“positive”'),
+    # p. 63 (39) -- introduction-3 starts
+    (r'“naked language’’', '“naked language”'),
+    (r'free verse\.\*4', 'free verse. [64]'),
+    # p. 65 (41)
+    (r'in one night, it is Over\.', 'in one night, it is over.'),
+    # p. 66 (42)
+    (r'At other times, Opposites', 'At other times, opposites'),
+    # p. 67 (43)
+    (r'said, ““What was the meaning', 'said, “What was the meaning'),
+    (r'oak tree in the garden \[itself', 'oak tree in the garden” [itself'),
+    (r'enlightened Yian-wu\.', 'enlightened Yüan-wu.'),
+    # p. 68 (44)
+    (r'the favor of my teaching\. \[97\]', 'the favor of my teaching.” [67]'),
+    (r'“Tam the one who looks', '“I am the one who looks'),
+    # p. 69 (45)
+    (r'the plum has ripencd\." \[68\]', 'the plum has ripened.” [68]'),
+    (r'reference to “words’’', 'reference to “words”'),
+    (r'green and then yellow\." \[69\]', 'green and then yellow.” [69]'),
+    # p. 70 (46)
+    (r'called “dry sake\.’ ”” Thereupon', 'called ‘dry sake.’” Thereupon'),
+    (r'\(third century s\.c\.\)', '(third century B.C.)'),
+    # p. 71 (47)
+    (r'\bCh(?: |’ti )Yüan', 'Ch’ü Yüan'),
+    (r'like “muddy” and ““dregs,”’', 'like “muddy” and “dregs,”'),
+    (r'of “drunkenness and “sober”', 'of “drunkenness” and “sober”'),
+    (r'remark, ““All men are drunk', 'remark, “All men are drunk'),
+    (r'the words “dregs and “muddy”’', 'the words “dregs” and “muddy”'),
+    # p. 72 (48)
+    (r'on the east hedge’ is the key', 'on the east hedge” is the key'),
+    # p. 73 (49)
+    (r'by the east hedge\.”\?! But', 'by the east hedge.” [71] But'),
+    (r'“Cannot touch\.\.\. Tao Yaan-ming\. The poem', '“Cannot touch . . . T’ao Yüan-ming.” The poem'),
+    (r'the term “Arhat”’', 'the term “Arhat”'),
+    (r'meaning “‘spiritual adept in general', 'meaning “spiritual adept” in general'),
+    # p. 74 (50)
+    (r'“Yes, of course, rather', '“Yes, of course,” rather'),
+    (r'““To hear a sound and awaken to the Way is', '“To hear a sound and awaken to the Way” is'),
+    (r'forgot all he knew\.”\? \[3\]', 'forgot all he knew.” [73]'),
+    # p. 75 (51)
+    (r'\bTao Yüan-ming comes', 'T’ao Yüan-ming comes'),
+    (r'to become a Buddhist,””>', 'to become a Buddhist,” [75]'),
+    (r'rendered “just "in the', 'rendered “just” in the'),
+    (r'“rightly so\. This', '“rightly so.” This'),
+    # p. 76 (52)
+    (r'"fūryū here means something between “‘transcendentally sublime” and “lovely in a rustic way\. \[7\]\?',
+     '“fūryū” here means something between “transcendentally sublime” and “lovely in a rustic way.” [77]'),
+    (r'“How canI live', '“How can I live'),
+    (r'without This Lord\?’’\? \[8\]', 'without This Lord?” [78]'),
+    (r'“Rain、 so often', '“Rain,” so often'),
+    (r'shed on this lord”’', 'shed on this lord”'),
+    # p. 77 (53)
+    (r'tells us, When I handle', 'tells us, “When I handle'),
+    (r'“rain on the bamboo”’', '“rain on the bamboo”'),
+    # p. 78 (54)
+    (r'\bTien-t’ai\b', 'T’ien-t’ai'),   # and p. 79 twice
+    (r'marry Master P’eng\?’, opens', 'marry Master P’eng?”, opens'),
+    (r'mean to "have relations', 'mean to “have relations'),
+    (r'and “dream”\? figure', 'and “dream” figure'),
+    (r'the “Kao-tang Fu’ by Sung Yu\b', 'the “Kao-t’ang Fu” by Sung Yü'),
+    # p. 79 (55)
+    (r'himself at Kao-tang\. Feeling', 'himself at Kao-t’ang. Feeling'),
+    (r'\bKao-t ang\b', 'Kao-t’ang'),
+    (r'beneath Yangtai\.”', 'beneath Yang-t’ai.”'),
+    (r'“Morning Cloud\.’’ \[89\]', '“Morning Cloud.” [80]'),
+    (r'“In the morning\.\.\. ,”', '“In the morning . . . ,”'),
+    # p. 80 (56)
+    (r'\bT ien-t’ai\b', 'T’ien-t’ai'),
+    (r'at Nan-yüeh\.”’ \[81\]', 'at Nan-yüeh.” [81]'),
+    (r'\(a mountain in China\)\.®\?', '(a mountain in China). [82]'),
+    (r'Phrases of Daitō’’:', 'Phrases of Daitō”:'),
+    (r'I do not move \? \[83\]', 'I do not move? [83]'),
+    (r'The “bare post surfaces', 'The “bare post” surfaces'),
+    # p. 81 (57)
+    (r'distill a ““meaning', 'distill a “meaning'),
+    (r'T’ien-t’ai and Nanyueh, Yün-men and Daitō: if', 'T’ien-t’ai and Nan-yüeh, Yün-men and Daitō; if'),
+    (r'“In the morning\.\.\. In the evening”', '“In the morning . . . In the evening”'),
+    # p. 82 (58)
+    (r'each of the commentators views', 'each of the commentators’ views'),
+    (r'In "The Waste Land,"', 'In “The Waste Land,”'),
+    (r'\bcmphasizes\b', 'emphasizes'),
+    (r'against my ruins,84', 'against my ruins,” [84]'),
+]
+
+# Verse the Introduction quotes, which parse_prose() runs together as prose:
+# the print sets each beside its Chinese original. Same rule as VERSE_QUOTES
+# -- the confirmed text, never a heuristic (spec 010 requirement 4). A
+# poem's "(no. N)" rides on its last line, where the OCR puts it.
+INTRO_VERSE = [
+    # p. 37 (13): Ch'ang-men Spring Grass
+    ('In autumn’s desolation, the lovely lady of Ch’ang-hsin sings.',
+     'Along the path, the summoning messenger no longer enters the garden’s shade.',
+     'Glory, disgrace, sorrow, joy, these are before her eyes.',
+     'Where her lord’s favor is shallow, the grasses of neglect are deep. [14]'),
+    # p. 42 (18): Ikkyū's enlightenment poem, and Wang Chang-ling's
+    ('For ten years, heart consumed by passions,',
+     'Raging, angry, the time is now!',
+     'Crow laughs, I leave the dust, end up an Arhat;',
+     'Chao-yang Palace in the sun, a fair jade-like face sings. [25]'),
+    ('She starts to sweep in the dawn light, the Golden Hall opens;',
+     'Taking up her fan, she wanders aimlessly awhile.',
+     'Her fair jade-like face is no match for the color of the wintry crows',
+     'Coming forth, still bathed in the sun at Chao-yang Palace. [26]'),
+    # p. 44 (20): poem 538, the Anthology's version
+    ('Raging, angry, heart consumed by passions',
+     'For twenty years. The time is now!',
+     'Crow laughs, I leave the dust and end up an Arhat.',
+     'How about it? In the sun, a fair jade-like face sings. (no. 538)'),
+    # p. 45 (21): Ox
+    ('Come among the beasts to teach, this is what I have done.',
+     'What you can do, depends on where you are; where you are, depends on what you can do.',
+     'We are born and forget the path by which we came;',
+     'No one knows in those times what monk’s name I had. (no. 73) [32]'),
+    # p. 48 (24): poem 84
+    ('Take the everyday things, place them in the hermitage.',
+     'Wooden ladles, bamboo baskets hanging on the east wall,',
+     'I have no need of these idle things.',
+     'Over river and sea, these many years, straw raincoat and hat have been my style. (no. 84) [39]'),
+    # p. 49 (25): poem 85
+    ('Ten days as an abbot and my mind is churning.',
+     'Under my feet, the red thread of passion is long.',
+     'If you come another day and ask for me,',
+     'Try a fish shop, tavern, or else a brothel. (no. 85) [40]'),
+    # p. 54 (30): poem 33
+    ('I believe man’s bill of fare is fixed,',
+     'One bowl of mutton gruel and a cup of citrus rind tea. (no. 33)'),
+    # p. 55 (31): poem 567
+    ('Daitō’s descendants destroyed his remaining light.',
+     'Hard to melt the heart in song on an icy night.',
+     'For fifty years, a wanderer with straw raincoat and hat,',
+     'Shameful today, a purple-robed monk. (no. 567)'),
+    # p. 56 (32): the death poem
+    ('South of Mt. Sumeru,',
+     'Who meets my Zen?',
+     'Even if Hsü-t’ang comes',
+     'He’s not worth half a penny. [53]'),
+    # p. 58 (34): poem 250
+    ('A monk who has broken the precepts for eighty years,',
+     'Repenting a Zen that has ignored cause and effect.',
+     'When ill, one suffers the effects of past deeds;',
+     'Now how to act in order to atone for eons of bad karma. (no. 250)'),
+    # p. 59 (35): Ryōzen's four precepts, set as lines inside his quote
+    ('‘From the Beginning, not one thing’',
+     '‘Not thinking of good, not thinking of evil’',
+     '‘Good and evil are not two’',
+     '‘False and true, are one and the same’'),
+    # p. 60 (36): poem 205
+    ('Students who ignore karma are sunk.',
+     'That old Zen master’s words are worth a thousand pieces of gold,',
+     'Do no evil, do much good.',
+     'It must have been something the Elder sang while drunk. (no. 205)'),
+    # p. 65 (41): poem 203, and Li Yi's poem it borrows from
+    ('Typhoon, flood, suffering for ten thousand people;',
+     'Song, dance, flutes, and strings, who sports tonight?',
+     'In the Dharma, there is flourishing and decay; in the eons, there is increase and decline.',
+     '“Let it be, let the bright moon sink behind the Western Pavilion.” (no. 203)'),
+    ('On this smooth bamboo mat, water-patterned, my thoughts drift far away.',
+     'A thousand miles to make the tryst, now in one night, it is over.',
+     'From here on, I have no heart to enjoy the lovely night;',
+     'Let it be, let the bright moon sink behind the Western Pavilion. [65]'),
+    # p. 67 (43): the little love song, as Wu-tsu quotes it
+    ('She often called her maid for no reason at all,',
+     'Just so her lover would recognize her voice.'),
+    # p. 68 (44): poem 107
+    ('These days accomplished monks of long training',
+     'Are mesmerized by their own words and call it ability.',
+     'At Crazy Cloud’s hut, there is no ability but a flavor;',
+     'He boils a cup of rice in a broken-footed cauldron. (no. 107)'),
+    # p. 69 (45): The Plum Ripened, poem 57
+    ('Its ripening, over the years, is still not forgotten.',
+     'In the words, there is a flavor but who can taste it?',
+     'When his spots were first visible, Big Plum was already old.',
+     'Sprinkle of rain, fine mist, that which was green had already turned yellow. (no. 57)'),
+    # p. 70 (46): poem 206
+    ('Men in the midst of their dunkenness, what can they do about their wine-soaked guts?',
+     'Sober, at the limit of their resources, they suck the dregs.',
+     'The lament of he who “embraced the sands” and cast himself into the river by Hsiang-nan',
+     'Draws out of this Crazy Cloud a laugh. (no. 206)'),
+    # p. 72 (48): Arhat Chrysanthemums, poem 77
+    ('Tea-brown golden flowers, deep with autumn’s color.',
+     'Breeze and dew on the east hedge, a heart that has left the dust behind.',
+     'The miraculous powers of the Five Hundred Arhats of Mt. T’ien-t’ai.',
+     'Cannot touch one fragment of verse from T’ao Yüan-ming. (no. 77)'),
+    # p. 74 (50): To Hear a Sound and Awaken to the Way, poem 49
+    ('Striking bamboo one morning he forgot all he knew.',
+     'Hearing the bell at fifth watch, his many doubts vanished.',
+     'The ancients all became Buddhas right where they stood.',
+     'T’ao Yüan-ming alone just knit his brows. (no. 49)'),
+    # p. 75 (51): Spreading Horse Dung, poem 493
+    ('Baked potatoes is Lan-ts’an’s old story.',
+     'He did not seek fame and fortune, that too was fūryū.',
+     'Mutual longing without end. This Lord’s rain;',
+     'Wiping away the tears, singing alone, autumn by the Hsiang river. (no. 493)'),
+    # p. 78 (54): poem 45
+    ('How did the Little Bride marry Master P’eng?',
+     'Cloud-rain, tonight, a single dream.',
+     'In the morning at T’ien-t’ai, in the evening at Nan-yüeh,',
+     'No one knows where to see Shao-yang. (no. 45)'),
+    # p. 80 (56): Yün-men's two sayings
+    ('In the morning, I arrive at the Western Heaven (India),',
+     'In the evening, I return to the Land in the East (China).'),
+    ('In the morning, I sport at Dandaka (a mountain in India).',
+     'In the evening, I arrive at Lo-fu (a mountain in China). [82]'),
+]
+
+# A paragraph that ends in an endnote marker or a "(no. N)" label hides its
+# break from parse_prose(): the line ends in a digit, ")" or "]", not in
+# punctuation. In the Introduction an indented line is either a paragraph
+# start or a verse turnover, and a turnover never follows one of these, so
+# splitting there is safe. The Anthology's notes are not split this way:
+# that would move block parity in every file (spec 010, "Prose block quotes").
+INTRO_SPLIT_AFTER = tuple('0123456789)]°®、')
+
+
+def intro_paras(raw):
+    paras = parse_prose(dehyphenate(raw), split_after=INTRO_SPLIT_AFTER)
+    out = []
+    for p in paras:
+        for pat, rep in INTRO_TYPOS:
+            p = re.sub(pat, rep, p)
+        out.append(p)
+    return split_verse_quotes(out, INTRO_VERSE)
+
+
 def build_introduction():
     # Section 1: p26 to p58 line 24
     p26_to_57 = '\n'.join([intro_page(i) for i in range(26, 58)])
@@ -874,7 +1260,7 @@ def build_introduction():
             dial_idx = i
             break
     sec1_raw = p26_to_57 + '\n' + '\n'.join(p58_lines[:dial_idx])
-    sec1_paras = parse_prose(dehyphenate(sec1_raw))
+    sec1_paras = intro_paras(sec1_raw)
     if sec1_paras and 'The Man and His Times' in sec1_paras[0]:
         sec1_paras = sec1_paras[1:]
 
@@ -890,7 +1276,7 @@ def build_introduction():
             break
     p58_to_62_lines.extend(p62_lines[:allusion_idx])
     sec2_raw = '\n'.join(p58_to_62_lines)
-    sec2_paras = parse_prose(dehyphenate(sec2_raw))
+    sec2_paras = intro_paras(sec2_raw)
     if sec2_paras and 'Dialectic of' in sec2_paras[0]:
         sec2_paras = sec2_paras[1:]
 
@@ -906,7 +1292,7 @@ def build_introduction():
             break
     p62_to_82_lines.extend(p82_lines[:note_idx])
     sec3_raw = '\n'.join(p62_to_82_lines)
-    sec3_paras = parse_prose(dehyphenate(sec3_raw))
+    sec3_paras = intro_paras(sec3_raw)
     if sec3_paras and sec3_paras[0].strip() == 'Allusion':
         sec3_paras = sec3_paras[1:]
 
@@ -915,7 +1301,7 @@ def build_introduction():
     for idx in [83, 84]:
         p82_to_84_lines.extend(intro_page(idx).splitlines())
     sec4_raw = '\n'.join(p82_to_84_lines)
-    sec4_paras = parse_prose(dehyphenate(sec4_raw))
+    sec4_paras = intro_paras(sec4_raw)
     if sec4_paras and 'A Note on the Text' in sec4_paras[0]:
         sec4_paras = sec4_paras[1:]
 

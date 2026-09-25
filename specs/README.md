@@ -35,15 +35,17 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 021 | [Re-translate what 010's tenth session repaired](./021-retranslate-session-10.md) | 010 | ✅ Done        |
 | 022 | [Re-translate what 010's eleventh session repaired](./022-retranslate-session-11.md) | 010 | ✅ Done        |
 | 023 | [Re-translate what 010's twelfth session repaired](./023-retranslate-session-12.md) | 010 | ✅ Done        |
-| 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ⬜ Not started |
+| 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ✅ Read; check waits on 025 |
+| 025 | [Re-translate the Introduction](./025-retranslate-introduction.md) | 024 | ⬜ Not started |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[024](./024-introduction-read.md)**: `introduction-1/2/3`, which 010
-   ticked for the CJK fix and never read. About thirty markers are wrong,
-   every quoted poem is flattened, and a re-translation spec will follow.
+1. **[025](./025-retranslate-introduction.md)**: re-translate
+   `introduction-1/2/3`, which [024](./024-introduction-read.md) read and
+   repaired: markers 1–84, 25 verse quotes, and some forty names.
+   `introduction-1` is the longest run in the book.
 2. **[007](./007-release.md)** last: the end-to-end read of the typeset
    Persian PDF, once no re-translation spec is open.
 
@@ -94,7 +96,8 @@ with seven verse quotes set back as verse. Its twelfth, everything else,
 changed 9. [023](./023-retranslate-session-12.md) has them. The preface had
 never had its last page read, and eight of 002's note repairs were guesses.
 It also found that the Introduction had never been read at all. That is
-[024](./024-introduction-read.md). Three of
+[024](./024-introduction-read.md), which fixed markers 1–84 and 25 verse quotes
+in `introduction-1/2/3`. [025](./025-retranslate-introduction.md) re-translates them. Three of
 011's 40 turned `apparatus --check` red, on re-broken verse quotes. **Most of
 the 40 fail nothing**: `check_parity` counts blocks, and
 a restored word or endnote marker does not change the count. That is the
@@ -109,11 +112,11 @@ closed with it, except the Introduction's read, which is 024's.
 Not top to bottom. The numbering follows the book; the work should not.
 
 ```
-002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022  →  010  →  023  →  024
-repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    intro
+002  →  001  →  003  →  004  →  006  →  008§2  →  005  →  007  →  010  →  009  →  010  →  011  →  010  →  012  →  010  →  014  →  013  →  010  →  015  →  016  →  010  →  017  →  010  →  018  →  010  →  019  →  010  →  020  →  010  →  021  →  010  →  022  →  010  →  023  →  024  →  025
+repair  style   pilot   bulk    back   bleed     intro   ship     audit   redo    audit   redo    audit   redo    audit   poems   redo    audit   redo    notes   audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    audit   redo    intro   redo
 ```
 
-**010 and its re-translation specs (009, 011, 012, 013, 015, 017, 018, 019, 020, 021, 022, …) alternate rather than run in
+**010 and its re-translation specs (009, 011, 012, 013, 015, 017, 018, 019, 020, 021, 022, 023, 025, …) alternate rather than run in
 sequence.** Each decade of the audit
 that repairs a file makes that file's Persian stale, so the tail of the roadmap
 is a loop: read a chunk, fix the generator, list what broke, re-translate it,

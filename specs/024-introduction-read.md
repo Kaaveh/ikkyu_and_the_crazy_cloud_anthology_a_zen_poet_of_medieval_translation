@@ -103,13 +103,97 @@ Carried from 010's *found in passing* lists:
 
 ## Acceptance criteria
 
-- [ ] `introduction-1/2/3` read against the scan, every defect fixed in the
+- [x] `introduction-1/2/3` read against the scan, every defect fixed in the
       generator or recorded here as a deliberate exception.
-- [ ] Markers 1–84 in sequence across the three files, with no gap and no
+- [x] Markers 1–84 in sequence across the three files, with no gap and no
       wrong number.
-- [ ] Every quoted poem in the Introduction is verse in `source/`.
-- [ ] Every changed file listed in a re-translation spec.
+- [x] Every quoted poem in the Introduction is verse in `source/`.
+- [x] Every changed file listed in a re-translation spec:
+      [025](./025-retranslate-introduction.md).
 - [ ] `just check` passes after that spec has run.
+
+## Session 1 — the read (2026-09-25)
+
+Read the scan at pp. 27–83. The fixes are all in the generator. Nothing was
+patched in `source/`.
+
+### What changed in the tooling
+
+- **`generate_final_markdown.py`**, before `build_introduction()`:
+  - `INTRO_TYPOS`, about 180 rules. Each is anchored on its own text and
+    carries its PDF page in a comment. They run on the Introduction only,
+    after `apply_typos`, so the bibliography and glossary are not touched.
+  - `INTRO_VERSE`, 25 confirmed verse quotes.
+  - `INTRO_SPLIT_AFTER`.
+  - `intro_paras()`, which `sec1`–`sec4` now go through.
+- **`parse_prose(text, split_after=())`** now also splits a paragraph when
+  the previous line ends in one of the given characters. The OCR hid
+  paragraph breaks behind a marker digit, a `)` or a `]`.
+- **`split_verse_quotes(paras, quotes=VERSE_QUOTES)`** now takes its quote
+  table as a parameter.
+- **The Daiō rule is gone.** `Daid(?=, founder)` → *Daitō* was wrong: p. 51
+  at 400 dpi reads “established by Daiō, founder of the Daitokuji line”. Every
+  `Daid` is *Daiō*.
+- **`split_book.py` runs `mark_verse()` on every level-3 block**, Introduction
+  and poems alike. Before this, a verse quote set by `split_verse_quotes()`
+  in the Introduction got no hard breaks. The poems' output is unchanged.
+
+### Result
+
+- **Markers** run 1–57 in `introduction-1`, 58–62 in `-2`, 63–84 in `-3`,
+  and 85–88 in `introduction-4`, with no gap. About thirty were fixed. The
+  wrong numbers were [19]→10, [29]→23, [89]→39, [97]→67, [89]→80, [3]→73,
+  [4]→40/41/47 and [5]→51. The others were digits the OCR had turned into
+  `®`, `°`, `?`, `!` or `™`.
+- **Verse**, 25 quotes set, with 61 hard breaks across the three files:
+  - *Ch’ang-men Spring Grass*, the enlightenment poem, Wang Chang-ling;
+  - poems 538, 73, 84, 85, 33 and 567;
+  - the death poem;
+  - poems 250 and 205;
+  - Ryōzen’s four precepts;
+  - poem 203 with Li Yi, and the love song;
+  - poems 107, 57, 206, 77, 49, 493 and 45;
+  - Yün-men’s two sayings.
+- **Lost words given back**:
+  - `as we read, “It must have been`, p. 62;
+  - `a searching and rigorous`, which was `aechine act`;
+  - `tea. (no. 33)`, which was `fea n@n)`;
+  - `superiors,”`, which was `susuperiors`.
+- **Names**:
+  - Giō, Shūon’an (5 OCR variants), Sōchō (4), Nō, Tōfukuji, Tenryūji,
+    Shōkokuji, Ryōanji, Ōei;
+  - Ken’ō, Kasō, Daiō, Tettō, Jikaishū, Jōdo Shinshū, *biwa hōshi*,
+    *kana hōgo*, Yakushidō, Shukō, Rikyū, Ryōzen;
+  - Ch’ü Yüan ×4, T’ien-t’ai, Kao-t’ang, Yang-t’ai, Sung Yü, Nan-yüeh.
+- **Stray and straight quotes** are normalised throughout.
+
+### Deliberate exceptions, as the print has them
+
+- **The author’s typos:** `importancce`, `monstery’s`, `appraently`,
+  `suggets`, `achievment`, `predicatable`, `dunkenness`, `followng`,
+  `quandry`, `non sequitar`, `Yangaida`, `religous`, `Boddhisattva`.
+- **Wording kept as printed:** `merely suggest`, `principle means` and
+  `in never predictable`.
+- **`Kaso` on p. 41**, which the print has without its macron. The macron
+  elsewhere is the print’s own, so each spelling is kept where it stands.
+- **`them?!` on p. 71**, confirmed at 400 dpi: the print has no closing
+  quote there.
+- **Names printed without diacritics:** `Onin`, `gekokujo` and
+  `Vimalakirti`. That is the print’s habit, not OCR damage.
+
+### Fallout
+
+`source/` changed in `introduction-1.md`, `-2.md` and `-3.md` only.
+`check_parity` is red on those three and nothing else:
+
+```
+fa/introduction-1.md: 106 blocks, source has 120
+fa/introduction-2.md: 20 blocks, source has 19
+fa/introduction-3.md: 62 blocks, source has 66
+```
+
+That is expected. [025](./025-retranslate-introduction.md) re-translates all
+three.
 
 ## Out of scope
 

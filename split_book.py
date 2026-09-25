@@ -196,9 +196,12 @@ def main():
             if name is None:                           # the poems
                 poem_index += 1
                 path = SOURCE_DIR / f"{poem_index:03d}.md"
-                block = mark_verse(block)
             else:
                 path = SOURCE_DIR / f"{name}-{offset}.md"
+            # The Introduction quotes verse too (spec 024), and its prose is
+            # one line per paragraph like the poems' notes, so the same
+            # structural test holds there.
+            block = mark_verse(block)
             write(path, normalize_headings(block))
             written.append((path.name, h3))
 
