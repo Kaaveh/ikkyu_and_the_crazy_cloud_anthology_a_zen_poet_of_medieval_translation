@@ -18,7 +18,7 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 004 | [The Anthology — 011–135](./004-the-anthology.md)          | 003        | ✅ Done        |
 | 005 | [Introduction & front matter](./005-introduction.md)       | 003, 008§2 | ✅ Done        |
 | 006 | [Back matter](./006-back-matter.md)                        | 002        | ✅ Done        |
-| 007 | [Release & publication](./007-release.md)                  | 004–006    | 🟨 In progress |
+| 007 | [Release & publication](./007-release.md)                  | 004–006    | ✅ Done        |
 | 008 | [Source repair follow-up](./008-source-repair-followup.md) | 002        | ✅ Done        |
 | 009 | [Re-translate the repaired files](./009-retranslate-repaired-files.md) | 010 | ✅ Done        |
 | 010 | [The 147-file source audit](./010-source-audit.md)         | 002        | ✅ Done        |
@@ -44,13 +44,15 @@ start (🟨 In progress) and when you finish (✅ Done).
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[007](./007-release.md)**: tag `v1.0.0`. 027 has closed and the read is
-   done.
+Nothing. **007 closed with `v1.0.0`**, and every spec in the table is done.
+What is still open is deliberately deferred and listed in `README.md`: the
+bibliography and glossary are unrepaired OCR, and the PDF has blank CJK. Also,
+the EPUB has not yet been opened on a device (007, *Closing*).
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
 skipped`, and the book typesets at 234 pages.
 
-**007 is tagged `v0.1.0` and its read is done.** Every `TBD`/`TODO` is settled,
+**007 is tagged `v1.0.0`, and its read is done.** Every `TBD`/`TODO` is settled,
 `README.md` and the two licence files exist, and `just build` produces all three
 formats clean. The end-to-end read of the typeset PDF ran on 2026-09-25: eight
 faults fixed in the build, four files handed to 027. 027 closed them.

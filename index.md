@@ -2,8 +2,13 @@
 
 <!--
 The book's home page. This is project chrome, not translated content, so it
-lives at the repo root rather than in fa/ -- a file in fa/ with no counterpart
+lives at the repo root rather than in fa/: a file in fa/ with no counterpart
 in source/ is reported as a parity orphan, correctly.
+
+Never two hyphens in a row anywhere in this comment, not even quoted. Pandoc
+copies it into the EPUB, where it is XML, and a doubled hyphen inside a
+comment is a fatal parse error there: a strict reader drops this whole page
+(spec 007).
 
 Written by the maintainer, not translated from anything. Edit freely.
 -->

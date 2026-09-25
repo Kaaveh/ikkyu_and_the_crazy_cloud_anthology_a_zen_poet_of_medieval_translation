@@ -90,13 +90,16 @@ and a tagged release.
 - [x] The PDF was built by LuaLaTeX and a Latin citation inside a Persian sentence
       reads forwards.
 - [x] The EPUB spine is right-to-left — `page-progression-direction="rtl"` on
-      `<spine>` in `content.opf`. **Not yet opened in a real reader.**
+      `<spine>` in `content.opf` — every chapter is `dir="rtl"`, EPUBCheck
+      3.3 reports nothing, and the book was opened in epub.js. See *Closing*
+      below.
 - [x] The whole PDF read end to end — every page, 2026-09-25. See *The
       typeset read* below. Four files it found go to
       [027](./027-retranslate-typeset-read.md), which the `v1.0.0` tag waits on.
 - [x] The release artifact contains no `source/`, no monolith, no raw OCR, no PDF of
       the original.
-- [x] `book-version` bumped; tag pushed.
+- [x] `book-version` bumped; tag pushed — `v0.1.0`, then `v1.0.0` once 027
+      closed.
 
 ## Out of scope
 
@@ -210,4 +213,52 @@ fix.
   `الف`. Both read correctly; a style inconsistency, not a typesetting fault.
 
 **Still not done:** the EPUB opened in a real reader. It builds, and its
-spine is RTL.
+spine is RTL. (Done at the close, below.)
+
+### Closing: the EPUB validated and opened, and `v1.0.0`
+
+The first time EPUBCheck 3.3 ran on the book, it found two faults. Nothing
+built before had caught either one:
+
+- **A fatal XML error in the reader's note.** `index.md`'s opening HTML comment
+  had a `--` in it. Pandoc copies comments into the EPUB, and in XHTML a
+  double hyphen inside a comment is not well-formed, so a strict reader
+  refuses `ch001.xhtml`. That is the page that tells the reader the book is
+  machine-translated. The comment is reworded, and it now says why.
+- **No chapter was `dir="rtl"`.** Only the title page was. Pandoc gives chapter
+  files its *variables* but not the document metadata, so the top-level
+  `dir: rtl` never reached them. They were right-to-left only because
+  `epub.css` set `direction: rtl`, and EPUB forbids that property in a style
+  sheet (`CSS-001`) and lets a reader ignore it. Now `dir: rtl` is also set
+  under `epub: variables:`, and the CSS rule is gone. A two-chapter test book
+  confirmed the variable is what does it: without it, only the title page
+  gets the attribute.
+
+After the fix: `0 fatals / 0 errors / 0 warnings`, all 155 chapter files
+`dir="rtl"`, and the spine still `page-progression-direction="rtl"`.
+
+**Opened in epub.js** (Chromium, paginated two-page spread), the rendering
+engine behind many web and app readers. The package direction reads `rtl`,
+the first page of a spread is on the right and the text continues on the
+left, and `next()` goes from the title page to the next spine item.
+Vazirmatn is embedded and shapes correctly. Poem 52 keeps its four verse
+lines, and `Ch’uan Teng Lu`, `fūryū` and `Blue Cliff Record` read forwards.
+Pages checked: the title page, the reader's note, «تلمیح» in the
+Introduction, and poem 52 with its notes. **It has still not been opened on a
+dedicated device or in Apple Books.** Those are the strictest readers, and
+the fatal error above is exactly what they reject. What is left there is a
+person with a device, not a known fault.
+
+**The PDF was not rebuilt in this session.** The container's TeX Live is
+Debian's 2023 (LuaTeX 1.17), where `\babelprovide[import]{persian}` collides
+with babel-persian (`\persiandate already defined`), and CTAN was not
+reachable to install a current one. The book is built with LuaTeX 1.24. None
+of this session's changes reaches the LaTeX output: two of them are
+EPUB-only keys, LaTeX drops the HTML comment (checked with `pandoc -t
+latex`), and `book-version` is printed only inside index.md's `unless-format="pdf"`
+div. So the PDF at `v1.0.0` is the one 027 rebuilt and read.
+
+`book-version` is now `نسخهٔ ۱.۰.۰`, and the tag is `v1.0.0`. Under
+`README.md`'s versioning, MAJOR is "a new edition". This is the first edition
+that has been read end to end, and every file the read found has been
+re-translated.

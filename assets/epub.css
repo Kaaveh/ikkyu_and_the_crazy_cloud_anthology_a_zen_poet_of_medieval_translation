@@ -16,7 +16,9 @@
 
 body {
   font-family: "Vazirmatn", serif;
-  direction: rtl;
+  /* No `direction` here: EPUB style sheets may not set it, and a reader is
+     free to ignore it. Every chapter carries dir="rtl" instead; see epub in
+     _quarto.yml. */
   text-align: justify;
   line-height: 1.9;
 }

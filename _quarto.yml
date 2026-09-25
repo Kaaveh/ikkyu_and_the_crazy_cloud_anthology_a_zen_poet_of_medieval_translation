@@ -8,7 +8,7 @@
 # list below mirrors source/README.md. Regenerate both together if the split
 # changes, or Quarto will list a chapter that no longer exists.
 
-book-version: "نسخهٔ ۰.۱.۰"
+book-version: "نسخهٔ ۱.۰.۰"
 
 project:
   type: book
@@ -252,6 +252,12 @@ format:
     # Pandoc supports this but does not derive it from `dir`, so an RTL book
     # otherwise ships with a left-to-right spine.
     page-progression-direction: rtl
+    # Nor does it put the top-level `dir` on any chapter: pandoc gives the
+    # chapter files its variables but not the document metadata, so only the
+    # title page came out dir="rtl" and every chapter leaned on a CSS
+    # `direction`, which EPUB forbids and a reader may ignore (spec 007).
+    variables:
+      dir: rtl
     epub-fonts:
       - fonts/Vazirmatn-Regular.ttf
       - fonts/Vazirmatn-Bold.ttf
