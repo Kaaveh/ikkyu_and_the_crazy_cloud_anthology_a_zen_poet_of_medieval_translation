@@ -91,14 +91,43 @@ A decision, then work in whichever place it lands:
 Recommended: 1. It is the root cause, and the only one that also stops the
 fault recurring.
 
+## Session 2 (2026-09-25): option 1, and the three restored
+
+**`bargardan-tools v0.2.0`** (`037e38f`): the `quotes` rule decides open or
+close from a mark's neighbours — after a space or an opening bracket it opens,
+before a space, punctuation or a closing bracket it closes — and ignores which
+way a curly mark faces. Four tests: nested, `”x“`, a quote across a line
+break, a mark with a letter on both sides left alone. The pin here is
+`v0.2.0`, and STYLE.md §6.1 settles the TBD: an inner quote nests as `«…»`.
+
+**Run against the other three books first, as a measurement.** It flags lines
+the old rule passed, because a stray mark with no partner on its line was
+invisible to it: Taoteching `04`, `51`, `65`, and Linji `01-discourses/01`,
+`03`. All are real faults or English passages — none a regression. Both books
+pin v0.1.0, so nothing changes for them until they bump; the package README
+says what to expect.
+
+**The three files.** 014 and 020 restored from session 1's drafts. 086's draft
+was refused — the model had joined three of the Chuang Tzu story's paragraphs
+with single newlines — so it went down the ladder to 900: every block back,
+read, Advanced. Then the second sanctioned hand-edit: the drafts had
+re-broken 24 name occurrences that earlier specs had conformed to §2 —
+`نان-چوآن`, `یِن‌تو`, `«دایو»`, `یوان-وو`, `چوآن‌تِنگ‌لو`, `شو-تانگ`,
+`چیِن-هو` among them — each already a row in §2's tables, and put back to the
+form the old file had.
+
+The sweep prints nothing — not even the three back-matter files the note above
+expected. `just check` green. Pages 72–73 (poem 44), 80 (66), 154 (293) and
+176 (107) read in the rebuilt PDF.
+
 ## Acceptance criteria
 
-- [ ] All four re-translated through the `CLAUDE.md` pipeline (`-w --raw`,
+- [x] All four re-translated through the `CLAUDE.md` pipeline (`-w --raw`,
       `strip` / `restore -o`), each read for Classic.
-- [ ] The sweep above prints nothing outside the three back-matter files.
+- [x] The sweep above prints nothing outside the three back-matter files.
 - [x] `fa/107.md`'s heading is `درآمدِ منثور بر ۵۳۱ و ۵۳۲`.
-- [ ] `just check` passes.
-- [ ] The four pages read in the typeset PDF.
+- [x] `just check` passes.
+- [x] The four pages read in the typeset PDF.
 
 ## Out of scope
 

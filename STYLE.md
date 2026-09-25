@@ -4,7 +4,7 @@ The decisions this book is translated under, and the reasoning for each. Written
 in one session (spec 001) before any bulk translation, because revising a
 register or a proper-noun policy at poem 80 means revising 79 files.
 
-**Almost nothing here is enforced.** `bargardan-tools v0.1.0` has no
+**Almost nothing here is enforced.** `bargardan-tools v0.2.0` has no
 `check_glossary` and this book will never have one. What is enforced
 mechanically is small and named in §5 and §6: the digit script, the quote
 marks, and the structural heading labels `tools/apparatus.py` re-emits. The rest
@@ -647,4 +647,12 @@ Two things follow from how the rule actually behaves, both measured:
 and the Advanced model produces them (`چشمِ حقیقی`, `استادِ یو-وانگ`). They are
 not stripped.
 
-`<<<TBD>>>` — nested quotation inside a `«»` span. Has not come up.
+### §6.1 A quote inside a quote nests: `«… «x» …»`
+
+**Settled in spec 027.** The English nests quotes, the model keeps the
+nesting, and an inner quote is a guillemet pair like the outer one — no second
+mark, so nothing for a reader to learn. `bargardan-tools v0.2.0` does this: the
+`quotes` rule decides whether a mark opens or closes from its neighbours, so
+the direction of a curly mark no longer matters. The model writes the curly
+pair right-to-left, `”x“`, and v0.1.0 paired by position; that is what put
+`»وو« و »یوئه«` in `fa/086.md` until 027.

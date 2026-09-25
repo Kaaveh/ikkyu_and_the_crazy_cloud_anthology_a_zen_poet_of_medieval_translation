@@ -38,18 +38,14 @@ start (🟨 In progress) and when you finish (✅ Done).
 | 024 | [The Introduction, read against the scan](./024-introduction-read.md) | 010 | ✅ Done        |
 | 025 | [Re-translate the Introduction](./025-retranslate-introduction.md) | 024 | ✅ Done        |
 | 026 | [Re-translate `introduction-1`, piece by piece](./026-retranslate-introduction-1.md) | 025 | ✅ Done        |
-| 027 | [Re-translate what 007's typeset read found](./027-retranslate-typeset-read.md) | 007 | 🟨 In progress |
+| 027 | [Re-translate what 007's typeset read found](./027-retranslate-typeset-read.md) | 007 | ✅ Done        |
 
 ## Next up
 
 **Pick the first unfinished line. Update this list when a spec closes.**
 
-1. **[027](./027-retranslate-typeset-read.md)**: four files 007's typeset
-   read found wrong in `fa/`. 107 done. The other three wait on a decision:
-   re-translating reproduces the fault, because `normalize` cannot pair
-   nested quotes (027 session 1).
-2. **[007](./007-release.md)**: tag `v1.0.0` once 027 closes. The read itself
-   is done.
+1. **[007](./007-release.md)**: tag `v1.0.0`. 027 has closed and the read is
+   done.
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
 skipped`, and the book typesets at 234 pages.
@@ -57,8 +53,7 @@ skipped`, and the book typesets at 234 pages.
 **007 is tagged `v0.1.0` and its read is done.** Every `TBD`/`TODO` is settled,
 `README.md` and the two licence files exist, and `just build` produces all three
 formats clean. The end-to-end read of the typeset PDF ran on 2026-09-25: eight
-faults fixed in the build, four files handed to 027. **027 is what keeps the tag
-at `v0.1.0`.**
+faults fixed in the build, four files handed to 027. 027 closed them.
 
 **It is not the same read as 010.** 010 reads `source/` against the 228-page
 English scan and asks whether the English says what the book says; 007 reads
