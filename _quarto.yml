@@ -8,7 +8,7 @@
 # list below mirrors source/README.md. Regenerate both together if the split
 # changes, or Quarto will list a chapter that no longer exists.
 
-book-version: "نسخهٔ ۱.۰.۰"
+book-version: "نسخهٔ ۱.۰.۱"
 
 project:
   type: book

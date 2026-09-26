@@ -50,7 +50,8 @@ bibliography and glossary are unrepaired OCR, and the PDF has blank CJK. Also,
 the EPUB has not yet been opened on a device (007, *Closing*).
 
 **All 153 files are translated** — `check_parity` reports `153 file(s) match, 0
-skipped`, and the book typesets at 234 pages.
+skipped`, and the book typesets at 238 pages (234 in `v1.0.0`, where the four
+plates were stacked on one page over the text; fixed in `v1.0.1`).
 
 **007 is tagged `v1.0.0`, and its read is done.** Every `TBD`/`TODO` is settled,
 `README.md` and the two licence files exist, and `just build` produces all three
