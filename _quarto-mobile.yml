@@ -1,0 +1,27 @@
+# Mobile PDF flavour. `just pdf-mobile`, i.e.
+# `quarto render --profile mobile --to pdf`. Everything not named here is
+# inherited from _quarto.yml, including LuaLaTeX, the verse filters and
+# tex/preamble.tex. The reasoning is the Lin-chi book's, where this was first
+# worked out: what makes type big on a phone is a small page, not a bigger font.
+
+project:
+  # Its own tree, so a mobile render never overwrites the desktop PDF.
+  output-dir: _book-mobile
+
+book:
+  output-file: ikkyu-crazy-cloud-anthology-fa-mobile
+
+format:
+  pdf:
+    # 9:16, the shape of the screen. `includefoot` keeps the folio on the paper.
+    geometry:
+      - paperwidth=90mm
+      - paperheight=160mm
+      - margin=6mm
+      - includefoot
+    classoption: [openany, oneside]
+    # Both files: Quarto replaces include-in-header in a profile rather than
+    # concatenating it, and naming only mobile.tex drops the Persian preamble.
+    include-in-header:
+      - tex/preamble.tex
+      - tex/mobile.tex

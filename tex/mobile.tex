@@ -1,0 +1,10 @@
+% Mobile-only additions, loaded after tex/preamble.tex by _quarto-mobile.yml.
+% Hyphenation is already off in the preamble (spec 007).
+
+% No running head: on a 160mm page it costs ~6% of the page. `plain` keeps the
+% folio; geometry's `includefoot` keeps it on the paper.
+\pagestyle{plain}
+
+% With hyphenation off on a 78mm measure, let TeX stretch rather than leave
+% overfull lines running into the margin.
+\setlength{\emergencystretch}{3em}

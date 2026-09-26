@@ -59,14 +59,15 @@ and a TeX Live with LuaLaTeX.
 git clone https://github.com/Kaaveh/ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translation
 cd ikkyu_and_the_crazy_cloud_anthology_a_zen_poet_of_medieval_translation
 just venv           # the Python environment and the checkers
-just build          # HTML, PDF and EPUB into _book/
+just build          # HTML, PDF and EPUB into _book/, the mobile PDF into _book-mobile/
 ```
 
 | | |
 |---|---|
 | `just check` | orthography, parity, hard line breaks, tests |
 | `just fix` | correct what can be corrected automatically |
-| `just build` | all three formats |
+| `just build` | all three formats, plus the mobile PDF |
+| `just pdf-mobile` | the phone edition only: a 90×160mm page, into `_book-mobile/` |
 | `just pdf` / `just epub` / `just html` | one format |
 | `just serve` | live preview on <http://localhost:4200> |
 | `just --list` | everything |

@@ -3,7 +3,7 @@
 #     just check     # everything that must pass before a commit
 #     just fix       # the corrections that can be made automatically
 #     just stubs     # create or refresh fa/ from source/
-#     just build     # HTML, PDF and EPUB
+#     just build     # HTML, PDF (desktop and mobile) and EPUB
 
 # Prefer the project venv; fall back to whatever python3 is around.
 py := if path_exists(".venv/bin/python") == "true" { ".venv/bin/python" } else { "python3" }
@@ -49,9 +49,15 @@ split:
 
 build:
     quarto render
+    quarto render --profile mobile --to pdf
 
 pdf:
     quarto render --to pdf
+
+# The phone edition: a 90x160mm page, so the same 12pt fills the screen.
+# Lands in _book-mobile/, never touching the desktop PDF. See _quarto-mobile.yml.
+pdf-mobile:
+    quarto render --profile mobile --to pdf
 
 html:
     quarto render --to html
@@ -68,4 +74,4 @@ venv:
     .venv/bin/pip install -r tools/requirements.txt
 
 clean:
-    rm -rf _book .quarto
+    rm -rf _book _book-mobile .quarto
