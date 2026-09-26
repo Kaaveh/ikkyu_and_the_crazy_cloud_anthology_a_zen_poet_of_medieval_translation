@@ -57,6 +57,11 @@
   \fi}
 \makeatother
 
+% Title page: the translator's line under the author's, not beside it. Pandoc
+% joins the `author:` list with \and, which \maketitle sets as side-by-side
+% columns; the author block is a one-column tabular, so \\ gives a row each.
+\renewcommand{\and}{\\[1ex]}
+
 % The translated alt text already opens with «تصویر ۱:», so LaTeX's own
 % "Figure 1:" label doubled it. caption is loaded after this file, hence the hook.
 \AtBeginDocument{\captionsetup[figure]{labelformat=empty}}
@@ -80,3 +85,7 @@
 % and all four stacked on one page. No interline glue at all puts the box
 % straight after the line above, with float's own \intextsep between them.
 \AddToHook{env/figure/before}{\par\nointerlineskip}
+
+% ...and on the title page, where the author and translator are two rows of one
+% tabular: under the rule above the second row printed over the first.
+\AddToHook{env/titlepage/begin}{\lineskiplimit=0pt}
