@@ -105,7 +105,7 @@ readers fall back on their own.
 A second fault follows from the first, and from the same files being
 Latin-dominant lines inside a right-to-left paragraph: the neutral punctuation
 that ends such a line lands at its other end, so an entry typesets as
-`.Shoten, 1972`. Both are recorded in spec 007 and neither is fixed in v1.0.1.
+`.Shoten, 1972`. Both are recorded in spec 007 and neither is fixed in v1.0.2.
 
 Those two files are also the OCR's text, unrepaired: in the glossary, a run of
 entries is often joined into one paragraph, and both carry stray symbols where
