@@ -44,11 +44,12 @@
 % ran off the foot of its page and lost its caption, and left the page before
 % it blank. Same definition, capped at 60% of the page: at 70% plate 1, its chapter
 % title and its section heading still could not share a page, and the page
-% before them stayed blank.
+% before them stayed blank. tex/mobile.tex lowers \platecap for the phone page.
+\newcommand*\platecap{.6}
 \makeatletter
 \renewcommand*\pandocbounded[1]{%
   \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{.6\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempa{\platecap\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
   \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
   \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
   \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
@@ -72,3 +73,10 @@
 % quatrain with one diacritic opened a stanza gap in its middle (poem 640).
 % Keep every baseline on the grid instead.
 \lineskiplimit=-\maxdimen
+
+% ...except before a figure. [H] sets the whole plate down as one box after
+% \end{figure}, where the rule above makes its interline glue \baselineskip
+% minus the plate's height: each plate painted upward over the text before it,
+% and all four stacked on one page. No interline glue at all puts the box
+% straight after the line above, with float's own \intextsep between them.
+\AddToHook{env/figure/before}{\par\nointerlineskip}

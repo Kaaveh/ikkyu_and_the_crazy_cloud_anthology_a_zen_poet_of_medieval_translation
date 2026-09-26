@@ -8,3 +8,9 @@
 % With hyphenation off on a 78mm measure, let TeX stretch rather than leave
 % overfull lines running into the margin.
 \setlength{\emergencystretch}{3em}
+
+% Plates at 40% of the page, not the preamble's 60%. The chapter title is as
+% tall here as on the desktop page, on a page half the height: at 60% plate 1
+% and the two headings above it ran off the foot, and at 45% its caption still
+% ran into the folio.
+\renewcommand*\platecap{.4}
