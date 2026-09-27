@@ -1,0 +1,92 @@
+# Pushing a tag renders the book and publishes it, here and on kaavehdev.ir.
+#
+# The site's contract is its CLAUDE.md, "Publishing a book": four unversioned
+# assets, a relocatable bundle, the deploy hook last. Its build fetches
+# releases/latest/download/ikkyu-crazy-cloud-anthology-fa-html.tar.gz and
+# FAILS if the latest release lacks it -- so a release cut by hand with
+# `gh release create` must still carry all eight files below.
+#
+# No release notes are written here: this book's are hand-written. Add them
+# with `gh release edit <tag> --notes-file …` once the run is green.
+
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    env:
+      OSFONTDIR: "/usr/share/fonts//"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      # Vazirmatn is committed under fonts/. The CJK font is for the 26 real
+      # characters in the back matter, which render blank without one.
+      - name: Install TinyTeX and fonts
+        run: |
+          sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fontconfig
+          quarto install tinytex --no-prompt
+          fc-cache -f
+
+      - name: Render
+        run: |
+          quarto render
+          quarto render --profile mobile --to pdf
+
+      # Versioned names keep the "v", as v1.0.0-v1.0.2 did by hand.
+      - name: Package
+        id: pkg
+        run: |
+          base=ikkyu-crazy-cloud-anthology-fa
+          v="${GITHUB_REF_NAME}"
+          mkdir dist
+          cp _book/*.pdf              "dist/$base-$v.pdf"
+          cp _book-mobile/*.pdf       "dist/$base-$v-mobile.pdf"
+          cp _book/*.epub             "dist/$base-$v.epub"
+          tar -czf "dist/$base-$v-html.tar.gz" -C _book .
+          for s in .pdf -mobile.pdf .epub -html.tar.gz; do cp "dist/$base-$v$s" "dist/$base$s"; done
+          echo "name=$v — $(sed -n 's/^book-version: "\(.*\)"/\1/p' _quarto.yml)" >> "$GITHUB_OUTPUT"
+
+      # kaavehdev.ir serves the bundle from /translations/ikkyu-crazy-cloud/,
+      # where a root-absolute path 404s -- silently, and only in production.
+      - name: Bundle is relocatable
+        run: |
+          if grep -rohE '(href|src)="/[^"]*"' _book --include='*.html' | grep -q .; then
+            grep -rohE '(href|src)="/[^"]*"' _book --include='*.html' | sort -u | head
+            exit 1
+          fi
+
+      # Quarto copies a chapter heading verbatim into the sidebar, without the
+      # inline processing the body gets, so a note marker there ships as raw
+      # Markdown on every page.
+      - name: No Markdown leaks into the sidebar
+        run: |
+          if grep -rohE '</a>[^<]*\[\^[^]]*\]\([^)]*\)' _book --include='*.html' | grep -q .; then
+            grep -rohE '</a>[^<]*\[\^[^]]*\]\([^)]*\)' _book --include='*.html' | sort -u | head
+            exit 1
+          fi
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.pkg.outputs.name }}
+          files: dist/*
+
+      - name: Rebuild kaavehdev.ir
+        env:
+          HOOK: ${{ secrets.SITE_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "SITE_DEPLOY_HOOK_URL is not set; skipping the site rebuild."
+            exit 0
+          fi
+          response=$(curl -fsS -X POST "$HOOK")
+          echo "$response"
+          echo "$response" | grep -q '"success": *true'
