@@ -291,6 +291,7 @@ translator looks before inventing a form.
 | kōan | کوآن | **argued** — spec 003; the model's own form in `fa/009.md` and `fa/010.md`. |
 | fūryū | فوریو | **argued** — spec 003, `fa/001.md`. |
 | Kyōunshū | کیوئونشو | (suggested) |
+| *Blue Cliff Record* | «دفتر صخرهٔ کبود» | **argued** — the maintainer's form across the series (No-Nonsense Zen spec 002). Replaces the model's eight: «سوابق صخره آبی / صخره‌ی آبی / صخره کبود / صخره‌ی کبود / صخرهٔ کبود», «سجل صخره کبود / صخرهٔ کبود», «بلو کلیف رکورد». |
 
 Everything marked (suggested) is a first reading, not a decision. Overruling one
 costs nothing until it is in many files; after that, say so here.
